@@ -1,4 +1,8 @@
-# YY自定义广告关键词
+# YY广告
 DOMAIN-SUFFIX,game.yy.com
 DOMAIN-SUFFIX,img-game.yy.com
 DOMAIN-SUFFIX,channel-ad.yy.com
+
+# 谷歌广告
+DOMAIN-SUFFIX,googlesyndication.com
+DOMAIN-SUFFIX,doubleclick.net
