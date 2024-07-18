@@ -1,4 +1,5 @@
 # 自定义广告关键词
+DOMAIN-SUFFIX,bs2cdn.yy.com
 DOMAIN,game.yy.com
 DOMAIN,img-game.yy.com
 DOMAIN,channel-ad.yy.com
@@ -11,6 +12,4 @@ DOMAIN,yyapp-ytp.yy.com
 DOMAIN,yyapp-mlog.bigda.com
 DOMAIN,mlog.bigda.com
 DOMAIN,springheadline.yy.com
-DOMAIN,emyfs.bs2cdn.yy.com
-DOMAIN,bs2cdn.yy.com
 DOMAIN,dxmstatic.com
