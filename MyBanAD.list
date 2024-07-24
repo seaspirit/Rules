@@ -7,3 +7,6 @@ DOMAIN-SUFFIX,googlesyndication.com
 DOMAIN-SUFFIX,doubleclick.net
 # 亚马逊广告
 DOMAIN-SUFFIX,amazon-adsystem.com
+# Tumblr广告
+DOMAIN-SUFFIX,adsbynimbus.com
+DOMAIN-SUFFIX,ljwit.com
