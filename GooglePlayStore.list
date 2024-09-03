@@ -1,0 +1,10 @@
+# 修复 Google Play Store 送中节点下载
+DOMAIN,connectivitycheck.gstatic.com 
+DOMAIN-SUFFIX,connectivitycheck.gstatic.com
+DOMAIN-SUFFIX,googleapis.cn
+DOMAIN-SUFFIX,services.googleapis.cn
+DOMAIN-SUFFIX,play.googleapis.com
+DOMAIN-SUFFIX,android.clients.google.com
+DOMAIN-SUFFIX,xn--ngstr-lra8j.com
+DOMAIN-SUFFIX,xn--ngstr-cn-8za9o.com
+DOMAIN-SUFFIX,lh3.googleusercontent.com
