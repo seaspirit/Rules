@@ -154,14 +154,14 @@ proxy-groups:
   - {name: 🤖 ChatGPT,!!merge <<: *pr}
   - {name: 🎯 全球直连,!!merge <<: *pr3}
   - {name: 🐟 漏网之鱼,!!merge <<: *pr}
-  - {name: ♻️ 自动选择, type: url-test, include-all: true, tolerance: 2, interval: 120, filter: "^((?!(直连|拦截|剩余|重置|到期|Traffic|Expire)).)*$"}
-  - {name: 🇭🇰 香港节点, type: url-test, include-all: true, tolerance: 2, interval: 120, filter: "(?=.*(港|HK|(?i)HongKong))^((?!(台|日|韩|新|深|美)).)*$"}
-  - {name: 🇹🇼 台湾节点, type: url-test, include-all: true, tolerance: 2, interval: 120, filter: "(?=.*(台|TW|(?i)Taiwan))^((?!(港|日|韩|新|美)).)*$"}
-  - {name: 🇯🇵 日本节点, type: url-test, include-all: true, tolerance: 0, interval: 120, filter: "(?=.*(日|JP|(?i)Japan|Tokyo))^((?!(港|台|韩|新|美)).)*$" }
-  - {name: 🇰🇷 韩国节点, type: url-test, include-all: true, tolerance: 2, interval: 120, filter: "(?=.*(韩|KR|(?i)Korea|Incheon))^((?!(港|台|日|新|美)).)*$" }
-  - {name: 🇸🇬 新加坡节点, type: url-test, include-all: true, tolerance: 2, interval: 120, filter: "(?=.*(新|狮|SG|(?i)Singapore))^((?!(港|台|日|韩|美)).)*$"}
-  - {name: 🇺🇲 美国节点, type: url-test, include-all: true, tolerance: 0, interval: 120, filter: "(?=.*(美|US|(?i)States|America))^((?!(港|台|日|韩|新)).)*$"}
-  - {name: 🌐 全部节点, type: select, include-all: true, tolerance: 2, interval: 120}
+  - {name: ♻️ 自动选择, type: url-test, include-all: true, tolerance: 0, interval: 150, filter: "^((?!(直连|拦截|剩余|重置|到期|Traffic|Expire)).)*$"}
+  - {name: 🇭🇰 香港节点, type: url-test, include-all: true, tolerance: 0, interval: 150, filter: "(?=.*(港|HK|(?i)HongKong))^((?!(台|日|韩|新|深|美)).)*$"}
+  - {name: 🇹🇼 台湾节点, type: url-test, include-all: true, tolerance: 0, interval: 150, filter: "(?=.*(台|TW|(?i)Taiwan))^((?!(港|日|韩|新|美)).)*$"}
+  - {name: 🇯🇵 日本节点, type: url-test, include-all: true, tolerance: 0, interval: 150, filter: "(?=.*(日|JP|(?i)Japan|Tokyo))^((?!(港|台|韩|新|美)).)*$" }
+  - {name: 🇰🇷 韩国节点, type: url-test, include-all: true, tolerance: 0, interval: 150, filter: "(?=.*(韩|KR|(?i)Korea|Incheon))^((?!(港|台|日|新|美)).)*$" }
+  - {name: 🇸🇬 新加坡节点, type: url-test, include-all: true, tolerance: 0, interval: 150, filter: "(?=.*(新|狮|SG|(?i)Singapore))^((?!(港|台|日|韩|美)).)*$"}
+  - {name: 🇺🇲 美国节点, type: url-test, include-all: true, tolerance: 0, interval: 150, filter: "(?=.*(美|US|(?i)States|America))^((?!(港|台|日|韩|新)).)*$"}
+  - {name: 🌐 全部节点, type: select, include-all: true, tolerance: 0, interval: 150}
 rules:
   - DOMAIN-SUFFIX,googlevideo.com,♻️ 自动选择
   - DOMAIN-SUFFIX,channel-ad.yy.com,🚫 广告拦截
