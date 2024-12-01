@@ -2,22 +2,22 @@
 proxy-providers:
   翻墙机场:
     type: http
-    interval: 1800
+    interval: 3600
     health-check:
       enable: true
       url: https://www.gstatic.com/generate_204
-      interval: 300
+      interval: 150
     proxy: 🟢 直连
     url: "https://18th.sub-airport.com/api/v1/client/subscribe?token=c97717ddddfeb83fcfe326caac7dcdb9"
     override:
       skip-cert-verify: true
   Flower_SS:
     type: http
-    interval: 1800
+    interval: 3600
     health-check:
       enable: true
       url: https://www.gstatic.com/generate_204
-      interval: 300
+      interval: 150
     proxy: 🟢 直连
     url: "https://api.xmancdn.com/osubscribe.php?sid=114693&token=2tUov4YG&sip002=1"
       
@@ -136,7 +136,7 @@ proxies:
   type: reject
  
 # 锚点
-pr: &pr {type: url-test, proxies: [♻️ 自动选择, 🇭🇰 香港节点, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇺🇲 美国节点]}
+pr: &pr {type: url-test, tolerance: 0, interval: 150, proxies: [♻️ 自动选择, 🇭🇰 香港节点, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇺🇲 美国节点]}
 pr2: &pr2 {type: fallback, proxies: [🇺🇲 美国节点, ♻️ 自动选择]}
 pr3: &pr3 {type: select, proxies: [🟢 直连, ♻️ 自动选择]}
 # 策略组
@@ -166,7 +166,6 @@ rules:
   - DOMAIN-SUFFIX,googlevideo.com,♻️ 自动选择
   - DOMAIN-SUFFIX,channel-ad.yy.com,🚫 广告拦截
   - DOMAIN-SUFFIX,co.jp,🇯🇵 日本节点
-  - DOMAIN-SUFFIX,catbox.moe,🟢 直连
   - DOMAIN-SUFFIX,softonic.cn,♻️ 自动选择
   - RULE-SET,google-ads_domain,🚫 广告拦截
   - RULE-SET,youtube_domain,📹 YouTube
