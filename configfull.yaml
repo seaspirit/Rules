@@ -110,6 +110,8 @@ dns:
     - "+.local"
     - geosite:private
     - geosite:cn
+    - "+.xn--ngstr-lra8j.com"
+    - "+.services.googleapis.cn"
   default-nameserver:
     - 202.102.128.68
     - 114.114.114.114
@@ -126,6 +128,7 @@ dns:
     "rule-set:geolocation-!cn":
       - "https://dns.cloudflare.com/dns-query"
       - "https://dns.google/dns-query"
+      - 202.102.128.68
       - 114.114.114.114
    
 proxies:
@@ -154,7 +157,7 @@ proxy-groups:
   - {name: 🤖 ChatGPT,!!merge <<: *pr}
   - {name: 🎯 全球直连,!!merge <<: *pr3}
   - {name: 🐟 漏网之鱼,!!merge <<: *pr}
-  - {name: ♻️ 自动选择, type: url-test, include-all: true, tolerance: 0, interval: 150, filter: "^((?!(直连|拦截|剩余|重置|到期|Traffic|Expire)).)*$"}
+  - {name: ♻️ 自动选择, type: url-test, include-all: true, tolerance: 0, interval: 150, filter: "^((?!(直连|拦截|剩余|重置|到期|Traffic|Expire|台|TW)).)*$"}
   - {name: 🇭🇰 香港节点, type: url-test, include-all: true, tolerance: 0, interval: 150, filter: "(?=.*(港|HK|(?i)HongKong))^((?!(台|日|韩|新|深|美)).)*$"}
   - {name: 🇹🇼 台湾节点, type: url-test, include-all: true, tolerance: 0, interval: 150, filter: "(?=.*(台|TW|(?i)Taiwan))^((?!(港|日|韩|新|美)).)*$"}
   - {name: 🇯🇵 日本节点, type: url-test, include-all: true, tolerance: 0, interval: 150, filter: "(?=.*(日|JP|(?i)Japan|Tokyo))^((?!(港|台|韩|新|美)).)*$" }
@@ -163,10 +166,12 @@ proxy-groups:
   - {name: 🇺🇲 美国节点, type: url-test, include-all: true, tolerance: 0, interval: 150, filter: "(?=.*(美|US|(?i)States|America))^((?!(港|台|日|韩|新)).)*$"}
   - {name: 🌐 全部节点, type: select, include-all: true, tolerance: 0, interval: 150}
 rules:
-  - DOMAIN-SUFFIX,googlevideo.com,♻️ 自动选择
-  - DOMAIN-SUFFIX,channel-ad.yy.com,🚫 广告拦截
   - DOMAIN-SUFFIX,co.jp,🇯🇵 日本节点
   - DOMAIN-SUFFIX,softonic.cn,♻️ 自动选择
+# 用于televizo广告屏蔽
+  - DOMAIN-SUFFIX,mtgglobals.com,🚫 广告拦截
+  - DOMAIN-SUFFIX,mintegral.net,🚫 广告拦截
+  - DOMAIN-SUFFIX,vungle.com,🚫 广告拦截
   - RULE-SET,google-ads_domain,🚫 广告拦截
   - RULE-SET,youtube_domain,📹 YouTube
   - RULE-SET,google-play_domain,🍀 Google
