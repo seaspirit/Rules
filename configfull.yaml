@@ -140,7 +140,7 @@ proxies:
  
 # 锚点
 pr: &pr {type: url-test, tolerance: 0, interval: 150, proxies: [♻️ 自动选择, 🇭🇰 香港节点, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇺🇲 美国节点]}
-pr2: &pr2 {type: fallback, proxies: [🇺🇲 美国节点, ♻️ 自动选择]}
+pr2: &pr2 {type: fallback, proxies: [🇺🇲 美国节点, 🇺🇲 美国节点B, ♻️ 自动选择]}
 pr3: &pr3 {type: select, proxies: [🟢 直连, ♻️ 自动选择]}
 # 策略组
 proxy-groups:
@@ -148,13 +148,14 @@ proxy-groups:
   - {name: 🍀 Google,!!merge <<: *pr2}
   - {name: 🎥 NETFLIX,!!merge <<: *pr}
   - {name: 👨🏿‍💻 GitHub,!!merge <<: *pr}
-  - {name: 🪟 Microsoft,!!merge <<: *pr3}
+  - {name: 🪟 Microsoft,!!merge <<: *pr2}
   - {name: 🐬 OneDrive,!!merge <<: *pr3}
   - {name: 🎵 TikTok,!!merge <<: *pr}
   - {name: 📲 Telegram,!!merge <<: *pr}
   - {name: ✈️ Speedtest,!!merge <<: *pr}
   - {name: 💶 PayPal,!!merge <<: *pr}
   - {name: 🤖 ChatGPT,!!merge <<: *pr}
+  - {name: 🔥 GFW,!!merge <<: *pr2}
   - {name: 🎯 全球直连,!!merge <<: *pr3}
   - {name: 🐟 漏网之鱼,!!merge <<: *pr}
   - {name: ♻️ 自动选择, type: url-test, include-all: true, tolerance: 0, interval: 150, filter: "^((?!(直连|拦截|剩余|重置|到期|Traffic|Expire|台|TW)).)*$"}
@@ -164,6 +165,7 @@ proxy-groups:
   - {name: 🇰🇷 韩国节点, type: url-test, include-all: true, tolerance: 0, interval: 150, filter: "(?=.*(韩|KR|(?i)Korea|Incheon))^((?!(港|台|日|新|美)).)*$" }
   - {name: 🇸🇬 新加坡节点, type: url-test, include-all: true, tolerance: 0, interval: 150, filter: "(?=.*(新|狮|SG|(?i)Singapore))^((?!(港|台|日|韩|美)).)*$"}
   - {name: 🇺🇲 美国节点, type: url-test, include-all: true, tolerance: 0, interval: 150, filter: "(?=.*(美|US|(?i)States|America))^((?!(港|台|日|韩|新)).)*$"}
+  - {name: 🇺🇲 美国节点B, type: url-test, include-all: true, tolerance: 0, interval: 150, filter: "(?=.*((?i)california))^((?!(港|台|日|韩|新)).)*$"}
   - {name: 🌐 全部节点, type: select, include-all: true, tolerance: 0, interval: 150}
 rules:
   - DOMAIN-SUFFIX,co.jp,🇯🇵 日本节点
@@ -176,7 +178,7 @@ rules:
   - RULE-SET,youtube_domain,📹 YouTube
   - RULE-SET,google-play_domain,🍀 Google
   - RULE-SET,google_domain,🍀 Google
-  - RULE-SET,gfw_domain,♻️ 自动选择
+  - RULE-SET,gfw_domain,🔥 GFW
   - RULE-SET,private_domain,🟢 直连
   - RULE-SET,github_domain,👨🏿‍💻 GitHub
   - RULE-SET,netflix_domain,🎥 NETFLIX
