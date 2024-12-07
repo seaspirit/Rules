@@ -143,7 +143,7 @@ pr: &pr {type: url-test, tolerance: 0, interval: 150, proxies: [♻️ 自动选
 pr2: &pr2 {type: fallback, proxies: [🇺🇲 美国节点, 🇺🇲 美国节点B, ♻️ 自动选择]}
 pr3: &pr3 {type: select, proxies: [🟢 直连, ♻️ 自动选择]}
 pr4: &pr4 {type: fallback, proxies: [🇯🇵 日本节点, ♻️ 自动选择]}
-pr5: &pr5 {type: fallback, proxies: [🌐 提供者2, 🌐 提供者1]}
+pr5: &pr5 {type: fallback, proxies: [🇺🇲 美国节点B, 🇺🇲 美国节点, ♻️ 自动选择]}
 # 策略组
 proxy-groups:
   - {name: 📹 YouTube,!!merge <<: *pr2}
@@ -160,6 +160,8 @@ proxy-groups:
   - {name: 🔥 GFW,!!merge <<: *pr2}
   - {name: 📹 流媒体故转,!!merge <<: *pr5}
   - {name: 🇯🇵 日本故转,!!merge <<: *pr4}
+  - {name: 🇺🇲 美国节点B, type: url-test, include-all: true, tolerance: 0, interval: 150, filter: "(?=.*((?i)California))^((?!(港|台|日|韩|新)).)*$"}
+  - {name: ♻️ 自动选择, type: url-test, include-all: true, tolerance: 0, interval: 150, filter: "^((?!(直连|拦截|剩余|重置|到期|Traffic|Expire|台|TW)).)*$"}
   - {name: 🎯 全球直连,!!merge <<: *pr3}
   - {name: 🐟 漏网之鱼,!!merge <<: *pr}
   - {name: 🇭🇰 香港节点, type: url-test, include-all: true, tolerance: 0, interval: 150, filter: "(?=.*(港|HK|(?i)HongKong))^((?!(台|日|韩|新|深|美)).)*$"}
@@ -168,10 +170,6 @@ proxy-groups:
   - {name: 🇰🇷 韩国节点, type: url-test, include-all: true, tolerance: 0, interval: 150, filter: "(?=.*(韩|KR|(?i)Korea|Incheon))^((?!(港|台|日|新|美)).)*$" }
   - {name: 🇸🇬 新加坡节点, type: url-test, include-all: true, tolerance: 0, interval: 150, filter: "(?=.*(新|狮|SG|(?i)Singapore))^((?!(港|台|日|韩|美)).)*$"}
   - {name: 🇺🇲 美国节点, type: url-test, include-all: true, tolerance: 0, interval: 150, filter: "(?=.*(美|US|(?i)States|America))^((?!(港|台|日|韩|新)).)*$"}
-  - {name: 🇺🇲 美国节点B, type: url-test, include-all: true, tolerance: 0, interval: 150, filter: "(?=.*((?i)california))^((?!(港|台|日|韩|新)).)*$"}
-  - {name: ♻️ 自动选择, type: url-test, include-all: true, tolerance: 0, interval: 150, filter: "^((?!(直连|拦截|剩余|重置|到期|Traffic|Expire|台|TW)).)*$"}
-  - {name: 🌐 提供者1, type: url-test, include-all: true, tolerance: 0, interval: 150, filter: "(?=.*(IEPL 中继))^((?!(台|TW)).)*$"}
-  - {name: 🌐 提供者2, type: url-test, include-all: true, tolerance: 0, interval: 150, filter: "(?=.*(B Group))^((?!(台|TW)).)*$"}
   - {name: 🌐 全部节点, type: select, include-all: true, tolerance: 0, interval: 150}
 rules:
   - DOMAIN-SUFFIX,googlevideo.com,📹 流媒体故转
@@ -185,7 +183,6 @@ rules:
   - RULE-SET,youtube_domain,📹 YouTube
   - RULE-SET,google-play_domain,🍀 Google
   - RULE-SET,google_domain,🍀 Google
-  - RULE-SET,gfw_domain,🔥 GFW
   - RULE-SET,private_domain,🟢 直连
   - RULE-SET,github_domain,👨🏿‍💻 GitHub
   - RULE-SET,netflix_domain,🎥 NETFLIX
@@ -196,6 +193,7 @@ rules:
   - RULE-SET,tiktok_domain,🎵 TikTok
   - RULE-SET,speedtest_domain,✈️ Speedtest
   - RULE-SET,paypal_domain,💶 PayPal
+  - RULE-SET,gfw_domain,🔥 GFW
   - RULE-SET,geolocation-!cn,♻️ 自动选择
   - RULE-SET,cn_domain,🎯 全球直连
   - RULE-SET,ad_ip,🚫 广告拦截,no-resolve
