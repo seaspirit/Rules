@@ -146,16 +146,18 @@ pr3: &pr3 {type: select, tolerance: 0, interval: 120, proxies: [🟢 直连, ♻
 proxy-groups:
   - {name: 📹 YouTube,!!merge <<: *pr2}
   - {name: 🍀 Google,!!merge <<: *pr2}
-  - {name: 🎥 NETFLIX,!!merge <<: *pr2}
+  - {name: 🎥 NETFLIX,!!merge <<: *pr}
   - {name: 👨🏿‍💻 GitHub,!!merge <<: *pr2}
   - {name: 🪟 Microsoft,!!merge <<: *pr2}
   - {name: 🐬 OneDrive,!!merge <<: *pr3}
   - {name: 🎵 TikTok,!!merge <<: *pr}
-  - {name: 📲 Telegram,!!merge <<: *pr}
-  - {name: ✈️ Speedtest,!!merge <<: *pr}
+  - {name: 📲 Telegram,!!merge <<: *pr2}
+  - {name: ✈️ Speedtest,!!merge <<: *pr2}
   - {name: 💶 PayPal,!!merge <<: *pr2}
   - {name: 🤖 ChatGPT,!!merge <<: *pr2}
-  - {name: 🐟 漏网之鱼,!!merge <<: *pr2}
+  - {name: 🔥 GFW,!!merge <<: *pr2}
+  - {name: 🌐 Geolocation-!cn,!!merge <<: *pr}
+  - {name: 🐟 漏网之鱼,!!merge <<: *pr}
   - {name: 🎯 全球直连,!!merge <<: *pr3}
   - {name: ♻️ 自动选择, type: url-test, include-all: true, tolerance: 0, interval: 120, filter: "^((?!(直连|拦截|剩余|重置|到期|Traffic|Expire|台|TW)).)*$"}
   - {name: 🇭🇰 香港节点, type: url-test, include-all: true, tolerance: 0, interval: 120, filter: "(?=.*(港|HK|(?i)HongKong))^((?!(台|日|韩|新|深|美)).)*$"}
@@ -186,8 +188,8 @@ rules:
   - RULE-SET,tiktok_domain,🎵 TikTok
   - RULE-SET,speedtest_domain,✈️ Speedtest
   - RULE-SET,paypal_domain,💶 PayPal
-  - RULE-SET,gfw_domain,🍀 Google
-  - RULE-SET,geolocation-!cn,🍀 Google
+  - RULE-SET,gfw_domain,🔥 GFW
+  - RULE-SET,geolocation-!cn,🌐 Geolocation-!cn
   - RULE-SET,cn_domain,🎯 全球直连
   - RULE-SET,ad_ip,🚫 广告拦截,no-resolve
   - RULE-SET,google_ip,🍀 Google,no-resolve
