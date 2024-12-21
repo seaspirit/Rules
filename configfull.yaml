@@ -8,7 +8,7 @@ proxy-providers:
       url: https://www.gstatic.com/generate_204
       interval: 120
     proxy: 🟢 直连
-    url: "https://10th.sub-airport.com/api/v1/client/subscribe?token=634cc630b2d8e2f3bba5472c67d2e5a2"
+    url: "https://8th.sub-airport.com/api/v1/client/subscribe?token=897583ec779988e7f3089caff4fb9e5c"
     override:
       skip-cert-verify: true
   Flower_SS:
@@ -139,9 +139,9 @@ proxies:
   type: reject
  
 # 锚点
-pr: &pr {type: url-test, tolerance: 0, interval: 120, proxies: [♻️ 自动选择, 🇭🇰 香港节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇺🇲 美国节点FQ, 🇺🇲 美国节点FC]}
-pr2: &pr2 {type: fallback, tolerance: 0, interval: 120, proxies: [🇺🇲 美国节点FQ, 🇺🇲 美国节点FC, ♻️ 自动选择, 🇭🇰 香港节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点]}
-pr3: &pr3 {type: select, tolerance: 0, interval: 120, proxies: [🟢 直连, ♻️ 自动选择, 🇭🇰 香港节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇺🇲 美国节点FQ, 🇺🇲 美国节点FC]}
+pr: &pr {type: url-test, tolerance: 0, interval: 120, proxies: [♻️ 自动选择, 🇭🇰 香港节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇺🇲 美国节点]}
+pr2: &pr2 {type: fallback, tolerance: 0, interval: 120, proxies: [🇺🇲 美国节点FQ, 🇺🇲 美国节点, ♻️ 自动选择, 🇭🇰 香港节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点]}
+pr3: &pr3 {type: select, tolerance: 0, interval: 120, proxies: [🟢 直连, ♻️ 自动选择, 🇭🇰 香港节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇺🇲 美国节点]}
 # 策略组
 proxy-groups:
   - {name: 📹 YouTube,!!merge <<: *pr2}
@@ -164,8 +164,8 @@ proxy-groups:
   - {name: 🇯🇵 日本节点, type: url-test, include-all: true, tolerance: 0, interval: 120, filter: "(?=.*(日|JP|(?i)Japan|Tokyo))^((?!(港|台|韩|新|美)).)*$" }
   - {name: 🇰🇷 韩国节点, type: url-test, include-all: true, tolerance: 0, interval: 120, filter: "(?=.*(韩|KR|(?i)Korea|Incheon))^((?!(港|台|日|新|美)).)*$" }
   - {name: 🇸🇬 新加坡节点, type: url-test, include-all: true, tolerance: 0, interval: 120, filter: "(?=.*(新|狮|SG|(?i)Singapore))^((?!(港|台|日|韩|美)).)*$"}
+  - {name: 🇺🇲 美国节点, type: url-test, include-all: true, tolerance: 0, interval: 120, filter: "(?=.*(美|US|(?i)States|America|california))^((?!(港|台|日|韩|新)).)*$"}
   - {name: 🇺🇲 美国节点FQ, type: url-test, include-all: true, tolerance: 0, interval: 120, filter: "(?=.*((?i)california))^((?!(港|台|日|韩|新)).)*$"}
-  - {name: 🇺🇲 美国节点FC, type: url-test, include-all: true, tolerance: 0, interval: 120, filter: "(?=.*(美|US|(?i)States|America))^((?!(港|台|日|韩|新)).)*$"}
   - {name: 🌐 全部节点, type: select, include-all: true, tolerance: 0, interval: 120}
 rules:
   - DOMAIN-SUFFIX,uptodown.com,🍀 Google
