@@ -19,7 +19,7 @@ proxy-providers:
       url: https://www.gstatic.com/generate_204
       interval: 120
     proxy: 🟢 直连
-    url: "https://api.xmancdn.com/osubscribe.php?sid=114693&token=2tUov4YG&sip002=1"
+    url: "https://api.xmancdn.com/osubscribe.php?sid=114693&token=qcR3VjKD&sip002=1"
       
 # 用于下载订阅时指定UA
 global-ua: clash.meta
@@ -158,9 +158,9 @@ proxy-groups:
   - {name: ✈️ Speedtest,!!merge <<: *pr2}
   - {name: 💶 PayPal,!!merge <<: *pr2}
   - {name: 🤖 ChatGPT,!!merge <<: *pr2}
-  - {name: 🔥 GFW,!!merge <<: *pr2}
-  - {name: 🤖 geolocation-!cn,!!merge <<: *pr2}
-  - {name: 🐟 漏网之鱼,!!merge <<: *pr2}
+  - {name: 🔥 GFW,!!merge <<: *pr5}
+  - {name: 🤖 geolocation-!cn,!!merge <<: *pr5}
+  - {name: 🐟 漏网之鱼,!!merge <<: *pr5}
   - {name: 🎯 全球直连,!!merge <<: *pr3}
   - {name: ♻️ 自动选择, type: url-test, include-all: true, tolerance: 0, interval: 120, filter: "^((?!(直连|拦截|台|TW)).)*$"}
   - {name: 🤖 FQ节点, type: url-test, include-all: true, tolerance: 0, interval: 120, filter: "(?=.*(剩余流量|重置剩余|套餐到期|(?i)- B Group))^((?!(Traffic|Expire)).)*$"}
