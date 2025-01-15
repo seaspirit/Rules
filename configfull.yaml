@@ -153,7 +153,7 @@ proxy-groups:
   - {name: 👨🏿‍💻 GitHub,!!merge <<: *pr2}
   - {name: 🪟 Microsoft,!!merge <<: *pr5}
   - {name: 🐬 OneDrive,!!merge <<: *pr3}
-  - {name: 🎵 TikTok,!!merge <<: *pr5}
+  - {name: 🎵 TikTok,!!merge <<: *pr3}
   - {name: 📲 Telegram,!!merge <<: *pr2}
   - {name: ✈️ Speedtest,!!merge <<: *pr2}
   - {name: 💶 PayPal,!!merge <<: *pr2}
