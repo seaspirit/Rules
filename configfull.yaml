@@ -140,7 +140,7 @@ proxies:
  
 # 锚点
 pr: &pr {type: url-test, tolerance: 0, interval: 120, proxies: [♻️ 自动选择, 🇭🇰 香港节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇺🇲 美国节点FQ, 🇺🇲 美国节点]}
-pr2: &pr2 {type: fallback, tolerance: 0, interval: 120, proxies: [🇺🇲 美国节点, ♻️ 自动选择, 🇭🇰 香港节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点]}
+pr2: &pr2 {type: fallback, tolerance: 0, interval: 120, proxies: [🇺🇲 美国节点FQ, 🇺🇲 美国节点, ♻️ 自动选择, 🇭🇰 香港节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点]}
 pr3: &pr3 {type: select, tolerance: 0, interval: 120, proxies: [🟢 直连, ♻️ 自动选择, 🇭🇰 香港节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇺🇲 美国节点FQ, 🇺🇲 美国节点]}
 pr4: &pr4 {type: fallback, tolerance: 0, interval: 120, proxies: [🇯🇵 日本节点, ♻️ 自动选择, 🇭🇰 香港节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇺🇲 美国节点FQ, 🇺🇲 美国节点]}
 pr5: &pr5 {type: fallback, tolerance: 0, interval: 120, proxies: [🇺🇲 美国节点FQ, 🤖 FQ节点, 🇺🇲 美国节点, ♻️ 自动选择, 🇭🇰 香港节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点]}
