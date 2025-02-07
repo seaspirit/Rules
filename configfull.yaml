@@ -1,28 +1,26 @@
 # 机场订阅，名称不能重复
 proxy-providers:
-  翻墙机场:
+  mitce.com:
     type: http
     interval: 1800
     health-check:
       enable: true
       url: https://www.gstatic.com/generate_204
-      interval: 120
+      interval: 300
     proxy: 🟢 直连
-    url: "https://www7th.ga-sub.cfd/api/v1/client/subscribe?token=b19b25d9dc07836f4c4310ce0bede97e"
-    override:
-      skip-cert-verify: true
-  Flower_Clash:
+    url: "https://app.mitce.com/?sid=218169&token=srvmnwme"
+  Flower_SS:
     type: http
     interval: 1800
     health-check:
       enable: true
       url: https://www.gstatic.com/generate_204
-      interval: 120
+      interval: 300
     proxy: 🟢 直连
     url: "https://api.xmancdn.com/osubscribe.php?sid=114693&token=A0QNsMcM&sip002=1"
       
 # 用于下载订阅时指定UA
-global-ua: clash.meta
+global-ua: clash
     
 # 全局配置
 port: 7890
@@ -49,7 +47,7 @@ geox-url:
 external-controller: 0.0.0.0:9090
 secret: ""
 external-ui: ui
-external-ui-url: "https://ghp.ci/https://github.com/MetaCubeX/metacubexd/archive/refs/heads/gh-pages.zip"
+external-ui-url: "https://github.com/MetaCubeX/metacubexd/archive/refs/heads/gh-pages.zip"
 
 # 匹配进程 always/strict/off
 find-process-mode: strict
@@ -76,7 +74,6 @@ sniffer:
   force-domain:
     - +.v2ex.com
   skip-domain:
-    - "Mijia Cloud"
     - "dlg.io.mi.com"
     - "+.push.apple.com"
     - "+.apple.com"
@@ -139,44 +136,32 @@ proxies:
   type: reject
  
 # 锚点
-pr: &pr {type: url-test, tolerance: 0, interval: 120, proxies: [♻️ 自动选择, 🇭🇰 香港节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇺🇲 美国节点FQ, 🇺🇲 美国节点]}
-pr2: &pr2 {type: fallback, tolerance: 0, interval: 120, proxies: [🇺🇲 美国节点FQ, 🇺🇲 美国节点, ♻️ 自动选择, 🇭🇰 香港节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点]}
-pr3: &pr3 {type: select, tolerance: 0, interval: 120, proxies: [🟢 直连, ♻️ 自动选择, 🇭🇰 香港节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇺🇲 美国节点FQ, 🇺🇲 美国节点]}
-pr4: &pr4 {type: fallback, tolerance: 0, interval: 120, proxies: [🇯🇵 日本节点, ♻️ 自动选择, 🇭🇰 香港节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇺🇲 美国节点FQ, 🇺🇲 美国节点]}
-pr5: &pr5 {type: fallback, tolerance: 0, interval: 120, proxies: [🇺🇲 美国节点FQ, 🤖 FQ节点, 🇺🇲 美国节点, ♻️ 自动选择, 🇭🇰 香港节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点]}
+pr: &pr {type: select, proxies: [🚀 节点选择, ♻️ 自动选择, 🇭🇰 香港节点, 🇯🇵 日本节点, 🇺🇲 美国节点, 🌐 全部节点, 🟢 直连]}
 # 策略组
 proxy-groups:
-  - {name: 📹 YouTube,!!merge <<: *pr2}
-  - {name: 📹 YouTubeX,!!merge <<: *pr5}
-  - {name: 🍀 Google,!!merge <<: *pr2}
-  - {name: 🎥 NETFLIX,!!merge <<: *pr5}
-  - {name: 👨🏿‍💻 GitHub,!!merge <<: *pr2}
-  - {name: 🪟 Microsoft,!!merge <<: *pr5}
-  - {name: 🐬 OneDrive,!!merge <<: *pr3}
-  - {name: 🎵 TikTok,!!merge <<: *pr5}
-  - {name: 📲 Telegram,!!merge <<: *pr2}
-  - {name: ✈️ Speedtest,!!merge <<: *pr2}
-  - {name: 💶 PayPal,!!merge <<: *pr2}
-  - {name: 🤖 ChatGPT,!!merge <<: *pr2}
-  - {name: 🔥 GFW,!!merge <<: *pr2}
-  - {name: 🤖 geolocation-!cn,!!merge <<: *pr2}
-  - {name: 🐟 漏网之鱼,!!merge <<: *pr2}
-  - {name: 🎯 全球直连,!!merge <<: *pr3}
-  - {name: ♻️ 自动选择, type: url-test, include-all: true, tolerance: 0, interval: 120, filter: "^((?!(直连|拦截|台|TW)).)*$"}
-  - {name: 🤖 FQ节点, type: load-balance, include-all: true, tolerance: 0, interval: 120, filter: "(?=.*(剩余流量|重置剩余|套餐到期|(?i)- B Group))^((?!(Traffic|Expire)).)*$"}
-  - {name: 🇭🇰 香港节点, type: url-test, include-all: true, tolerance: 0, interval: 120, filter: "(?=.*(港|HK|(?i)HongKong))^((?!(台|日|韩|新|深|美)).)*$"}
-  - {name: 🇹🇼 台湾节点, type: url-test, include-all: true, tolerance: 0, interval: 120, filter: "(?=.*(台|TW|(?i)Taiwan))^((?!(港|日|韩|新|美)).)*$"}
-  - {name: 🇯🇵 日本节点X,!!merge <<: *pr4}
-  - {name: 🇯🇵 日本节点, type: url-test, include-all: true, tolerance: 0, interval: 120, filter: "(?=.*(日|JP|(?i)Japan|Tokyo))^((?!(港|台|韩|新|美)).)*$" }
-  - {name: 🇰🇷 韩国节点, type: url-test, include-all: true, tolerance: 0, interval: 120, filter: "(?=.*(韩|KR|(?i)Korea|Incheon))^((?!(港|台|日|新|美)).)*$" }
-  - {name: 🇸🇬 新加坡节点, type: url-test, include-all: true, tolerance: 0, interval: 120, filter: "(?=.*(新|狮|SG|(?i)Singapore))^((?!(港|台|日|韩|美)).)*$"}
-  - {name: 🇺🇲 美国节点FQ, type: load-balance, include-all: true, tolerance: 0, interval: 120, filter: "(?=.*((?i)california))^((?!(港|台|日|韩|新)).)*$"}
-  - {name: 🇺🇲 美国节点, type: url-test, include-all: true, tolerance: 0, interval: 120, filter: "(?=.*(美|US|(?i)States|America|california))^((?!(港|台|日|韩|新)).)*$"}
-  - {name: 🌐 全部节点, type: select, include-all: true, tolerance: 0, interval: 120}
+  - {name: 🚀 节点选择, type: select, proxies: [🇺🇲 美国节点, ♻️ 自动选择, 🇭🇰 香港节点, 🇯🇵 日本节点, 🌐 全部节点, 🟢 直连]}
+  - {name: 📹 YouTube,!!merge <<: *pr}
+  - {name: 🍀 Google,!!merge <<: *pr}
+  - {name: 🤖 ChatGPT,!!merge <<: *pr}
+  - {name: 👨🏿‍💻 GitHub,!!merge <<: *pr}
+  - {name: 🐬 OneDrive,!!merge <<: *pr}
+  - {name: 🪟 Microsoft,!!merge <<: *pr}
+  - {name: 🎵 TikTok,!!merge <<: *pr}
+  - {name: 📲 Telegram,!!merge <<: *pr}
+  - {name: 🎥 NETFLIX,!!merge <<: *pr}
+  - {name: ✈️ Speedtest,!!merge <<: *pr}
+  - {name: 💶 PayPal,!!merge <<: *pr}
+  - {name: 🍎 Apple, type: select, proxies: [🟢 直连, 🚀 节点选择]}
+  - {name: 🎯 全球直连, type: select, proxies: [🟢 直连, 🚀 节点选择]}
+  - {name: 🐟 漏网之鱼,!!merge <<: *pr}
+  - {name: 🇭🇰 香港节点, type: select, include-all: true, filter: "(?i)港|hk|hongkong|hong kong"}
+  - {name: 🇯🇵 日本节点, type: select, include-all: true, filter: "(?i)日|jp|japan"}
+  - {name: 🇺🇲 美国节点, type: select, include-all: true, filter: "(?i)美|us|unitedstates|united states"}
+  - {name: ♻️ 自动选择, type: url-test, include-all: true, tolerance: 20, interval: 300, filter: "^((?!(直连)).)*$"}
+  - {name: 🌐 全部节点, type: select, include-all: true}
 rules:
-  - DOMAIN-SUFFIX,googlevideo.com,📹 YouTubeX
   - DOMAIN-SUFFIX,softonic.cn,🍀 Google
-  - DOMAIN-SUFFIX,co.jp,🇯🇵 日本节点X
+  - DOMAIN-SUFFIX,co.jp,🇯🇵 日本节点
 # 用于televizo广告屏蔽
   - DOMAIN-SUFFIX,mtgglobals.com,🚫 广告拦截
   - DOMAIN-SUFFIX,mintegral.net,🚫 广告拦截
@@ -195,8 +180,8 @@ rules:
   - RULE-SET,tiktok_domain,🎵 TikTok
   - RULE-SET,speedtest_domain,✈️ Speedtest
   - RULE-SET,paypal_domain,💶 PayPal
-  - RULE-SET,gfw_domain,🔥 GFW
-  - RULE-SET,geolocation-!cn,🤖 geolocation-!cn
+  - RULE-SET,gfw_domain,🍀 Google
+  - RULE-SET,geolocation-!cn,🍀 Google
   - RULE-SET,cn_domain,🎯 全球直连
   - RULE-SET,ad_ip,🚫 广告拦截,no-resolve
   - RULE-SET,google_ip,🍀 Google,no-resolve
