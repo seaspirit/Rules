@@ -151,6 +151,8 @@ proxy-groups:
   - {name: ✈️ Speedtest,!!merge <<: *pr}
   - {name: 💶 PayPal,!!merge <<: *pr}
   - {name: 🍎 Apple, type: select, proxies: [🟢 直连, ♻️ 自动选择]}
+  - {name: 🔥 GFW,!!merge <<: *pr}
+  - {name: 🤖 geolocation-!cn,!!merge <<: *pr}
   - {name: 🎯 全球直连, type: select, proxies: [🟢 直连, ♻️ 自动选择]}
   - {name: 🐟 漏网之鱼,!!merge <<: *pr}
   - {name: 🇭🇰 香港节点, type: url-test, include-all: true, filter: "(?i)港|hk|hongkong|hong kong"}
@@ -159,7 +161,7 @@ proxy-groups:
   - {name: ♻️ 自动选择, type: url-test, include-all: true, tolerance: 20, interval: 300, filter: "^((?!(直连)).)*$"}
   - {name: 🌐 全部节点, type: select, include-all: true}
 rules:
-  - DOMAIN-SUFFIX,softonic.cn,🍀 Google
+  - DOMAIN-SUFFIX,softonic.cn,🤖 geolocation-!cn
   - DOMAIN-SUFFIX,co.jp,🇯🇵 日本节点
 # 用于televizo广告屏蔽
   - DOMAIN-SUFFIX,mtgglobals.com,🚫 广告拦截
@@ -179,8 +181,8 @@ rules:
   - RULE-SET,tiktok_domain,🎵 TikTok
   - RULE-SET,speedtest_domain,✈️ Speedtest
   - RULE-SET,paypal_domain,💶 PayPal
-  - RULE-SET,gfw_domain,🍀 Google
-  - RULE-SET,geolocation-!cn,🍀 Google
+  - RULE-SET,gfw_domain,🔥 GFW
+  - RULE-SET,geolocation-!cn,🤖 geolocation-!cn
   - RULE-SET,cn_domain,🎯 全球直连
   - RULE-SET,ad_ip,🚫 广告拦截,no-resolve
   - RULE-SET,google_ip,🍀 Google,no-resolve
