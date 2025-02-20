@@ -154,13 +154,14 @@ proxy-groups:
   - {name: 🔥 GFW,!!merge <<: *pr}
   - {name: 🤖 geolocation-!cn,!!merge <<: *pr}
   - {name: 🎯 全球直连, type: select, proxies: [🟢 直连, ♻️ 自动选择]}
-  - {name: 🐟 漏网之鱼,!!merge <<: *pr}
+  - {name: 🐟 漏网之鱼, type: select, proxies: [🟢 直连, ♻️ 自动选择]}
   - {name: 🇭🇰 香港节点, type: url-test, include-all: true, filter: "(?i)港|hk|hongkong|hong kong"}
   - {name: 🇯🇵 日本节点, type: url-test, include-all: true, filter: "(?i)日|jp|japan"}
   - {name: 🇺🇲 美国节点, type: url-test, include-all: true, filter: "(?i)美|us|unitedstates|united states"}
   - {name: ♻️ 自动选择, type: url-test, include-all: true, tolerance: 20, interval: 300, filter: "^((?!(直连)).)*$"}
   - {name: 🌐 全部节点, type: select, include-all: true}
 rules:
+  - DOMAIN-SUFFIX,deepseek.com,🍀 Google
   - DOMAIN-SUFFIX,softonic.cn,🤖 geolocation-!cn
   - DOMAIN-SUFFIX,co.jp,🇯🇵 日本节点
 # 用于televizo广告屏蔽
