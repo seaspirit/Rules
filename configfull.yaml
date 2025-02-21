@@ -136,25 +136,26 @@ proxies:
   type: reject
  
 # 锚点
-pr: &pr {type: fallback, proxies: [🇺🇲 美国节点, ♻️ 自动选择, 🇭🇰 香港节点, 🇯🇵 日本节点]}
+pr: &pr {type: fallback, proxies: [♻️ 自动选择, 🇭🇰 香港节点, 🇯🇵 日本节点, 🇺🇲 美国节点]}
+pr2: &pr2 {type: fallback, proxies: [🇺🇲 美国节点, ♻️ 自动选择, 🇭🇰 香港节点, 🇯🇵 日本节点]}
 # 策略组
 proxy-groups:
-  - {name: 📹 YouTube,!!merge <<: *pr}
-  - {name: 🍀 Google,!!merge <<: *pr}
-  - {name: 🤖 ChatGPT,!!merge <<: *pr}
+  - {name: 📹 YouTube,!!merge <<: *pr2}
+  - {name: 🍀 Google,!!merge <<: *pr2}
+  - {name: 🤖 ChatGPT,!!merge <<: *pr2}
   - {name: 👨🏿‍💻 GitHub,!!merge <<: *pr}
   - {name: 🐬 OneDrive, type: select, proxies: [🟢 直连, ♻️ 自动选择]}
   - {name: 🪟 Microsoft,!!merge <<: *pr}
-  - {name: 🎵 TikTok,!!merge <<: *pr}
-  - {name: 📲 Telegram,!!merge <<: *pr}
+  - {name: 🎵 TikTok,!!merge <<: *pr2}
+  - {name: 📲 Telegram,!!merge <<: *pr2}
   - {name: 🎥 NETFLIX,!!merge <<: *pr}
   - {name: ✈️ Speedtest,!!merge <<: *pr}
-  - {name: 💶 PayPal,!!merge <<: *pr}
+  - {name: 💶 PayPal,!!merge <<: *pr2}
   - {name: 🍎 Apple, type: select, proxies: [🟢 直连, ♻️ 自动选择]}
   - {name: 🔥 GFW,!!merge <<: *pr}
   - {name: 🤖 geolocation-!cn,!!merge <<: *pr}
   - {name: 🎯 全球直连, type: select, proxies: [🟢 直连, ♻️ 自动选择]}
-  - {name: 🐟 漏网之鱼, type: select, proxies: [🟢 直连, ♻️ 自动选择]}
+  - {name: 🐟 漏网之鱼,!!merge <<: *pr}
   - {name: 🇭🇰 香港节点, type: url-test, include-all: true, filter: "(?i)港|hk|hongkong|hong kong"}
   - {name: 🇯🇵 日本节点, type: url-test, include-all: true, filter: "(?i)日|jp|japan"}
   - {name: 🇺🇲 美国节点, type: url-test, include-all: true, filter: "(?i)美|us|unitedstates|united states"}
@@ -181,7 +182,6 @@ rules:
   - RULE-SET,paypal_domain,💶 PayPal
   - RULE-SET,gfw_domain,🔥 GFW
   - RULE-SET,geolocation-!cn,🤖 geolocation-!cn
-  - DOMAIN-SUFFIX,torrentdownloads.pro,🍀 Google
   - DOMAIN-SUFFIX,deepseek.com,🍀 Google
   - DOMAIN-SUFFIX,softonic.cn,🤖 geolocation-!cn
   - DOMAIN-SUFFIX,co.jp,🇯🇵 日本节点
