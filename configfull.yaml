@@ -136,7 +136,7 @@ proxies:
   type: reject
  
 # 锚点
-pr: &pr {type: fallback, proxies: [♻️ 自动选择, 🇭🇰 香港节点, 🇯🇵 日本节点, 🇺🇲 美国节点]}
+pr: &pr {type: url-test, proxies: [♻️ 自动选择, 🇭🇰 香港节点, 🇯🇵 日本节点, 🇺🇲 美国节点]}
 pr2: &pr2 {type: fallback, proxies: [🇺🇲 美国节点, ♻️ 自动选择, 🇭🇰 香港节点, 🇯🇵 日本节点]}
 # 策略组
 proxy-groups:
