@@ -136,21 +136,20 @@ proxies:
   type: reject
  
 # 锚点
-pr: &pr {type: url-test, proxies: [♻️ 自动选择, 🇭🇰 香港节点, 🇯🇵 日本节点, 🇺🇲 美国节点]}
-pr2: &pr2 {type: fallback, proxies: [🇺🇲 美国节点, ♻️ 自动选择, 🇭🇰 香港节点, 🇯🇵 日本节点]}
+pr: &pr {type: fallback, proxies: [🇺🇲 美国节点, ♻️ 自动选择, 🇭🇰 香港节点, 🇯🇵 日本节点]}
 # 策略组
 proxy-groups:
-  - {name: 📹 YouTube,!!merge <<: *pr2}
-  - {name: 🍀 Google,!!merge <<: *pr2}
-  - {name: 🤖 ChatGPT,!!merge <<: *pr2}
+  - {name: 📹 YouTube,!!merge <<: *pr}
+  - {name: 🍀 Google,!!merge <<: *pr}
+  - {name: 🤖 ChatGPT,!!merge <<: *pr}
   - {name: 👨🏿‍💻 GitHub,!!merge <<: *pr}
   - {name: 🐬 OneDrive, type: select, proxies: [🟢 直连, ♻️ 自动选择]}
   - {name: 🪟 Microsoft,!!merge <<: *pr}
-  - {name: 🎵 TikTok,!!merge <<: *pr2}
-  - {name: 📲 Telegram,!!merge <<: *pr2}
+  - {name: 🎵 TikTok,!!merge <<: *pr}
+  - {name: 📲 Telegram,!!merge <<: *pr}
   - {name: 🎥 NETFLIX,!!merge <<: *pr}
   - {name: ✈️ Speedtest,!!merge <<: *pr}
-  - {name: 💶 PayPal,!!merge <<: *pr2}
+  - {name: 💶 PayPal,!!merge <<: *pr}
   - {name: 🍎 Apple, type: select, proxies: [🟢 直连, ♻️ 自动选择]}
   - {name: 🔥 GFW,!!merge <<: *pr}
   - {name: 🤖 geolocation-!cn,!!merge <<: *pr}
@@ -162,11 +161,11 @@ proxy-groups:
   - {name: ♻️ 自动选择, type: url-test, include-all: true, tolerance: 20, interval: 300, filter: "^((?!(直连|拦截)).)*$"}
   - {name: 🌐 全部节点, type: select, include-all: true}
 rules:
-  - DOMAIN-SUFFIX,googlevideo.com,🔥 GFW
-# 用于televizo广告屏蔽
+# 用于televizo广告屏蔽------
   - DOMAIN-SUFFIX,mtgglobals.com,🚫 广告拦截
   - DOMAIN-SUFFIX,mintegral.net,🚫 广告拦截
   - DOMAIN-SUFFIX,vungle.com,🚫 广告拦截
+# 用于televizo广告屏蔽------
   - RULE-SET,google-ads_domain,🚫 广告拦截
   - RULE-SET,youtube_domain,📹 YouTube
   - RULE-SET,google-play_domain,🍀 Google
