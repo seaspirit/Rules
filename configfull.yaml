@@ -136,18 +136,19 @@ proxies:
   type: reject
  
 # 锚点
-pr: &pr {type: fallback, proxies: [🇺🇲 美国节点, ♻️ 自动选择, 🇭🇰 香港节点, 🇯🇵 日本节点]}
+pr: &pr {type: load-balance, proxies: [♻️ 自动选择, 🇭🇰 香港节点, 🇯🇵 日本节点, 🇺🇲 美国节点]}
+pr2: &pr2 {type: fallback, proxies: [🇺🇲 美国节点, ♻️ 自动选择, 🇭🇰 香港节点, 🇯🇵 日本节点]}
 # 策略组
 proxy-groups:
-  - {name: 📹 YouTube,!!merge <<: *pr}
-  - {name: 🍀 Google,!!merge <<: *pr}
+  - {name: 📹 YouTube,!!merge <<: *pr2}
+  - {name: 🍀 Google,!!merge <<: *pr2}
   - {name: 🤖 ChatGPT,!!merge <<: *pr}
   - {name: 👨🏿‍💻 GitHub,!!merge <<: *pr}
   - {name: 🐬 OneDrive, type: select, proxies: [🟢 直连, ♻️ 自动选择]}
   - {name: 🪟 Microsoft,!!merge <<: *pr}
+  - {name: 🎥 NETFLIX, type: select, proxies: [♻️ 自动选择, 🇭🇰 香港节点, 🇯🇵 日本节点, 🇺🇲 美国节点]}
   - {name: 🎵 TikTok,!!merge <<: *pr}
   - {name: 📲 Telegram,!!merge <<: *pr}
-  - {name: 🎥 NETFLIX,!!merge <<: *pr}
   - {name: ✈️ Speedtest,!!merge <<: *pr}
   - {name: 💶 PayPal,!!merge <<: *pr}
   - {name: 🍎 Apple, type: select, proxies: [🟢 直连, ♻️ 自动选择]}
