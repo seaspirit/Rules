@@ -31,7 +31,7 @@ proxy-providers:
     url: "https://api.xmancdn.com/osubscribe.php?sid=114693&token=A0QNsMcM&sip002=1"
       
 # 用于下载订阅时指定UA
-global-ua: clash
+global-ua: mihomo
     
 # 全局配置
 port: 7890
@@ -43,21 +43,12 @@ ipv6: true
 allow-lan: true
 unified-delay: true
 tcp-concurrent: true
-  
-geodata-mode: false
-geodata-loader: standard
-geo-auto-update: true
-geo-update-interval: 48
-geox-url:
-  geoip: "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/geoip.dat"
-  geosite: "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/geosite.dat"
-  mmdb: "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/country.mmdb"
-  asn: "https://github.com/xishang0128/geoip/releases/download/latest/GeoLite2-ASN.mmdb"
-  
+   
 # 控制面板
 external-controller: 0.0.0.0:9090
 secret: ""
-external-ui: ui
+external-ui: "/etc/mihomo/run/ui"
+external-ui-name: metacubexd
 external-ui-url: "https://github.com/MetaCubeX/metacubexd/archive/refs/heads/gh-pages.zip"
 
 # 匹配进程 always/strict/off
