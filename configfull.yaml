@@ -1,5 +1,16 @@
 # 机场订阅，名称不能重复
 proxy-providers:
+  翻墙机场:
+    type: http
+    interval: 1800
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 120
+    proxy: 🟢 直连
+    url: "https://www9th.ga-sub.baby/api/v1/client/subscribe?token=3d36b6d2b1d958987ee709354d9ebb94"
+    override:
+      skip-cert-verify: true
   mitce.com:
     type: http
     interval: 1800
@@ -157,11 +168,12 @@ proxy-groups:
   - {name: 🎯 全球直连, type: select, proxies: [🟢 直连, ♻️ 自动选择]}
   - {name: 🐟 漏网之鱼,!!merge <<: *pr}
   - {name: 🇭🇰 香港节点, type: url-test, include-all: true, filter: "(?i)港|hk|hongkong|hong kong"}
-  - {name: 🇯🇵 日本节点, type: url-test, include-all: true, filter: "(?i)日|jp|japan"}
-  - {name: 🇺🇲 美国节点, type: url-test, include-all: true, filter: "(?i)美|us|unitedstates|united states"}
+  - {name: 🇯🇵 日本节点, type: url-test, include-all: true, filter: "(?i)日|jp|japan|Tokyo"}
+  - {name: 🇺🇲 美国节点, type: url-test, include-all: true, filter: "(?i)美|us|unitedstates|united states|California"}
   - {name: ♻️ 自动选择, type: url-test, include-all: true, tolerance: 20, interval: 300, filter: "^((?!(直连|拦截)).)*$"}
   - {name: 🌐 全部节点, type: select, include-all: true}
 rules:
+  - DOMAIN-SUFFIX,googlevideo.com,🤖 geolocation-!cn
 # 用于televizo广告屏蔽------
   - DOMAIN-SUFFIX,mtgglobals.com,🚫 广告拦截
   - DOMAIN-SUFFIX,mintegral.net,🚫 广告拦截
