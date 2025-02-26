@@ -6,7 +6,7 @@ proxy-providers:
     health-check:
       enable: true
       url: https://www.gstatic.com/generate_204
-      interval: 120
+      interval: 300
     proxy: 🟢 直连
     url: "https://www9th.ga-sub.baby/api/v1/client/subscribe?token=3d36b6d2b1d958987ee709354d9ebb94"
     override:
@@ -167,9 +167,9 @@ proxy-groups:
   - {name: 🤖 geolocation-!cn,!!merge <<: *pr}
   - {name: 🎯 全球直连, type: select, proxies: [🟢 直连, ♻️ 自动选择]}
   - {name: 🐟 漏网之鱼,!!merge <<: *pr}
-  - {name: 🇭🇰 香港节点, type: url-test, include-all: true, filter: "(?i)港|hk|hongkong|hong kong"}
-  - {name: 🇯🇵 日本节点, type: url-test, include-all: true, filter: "(?i)日|jp|japan|Tokyo"}
-  - {name: 🇺🇲 美国节点, type: url-test, include-all: true, filter: "(?i)美|us|unitedstates|united states|California"}
+  - {name: 🇭🇰 香港节点, type: url-test, include-all: true, tolerance: 20, interval: 300, filter: "(?i)港|hk|hongkong|hong kong"}
+  - {name: 🇯🇵 日本节点, type: url-test, include-all: true, tolerance: 20, interval: 300, filter: "(?i)日|jp|japan|Tokyo"}
+  - {name: 🇺🇲 美国节点, type: url-test, include-all: true, tolerance: 20, interval: 300, filter: "(?i)美|us|unitedstates|united states|California"}
   - {name: ♻️ 自动选择, type: url-test, include-all: true, tolerance: 20, interval: 300, filter: "^((?!(直连|拦截)).)*$"}
   - {name: 🌐 全部节点, type: select, include-all: true}
 rules:
