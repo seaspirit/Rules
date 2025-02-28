@@ -164,6 +164,7 @@ proxy-groups:
   - {name: ♻️ 自动选择, type: url-test, include-all: true, tolerance: 20, interval: 300, filter: "^((?!(直连|拦截)).)*$"}
   - {name: 🌐 全部节点, type: select, include-all: true}
 rules:
+  - DOMAIN-SUFFIX,googlevideo.com,🔥 GFW
   - DOMAIN-SUFFIX,deepseek.com,🔥 GFW
   - DOMAIN-SUFFIX,softonic.cn,🔥 GFW
   - DOMAIN-SUFFIX,co.jp,🇯🇵 日本节点
