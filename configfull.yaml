@@ -138,7 +138,7 @@ proxies:
   type: reject
  
 # 锚点
-pr: &pr {type: load-balance, proxies: [🇭🇰 香港节点, 🇯🇵 日本节点, 🇺🇲 美国节点, ♻️ 自动选择]}
+pr: &pr {type: url-test, proxies: [♻️ 自动选择, 🇭🇰 香港节点, 🇯🇵 日本节点, 🇺🇲 美国节点]}
 pr2: &pr2 {type: fallback, proxies: [🇺🇲 美国节点, ♻️ 自动选择]}
 # 策略组
 proxy-groups:
@@ -164,7 +164,6 @@ proxy-groups:
   - {name: ♻️ 自动选择, type: url-test, include-all: true, tolerance: 20, interval: 300, filter: "^((?!(直连|拦截)).)*$"}
   - {name: 🌐 全部节点, type: select, include-all: true}
 rules:
-  - DOMAIN-SUFFIX,googlevideo.com,🔥 GFW
   - DOMAIN-SUFFIX,deepseek.com,🔥 GFW
   - DOMAIN-SUFFIX,softonic.cn,🔥 GFW
   - DOMAIN-SUFFIX,co.jp,🇯🇵 日本节点
