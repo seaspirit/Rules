@@ -168,11 +168,16 @@ rules:
   - DOMAIN-SUFFIX,deepseek.com,🔥 GFW
   - DOMAIN-SUFFIX,softonic.cn,🔥 GFW
   - DOMAIN-SUFFIX,co.jp,🇯🇵 日本节点
-# 用于televizo广告屏蔽------
+  - DOMAIN-SUFFIX,alb.reddit.com,🚫 广告拦截
+# 用于RedGIFs广告屏蔽---开始---
+  - DOMAIN-SUFFIX,afkwa.com,🚫 广告拦截
+  - DOMAIN-SUFFIX,mmcdn.com,🚫 广告拦截
+# 用于RedGIFs广告屏蔽---结束---
+# 用于televizo广告屏蔽---开始---
   - DOMAIN-SUFFIX,mtgglobals.com,🚫 广告拦截
   - DOMAIN-SUFFIX,mintegral.net,🚫 广告拦截
   - DOMAIN-SUFFIX,vungle.com,🚫 广告拦截
-# 用于televizo广告屏蔽------
+# 用于televizo广告屏蔽---结束---
   - RULE-SET,google-ads_domain,🚫 广告拦截
   - RULE-SET,youtube_domain,📹 YouTube
   - RULE-SET,google-play_domain,🍀 Google
