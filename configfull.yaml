@@ -134,8 +134,8 @@ pr3: &pr3 {type: select, proxies: [🇭🇰 香港节点, 🇹🇼 台湾节点,
 pr5: &pr5 {type: select, proxies: [🟢 直连, ♻️ 自动选择]}
 # 策略组
 proxy-groups:
-  - {name: 📹 YouTube,!!merge <<: *pr2}
   - {name: 🍀 Google,!!merge <<: *pr2}
+  - {name: 📹 YouTube,!!merge <<: *pr}
   - {name: 🤖 ChatGPT,!!merge <<: *pr}
   - {name: 👨🏿‍💻 GitHub,!!merge <<: *pr}
   - {name: 🐬 OneDrive,!!merge <<: *pr5}
@@ -159,9 +159,9 @@ proxy-groups:
   - {name: ♻️ 自动选择, type: url-test, include-all: true, tolerance: 1, interval: 120, filter: "^((?!(直连|拦截)).)*$"}
   - {name: 🌐 全部节点, type: select, include-all: true}
 rules:
-  - DOMAIN-SUFFIX,googlevideo.com,🔥 GFW
-  - DOMAIN-SUFFIX,deepseek.com,🔥 GFW
-  - DOMAIN-SUFFIX,softonic.cn,🔥 GFW
+  - DOMAIN-SUFFIX,googlevideo.com,📹 YouTube
+  - DOMAIN-SUFFIX,deepseek.com,🤖 ChatGPT
+  - DOMAIN-SUFFIX,softonic.cn,🍀 Google
   - DOMAIN-SUFFIX,co.jp,🇯🇵 日本节点
   - DOMAIN-SUFFIX,alb.reddit.com,🚫 广告拦截
   - DOMAIN,go.redgifs.com,🚫 广告拦截
@@ -171,7 +171,7 @@ rules:
   - DOMAIN-SUFFIX,vungle.com,🚫 广告拦截
 # 用于televizo广告屏蔽---结束---
   - RULE-SET,google-ads_domain,🚫 广告拦截
-  - RULE-SET,youtube_domain,📹 YouTube
+  - RULE-SET,youtube_domain,🍀 Google
   - RULE-SET,google-play_domain,🍀 Google
   - RULE-SET,google_domain,🍀 Google
   - RULE-SET,private_domain,🟢 直连
