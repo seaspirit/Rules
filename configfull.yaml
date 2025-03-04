@@ -128,7 +128,7 @@ proxies:
 - name: "🚫 广告拦截"
   type: reject 
 # 锚点
-pr: &pr {type: url-test, tolerance: 1, interval: 120, proxies: [🇭🇰 香港节点, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇺🇲 美国节点]}
+pr: &pr {type: load-balance, proxies: [🇭🇰 香港节点, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇺🇲 美国节点]}
 pr2: &pr2 {type: fallback, tolerance: 1, interval: 120, proxies: [🇺🇲 美国节点, ♻️ 自动选择]}
 pr3: &pr3 {type: select, proxies: [🇭🇰 香港节点, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇺🇲 美国节点]}
 pr5: &pr5 {type: select, proxies: [🟢 直连, ♻️ 自动选择]}
