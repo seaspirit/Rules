@@ -138,7 +138,7 @@ proxies:
   type: reject
  
 # 锚点
-pr: &pr {type: load-balance, proxies: [🇭🇰 香港节点, 🇯🇵 日本节点, 🇺🇲 美国节点]}
+pr: &pr {type: load-balance, proxies: [🇭🇰 香港节点, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇺🇲 美国节点]}
 pr2: &pr2 {type: fallback, proxies: [🇺🇲 美国节点, ♻️ 自动选择]}
 # 策略组
 proxy-groups:
@@ -172,6 +172,7 @@ rules:
   - DOMAIN-SUFFIX,softonic.cn,🔥 GFW
   - DOMAIN-SUFFIX,co.jp,🇯🇵 日本节点
   - DOMAIN-SUFFIX,alb.reddit.com,🚫 广告拦截
+  - DOMAIN,go.redgifs.com,🚫 广告拦截
 # 用于televizo广告屏蔽---开始---
   - DOMAIN-SUFFIX,mtgglobals.com,🚫 广告拦截
   - DOMAIN-SUFFIX,mintegral.net,🚫 广告拦截
