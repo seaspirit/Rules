@@ -140,6 +140,7 @@ proxies:
 # 锚点
 pr: &pr {type: load-balance, proxies: [🇭🇰 香港节点, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇺🇲 美国节点]}
 pr2: &pr2 {type: fallback, proxies: [🇺🇲 美国节点, ♻️ 自动选择]}
+pr3: &pr3 {type: select, proxies: [🇭🇰 香港节点, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇺🇲 美国节点]}
 # 策略组
 proxy-groups:
   - {name: 📹 YouTube,!!merge <<: *pr2}
@@ -148,11 +149,11 @@ proxy-groups:
   - {name: 👨🏿‍💻 GitHub,!!merge <<: *pr}
   - {name: 🐬 OneDrive, type: select, proxies: [🟢 直连, ♻️ 自动选择]}
   - {name: 🪟 Microsoft,!!merge <<: *pr}
-  - {name: 🎥 NETFLIX, type: select, proxies: [🇭🇰 香港节点, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇺🇲 美国节点]}
-  - {name: 🎵 TikTok,!!merge <<: *pr}
+  - {name: 🎥 NETFLIX,!!merge <<: *pr3}
+  - {name: 🎵 TikTok,!!merge <<: *pr3}
   - {name: 📲 Telegram,!!merge <<: *pr}
   - {name: ✈️ Speedtest,!!merge <<: *pr}
-  - {name: 💶 PayPal,!!merge <<: *pr}
+  - {name: 💶 PayPal,!!merge <<: *pr3}
   - {name: 🍎 Apple, type: select, proxies: [🟢 直连, ♻️ 自动选择]}
   - {name: 🔥 GFW,!!merge <<: *pr}
   - {name: 🤖 geolocation-!cn,!!merge <<: *pr}
