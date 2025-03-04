@@ -20,7 +20,7 @@ proxy-providers:
       interval: 120
     proxy: 🟢 直连
     url: "https://app.mitce.com/?sid=218169&token=srvmnwme"
-  Flower_SS:
+  Flower_Trojan:
     type: http
     interval: 1800
     health-check:
@@ -28,7 +28,7 @@ proxy-providers:
       url: https://www.gstatic.com/generate_204
       interval: 120
     proxy: 🟢 直连
-    url: "https://api.xmancdn.com/osubscribe.php?sid=114693&token=A0QNsMcM&sip002=1"
+    url: "https://api.xmancdn.com/osubscribe.php?sid=114693&token=A0QNsMcM"
       
 # 用于下载订阅时指定UA
 global-ua: mihomo
