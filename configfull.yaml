@@ -28,11 +28,9 @@ proxy-providers:
       url: https://www.gstatic.com/generate_204
       interval: 120
     proxy: 🟢 直连
-    url: "https://api.xmancdn.com/osubscribe.php?sid=114693&token=A0QNsMcM"
-      
+    url: "https://api.xmancdn.com/osubscribe.php?sid=114693&token=A0QNsMcM"      
 # 用于下载订阅时指定UA
-global-ua: mihomo
-    
+global-ua: mihomo    
 # 全局配置
 port: 7890
 socks-port: 7891
@@ -42,26 +40,22 @@ tproxy-port: 7894
 ipv6: true
 allow-lan: true
 unified-delay: true
-tcp-concurrent: true
-   
+tcp-concurrent: true   
 # 控制面板
 external-controller: 0.0.0.0:9090
 secret: ""
 external-ui: "/etc/mihomo/run/ui"
 external-ui-name: metacubexd
 external-ui-url: "https://github.com/MetaCubeX/metacubexd/archive/refs/heads/gh-pages.zip"
-
 # 匹配进程 always/strict/off
 find-process-mode: strict
 global-client-fingerprint: chrome
 keep-alive-idle: 600
 keep-alive-interval: 30
-
 # 策略组选择和fakeip缓存
 profile:
   store-selected: true
-  store-fake-ip: true
-  
+  store-fake-ip: true 
 # 流量嗅探
 sniffer:
   enable: true
@@ -78,8 +72,7 @@ sniffer:
   skip-domain:
     - "dlg.io.mi.com"
     - "+.push.apple.com"
-    - "+.apple.com"
-    
+    - "+.apple.com"    
 # 代理模式
 tun:
   enable: true
@@ -90,8 +83,7 @@ tun:
     - "tcp://any:53"
   auto-route: true
   auto-redirect: true
-  auto-detect-interface: true
-  
+  auto-detect-interface: true  
 # DNS模块
 dns:
   enable: true
@@ -128,36 +120,35 @@ dns:
       - "https://dns.cloudflare.com/dns-query"
       - "https://dns.google/dns-query"
       - 202.102.128.68
-      - 114.114.114.114
-   
+      - 114.114.114.114   
 proxies:
 - name: "🟢 直连"
   type: direct
   udp: true
 - name: "🚫 广告拦截"
-  type: reject
- 
+  type: reject 
 # 锚点
 pr: &pr {type: load-balance, tolerance: 1, interval: 120, proxies: [🇭🇰 香港节点, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇺🇲 美国节点]}
 pr2: &pr2 {type: fallback, tolerance: 1, interval: 120, proxies: [🇺🇲 美国节点, ♻️ 自动选择]}
 pr3: &pr3 {type: select, proxies: [🇭🇰 香港节点, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇺🇲 美国节点]}
+pr5: &pr5 {type: select, proxies: [🟢 直连, ♻️ 自动选择]}
 # 策略组
 proxy-groups:
   - {name: 📹 YouTube,!!merge <<: *pr2}
   - {name: 🍀 Google,!!merge <<: *pr2}
   - {name: 🤖 ChatGPT,!!merge <<: *pr}
   - {name: 👨🏿‍💻 GitHub,!!merge <<: *pr}
-  - {name: 🐬 OneDrive, type: select, proxies: [🟢 直连, ♻️ 自动选择]}
+  - {name: 🐬 OneDrive,!!merge <<: *pr5}
   - {name: 🪟 Microsoft,!!merge <<: *pr}
   - {name: 🎥 NETFLIX,!!merge <<: *pr3}
   - {name: 🎵 TikTok,!!merge <<: *pr3}
   - {name: 📲 Telegram,!!merge <<: *pr}
   - {name: ✈️ Speedtest,!!merge <<: *pr}
   - {name: 💶 PayPal,!!merge <<: *pr3}
-  - {name: 🍎 Apple, type: select, proxies: [🟢 直连, ♻️ 自动选择]}
+  - {name: 🍎 Apple,!!merge <<: *pr5}
   - {name: 🔥 GFW,!!merge <<: *pr}
   - {name: 🤖 geolocation-!cn,!!merge <<: *pr}
-  - {name: 🎯 全球直连, type: select, proxies: [🟢 直连, ♻️ 自动选择]}
+  - {name: 🎯 全球直连,!!merge <<: *pr5}
   - {name: 🐟 漏网之鱼,!!merge <<: *pr}
   - {name: 🇭🇰 香港节点, type: url-test, include-all: true, tolerance: 1, interval: 120, filter: "(?i)港|hk|hongkong|hong kong"}
   - {name: 🇹🇼 台湾节点, type: url-test, include-all: true, tolerance: 1, interval: 120, filter: "(?i)台|TW|Taiwan"}
@@ -206,7 +197,8 @@ rules:
 rule-anchor:
   ip: &ip {type: http, interval: 86400, behavior: ipcidr, format: mrs}
   domain: &domain {type: http, interval: 86400, behavior: domain, format: mrs}
-rule-providers: 
+rule-providers:
+# DOMAIN 
   private_domain: {!!merge <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/private.mrs"}
   ai_domain: {!!merge <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/openai.mrs"}
   youtube_domain: {!!merge <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/youtube.mrs"}
@@ -224,7 +216,7 @@ rule-providers:
   geolocation-!cn: {!!merge <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/geolocation-!cn.mrs"}
   cn_domain: {!!merge <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/cn.mrs"}
   google-ads_domain: {!!merge <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/google-ads.mrs"}
-  
+# IP
   cn_ip: {!!merge <<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/cn.mrs"}
   google_ip: {!!merge <<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/google.mrs"}
   telegram_ip: {!!merge <<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/telegram.mrs"}
