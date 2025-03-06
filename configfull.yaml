@@ -167,6 +167,7 @@ rules:
   - DOMAIN,go.redgifs.com,🚫 广告拦截
   - DOMAIN-SUFFIX,redgifs.com,🍀 Google
   - DOMAIN-SUFFIX,redgifsdownloader.net,🍀 Google
+  - DOMAIN-SUFFIX,postimg.cc,🍀 Google
 # 用于televizo广告屏蔽---开始---
   - DOMAIN-SUFFIX,mtgglobals.com,🚫 广告拦截
   - DOMAIN-SUFFIX,mintegral.net,🚫 广告拦截
