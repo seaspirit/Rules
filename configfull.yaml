@@ -158,10 +158,14 @@ proxy-groups:
   - {name: ♻️ 自动选择, type: url-test, include-all: true, tolerance: 1, interval: 30, filter: "^((?!(直连|拦截)).)*$"}
   - {name: 🌐 全部节点, type: select, include-all: true}
 rules:
+# gvt2.com and gvt3.com are used for Play connectivity monitoring and diagnostics---开始---
+  - DOMAIN-SUFFIX,gvt2.com,🚫 广告拦截
+  - DOMAIN-SUFFIX,gvt3.com,🚫 广告拦截
+# gvt2.com and gvt3.com are used for Play connectivity monitoring and diagnostics---结束---
   - DOMAIN-SUFFIX,alb.reddit.com,🚫 广告拦截
   - DOMAIN-SUFFIX,e.reddit.com,🚫 广告拦截
   - DOMAIN-SUFFIX,go.redgifs.com,🚫 广告拦截
-  - DOMAIN-KEYWORD,youtube,🍀 Google
+  - DOMAIN-SUFFIX,youtube.com,🍀 Google
   - DOMAIN-SUFFIX,redgifs.com,🍀 Google
   - DOMAIN-SUFFIX,redgifsdownloader.net,🍀 Google
   - DOMAIN-SUFFIX,co.jp,🇯🇵 日本节点
