@@ -128,27 +128,26 @@ proxies:
 - name: "🚫 广告拦截"
   type: reject 
 # 锚点
-pr: &pr {type: url-test, tolerance: 1, interval: 30, proxies: [🇭🇰 香港节点, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇺🇲 美国节点]}
+pr: &pr {type: url-test, tolerance: 1, interval: 30, proxies: [🇺🇲 美国节点, 🇭🇰 香港节点, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点]}
 pr2: &pr2 {type: fallback, tolerance: 1, interval: 30, proxies: [🇺🇲 美国节点, ♻️ 自动选择]}
-pr3: &pr3 {type: select, proxies: [🇺🇲 美国节点, 🇭🇰 香港节点, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点]}
-pr5: &pr5 {type: select, proxies: [🟢 直连, ♻️ 自动选择]}
+pr3: &pr3 {type: select, proxies: [🟢 直连, ♻️ 自动选择]}
 # 策略组
 proxy-groups:
   - {name: 🍀 Google,!!merge <<: *pr2}
   - {name: 📹 YouTube,!!merge <<: *pr}
   - {name: 🤖 ChatGPT,!!merge <<: *pr}
   - {name: 👨🏿‍💻 GitHub,!!merge <<: *pr}
-  - {name: 🐬 OneDrive,!!merge <<: *pr5}
+  - {name: 🐬 OneDrive,!!merge <<: *pr3}
   - {name: 🪟 Microsoft,!!merge <<: *pr2}
-  - {name: 🎥 NETFLIX,!!merge <<: *pr3}
-  - {name: 🎵 TikTok,!!merge <<: *pr3}
+  - {name: 🎥 NETFLIX,!!merge <<: *pr}
+  - {name: 🎵 TikTok,!!merge <<: *pr}
   - {name: 📲 Telegram,!!merge <<: *pr}
   - {name: ✈️ Speedtest,!!merge <<: *pr}
-  - {name: 💶 PayPal,!!merge <<: *pr3}
+  - {name: 💶 PayPal,!!merge <<: *pr}
   - {name: 🍎 Apple,!!merge <<: *pr2}
   - {name: 🔥 GFW,!!merge <<: *pr}
   - {name: 🤖 geolocation-!cn,!!merge <<: *pr}
-  - {name: 🎯 全球直连,!!merge <<: *pr5}
+  - {name: 🎯 全球直连,!!merge <<: *pr3}
   - {name: 🐟 漏网之鱼,!!merge <<: *pr}
   - {name: 🇭🇰 香港节点, type: url-test, include-all: true, tolerance: 1, interval: 30, filter: "(?i)港|hk|hongkong|hong kong"}
   - {name: 🇹🇼 台湾节点, type: url-test, include-all: true, tolerance: 1, interval: 30, filter: "(?i)台|TW|Taiwan"}
@@ -162,6 +161,7 @@ rules:
   - DOMAIN-SUFFIX,alb.reddit.com,🚫 广告拦截
   - DOMAIN-SUFFIX,e.reddit.com,🚫 广告拦截
   - DOMAIN-SUFFIX,go.redgifs.com,🚫 广告拦截
+  - DOMAIN-KEYWORD,youtube,🍀 Google
   - DOMAIN-SUFFIX,redgifs.com,🍀 Google
   - DOMAIN-SUFFIX,redgifsdownloader.net,🍀 Google
   - DOMAIN-SUFFIX,co.jp,🇯🇵 日本节点
