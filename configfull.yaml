@@ -159,16 +159,14 @@ proxy-groups:
   - {name: ♻️ 自动选择, type: url-test, include-all: true, tolerance: 1, interval: 30, filter: "^((?!(直连|拦截)).)*$"}
   - {name: 🌐 全部节点, type: select, include-all: true}
 rules:
-  - DOMAIN-KEYWORD,youtube,🍀 Google
-  - DOMAIN-SUFFIX,deepseek.com,🤖 ChatGPT
-  - DOMAIN-SUFFIX,softonic.cn,🍀 Google
-  - DOMAIN-SUFFIX,co.jp,🇯🇵 日本节点
   - DOMAIN-SUFFIX,alb.reddit.com,🚫 广告拦截
   - DOMAIN-SUFFIX,e.reddit.com,🚫 广告拦截
-  - DOMAIN,go.redgifs.com,🚫 广告拦截
+  - DOMAIN-SUFFIX,go.redgifs.com,🚫 广告拦截
   - DOMAIN-SUFFIX,redgifs.com,🍀 Google
   - DOMAIN-SUFFIX,redgifsdownloader.net,🍀 Google
+  - DOMAIN-SUFFIX,co.jp,🇯🇵 日本节点
   - DOMAIN-SUFFIX,postimg.cc,🍀 Google
+  - DOMAIN-SUFFIX,softonic.cn,🍀 Google
 # 用于televizo广告屏蔽---开始---
   - DOMAIN-SUFFIX,mtgglobals.com,🚫 广告拦截
   - DOMAIN-SUFFIX,mintegral.net,🚫 广告拦截
