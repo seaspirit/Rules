@@ -166,6 +166,7 @@ rules:
   - DOMAIN-SUFFIX,redgifsdownloader.net,🍀 Google
   - DOMAIN-SUFFIX,co.jp,🇯🇵 日本节点
   - DOMAIN-SUFFIX,postimg.cc,🍀 Google
+  - DOMAIN-SUFFIX,rawgif.com,🍀 Google
   - DOMAIN-SUFFIX,softonic.cn,🍀 Google
 # 用于televizo广告屏蔽---开始---
   - DOMAIN-SUFFIX,mtgglobals.com,🚫 广告拦截
