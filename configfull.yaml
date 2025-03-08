@@ -165,7 +165,7 @@ rules:
   - DOMAIN-SUFFIX,alb.reddit.com,🚫 广告拦截
   - DOMAIN-SUFFIX,e.reddit.com,🚫 广告拦截
   - DOMAIN-SUFFIX,go.redgifs.com,🚫 广告拦截
-  - DOMAIN-SUFFIX,youtube.com,🍀 Google
+  - DOMAIN,www.youtube.com,🍀 Google
   - DOMAIN-SUFFIX,redgifs.com,🍀 Google
   - DOMAIN-SUFFIX,redgifsdownloader.net,🍀 Google
   - DOMAIN-SUFFIX,co.jp,🇯🇵 日本节点
