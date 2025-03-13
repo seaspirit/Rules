@@ -11,15 +11,6 @@ proxy-providers:
     url: "https://www9th.ga-sub.baby/api/v1/client/subscribe?token=3d36b6d2b1d958987ee709354d9ebb94"
     override:
       skip-cert-verify: true
-  mitce.com:
-    type: http
-    interval: 1800
-    health-check:
-      enable: true
-      url: https://www.gstatic.com/generate_204
-      interval: 30
-    proxy: 🟢 直连
-    url: "https://app.mitce.com/?sid=218169&token=srvmnwme"
   Flower_Trojan:
     type: http
     interval: 1800
@@ -166,8 +157,7 @@ rules:
   - DOMAIN-SUFFIX,e.reddit.com,🚫 广告拦截
   - DOMAIN-SUFFIX,go.redgifs.com,🚫 广告拦截
   - DOMAIN,www.youtube.com,🍀 Google
-  - DOMAIN-SUFFIX,redgifs.com,🍀 Google
-  - DOMAIN-SUFFIX,redgifsdownloader.net,🍀 Google
+  - DOMAIN-SUFFIX,redgifsdownloader.net,🎯 全球直连
   - DOMAIN-SUFFIX,co.jp,🇯🇵 日本节点
   - DOMAIN-SUFFIX,postimg.cc,🍀 Google
   - DOMAIN-SUFFIX,rawgif.com,🍀 Google
