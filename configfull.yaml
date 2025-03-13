@@ -129,7 +129,7 @@ proxy-groups:
   - {name: 🤖 ChatGPT,!!merge <<: *pr}
   - {name: 👨🏿‍💻 GitHub,!!merge <<: *pr}
   - {name: 🐬 OneDrive,!!merge <<: *pr3}
-  - {name: 🪟 Microsoft,!!merge <<: *pr2}
+  - {name: 🪟 Microsoft,!!merge <<: *pr}
   - {name: 🎥 NETFLIX,!!merge <<: *pr}
   - {name: 🎵 TikTok,!!merge <<: *pr}
   - {name: 📲 Telegram,!!merge <<: *pr}
