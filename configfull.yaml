@@ -128,14 +128,14 @@ proxy-groups:
   - {name: 📹 YouTube,!!merge <<: *pr}
   - {name: 🤖 ChatGPT,!!merge <<: *pr}
   - {name: 👨🏿‍💻 GitHub,!!merge <<: *pr}
-  - {name: 🐬 OneDrive,!!merge <<: *pr3}
+  - {name: 🐬 OneDrive,!!merge <<: *pr}
   - {name: 🪟 Microsoft,!!merge <<: *pr}
   - {name: 🎥 NETFLIX,!!merge <<: *pr}
   - {name: 🎵 TikTok,!!merge <<: *pr}
   - {name: 📲 Telegram,!!merge <<: *pr}
   - {name: ✈️ Speedtest,!!merge <<: *pr}
   - {name: 💶 PayPal,!!merge <<: *pr}
-  - {name: 🍎 Apple,!!merge <<: *pr2}
+  - {name: 🍎 Apple,!!merge <<: *pr}
   - {name: 🔥 GFW,!!merge <<: *pr}
   - {name: 🤖 geolocation-!cn,!!merge <<: *pr}
   - {name: 🎯 全球直连,!!merge <<: *pr3}
@@ -157,7 +157,6 @@ rules:
   - DOMAIN-SUFFIX,e.reddit.com,🚫 广告拦截
   - DOMAIN-SUFFIX,go.redgifs.com,🚫 广告拦截
   - DOMAIN,www.youtube.com,🍀 Google
-  - DOMAIN-SUFFIX,redgifsdownloader.net,🎯 全球直连
   - DOMAIN-SUFFIX,co.jp,🇯🇵 日本节点
   - DOMAIN-SUFFIX,postimg.cc,🍀 Google
   - DOMAIN-SUFFIX,rawgif.com,🍀 Google
