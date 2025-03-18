@@ -6,22 +6,24 @@ proxy-providers:
     health-check:
       enable: true
       url: https://www.gstatic.com/generate_204
-      interval: 30
+      interval: 120
     proxy: 🟢 直连
-    url: "https://www9th.ga-sub.baby/api/v1/client/subscribe?token=3d36b6d2b1d958987ee709354d9ebb94"
+    url: "https://www7th.ga-sub.cfd/api/v1/client/subscribe?token=b19b25d9dc07836f4c4310ce0bede97e"
     override:
       skip-cert-verify: true
-  Flower_Trojan:
+  Flower_Clash:
     type: http
     interval: 1800
     health-check:
       enable: true
       url: https://www.gstatic.com/generate_204
-      interval: 30
+      interval: 120
     proxy: 🟢 直连
-    url: "https://api.xmancdn.com/osubscribe.php?sid=114693&token=A0QNsMcM"      
+    url: "https://api.xmancdn.com/osubscribe.php?sid=114693&token=A0QNsMcM&sip002=1"
+      
 # 用于下载订阅时指定UA
-global-ua: mihomo    
+global-ua: clash.meta
+    
 # 全局配置
 port: 7890
 socks-port: 7891
@@ -31,22 +33,35 @@ tproxy-port: 7894
 ipv6: true
 allow-lan: true
 unified-delay: true
-tcp-concurrent: true   
+tcp-concurrent: true
+  
+geodata-mode: false
+geodata-loader: standard
+geo-auto-update: true
+geo-update-interval: 48
+geox-url:
+  geoip: "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/geoip.dat"
+  geosite: "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/geosite.dat"
+  mmdb: "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/country.mmdb"
+  asn: "https://github.com/xishang0128/geoip/releases/download/latest/GeoLite2-ASN.mmdb"
+  
 # 控制面板
 external-controller: 0.0.0.0:9090
 secret: ""
-external-ui: "/etc/mihomo/run/ui"
-external-ui-name: zashboard
-external-ui-url: "https://github.com/Zephyruso/zashboard/archive/refs/heads/gh-pages.zip"
+external-ui: ui
+external-ui-url: "https://ghp.ci/https://github.com/MetaCubeX/metacubexd/archive/refs/heads/gh-pages.zip"
+
 # 匹配进程 always/strict/off
 find-process-mode: strict
 global-client-fingerprint: chrome
 keep-alive-idle: 600
 keep-alive-interval: 30
+
 # 策略组选择和fakeip缓存
 profile:
   store-selected: true
-  store-fake-ip: true 
+  store-fake-ip: true
+  
 # 流量嗅探
 sniffer:
   enable: true
@@ -61,9 +76,11 @@ sniffer:
   force-domain:
     - +.v2ex.com
   skip-domain:
+    - "Mijia Cloud"
     - "dlg.io.mi.com"
     - "+.push.apple.com"
-    - "+.apple.com"    
+    - "+.apple.com"
+    
 # 代理模式
 tun:
   enable: true
@@ -74,12 +91,13 @@ tun:
     - "tcp://any:53"
   auto-route: true
   auto-redirect: true
-  auto-detect-interface: true  
+  auto-detect-interface: true
+  
 # DNS模块
 dns:
   enable: true
   listen: 0.0.0.0:1053
-  ipv6: true
+  ipv6: false
   respect-rules: true
   # 模式切换 redir-host / fake-ip
   enhanced-mode: fake-ip
@@ -111,61 +129,58 @@ dns:
       - "https://dns.cloudflare.com/dns-query"
       - "https://dns.google/dns-query"
       - 202.102.128.68
-      - 114.114.114.114   
+      - 114.114.114.114
+   
 proxies:
 - name: "🟢 直连"
   type: direct
   udp: true
 - name: "🚫 广告拦截"
-  type: reject 
+  type: reject
+ 
 # 锚点
-pr: &pr {type: url-test, tolerance: 1, interval: 30, proxies: [🇭🇰 香港节点, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇺🇲 美国节点]}
-pr2: &pr2 {type: fallback, tolerance: 1, interval: 30, proxies: [🇺🇲 美国节点, ♻️ 自动选择]}
-pr3: &pr3 {type: select, proxies: [🟢 直连, ♻️ 自动选择]}
+pr: &pr {type: url-test, tolerance: 0, interval: 120, proxies: [♻️ 自动选择, 🇭🇰 香港节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇺🇲 美国节点FQ, 🇺🇲 美国节点]}
+pr2: &pr2 {type: fallback, tolerance: 0, interval: 120, proxies: [🇺🇲 美国节点FQ, 🇺🇲 美国节点, ♻️ 自动选择, 🇭🇰 香港节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点]}
+pr3: &pr3 {type: select, tolerance: 0, interval: 120, proxies: [🟢 直连, ♻️ 自动选择, 🇭🇰 香港节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇺🇲 美国节点FQ, 🇺🇲 美国节点]}
+pr4: &pr4 {type: fallback, tolerance: 0, interval: 120, proxies: [🇯🇵 日本节点, ♻️ 自动选择, 🇭🇰 香港节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇺🇲 美国节点FQ, 🇺🇲 美国节点]}
+pr5: &pr5 {type: fallback, tolerance: 0, interval: 120, proxies: [🇺🇲 美国节点FQ, 🤖 FQ节点, 🇺🇲 美国节点, ♻️ 自动选择, 🇭🇰 香港节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点]}
 # 策略组
 proxy-groups:
+  - {name: 📹 YouTube,!!merge <<: *pr2}
+  - {name: 📹 YouTubeX,!!merge <<: *pr5}
   - {name: 🍀 Google,!!merge <<: *pr2}
-  - {name: 📹 YouTube,!!merge <<: *pr}
-  - {name: 🤖 ChatGPT,!!merge <<: *pr}
-  - {name: 👨🏿‍💻 GitHub,!!merge <<: *pr}
-  - {name: 🐬 OneDrive,!!merge <<: *pr}
-  - {name: 🪟 Microsoft,!!merge <<: *pr}
-  - {name: 🎥 NETFLIX,!!merge <<: *pr}
-  - {name: 🎵 TikTok,!!merge <<: *pr}
-  - {name: 📲 Telegram,!!merge <<: *pr}
-  - {name: ✈️ Speedtest,!!merge <<: *pr}
-  - {name: 💶 PayPal,!!merge <<: *pr}
-  - {name: 🍎 Apple,!!merge <<: *pr}
-  - {name: 🔥 GFW,!!merge <<: *pr}
-  - {name: 🤖 geolocation-!cn,!!merge <<: *pr}
+  - {name: 🎥 NETFLIX,!!merge <<: *pr5}
+  - {name: 👨🏿‍💻 GitHub,!!merge <<: *pr2}
+  - {name: 🪟 Microsoft,!!merge <<: *pr5}
+  - {name: 🐬 OneDrive,!!merge <<: *pr3}
+  - {name: 🎵 TikTok,!!merge <<: *pr5}
+  - {name: 📲 Telegram,!!merge <<: *pr2}
+  - {name: ✈️ Speedtest,!!merge <<: *pr2}
+  - {name: 💶 PayPal,!!merge <<: *pr2}
+  - {name: 🤖 ChatGPT,!!merge <<: *pr2}
+  - {name: 🔥 GFW,!!merge <<: *pr2}
+  - {name: 🤖 geolocation-!cn,!!merge <<: *pr2}
+  - {name: 🐟 漏网之鱼,!!merge <<: *pr2}
   - {name: 🎯 全球直连,!!merge <<: *pr3}
-  - {name: 🐟 漏网之鱼,!!merge <<: *pr}
-  - {name: 🇭🇰 香港节点, type: url-test, include-all: true, tolerance: 1, interval: 30, filter: "(?i)港|hk|hongkong|hong kong"}
-  - {name: 🇹🇼 台湾节点, type: url-test, include-all: true, tolerance: 1, interval: 30, filter: "(?i)台|TW|Taiwan"}
-  - {name: 🇯🇵 日本节点, type: url-test, include-all: true, tolerance: 1, interval: 30, filter: "(?i)日|jp|japan|Tokyo"}
-  - {name: 🇰🇷 韩国节点, type: url-test, include-all: true, tolerance: 1, interval: 30, filter: "(?i)韩|KR|Korea|Incheon"}
-  - {name: 🇸🇬 新加坡节点, type: url-test, include-all: true, tolerance: 1, interval: 30, filter: "(?i)新|狮|SG|Singapore"}
-  - {name: 🇺🇲 美国节点, type: url-test, include-all: true, tolerance: 1, interval: 30, filter: "(?i)美|us|unitedstates|united states|California"}
-  - {name: ♻️ 自动选择, type: url-test, include-all: true, tolerance: 1, interval: 30, filter: "^((?!(直连|拦截)).)*$"}
-  - {name: 🌐 全部节点, type: select, include-all: true}
+  - {name: ♻️ 自动选择, type: url-test, include-all: true, tolerance: 0, interval: 120, filter: "^((?!(直连|拦截|台|TW)).)*$"}
+  - {name: 🤖 FQ节点, type: load-balance, include-all: true, tolerance: 0, interval: 120, filter: "(?=.*(剩余流量|重置剩余|套餐到期|(?i)- B Group))^((?!(Traffic|Expire)).)*$"}
+  - {name: 🇭🇰 香港节点, type: url-test, include-all: true, tolerance: 0, interval: 120, filter: "(?=.*(港|HK|(?i)HongKong))^((?!(台|日|韩|新|深|美)).)*$"}
+  - {name: 🇹🇼 台湾节点, type: url-test, include-all: true, tolerance: 0, interval: 120, filter: "(?=.*(台|TW|(?i)Taiwan))^((?!(港|日|韩|新|美)).)*$"}
+  - {name: 🇯🇵 日本节点X,!!merge <<: *pr4}
+  - {name: 🇯🇵 日本节点, type: url-test, include-all: true, tolerance: 0, interval: 120, filter: "(?=.*(日|JP|(?i)Japan|Tokyo))^((?!(港|台|韩|新|美)).)*$" }
+  - {name: 🇰🇷 韩国节点, type: url-test, include-all: true, tolerance: 0, interval: 120, filter: "(?=.*(韩|KR|(?i)Korea|Incheon))^((?!(港|台|日|新|美)).)*$" }
+  - {name: 🇸🇬 新加坡节点, type: url-test, include-all: true, tolerance: 0, interval: 120, filter: "(?=.*(新|狮|SG|(?i)Singapore))^((?!(港|台|日|韩|美)).)*$"}
+  - {name: 🇺🇲 美国节点FQ, type: load-balance, include-all: true, tolerance: 0, interval: 120, filter: "(?=.*((?i)california))^((?!(港|台|日|韩|新)).)*$"}
+  - {name: 🇺🇲 美国节点, type: url-test, include-all: true, tolerance: 0, interval: 120, filter: "(?=.*(美|US|(?i)States|America|california))^((?!(港|台|日|韩|新)).)*$"}
+  - {name: 🌐 全部节点, type: select, include-all: true, tolerance: 0, interval: 120}
 rules:
-# gvt2.com and gvt3.com are used for Play connectivity monitoring and diagnostics---开始---
-  - DOMAIN-SUFFIX,gvt2.com,🚫 广告拦截
-  - DOMAIN-SUFFIX,gvt3.com,🚫 广告拦截
-# gvt2.com and gvt3.com are used for Play connectivity monitoring and diagnostics---结束---
-  - DOMAIN-SUFFIX,alb.reddit.com,🚫 广告拦截
-  - DOMAIN-SUFFIX,e.reddit.com,🚫 广告拦截
-  - DOMAIN-SUFFIX,go.redgifs.com,🚫 广告拦截
-  - DOMAIN,www.youtube.com,🍀 Google
-  - DOMAIN-SUFFIX,co.jp,🇯🇵 日本节点
-  - DOMAIN-SUFFIX,postimg.cc,🍀 Google
-  - DOMAIN-SUFFIX,rawgif.com,🍀 Google
+  - DOMAIN-SUFFIX,googlevideo.com,🔥 GFW
   - DOMAIN-SUFFIX,softonic.cn,🍀 Google
-# 用于televizo广告屏蔽---开始---
+  - DOMAIN-SUFFIX,co.jp,🇯🇵 日本节点X
+# 用于televizo广告屏蔽
   - DOMAIN-SUFFIX,mtgglobals.com,🚫 广告拦截
   - DOMAIN-SUFFIX,mintegral.net,🚫 广告拦截
   - DOMAIN-SUFFIX,vungle.com,🚫 广告拦截
-# 用于televizo广告屏蔽---结束---
   - RULE-SET,google-ads_domain,🚫 广告拦截
   - RULE-SET,youtube_domain,📹 YouTube
   - RULE-SET,google-play_domain,🍀 Google
@@ -193,8 +208,7 @@ rules:
 rule-anchor:
   ip: &ip {type: http, interval: 86400, behavior: ipcidr, format: mrs}
   domain: &domain {type: http, interval: 86400, behavior: domain, format: mrs}
-rule-providers:
-# DOMAIN 
+rule-providers: 
   private_domain: {!!merge <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/private.mrs"}
   ai_domain: {!!merge <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/openai.mrs"}
   youtube_domain: {!!merge <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/youtube.mrs"}
@@ -212,7 +226,7 @@ rule-providers:
   geolocation-!cn: {!!merge <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/geolocation-!cn.mrs"}
   cn_domain: {!!merge <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/cn.mrs"}
   google-ads_domain: {!!merge <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/google-ads.mrs"}
-# IP
+  
   cn_ip: {!!merge <<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/cn.mrs"}
   google_ip: {!!merge <<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/google.mrs"}
   telegram_ip: {!!merge <<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/telegram.mrs"}

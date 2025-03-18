@@ -114,7 +114,7 @@ dns:
     "rule-set:private_domain,cn_domain":
       - 202.102.128.68
       - 114.114.114.114
-    "rule-set:geolocation-!cn":
+    "rule-set:google-play_domain,gfw_domain,geolocation-!cn":
       - "https://dns.cloudflare.com/dns-query"
       - "https://dns.google/dns-query"
  
@@ -125,11 +125,11 @@ pr3: &pr3 {type: select, proxies: [DIRECT, ♻️ 自动选择]}
 # 策略组
 proxy-groups:
   - {name: 🚀 节点选择,!!merge <<: *pr}
+  - {name: 🇺🇲 美国节点优先,!!merge <<: *pr2}
   - {name: 📹 YouTube,!!merge <<: *pr}
-  - {name: 🍀 Google,!!merge <<: *pr2}
+  - {name: 🍀 Google,!!merge <<: *pr}
   - {name: 🤖 ChatGPT,!!merge <<: *pr}
   - {name: 👨🏿‍💻 GitHub,!!merge <<: *pr}
-  - {name: 🐬 OneDrive,!!merge <<: *pr}
   - {name: 🪟 Microsoft,!!merge <<: *pr}
   - {name: 🎥 NETFLIX,!!merge <<: *pr}
   - {name: 🎵 TikTok,!!merge <<: *pr}
@@ -155,12 +155,16 @@ rules:
   - DOMAIN-SUFFIX,alb.reddit.com,REJECT
   - DOMAIN-SUFFIX,e.reddit.com,REJECT
   - DOMAIN-SUFFIX,redditstatic.com,REJECT
+  - DOMAIN-SUFFIX,matrix.redditspace.com,REJECT
+  - DOMAIN-SUFFIX,gql-realtime.reddit.com,REJECT
+  - DOMAIN-SUFFIX,w3-reporting.reddit.com,REJECT
   - DOMAIN-SUFFIX,go.redgifs.com,REJECT
-  - DOMAIN,www.youtube.com,🍀 Google
-  - DOMAIN-SUFFIX,co.jp,🇯🇵 日本节点
-  - DOMAIN-SUFFIX,postimg.cc,🍀 Google
-  - DOMAIN-SUFFIX,rawgif.com,🍀 Google
-  - DOMAIN-SUFFIX,softonic.cn,🍀 Google
+  - DOMAIN,www.youtube.com,🇺🇲 美国节点优先
+  - DOMAIN,www.google.com,🇺🇲 美国节点优先
+  - DOMAIN-SUFFIX,jp,🇯🇵 日本节点
+  - DOMAIN-SUFFIX,postimg.cc,🇺🇲 美国节点优先
+  - DOMAIN-SUFFIX,rawgif.com,🇺🇲 美国节点优先
+  - DOMAIN-SUFFIX,softonic.cn,🇺🇲 美国节点优先
 # 用于televizo广告屏蔽---开始---
   - DOMAIN-SUFFIX,mtgglobals.com,REJECT
   - DOMAIN-SUFFIX,mintegral.net,REJECT
@@ -172,11 +176,11 @@ rules:
   - RULE-SET,google_domain,🍀 Google
   - RULE-SET,private_domain,DIRECT
   - RULE-SET,github_domain,👨🏿‍💻 GitHub
+  - RULE-SET,ai_domain,🤖 ChatGPT
+  - RULE-SET,onedrive_domain,🪟 Microsoft
+  - RULE-SET,microsoft_domain,🪟 Microsoft
   - RULE-SET,netflix_domain,🎥 NETFLIX
   - RULE-SET,telegram_domain,📲 Telegram
-  - RULE-SET,ai_domain,🤖 ChatGPT
-  - RULE-SET,onedrive_domain,🐬 OneDrive
-  - RULE-SET,microsoft_domain,🪟 Microsoft
   - RULE-SET,tiktok_domain,🎵 TikTok
   - RULE-SET,speedtest_domain,✈️ Speedtest
   - RULE-SET,paypal_domain,💶 PayPal
@@ -184,7 +188,7 @@ rules:
   - RULE-SET,geolocation-!cn,🚀 节点选择
   - RULE-SET,cn_domain,🎯 全球直连
   - RULE-SET,ad_ip,REJECT,no-resolve
-  - RULE-SET,google_ip,🍀 Google,no-resolve
+  - RULE-SET,google_ip,🚀 节点选择,no-resolve
   - RULE-SET,netflix_ip,🎥 NETFLIX,no-resolve
   - RULE-SET,telegram_ip,📲 Telegram,no-resolve
   - RULE-SET,ai_ip,🤖 ChatGPT,no-resolve
