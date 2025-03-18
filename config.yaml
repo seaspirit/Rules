@@ -131,21 +131,21 @@ proxy-groups:
   - {name: 🤖 ChatGPT,!!merge <<: *pr}
   - {name: 👨🏿‍💻 GitHub,!!merge <<: *pr}
   - {name: 🪟 Microsoft,!!merge <<: *pr}
+  - {name: 📲 Telegram,!!merge <<: *pr}
   - {name: 🎥 NETFLIX,!!merge <<: *pr}
   - {name: 🎵 TikTok,!!merge <<: *pr}
-  - {name: 📲 Telegram,!!merge <<: *pr}
-  - {name: ✈️ Speedtest,!!merge <<: *pr}
   - {name: 💶 PayPal,!!merge <<: *pr}
   - {name: 🍎 Apple,!!merge <<: *pr}
+  - {name: ✈️ Speedtest,!!merge <<: *pr}
   - {name: 🎯 全球直连,!!merge <<: *pr3}
   - {name: 🐟 漏网之鱼,!!merge <<: *pr}
+  - {name: ♻️ 自动选择, type: url-test, include-all: true, tolerance: 1, interval: 30}
   - {name: 🇭🇰 香港节点, type: url-test, include-all: true, tolerance: 1, interval: 30, filter: "(?i)港|hk|hongkong|hong kong"}
   - {name: 🇹🇼 台湾节点, type: url-test, include-all: true, tolerance: 1, interval: 30, filter: "(?i)台|TW|Taiwan"}
   - {name: 🇯🇵 日本节点, type: url-test, include-all: true, tolerance: 1, interval: 30, filter: "(?i)日|jp|japan|Tokyo"}
   - {name: 🇰🇷 韩国节点, type: url-test, include-all: true, tolerance: 1, interval: 30, filter: "(?i)韩|KR|Korea|Incheon"}
   - {name: 🇸🇬 新加坡节点, type: url-test, include-all: true, tolerance: 1, interval: 30, filter: "(?i)新|狮|SG|Singapore"}
   - {name: 🇺🇲 美国节点, type: url-test, include-all: true, tolerance: 1, interval: 30, filter: "(?i)美|us|unitedstates|united states|California"}
-  - {name: ♻️ 自动选择, type: url-test, include-all: true, tolerance: 1, interval: 30, filter: "^((?!(直连|拦截)).)*$"}
   - {name: 🌐 全部节点, type: select, include-all: true}
 rules:
 # gvt2.com and gvt3.com are used for Play connectivity monitoring and diagnostics---开始---
