@@ -149,19 +149,20 @@ dns:
  
 # 出站策略
 pr: &pr {type: url-test, tolerance: 1, interval: 30, proxies: [🇭🇰 香港节点, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇺🇲 美国节点]}
+v-play: &v-play {type: fallback, tolerance: 1, interval: 30, proxies: [▶️ 流媒体专用节点, 🚀 默认代理]}
 proxy-groups:
   - {name: 🚀 默认代理, <<: *pr}
   - {name: AI, <<: *pr, icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/openai.com/chatgpt.svg"}
-  - {name: YouTube, <<: *pr, icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/youtube.com/youtube.svg"}
+  - {name: YouTube, <<: *v-play, icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/youtube.com/youtube.svg"}
   - {name: Google, type: fallback, proxies: [🇺🇲 美国节点, 🚀 默认代理], icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/google.com/google.svg"}
   - {name: GitHub, <<: *pr, icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/github.com/github-icon-light.svg"}
   - {name: Telegram, <<: *pr, icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/telegram.com/telegram-plane.svg"}
-  - {name: OneDrive, <<: *pr, icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/microsoft.com/microsoft-onedrive.svg"}
   - {name: Microsoft, <<: *pr, icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/microsoft.com/microsoft.svg"}
-  - {name: TikTok, <<: *pr, icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/tiktok.com/tiktok.svg"}
-  - {name: 抖音, <<: *pr, icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/tiktok.com/tiktok.svg"}
+  - {name: OneDrive, <<: *pr, icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/microsoft.com/microsoft-onedrive.svg"}
+  - {name: 抖音, <<: *v-play, icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/tiktok.com/tiktok.svg"}
+  - {name: TikTok, <<: *v-play, icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/tiktok.com/tiktok.svg"}
   - {name: Netflix, <<: *pr, icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/netflix.com/netflix.svg"}
-  - {name: Disney+, <<: *pr, icon: "https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Large/Disney_plus.png"}
+  - {name: Disney+, <<: *pr, icon: "https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Disney.png"}
   - {name: PayPal, <<: *pr, icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/paypal.com/paypal.svg"}
   - {name: Apple, type: select, proxies: [DIRECT, 🚀 默认代理], icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/apple.com/apple.svg"}
   - {name: SpeedTest, <<: *pr, icon: "https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Large/SpeedTest.png"}
@@ -172,6 +173,13 @@ proxy-groups:
   - {name: 🇰🇷 韩国节点, type: url-test, include-all: true, tolerance: 1, interval: 30, filter: "(?i)韩|KR|Korea|Incheon"}
   - {name: 🇸🇬 新加坡节点, type: url-test, include-all: true, tolerance: 1, interval: 30, filter: "(?i)新|狮|SG|Singapore"}
   - {name: 🇺🇲 美国节点, type: url-test, include-all: true, tolerance: 1, interval: 30, filter: "(?i)美|us|unitedstates|united states|California"}
+  - name: "▶️ 流媒体专用节点"
+    type: load-balance
+    use:
+      - 翻场
+    url: "https://www.gstatic.com/generate_204"
+    interval: 30
+    strategy: "round-robin"
   - {name: ♻️ 自动选择, type: url-test, include-all: true, tolerance: 1, interval: 30}
 
 # 规则匹配
@@ -196,7 +204,7 @@ rules:
   - RULE-SET,disney_domain,Disney+
   - RULE-SET,telegram_domain,Telegram
   - RULE-SET,tiktok_domain,TikTok
-  - RULE-SET,douyin,抖音
+  - RULE-SET,douyin_domain,抖音
   - RULE-SET,speedtest_domain,SpeedTest
   - RULE-SET,paypal_domain,PayPal
   - RULE-SET,gfw_domain,🚀 默认代理
@@ -232,7 +240,7 @@ rule-providers:
   apple_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/apple-cn.mrs"}
   speedtest_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/ookla-speedtest.mrs"}
   tiktok_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/tiktok.mrs"}
-  douyin: { <<: *domain_list, url: "https://raw.githubusercontent.com/Vbaethon/HOMOMIX/refs/heads/main/rules/douyin.list"}
+  douyin_domain: { <<: *domain_list, url: "https://raw.githubusercontent.com/Vbaethon/HOMOMIX/refs/heads/main/rules/douyin.list"}
   gfw_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/gfw.mrs"}
   geolocation-!cn: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/geolocation-!cn.mrs"}
   cn_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/cn.mrs"}
