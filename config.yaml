@@ -152,7 +152,7 @@ pr: &pr {type: url-test, tolerance: 1, interval: 30, proxies: [🇭🇰 香港�
 v-play: &v-play {type: fallback, tolerance: 1, interval: 30, proxies: [▶️ 流媒体专用节点, 🚀 默认代理]}
 proxy-groups:
   - {name: 🚀 默认代理, <<: *pr}
-  - {name: AI, <<: *pr, icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/openai.com/chatgpt.svg"}
+  - {name: AI, <<: *pr, icon: "https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Large/AI.png"}
   - {name: YouTube, <<: *v-play, icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/youtube.com/youtube.svg"}
   - {name: Google, type: fallback, proxies: [🇺🇲 美国节点, 🚀 默认代理], icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/google.com/google.svg"}
   - {name: GitHub, <<: *pr, icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/github.com/github-icon-light.svg"}
@@ -162,7 +162,7 @@ proxy-groups:
   - {name: 抖音, <<: *v-play, icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/tiktok.com/tiktok.svg"}
   - {name: TikTok, <<: *v-play, icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/tiktok.com/tiktok.svg"}
   - {name: Netflix, <<: *pr, icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/netflix.com/netflix.svg"}
-  - {name: Disney+, <<: *pr, icon: "https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Disney.png"}
+  - {name: Disney+, <<: *pr, icon: "https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Large/Disney_plus.png"}
   - {name: PayPal, <<: *pr, icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/paypal.com/paypal.svg"}
   - {name: Apple, type: select, proxies: [DIRECT, 🚀 默认代理], icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/apple.com/apple.svg"}
   - {name: SpeedTest, <<: *pr, icon: "https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Large/SpeedTest.png"}
