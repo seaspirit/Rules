@@ -152,7 +152,7 @@ pr: &pr {type: url-test, tolerance: 1, interval: 30, proxies: [🇭🇰 香港�
 v-play: &v-play {type: fallback, tolerance: 1, interval: 30, proxies: [▶️ 流媒体专用节点, 🚀 默认代理]}
 proxy-groups:
   - {name: 🚀 默认代理, <<: *pr}
-  - {name: AI, <<: *pr, icon: "https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Large/AI.png"}
+  - {name: AI, <<: *pr, icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/openai.com/chatgpt.svg"}
   - {name: YouTube, <<: *v-play, icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/youtube.com/youtube.svg"}
   - {name: Google, type: fallback, proxies: [🇺🇲 美国节点, 🚀 默认代理], icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/google.com/google.svg"}
   - {name: GitHub, <<: *pr, icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/github.com/github-icon-light.svg"}
@@ -192,6 +192,7 @@ rules:
   - DOMAIN,www.youtube.com,Google
   - DOMAIN-SUFFIX,softonic.cn,🚀 默认代理
   - DOMAIN-SUFFIX,jp,🇯🇵 日本节点
+  - DOMAIN-SUFFIX,qnap.com,DIRECT
   - RULE-SET,google-ads_domain,REJECT
   - RULE-SET,youtube_domain,YouTube
   - RULE-SET,google-play_domain,Google
