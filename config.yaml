@@ -140,32 +140,30 @@ dns:
     - "+.ntp.ntsc.ac.cn"
     - "+.cn.ntp.org.cn"
   default-nameserver:
-    - 202.102.128.68
     - 223.5.5.5
   proxy-server-nameserver:
-    - 202.102.128.68
-    - 223.5.5.5
-  nameserver:
-    - 202.102.128.68
-    - 223.5.5.5
+    - https://dns.alidns.com/dns-query
+  nameserver:  # namesever尽量用运营商提供的DNS
+    - 202.102.152.3
+    - 202.102.154.3
  
 # 出站策略
 pr: &pr {type: url-test, tolerance: 1, interval: 30, proxies: [🇭🇰 香港节点, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇺🇲 美国节点]}
 proxy-groups:
   - {name: 🚀 默认代理, <<: *pr}
-  - {name: AI, <<: *pr, icon: "https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Large/AI.png"}
-  - {name: YouTube, <<: *pr, icon: "https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Large/YouTube.png"}
-  - {name: Google, type: fallback, proxies: [🇺🇲 美国节点, 🚀 默认代理], icon: "https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Large/Google.png"}
-  - {name: GitHub, <<: *pr, icon: "https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Large/GitHub.png"}
-  - {name: Telegram, <<: *pr, icon: "https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Large/Telegram.png"}
-  - {name: OneDrive, <<: *pr, icon: "https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Large/OneDrive.png"}
-  - {name: Microsoft, <<: *pr, icon: "https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Large/Microsoft.png"}
-  - {name: TikTok, <<: *pr, icon: "https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Large/TikTok.png"}
-  - {name: 抖音, <<: *pr, icon: "https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Large/Douyin.png"}
-  - {name: Netflix, <<: *pr, icon: "https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Large/Netflix.png"}
+  - {name: AI, <<: *pr, icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/openai.com/chatgpt.svg"}
+  - {name: YouTube, <<: *pr, icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/youtube.com/youtube.svg"}
+  - {name: Google, type: fallback, proxies: [🇺🇲 美国节点, 🚀 默认代理], icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/google.com/google.svg"}
+  - {name: GitHub, <<: *pr, icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/github.com/github-icon.svg"}
+  - {name: Telegram, <<: *pr, icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/telegram.com/telegram-plane.svg"}
+  - {name: OneDrive, <<: *pr, icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/microsoft.com/microsoft-onedrive.svg"}
+  - {name: Microsoft, <<: *pr, icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/microsoft.com/microsoft.svg"}
+  - {name: TikTok, <<: *pr, icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/tiktok.com/tiktok.svg"}
+  - {name: 抖音, <<: *pr, icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/tiktok.com/tiktok.svg"}
+  - {name: Netflix, <<: *pr, icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/netflix.com/netflix.svg"}
   - {name: Disney+, <<: *pr, icon: "https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Large/Disney_plus.png"}
-  - {name: PayPal, <<: *pr, icon: "https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Large/PayPal.png"}
-  - {name: Apple, type: select, proxies: [DIRECT, 🚀 默认代理], icon: "https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Large/Apple.png"}
+  - {name: PayPal, <<: *pr, icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/paypal.com/paypal.svg"}
+  - {name: Apple, type: select, proxies: [DIRECT, 🚀 默认代理], icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/apple.com/apple.svg"}
   - {name: SpeedTest, <<: *pr, icon: "https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Large/SpeedTest.png"}
   - {name: 🪝 漏网之鱼, <<: *pr}
   - {name: 🇭🇰 香港节点, type: url-test, include-all: true, tolerance: 1, interval: 30, filter: "(?i)港|hk|hongkong|hong kong"}
