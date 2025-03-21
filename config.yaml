@@ -109,9 +109,6 @@ dns:
   fake-ip-filter-mode: blacklist
   fake-ip-filter:
     - "rule-set:google-play_domain,private_domain,cn_domain"
-    - "+.services.googleapis.cn"
-    - "+.xn--ngstr-cn-8za9o.com"
-    - "+.lh3.googleusercontent.com"
     - "time.*.com"
     - "+.pool.ntp.org"
     - "+.ntp.tencent.com"
