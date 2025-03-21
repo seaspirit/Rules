@@ -15,9 +15,6 @@ proxy-providers:
       - "mihomo"
       - "Clash.meta"
     override:
-      udp: true
-      down: "50 Mbps"
-      up: "10 Mbps"
       skip-cert-verify: true
   Flower_Trojan:
     url: "https://api.xmancdn.com/osubscribe.php?sid=114693&token=A0QNsMcM"
@@ -33,13 +30,6 @@ proxy-providers:
       - "Clash"
       - "mihomo"
       - "Clash.meta"
-    override:
-      udp: true
-      down: "50 Mbps"
-      up: "10 Mbps"
-      skip-cert-verify: true
-
-# global-ua: clash.meta
 
 # 全局配置 
 port: 7890
@@ -62,18 +52,6 @@ disable-keep-alive: false
 profile:
   store-selected: true
   store-fake-ip: true
-
-# 数据库
-# geodata-loader: memconservative/standard
-# geodata-mode: true/false
-geo-auto-update: false
-geo-update-interval: 24
-geox-url:
-  geoip: "https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geoip-lite.dat"
-  geosite: "https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geosite.dat"
-  mmdb: "https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/country-lite.mmdb"
-  asn: "https://github.com/xishang0128/geoip/releases/download/latest/GeoLite2-ASN.mmdb"
-
 
 # 控制面板
 external-controller: 0.0.0.0:9090
@@ -133,6 +111,8 @@ dns:
     - "rule-set:private_domain,cn_domain"
     - "+.services.googleapis.cn"
     - "+.xn--ngstr-lra8j.com"
+    - "+.xn--ngstr-cn-8za9o.com"
+    - "+.lh3.googleusercontent.com"
     - "time.*.com"
     - "+.pool.ntp.org"
     - "+.ntp.tencent.com"
@@ -141,11 +121,13 @@ dns:
     - "+.cn.ntp.org.cn"
   default-nameserver:
     - 223.5.5.5
+    - 119.29.29.29
   proxy-server-nameserver:
-    - https://dns.alidns.com/dns-query
+    - https://223.5.5.5/dns-query
+    - https://223.6.6.6/dns-query
   nameserver:  # namesever尽量用运营商提供的DNS
     - 202.102.152.3
-    - 202.102.154.3
+    - 202.102.128.68
  
 # 出站策略
 pr: &pr {type: url-test, tolerance: 1, interval: 30, proxies: [🇭🇰 香港节点, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇺🇲 美国节点]}
@@ -195,7 +177,7 @@ rules:
   - DOMAIN-SUFFIX,qnap.com,DIRECT
   - RULE-SET,google-ads_domain,REJECT
   - RULE-SET,youtube_domain,YouTube
-  - RULE-SET,google-play_domain,Google
+  - RULE-SET,google-play_domain,🚀 默认代理
   - RULE-SET,google_domain,Google
   - RULE-SET,private_domain,DIRECT
   - RULE-SET,github_domain,GitHub
