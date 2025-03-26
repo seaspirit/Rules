@@ -160,6 +160,7 @@ proxy-groups:
     use:
       - 翻场
     url: "https://www.gstatic.com/generate_204"
+    tolerance: 1
     interval: 30
   - {name: ♻️ 自动选择, type: url-test, include-all: true, tolerance: 1, interval: 30}
 
@@ -169,9 +170,9 @@ rules:
   - DOMAIN-SUFFIX,mintegral.net,REJECT  # 用于televizo广告屏蔽
   - DOMAIN-SUFFIX,vungle.com,REJECT  # 用于televizo广告屏蔽
   - DOMAIN,www.youtube.com,Google
-  - DOMAIN-SUFFIX,softonic.cn,🚀 默认代理
   - DOMAIN-SUFFIX,jp,🇯🇵 日本节点
   - DOMAIN-SUFFIX,qnap.com,DIRECT
+  - DOMAIN-SUFFIX,softonic.cn,🚀 默认代理
   - RULE-SET,google-ads_domain,REJECT
   - RULE-SET,youtube_domain,YouTube
   - RULE-SET,google-play_domain,Google
