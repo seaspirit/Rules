@@ -181,8 +181,10 @@ rules:
   - RULE-SET,disney_domain,Disney+
   - RULE-SET,telegram_domain,Telegram
   - RULE-SET,tiktok_domain,TikTok
-  - DOMAIN-SUFFIX,douyinvod.com,DIRECT
   - DOMAIN-SUFFIX,amemv.com,DIRECT
+  - DOMAIN-SUFFIX,douyinvod.com,DIRECT
+  - DOMAIN-SUFFIX,idouyinvod.com,DIRECT
+  - DOMAIN-SUFFIX,douyinpic.com,DIRECT
   - RULE-SET,douyin_domain,抖音
   - RULE-SET,speedtest_domain,SpeedTest
   - RULE-SET,paypal_domain,PayPal
