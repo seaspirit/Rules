@@ -75,18 +75,6 @@ sniffer:
     - "+.v2ex.com"
   skip-domain:
     - "rule-set:private_domain,cn_domain"
-    - "dlg.io.mi.com"
-    - "+.push.apple.com"
-    - "+.apple.com"
-    - "+.wechat.com"
-    - "+.qpic.cn"
-    - "+.qq.com"
-    - "+.wechatapp.com"
-    - "+.vivox.com"
-    - "+.oray.com"
-    - "+.sunlogin.net"
-    - "+.msftconnecttest.com"
-    - "+.msftncsi.com"
 
 # 入站  
 tun:
@@ -113,11 +101,6 @@ dns:
     - "+.lh3.googleusercontent.com"
     - "rule-set:google-play_domain"
     - "time.*.com"
-    - "+.pool.ntp.org"
-    - "+.ntp.tencent.com"
-    - "+.ntp1.aliyun.com"
-    - "+.ntp.ntsc.ac.cn"
-    - "+.cn.ntp.org.cn"
     - "rule-set:private_domain,cn_domain"
   default-nameserver:
     - 223.5.5.5
@@ -141,8 +124,8 @@ proxy-groups:
   - {name: Telegram, <<: *pr, icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/telegram.com/telegram-plane.svg"}
   - {name: Microsoft, <<: *pr, icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/microsoft.com/microsoft.svg"}
   - {name: OneDrive, <<: *pr, icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/microsoft.com/microsoft-onedrive.svg"}
-  - {name: 抖音, <<: *pr, icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/tiktok.com/tiktok.svg"}
-  - {name: TikTok, <<: *pr, icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/tiktok.com/tiktok.svg"}
+  - {name: 抖音, <<: *v-play, icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/tiktok.com/tiktok.svg"}
+  - {name: TikTok, <<: *v-play, icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/tiktok.com/tiktok.svg"}
   - {name: Netflix, <<: *pr, icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/netflix.com/netflix.svg"}
   - {name: Disney+, <<: *pr, icon: "https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Large/Disney_plus.png"}
   - {name: PayPal, <<: *pr, icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/paypal.com/paypal.svg"}
@@ -166,11 +149,8 @@ proxy-groups:
 
 # 规则匹配
 rules:
-  - DOMAIN,www.youtube.com,Google
-  - DOMAIN-SUFFIX,jp,🇯🇵 日本节点
-  - DOMAIN-SUFFIX,qnap.com,DIRECT
-  - DOMAIN-SUFFIX,softonic.cn,🚀 默认代理
   - RULE-SET,google-ads_domain,REJECT
+  - DOMAIN,www.youtube.com,Google
   - RULE-SET,youtube_domain,YouTube
   - RULE-SET,google-play_domain,Google
   - RULE-SET,google_domain,Google
@@ -187,6 +167,10 @@ rules:
   - RULE-SET,douyin_domain,抖音
   - RULE-SET,speedtest_domain,SpeedTest
   - RULE-SET,paypal_domain,PayPal
+  - RULE-SET,test-ipv6_domain,DIRECT
+  - DOMAIN-SUFFIX,jp,🇯🇵 日本节点
+  - DOMAIN-SUFFIX,qnap.com,DIRECT
+  - DOMAIN-SUFFIX,softonic.cn,🚀 默认代理
   - RULE-SET,gfw_domain,🚀 默认代理
   - RULE-SET,geolocation-!cn,🚀 默认代理
   - RULE-SET,cn_domain,DIRECT
@@ -206,7 +190,7 @@ rule-anchor:
 rule-providers:
 # DOMAIN 
   private_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/private.mrs"}
-  ai_domain: {  <<: *domain, url: "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geosite/category-ai-chat-!cn.mrs" }
+  ai_domain: {  <<: *domain, url: "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geosite/category-ai-!cn.mrs" }
   youtube_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/youtube.mrs"}
   google-ads_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/google-ads.mrs"} 
   google-play_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/google-play.mrs"}
@@ -222,6 +206,7 @@ rule-providers:
   speedtest_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/ookla-speedtest.mrs"}
   tiktok_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/tiktok.mrs"}
   douyin_domain: { <<: *domain_list, url: "https://raw.githubusercontent.com/Vbaethon/HOMOMIX/refs/heads/main/rules/douyin.list"}
+  test-ipv6_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/test-ipv6.mrs"}
   gfw_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/gfw.mrs"}
   geolocation-!cn: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/geolocation-!cn.mrs"}
   cn_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/cn.mrs"}
