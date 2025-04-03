@@ -120,12 +120,12 @@ proxy-groups:
   - {name: AI, <<: *pr, icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/openai.com/chatgpt.svg"}
   - {name: YouTube, <<: *v-play, icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/youtube.com/youtube.svg"}
   - {name: Google, type: fallback, proxies: [🇺🇲 美国节点, 🚀 默认代理], icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/google.com/google.svg"}
+  - {name: 抖音, type: select, proxies: [🇭🇰 香港节点, 🚀 默认代理], icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/tiktok.com/tiktok.svg"}
+  - {name: TikTok, <<: *pr, icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/tiktok.com/tiktok.svg"}
   - {name: GitHub, <<: *pr, icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/github.com/github-icon-light.svg"}
   - {name: Telegram, <<: *pr, icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/telegram.com/telegram-plane.svg"}
   - {name: Microsoft, <<: *pr, icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/microsoft.com/microsoft.svg"}
   - {name: OneDrive, <<: *pr, icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/microsoft.com/microsoft-onedrive.svg"}
-  - {name: 抖音, type: select, proxies: [🇭🇰 香港节点, 🚀 默认代理], icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/tiktok.com/tiktok.svg"}
-  - {name: TikTok, <<: *pr, icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/tiktok.com/tiktok.svg"}
   - {name: Netflix, <<: *pr, icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/netflix.com/netflix.svg"}
   - {name: Disney+, <<: *pr, icon: "https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Large/Disney_plus.png"}
   - {name: PayPal, <<: *pr, icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/paypal.com/paypal.svg"}
@@ -154,7 +154,8 @@ rules:
   - RULE-SET,youtube_domain,YouTube
   - RULE-SET,google-play_domain,Google
   - RULE-SET,google_domain,Google
-  - RULE-SET,private_domain,DIRECT
+  - RULE-SET,douyin_domain,抖音
+  - RULE-SET,tiktok_domain,TikTok
   - RULE-SET,github_domain,GitHub
   - RULE-SET,ai_domain,AI
   - RULE-SET,onedrive_domain,OneDrive
@@ -163,8 +164,6 @@ rules:
   - RULE-SET,netflix_domain,Netflix
   - RULE-SET,disney_domain,Disney+
   - RULE-SET,telegram_domain,Telegram
-  - RULE-SET,tiktok_domain,TikTok
-  - RULE-SET,douyin_domain,抖音
   - RULE-SET,speedtest_domain,SpeedTest
   - RULE-SET,paypal_domain,PayPal
   - RULE-SET,test-ipv6_domain,DIRECT
@@ -173,6 +172,7 @@ rules:
   - DOMAIN-SUFFIX,softonic.cn,🚀 默认代理
   - RULE-SET,gfw_domain,🚀 默认代理
   - RULE-SET,geolocation-!cn,🚀 默认代理
+  - RULE-SET,private_domain,DIRECT
   - RULE-SET,cn_domain,DIRECT
   - RULE-SET,ad_ip,REJECT,no-resolve
   - RULE-SET,google_ip,Google,no-resolve
