@@ -120,7 +120,7 @@ proxy-groups:
   - {name: AI, <<: *pr, icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/openai.com/chatgpt.svg"}
   - {name: YouTube, <<: *v-play, icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/youtube.com/youtube.svg"}
   - {name: Google, type: fallback, proxies: [🇺🇲 美国节点, 🚀 默认代理], icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/google.com/google.svg"}
-  - {name: 抖音, type: select, proxies: [🇭🇰 香港节点, 🚀 默认代理], icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/tiktok.com/tiktok.svg"}
+  - {name: 抖音, type: select, proxies: [🇹🇼 台湾节点, 🚀 默认代理], icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/tiktok.com/tiktok.svg"}
   - {name: TikTok, <<: *pr, icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/tiktok.com/tiktok.svg"}
   - {name: GitHub, <<: *pr, icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/github.com/github-icon-light.svg"}
   - {name: Telegram, <<: *pr, icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/telegram.com/telegram-plane.svg"}
@@ -152,7 +152,7 @@ rules:
   - RULE-SET,google-ads_domain,REJECT
   - DOMAIN,www.youtube.com,Google
   - RULE-SET,youtube_domain,YouTube
-  - RULE-SET,google-play_domain,Google
+  - RULE-SET,google-play_domain,♻️ 自动选择
   - RULE-SET,google_domain,Google
   - RULE-SET,douyin_domain,抖音
   - RULE-SET,tiktok_domain,TikTok
@@ -169,9 +169,9 @@ rules:
   - RULE-SET,test-ipv6_domain,DIRECT
   - DOMAIN-SUFFIX,jp,🇯🇵 日本节点
   - DOMAIN-SUFFIX,qnap.com,DIRECT
-  - DOMAIN-SUFFIX,softonic.cn,🚀 默认代理
-  - RULE-SET,gfw_domain,🚀 默认代理
-  - RULE-SET,geolocation-!cn,🚀 默认代理
+  - DOMAIN-SUFFIX,softonic.cn,♻️ 自动选择
+  - RULE-SET,gfw_domain,♻️ 自动选择
+  - RULE-SET,geolocation-!cn,♻️ 自动选择
   - RULE-SET,private_domain,DIRECT
   - RULE-SET,cn_domain,DIRECT
   - RULE-SET,ad_ip,REJECT,no-resolve
