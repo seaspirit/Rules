@@ -120,7 +120,7 @@ proxy-groups:
   - {name: AI, <<: *pr, icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/openai.com/chatgpt.svg"}
   - {name: YouTube, <<: *v-play, icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/youtube.com/youtube.svg"}
   - {name: Google, type: fallback, proxies: [🇺🇲 美国节点, 🚀 默认代理], icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/google.com/google.svg"}
-  - {name: 抖音, type: select, proxies: [🇹🇼 台湾节点, 🚀 默认代理], icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/tiktok.com/tiktok.svg"}
+  - {name: 抖音, type: select, proxies: [🇭🇰 香港节点, 🚀 默认代理], icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/tiktok.com/tiktok.svg"}
   - {name: TikTok, <<: *pr, icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/tiktok.com/tiktok.svg"}
   - {name: GitHub, <<: *pr, icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/github.com/github-icon-light.svg"}
   - {name: Telegram, <<: *pr, icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/telegram.com/telegram-plane.svg"}
@@ -153,8 +153,8 @@ rules:
   - RULE-SET,youtube_domain,YouTube
   - RULE-SET,google-play_domain,♻️ 自动选择
   - RULE-SET,google_domain,Google
-  - RULE-SET,douyin_domain,抖音
-  - RULE-SET,tiktok_domain,TikTok
+  - RULE-SET,bytedance@!cn_domain,TikTok
+  - RULE-SET,bytedance_domain,抖音
   - RULE-SET,github_domain,GitHub
   - RULE-SET,ai_domain,AI
   - RULE-SET,onedrive_domain,OneDrive
@@ -185,7 +185,6 @@ rules:
 rule-anchor:
   ip: &ip {type: http, interval: 86400, behavior: ipcidr, format: mrs}
   domain: &domain {type: http, interval: 86400, behavior: domain, format: mrs}
-  domain_list: &domain_list {type: http, interval: 86400, behavior: domain, format: text}
 rule-providers:
 # DOMAIN 
   private_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/private.mrs"}
@@ -203,8 +202,8 @@ rule-providers:
   microsoft_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/microsoft.mrs"}
   apple_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/apple-cn.mrs"}
   speedtest_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/ookla-speedtest.mrs"}
-  tiktok_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/tiktok.mrs"}
-  douyin_domain: { <<: *domain_list, url: "https://raw.githubusercontent.com/Vbaethon/HOMOMIX/refs/heads/main/rules/douyin.list"}
+  bytedance@!cn_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/bytedance@!cn.mrs"}
+  bytedance_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/bytedance.mrs"}
   test-ipv6_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/test-ipv6.mrs"}
   gfw_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/gfw.mrs"}
   geolocation-!cn: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/geolocation-!cn.mrs"}
