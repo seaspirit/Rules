@@ -142,7 +142,6 @@ proxy-groups:
     type: url-test
     use:
       - 翻场
-    url: "https://www.gstatic.com/generate_204"
     tolerance: 1
     interval: 30
   - {name: ♻️ 自动选择, type: url-test, include-all: true, tolerance: 1, interval: 30}
