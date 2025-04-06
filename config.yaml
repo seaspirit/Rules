@@ -145,7 +145,7 @@ proxy-groups:
     interval: 30
   - name: "▶️ 流媒体节点II"
     type: url-test
-    filter: "^((?!(Tokyo)).)*$"
+    filter: "(?i)HongKong|Incheon|Singapore|California"
     use:
       - 翻场
     tolerance: 1
