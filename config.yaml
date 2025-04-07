@@ -30,7 +30,6 @@ proxy-providers:
       - "Clash"
       - "mihomo"
       - "Clash.meta"
-
 # 全局配置 
 port: 7890
 socks-port: 7891
@@ -52,14 +51,12 @@ disable-keep-alive: false
 profile:
   store-selected: true
   store-fake-ip: true
-
 # 控制面板
 external-controller: 0.0.0.0:9090
 secret: ""
 external-ui: "/etc/mihomo/run/ui"
 external-ui-name: zashboard
 external-ui-url: "https://github.com/Zephyruso/zashboard/archive/refs/heads/gh-pages.zip"
-
 # 嗅探
 sniffer:
   enable: true
@@ -75,7 +72,6 @@ sniffer:
     - "+.v2ex.com"
   skip-domain:
     - "rule-set:private_domain,cn_domain"
-
 # 入站  
 tun:
   enable: true
@@ -85,7 +81,6 @@ tun:
   auto-route: true
   auto-redirect: true
   auto-detect-interface: true
-
 # DNS模块
 dns:
   enable: true
@@ -110,8 +105,7 @@ dns:
     - https://223.6.6.6/dns-query
   nameserver:  # namesever尽量用运营商提供的DNS
     - 202.102.152.3
-    - 202.102.128.68
- 
+    - 202.102.128.68 
 # 出站策略
 pr: &pr {type: url-test, tolerance: 1, interval: 30, proxies: [🇭🇰 香港节点, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇺🇲 美国节点]}
 proxy-groups:
@@ -143,7 +137,6 @@ proxy-groups:
       - 翻场
     tolerance: 1
     interval: 30
-
 # 规则匹配
 rules:
   - RULE-SET,google-ads_domain,REJECT
@@ -178,7 +171,6 @@ rules:
   - RULE-SET,ai_ip,AI,no-resolve
   - RULE-SET,cn_ip,DIRECT
   - MATCH,🪝 漏网之鱼
-
 # 规则集
 rule-anchor:
   ip: &ip {type: http, interval: 86400, behavior: ipcidr, format: mrs}
