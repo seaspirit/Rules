@@ -142,7 +142,7 @@ rules:
   - RULE-SET,google-ads_domain,REJECT
   - DOMAIN,www.youtube.com,Google
   - RULE-SET,youtube_domain,YouTube
-  - RULE-SET,google-play_domain,Google
+  - RULE-SET,google-play_domain,♻️ 自动选择
   - RULE-SET,google_domain,Google
   - RULE-SET,bytedance@!cn_domain,TikTok
   - RULE-SET,bytedance_domain,抖音
