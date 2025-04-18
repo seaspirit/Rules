@@ -9,11 +9,6 @@ proxy-providers:
       url: https://www.gstatic.com/generate_204
       interval: 30
     proxy: DIRECT
-    header:
-      User-Agent:
-      - "Clash"
-      - "mihomo"
-      - "Clash.meta"
     override:
       skip-cert-verify: true
   Flower_Trojan:
@@ -25,11 +20,6 @@ proxy-providers:
       url: https://www.gstatic.com/generate_204
       interval: 30
     proxy: DIRECT
-    header:
-      User-Agent:
-      - "Clash"
-      - "mihomo"
-      - "Clash.meta"
 # 全局配置 
 port: 7890
 socks-port: 7891
@@ -71,7 +61,7 @@ sniffer:
   force-domain:
     - "+.v2ex.com"
   skip-domain:
-    - "rule-set:private_domain,cn_domain"
+    - "+.baidu.com"
 # 入站  
 tun:
   enable: true
@@ -91,30 +81,26 @@ dns:
   fake-ip-range: 28.0.0.1/8
   fake-ip-filter-mode: blacklist
   fake-ip-filter:
-    - "+.services.googleapis.cn"
-    - "+.xn--ngstr-cn-8za9o.com"
-    - "+.lh3.googleusercontent.com"
-    - "rule-set:google-play_domain"
-    - "time.*.com"
     - "rule-set:private_domain,cn_domain"
+    - "+.msftconnecttest.com"
+    - "+.msftncsi.com"
+    - "time.*.com"
   default-nameserver:
     - 223.5.5.5
-    - 119.29.29.29
   proxy-server-nameserver:
     - https://223.5.5.5/dns-query
-    - https://223.6.6.6/dns-query
   nameserver:  # namesever尽量用运营商提供的DNS
     - 202.102.152.3
-    - 202.102.128.68 
+    - 202.102.154.3 
 # 出站策略
 pr: &pr {type: url-test, tolerance: 1, interval: 30, proxies: [🇭🇰 香港节点, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇺🇲 美国节点]}
 proxy-groups:
   - {name: ♻️ 自动选择, type: url-test, include-all: true, tolerance: 1, interval: 30}
   - {name: AI, <<: *pr, icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/openai.com/chatgpt.svg"}
-  - {name: YouTube, type: fallback, proxies: [▶️ 流媒体专用节点, ♻️ 自动选择], icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/youtube.com/youtube.svg"}
-  - {name: Google, type: fallback, proxies: [🇺🇲 美国节点, ♻️ 自动选择], icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/google.com/google.svg"}
-  - {name: 抖音, type: url-test, proxies: [🇭🇰 香港节点, 🇹🇼 台湾节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇺🇲 美国节点], icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/tiktok.com/tiktok.svg"}
-  - {name: TikTok, type: url-test, proxies: [🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇺🇲 美国节点], icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/tiktok.com/tiktok.svg"}
+  - {name: YouTube, type: fallback, interval: 30, proxies: [▶️ 流媒体专用节点, ♻️ 自动选择], icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/youtube.com/youtube.svg"}
+  - {name: Google, type: fallback, interval: 30, proxies: [🇺🇲 美国节点, ♻️ 自动选择], icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/google.com/google.svg"}
+  - {name: 抖音, type: url-test, tolerance: 1, interval: 30, proxies: [🇭🇰 香港节点, 🇹🇼 台湾节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇺🇲 美国节点], icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/tiktok.com/tiktok.svg"}
+  - {name: TikTok, type: url-test, tolerance: 1, interval: 30, proxies: [🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇺🇲 美国节点], icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/tiktok.com/tiktok.svg"}
   - {name: GitHub, <<: *pr, icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/github.com/github-icon-light.svg"}
   - {name: Telegram, <<: *pr, icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/telegram.com/telegram-plane.svg"}
   - {name: Microsoft, <<: *pr, icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/microsoft.com/microsoft.svg"}
