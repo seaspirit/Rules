@@ -7,7 +7,7 @@ proxy-providers:
     health-check:
       enable: true
       url: https://www.gstatic.com/generate_204
-      interval: 15
+      interval: 5
     proxy: DIRECT
     override:
       skip-cert-verify: true
@@ -18,7 +18,7 @@ proxy-providers:
     health-check:
       enable: true
       url: https://www.gstatic.com/generate_204
-      interval: 15
+      interval: 5
     proxy: DIRECT
 # 全局配置 
 port: 7890
@@ -93,36 +93,36 @@ dns:
     - 202.102.152.3
     - 202.102.154.3 
 # 出站策略
-pr: &pr {type: url-test, tolerance: 1, interval: 15, proxies: [🇭🇰 香港节点, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇺🇲 美国节点]}
+pr: &pr {type: url-test, tolerance: 1, interval: 5, proxies: [🇭🇰 香港节点, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇺🇲 美国节点]}
 proxy-groups:
-  - {name: ♻️ 自动选择, type: url-test, include-all: true, tolerance: 1, interval: 15}
+  - {name: ♻️ 自动选择, type: url-test, include-all: true, tolerance: 1, interval: 5}
   - {name: AI, <<: *pr, icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/openai.com/chatgpt.svg"}
-  - {name: YouTube, type: fallback, tolerance: 1, interval: 15, proxies: [▶️ 流媒体专用节点, ♻️ 自动选择], icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/youtube.com/youtube.svg"}
-  - {name: Google, type: fallback, tolerance: 1, interval: 15, proxies: [🇺🇲 美国节点, ♻️ 自动选择], icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/google.com/google.svg"}
-  - {name: 抖音, type: url-test, tolerance: 1, interval: 15, proxies: [🇭🇰 香港节点, 🇹🇼 台湾节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇺🇲 美国节点], icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/tiktok.com/tiktok.svg"}
-  - {name: TikTok, type: url-test, tolerance: 1, interval: 15, proxies: [🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇺🇲 美国节点], icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/tiktok.com/tiktok.svg"}
+  - {name: YouTube, type: fallback, interval: 5, proxies: [▶️ 流媒体专用节点, ♻️ 自动选择], icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/youtube.com/youtube.svg"}
+  - {name: Google, type: fallback, interval: 5, proxies: [🇺🇲 美国节点, ♻️ 自动选择], icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/google.com/google.svg"}
+  - {name: 抖音, type: url-test, tolerance: 1, interval: 5, proxies: [🇭🇰 香港节点, 🇹🇼 台湾节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇺🇲 美国节点], icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/tiktok.com/tiktok.svg"}
+  - {name: TikTok, type: url-test, tolerance: 1, interval: 5, proxies: [🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇺🇲 美国节点], icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/tiktok.com/tiktok.svg"}
   - {name: GitHub, <<: *pr, icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/github.com/github-icon-light.svg"}
   - {name: Telegram, <<: *pr, icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/telegram.com/telegram-plane.svg"}
   - {name: Microsoft, <<: *pr, icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/microsoft.com/microsoft.svg"}
-  - {name: OneDrive, type: select, proxies: [DIRECT, ♻️ 自动选择], icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/microsoft.com/microsoft-onedrive.svg"}
+  - {name: OneDrive, type: select, interval: 5, proxies: [DIRECT, ♻️ 自动选择], icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/microsoft.com/microsoft-onedrive.svg"}
   - {name: Netflix, <<: *pr, icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/netflix.com/netflix.svg"}
   - {name: Disney+, <<: *pr, icon: "https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Large/Disney_plus.png"}
   - {name: PayPal, <<: *pr, icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/paypal.com/paypal.svg"}
-  - {name: Apple, type: select, proxies: [DIRECT, ♻️ 自动选择], icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/apple.com/apple.svg"}
+  - {name: Apple, type: select, interval: 5, proxies: [DIRECT, ♻️ 自动选择], icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/apple.com/apple.svg"}
   - {name: SpeedTest, <<: *pr, icon: "https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Large/SpeedTest.png"}
   - {name: 🪝 漏网之鱼, <<: *pr}
-  - {name: 🇭🇰 香港节点, type: url-test, include-all: true, tolerance: 1, interval: 15, filter: "(?i)港|hk|hongkong|hong kong"}
-  - {name: 🇹🇼 台湾节点, type: url-test, include-all: true, tolerance: 1, interval: 15, filter: "(?i)台|TW|Taiwan"}
-  - {name: 🇯🇵 日本节点, type: url-test, include-all: true, tolerance: 1, interval: 15, filter: "(?i)日|jp|japan|Tokyo"}
-  - {name: 🇰🇷 韩国节点, type: url-test, include-all: true, tolerance: 1, interval: 15, filter: "(?i)韩|KR|Korea|Incheon"}
-  - {name: 🇸🇬 新加坡节点, type: url-test, include-all: true, tolerance: 1, interval: 15, filter: "(?i)新|狮|SG|Singapore"}
-  - {name: 🇺🇲 美国节点, type: url-test, include-all: true, tolerance: 1, interval: 15, filter: "(?i)美|us|unitedstates|united states|California"}
+  - {name: 🇭🇰 香港节点, type: url-test, include-all: true, tolerance: 1, interval: 5, filter: "(?i)港|hk|hongkong|hong kong"}
+  - {name: 🇹🇼 台湾节点, type: url-test, include-all: true, tolerance: 1, interval: 5, filter: "(?i)台|TW|Taiwan"}
+  - {name: 🇯🇵 日本节点, type: url-test, include-all: true, tolerance: 1, interval: 5, filter: "(?i)日|jp|japan|Tokyo"}
+  - {name: 🇰🇷 韩国节点, type: url-test, include-all: true, tolerance: 1, interval: 5, filter: "(?i)韩|KR|Korea|Incheon"}
+  - {name: 🇸🇬 新加坡节点, type: url-test, include-all: true, tolerance: 1, interval: 5, filter: "(?i)新|狮|SG|Singapore"}
+  - {name: 🇺🇲 美国节点, type: url-test, include-all: true, tolerance: 1, interval: 5, filter: "(?i)美|us|unitedstates|united states|California"}
   - name: "▶️ 流媒体专用节点"
     type: url-test
     use:
       - 翻场
     tolerance: 1
-    interval: 15
+    interval: 5
 # 规则匹配
 rules:
   - RULE-SET,google-ads_domain,REJECT
