@@ -1,6 +1,6 @@
 # 机场订阅
 proxy-providers:
-  翻场:
+  GFWAirPort:
     url: "https://www9th.ga-sub.baby/api/v1/client/subscribe?token=3d36b6d2b1d958987ee709354d9ebb94"
     type: http
     interval: 86400
@@ -120,7 +120,7 @@ proxy-groups:
   - name: "▶️ 流媒体专用节点"
     type: url-test
     use:
-      - 翻场
+      - GFWAirPort
     tolerance: 1
     interval: 300
 # 规则匹配
