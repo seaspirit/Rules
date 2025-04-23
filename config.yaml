@@ -9,8 +9,10 @@ proxy-providers:
       url: https://www.gstatic.com/generate_204
       interval: 15
     proxy: DIRECT
-  Flower_SS:
-    url: "https://api.xmancdn.com/osubscribe.php?sid=114693&token=A0QNsMcM&sip002=1"
+    override:
+      skip-cert-verify: true
+  Flower_Trojan:
+    url: "https://api.xmancdn.com/osubscribe.php?sid=114693&token=A0QNsMcM"
     type: http
     interval: 86400
     health-check:
@@ -115,12 +117,7 @@ proxy-groups:
   - {name: 🇰🇷 韩国节点, type: url-test, include-all: true, tolerance: 1, interval: 15, filter: "(?i)韩|KR|Korea|Incheon"}
   - {name: 🇸🇬 新加坡节点, type: url-test, include-all: true, tolerance: 1, interval: 15, filter: "(?i)新|狮|SG|Singapore"}
   - {name: 🇺🇲 美国节点, type: url-test, include-all: true, tolerance: 1, interval: 15, filter: "(?i)美|us|unitedstates|united states|California"}
-  - name: "▶️ 流媒体专用节点"
-    type: url-test
-    use:
-      - GFWAirPort
-    tolerance: 1
-    interval: 15
+  - {name: ▶️ 流媒体专用节点, type: url-test, include-all: true, tolerance: 1, interval: 15, filter: "(?i)- B Group|剩余|到期"}
 # 规则匹配
 rules:
   - RULE-SET,category-ads-all_domain,REJECT
