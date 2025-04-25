@@ -96,7 +96,7 @@ dns:
 pr: &pr {type: url-test, tolerance: 1, interval: 15, proxies: [🇭🇰 香港节点, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇺🇲 美国节点]}
 proxy-groups:
   - {name: ♻️ 自动选择, type: url-test, include-all: true, tolerance: 1, interval: 15}
-  - {name: AI, <<: *pr, icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/openai.com/chatgpt.svg"}
+  - {name: ChatGPT, <<: *pr, icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/openai.com/chatgpt.svg"}
   - {name: YouTube, type: fallback, interval: 15, proxies: [▶️ 流媒体专用节点, ♻️ 自动选择], icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/youtube.com/youtube.svg"}
   - {name: Google, type: fallback, interval: 15, proxies: [🇺🇲 美国节点, ♻️ 自动选择], icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/google.com/google.svg"}
   - {name: 抖音, type: url-test, tolerance: 1, interval: 15, proxies: [🇭🇰 香港节点, 🇹🇼 台湾节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇺🇲 美国节点], icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/tiktok.com/tiktok.svg"}
@@ -133,7 +133,7 @@ rules:
   - RULE-SET,bytedance@!cn_domain,TikTok
   - RULE-SET,bytedance_domain,抖音
   - RULE-SET,github_domain,GitHub
-  - RULE-SET,ai_domain,AI
+  - RULE-SET,ai_domain,ChatGPT
   - RULE-SET,onedrive_domain,OneDrive
   - RULE-SET,microsoft_domain,Microsoft
   - RULE-SET,apple_domain,Apple
@@ -150,11 +150,9 @@ rules:
   - RULE-SET,geolocation-!cn,♻️ 自动选择
   - RULE-SET,private_domain,DIRECT
   - RULE-SET,cn_domain,DIRECT
-  - RULE-SET,ad_ip,REJECT,no-resolve
   - RULE-SET,google_ip,Google,no-resolve
   - RULE-SET,netflix_ip,Netflix,no-resolve
   - RULE-SET,telegram_ip,Telegram,no-resolve
-  - RULE-SET,ai_ip,AI,no-resolve
   - RULE-SET,cn_ip,DIRECT
   - MATCH,🪝 漏网之鱼
 # 规则集
@@ -189,5 +187,3 @@ rule-providers:
   google_ip: { <<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/google.mrs"}
   telegram_ip: { <<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/telegram.mrs"}
   netflix_ip: { <<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/netflix.mrs"}
-  ai_ip: { <<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/ai.mrs"}
-  ad_ip: { <<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geoip/ad.mrs"}
