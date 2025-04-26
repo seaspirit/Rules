@@ -99,7 +99,7 @@ proxy-groups:
   - {name: ChatGPT, <<: *pr, icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/openai.com/chatgpt.svg"}
   - {name: YouTube, type: fallback, interval: 15, proxies: [▶️ 流媒体专用节点, ♻️ 自动选择], icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/youtube.com/youtube.svg"}
   - {name: Google, type: fallback, interval: 15, proxies: [🇺🇲 美国节点, ♻️ 自动选择], icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/google.com/google.svg"}
-  - {name: 抖音, type: url-test, include-all: true, tolerance: 1, interval: 15, filter: "^((?!(日本|Tokyo|韩国|Incheon|剩余流量)).)*$", icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/tiktok.com/tiktok.svg"}
+  - {name: 抖音, type: url-test, include-all: true, tolerance: 1, interval: 15, filter: "^((?!(日本|Tokyo|韩国|Incheon|剩余)).)*$", icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/tiktok.com/tiktok.svg"}
   - {name: TikTok, type: url-test, tolerance: 1, interval: 15, proxies: [🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇺🇲 美国节点], icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/tiktok.com/tiktok.svg"}
   - {name: GitHub, <<: *pr, icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/github.com/github-icon-light.svg"}
   - {name: Telegram, <<: *pr, icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/telegram.com/telegram-plane.svg"}
