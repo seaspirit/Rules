@@ -107,22 +107,23 @@ proxy-groups:
   - {name: OneDrive, type: select, interval: 15, proxies: [DIRECT, ♻️ 自动选择], icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/microsoft.com/microsoft-onedrive.svg"}
   - {name: Netflix, <<: *pr, icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/netflix.com/netflix.svg"}
   - {name: Disney+, <<: *pr, icon: "https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Large/Disney_plus.png"}
+  - {name: 苹果, type: select, interval: 15, proxies: [DIRECT, ♻️ 自动选择], icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/apple.com/apple.svg"}
+  - {name: Apple, <<: *pr, icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/apple.com/apple.svg"}
   - {name: PayPal, <<: *pr, icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/paypal.com/paypal.svg"}
-  - {name: Apple, type: select, interval: 15, proxies: [DIRECT, ♻️ 自动选择], icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/apple.com/apple.svg"}
   - {name: SpeedTest, <<: *pr, icon: "https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Large/SpeedTest.png"}
   - {name: 🪝 漏网之鱼, <<: *pr}
-  - {name: 🇭🇰 香港节点, type: url-test, include-all: true, tolerance: 1, interval: 15, filter: "(?i)港|hk|hongkong|hong kong"}
-  - {name: 🇹🇼 台湾节点, type: url-test, include-all: true, tolerance: 1, interval: 15, filter: "(?i)台|TW|Taiwan"}
-  - {name: 🇯🇵 日本节点, type: url-test, include-all: true, tolerance: 1, interval: 15, filter: "(?i)日|jp|japan|Tokyo"}
-  - {name: 🇰🇷 韩国节点, type: url-test, include-all: true, tolerance: 1, interval: 15, filter: "(?i)韩|KR|Korea|Incheon"}
-  - {name: 🇸🇬 新加坡节点, type: url-test, include-all: true, tolerance: 1, interval: 15, filter: "(?i)新|狮|SG|Singapore"}
-  - {name: 🇺🇲 美国节点, type: url-test, include-all: true, tolerance: 1, interval: 15, filter: "(?i)美|us|unitedstates|united states|California"}
   - name: "▶️ 流媒体专用节点"
     type: url-test
     use:
       - GFWAirPort
     tolerance: 1
     interval: 15
+  - {name: 🇭🇰 香港节点, type: url-test, include-all: true, tolerance: 1, interval: 15, filter: "(?i)港|hk|hongkong|hong kong"}
+  - {name: 🇹🇼 台湾节点, type: url-test, include-all: true, tolerance: 1, interval: 15, filter: "(?i)台|TW|Taiwan"}
+  - {name: 🇯🇵 日本节点, type: url-test, include-all: true, tolerance: 1, interval: 15, filter: "(?i)日|jp|japan|Tokyo"}
+  - {name: 🇰🇷 韩国节点, type: url-test, include-all: true, tolerance: 1, interval: 15, filter: "(?i)韩|KR|Korea|Incheon"}
+  - {name: 🇸🇬 新加坡节点, type: url-test, include-all: true, tolerance: 1, interval: 15, filter: "(?i)新|狮|SG|Singapore"}
+  - {name: 🇺🇲 美国节点, type: url-test, include-all: true, tolerance: 1, interval: 15, filter: "(?i)美|us|unitedstates|united states|California"}
 # 规则匹配
 rules:
   - RULE-SET,category-ads-all_domain,REJECT
@@ -136,6 +137,8 @@ rules:
   - RULE-SET,category-ai-!cn_domain,ChatGPT
   - RULE-SET,onedrive_domain,OneDrive
   - RULE-SET,microsoft_domain,Microsoft
+  - RULE-SET,apple-cn_domain,苹果
+  - RULE-SET,apple@cn_domain,苹果
   - RULE-SET,apple_domain,Apple
   - RULE-SET,netflix_domain,Netflix
   - RULE-SET,disney_domain,Disney+
@@ -174,7 +177,9 @@ rule-providers:
   paypal_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/paypal.mrs"}
   onedrive_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/onedrive.mrs"}
   microsoft_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/microsoft.mrs"}
-  apple_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/apple-cn.mrs"}
+  apple-cn_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/apple-cn.mrs"}
+  apple@cn_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/apple@cn.mrs"}
+  apple_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/apple.mrs"}
   speedtest_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/ookla-speedtest.mrs"}
   bytedance@!cn_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/bytedance@!cn.mrs"}
   bytedance_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/bytedance.mrs"}
