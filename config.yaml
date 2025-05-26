@@ -121,6 +121,8 @@ proxy-groups:
 # 规则匹配
 rules:
   - RULE-SET,category-ads-all_domain,REJECT
+  - DOMAIN-SUFFIX,ads.reddit.com,REJECT
+  - DOMAIN-SUFFIX,reddit-aws.amazon.com,REJECT
   - DOMAIN,www.youtube.com,Google
   - RULE-SET,youtube_domain,YouTube
   - RULE-SET,google-play_domain,♻️ 自动选择
