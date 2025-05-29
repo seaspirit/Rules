@@ -11,8 +11,8 @@ proxy-providers:
     proxy: DIRECT
     override:
       skip-cert-verify: true
-  KTM Cloud:
-    url: "https://ktm.qeayr.cn/api/v1/client/subscribe?token=de60cd84007b7a4d80578387fae68c39"
+  流量光:
+    url: "https://rgergergergerg6555.saojc.xyz/api/v1/client/subscribe?token=eb4ad7f46a7a918cd2711a0551553e8d"
     type: http
     interval: 86400
     health-check:
