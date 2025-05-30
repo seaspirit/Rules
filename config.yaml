@@ -111,12 +111,12 @@ proxy-groups:
   - {name: PayPal, <<: *pr, icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/paypal.com/paypal.svg"}
   - {name: SpeedTest, <<: *pr, icon: "https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Large/SpeedTest.png"}
   - {name: 🪝 漏网之鱼, <<: *pr}
-  - {name: 🇭🇰 香港节点, type: url-test, include-all: true, tolerance: 1, interval: 15, filter: "(?i)港|hk|hongkong|hong kong"}
-  - {name: 🇹🇼 台湾节点, type: url-test, include-all: true, tolerance: 1, interval: 15, filter: "(?i)台|TW|Taiwan"}
-  - {name: 🇯🇵 日本节点, type: url-test, include-all: true, tolerance: 1, interval: 15, filter: "(?i)日|jp|japan|Tokyo"}
-  - {name: 🇰🇷 韩国节点, type: url-test, include-all: true, tolerance: 1, interval: 15, filter: "(?i)韩|KR|Korea|Incheon"}
-  - {name: 🇸🇬 新加坡节点, type: url-test, include-all: true, tolerance: 1, interval: 15, filter: "(?i)新|狮|SG|Singapore"}
-  - {name: 🇺🇲 美国节点, type: url-test, include-all: true, tolerance: 1, interval: 15, filter: "(?i)美|us|unitedstates|united states|California"}
+  - {name: 🇭🇰 香港节点, type: url-test, include-all: true, tolerance: 1, interval: 15, filter: "港|HK|(?i)Hong"}
+  - {name: 🇹🇼 台湾节点, type: url-test, include-all: true, tolerance: 1, interval: 15, filter: "台|TW|(?i)Taiwan"}
+  - {name: 🇯🇵 日本节点, type: url-test, include-all: true, tolerance: 1, interval: 15, filter: "日|JP|(?i)Japan|Tokyo"}
+  - {name: 🇰🇷 韩国节点, type: url-test, include-all: true, tolerance: 1, interval: 15, filter: "韩|KR|(?i)Korea|Incheon"}
+  - {name: 🇸🇬 新加坡节点, type: url-test, include-all: true, tolerance: 1, interval: 15, filter: "新|狮|SG|(?i)Singapore"}
+  - {name: 🇺🇲 美国节点, type: url-test, include-all: true, tolerance: 1, interval: 15, filter: "美|US|(?i)States|America|California"}
   - {name: ♻️ 自动选择, type: url-test, include-all: true, tolerance: 1, interval: 15}
 # 规则匹配
 rules:
