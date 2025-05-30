@@ -7,7 +7,7 @@ proxy-providers:
     health-check:
       enable: true
       url: https://www.gstatic.com/generate_204
-      interval: 15
+      interval: 25
     proxy: DIRECT
     override:
       skip-cert-verify: true
@@ -18,7 +18,7 @@ proxy-providers:
     health-check:
       enable: true
       url: https://www.gstatic.com/generate_204
-      interval: 15
+      interval: 25
     proxy: DIRECT
 # 全局配置 
 port: 7890
@@ -127,6 +127,10 @@ rules:
   - RULE-SET,youtube_domain,YouTube
   - RULE-SET,google-play_domain,♻️ 自动选择
   - RULE-SET,google_domain,Google
+  - DOMAIN-SUFFIX,volcfcdndvs.com,DIRECT
+  - DOMAIN-SUFFIX,douyinvod.com,DIRECT
+  - DOMAIN-SUFFIX,zjcdn.com,DIRECT
+  - DOMAIN-SUFFIX,douyinliving.com,DIRECT
   - RULE-SET,bytedance@!cn_domain,TikTok
   - RULE-SET,bytedance_domain,抖音
   - RULE-SET,github_domain,GitHub
