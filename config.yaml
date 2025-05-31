@@ -97,7 +97,7 @@ pr: &pr {type: url-test, proxies: [香港节点, 台湾节点, 日本节点, 韩
 proxy-groups:
   - {name: YouTube, <<: *pr, tolerance: 1, interval: 15, icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/youtube.com/youtube.svg"}
   - {name: Google, type: fallback, proxies: [美国节点, 自动选择], interval: 15, icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/google.com/google.svg"}
-  - {name: 抖音, type: select, proxies: [DIRECT, 自动选择], interval: 15, icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/tiktok.com/tiktok.svg"}
+  - {name: 抖音, type: select, proxies: [DIRECT, 自动选择], interval: 15, icon: "https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Large/Douyin.png"}
   - {name: TikTok, type: url-test, proxies: [台湾节点, 日本节点, 韩国节点, 新加坡节点, 美国节点], tolerance: 1, interval: 15, icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/tiktok.com/tiktok.svg"}
   - {name: AI-!cn, <<: *pr, tolerance: 1, interval: 15, icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/openai.com/chatgpt.svg"}
   - {name: GitHub, <<: *pr, tolerance: 1, interval: 15, icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/github.com/github-icon-light.svg"}
@@ -105,7 +105,7 @@ proxy-groups:
   - {name: OneDrive, type: select, proxies: [DIRECT, 自动选择], interval: 15, icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/microsoft.com/microsoft-onedrive.svg"}
   - {name: Netflix, <<: *pr, tolerance: 1, interval: 15, icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/netflix.com/netflix.svg"}
   - {name: Disney+, <<: *pr, tolerance: 1, interval: 15, icon: "https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Large/Disney_plus.png"}
-  - {name: 苹果, type: select, proxies: [DIRECT, 自动选择], interval: 15, icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/apple.com/apple.svg"}
+  - {name: 苹果, type: select, proxies: [DIRECT, 自动选择], interval: 15, icon: "https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Large/Apple.png"}
   - {name: Apple, <<: *pr, tolerance: 1, interval: 15, icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/apple.com/apple.svg"}
   - {name: Telegram, <<: *pr, tolerance: 1, interval: 15, icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/telegram.com/telegram-plane.svg"}
   - {name: PayPal, <<: *pr, tolerance: 1, interval: 15, icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/paypal.com/paypal.svg"}
