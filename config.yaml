@@ -121,14 +121,12 @@ proxy-groups:
 # 规则匹配
 rules:
   - DOMAIN,www.youtube.com,Google # 用于指定油管国家/地区
-  - DOMAIN-SUFFIX,amemv.com,🇭🇰 香港节点 # 用于指定抖音IP
-  - DOMAIN-SUFFIX,ads.reddit.com,REJECT
-  - DOMAIN-SUFFIX,reddit-aws.amazon.com,REJECT
+  - DOMAIN-SUFFIX,amemv.com,🇭🇰 香港节点 # 用于指定抖音省市
   - RULE-SET,category-ads-all_domain,REJECT
-  - RULE-SET,bytedance@ads_domain,REJECT
   - RULE-SET,youtube_domain,YouTube
   - RULE-SET,google-play_domain,♻️ 自动选择
   - RULE-SET,google_domain,Google
+  - RULE-SET,bytedance@ads_domain,REJECT
   - RULE-SET,bytedance@!cn_domain,TikTok
   - RULE-SET,bytedance_domain,抖音
   - RULE-SET,github_domain,GitHub
@@ -163,8 +161,8 @@ rule-anchor:
   domain: &domain {type: http, interval: 86400, behavior: domain, format: mrs}
 rule-providers:
 # DOMAIN
-  youtube_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/youtube.mrs"}
-  category-ads-all_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/category-ads-all.mrs"} 
+  category-ads-all_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/category-ads-all.mrs"}
+  youtube_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/youtube.mrs"} 
   google-play_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/google-play.mrs"}
   google_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/google.mrs"}
   category-ai-!cn_domain: {  <<: *domain, url: "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geosite/category-ai-!cn.mrs" }
@@ -179,9 +177,9 @@ rule-providers:
   apple@cn_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/apple@cn.mrs"}
   apple_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/apple.mrs"}
   speedtest_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/ookla-speedtest.mrs"}
+  bytedance@ads_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/bytedance@ads.mrs"}
   bytedance@!cn_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/bytedance@!cn.mrs"}
   bytedance_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/bytedance.mrs"}
-  bytedance@ads_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/bytedance@ads.mrs"}
   test-ipv6_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/test-ipv6.mrs"}
   gfw_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/gfw.mrs"}
   geolocation-!cn: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/geolocation-!cn.mrs"}
