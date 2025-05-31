@@ -121,7 +121,7 @@ proxy-groups:
 # 规则匹配
 rules:
   - DOMAIN,www.youtube.com,Google # 用于指定油管国家/地区
-  - DOMAIN-SUFFIX,amemv.com,🇭🇰 香港节点 # 用于指定抖音省市
+  - DOMAIN-SUFFIX,amemv.com,🇭🇰 香港节点 # 用于指定抖音省/市/区
   - RULE-SET,category-ads-all_domain,REJECT
   - RULE-SET,youtube_domain,YouTube
   - RULE-SET,google-play_domain,♻️ 自动选择
