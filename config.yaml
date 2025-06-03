@@ -7,7 +7,7 @@ proxy-providers:
     health-check:
       enable: true
       url: https://www.gstatic.com/generate_204
-      interval: 30
+      interval: 20
     proxy: DIRECT
     override:
       skip-cert-verify: true
@@ -18,7 +18,7 @@ proxy-providers:
     health-check:
       enable: true
       url: https://www.gstatic.com/generate_204
-      interval: 30
+      interval: 20
     proxy: DIRECT
 # 全局配置 
 port: 7890
@@ -93,14 +93,16 @@ dns:
     - 202.102.152.3
     - 202.102.154.3 
 # 出站策略
-pr: &pr {type: url-test, proxies: [香港节点, 台湾节点, 日本节点, 韩国节点, 新加坡节点, 美国节点, 自动选择], interval: 30}
+pr: &pr {type: url-test, proxies: [自动选择, 香港节点, 台湾节点, 日本节点, 韩国节点, 新加坡节点, 美国节点], interval: 20, tolerance: 1}
 proxy-groups:
+  - {name: 自动选择, type: url-test, include-all: true, interval: 20, tolerance: 1, icon: "https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Large/Auto_Link.png"}
+  - {name: GitHub, !!merge <<: *pr, icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/github.com/github-icon-light.svg"}
   - {name: YouTube, !!merge <<: *pr, icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/youtube.com/youtube.svg"}
   - {name: Google, type: fallback, proxies: [美国节点, 自动选择], icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/google.com/google.svg"}
-  - {name: 抖音, type: select, proxies: [DIRECT, 自动选择], interval: 30, icon: "https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Large/Douyin.png"}
+  - {name: 抖音, type: select, proxies: [DIRECT, 自动选择], interval: 20, icon: "https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Large/Douyin.png"}
   - {name: TikTok, type: url-test, proxies: [台湾节点, 日本节点, 韩国节点, 新加坡节点, 美国节点], icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/tiktok.com/tiktok.svg"}
+  - {name: AI-cn, type: select, proxies: [DIRECT, 自动选择], icon: "https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Large/AI.png"}
   - {name: AI-!cn, !!merge <<: *pr, icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/openai.com/chatgpt.svg"}
-  - {name: GitHub, !!merge <<: *pr, icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/github.com/github-icon-light.svg"}
   - {name: Microsoft, !!merge <<: *pr, icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/microsoft.com/microsoft.svg"}
   - {name: OneDrive, type: select, proxies: [DIRECT, 自动选择], icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/microsoft.com/microsoft-onedrive.svg"}
   - {name: Netflix, !!merge <<: *pr, icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/netflix.com/netflix.svg"}
@@ -111,13 +113,12 @@ proxy-groups:
   - {name: PayPal, !!merge <<: *pr, icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/paypal.com/paypal.svg"}
   - {name: SpeedTest, !!merge <<: *pr, icon: "https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Large/SpeedTest.png"}
   - {name: 漏网之鱼, !!merge <<: *pr, icon: "https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Large/Fish.png"}
-  - {name: 香港节点, type: url-test, include-all: true, interval: 30, tolerance: 1, filter: "港|HK|(?i)Hong", icon: "https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Large/Hong_Kong.png"}
-  - {name: 台湾节点, type: url-test, include-all: true, interval: 30, tolerance: 1, filter: "台|TW|(?i)Taiwan", icon: "https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Large/China_Taipei.png"}
-  - {name: 日本节点, type: url-test, include-all: true, interval: 30, tolerance: 1, filter: "日|JP|(?i)Japan|Tokyo", icon: "https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Large/Japan.png"}
-  - {name: 韩国节点, type: url-test, include-all: true, interval: 30, tolerance: 1, filter: "韩|KR|(?i)Korea|Incheon", icon: "https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Large/South_Korea.png"}
-  - {name: 新加坡节点, type: url-test, include-all: true, interval: 30, tolerance: 1, filter: "新|狮|SG|(?i)Singapore", icon: "https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Large/Singapore.png"}
-  - {name: 美国节点, type: url-test, include-all: true, interval: 30, tolerance: 1, filter: "美|US|(?i)States|America|California", icon: "https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Large/USA.png"}
-  - {name: 自动选择, type: url-test, include-all: true, interval: 30, tolerance: 1, icon: "https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Large/Auto_Link.png"}
+  - {name: 香港节点, type: url-test, include-all: true, interval: 20, tolerance: 1, filter: "港|HK|(?i)Hong", icon: "https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Large/Hong_Kong.png"}
+  - {name: 台湾节点, type: url-test, include-all: true, interval: 20, tolerance: 1, filter: "台|TW|(?i)Taiwan", icon: "https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Large/China_Taipei.png"}
+  - {name: 日本节点, type: url-test, include-all: true, interval: 20, tolerance: 1, filter: "日|JP|(?i)Japan|Tokyo", icon: "https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Large/Japan.png"}
+  - {name: 韩国节点, type: url-test, include-all: true, interval: 20, tolerance: 1, filter: "韩|KR|(?i)Korea|Incheon", icon: "https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Large/South_Korea.png"}
+  - {name: 新加坡节点, type: url-test, include-all: true, interval: 20, tolerance: 1, filter: "新|狮|SG|(?i)Singapore", icon: "https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Large/Singapore.png"}
+  - {name: 美国节点, type: url-test, include-all: true, interval: 20, tolerance: 1, filter: "美|US|(?i)States|America|California", icon: "https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Large/USA.png"}
 # 规则匹配
 rules:
   - DOMAIN,www.youtube.com,Google # 用于指定油管国家/地区
@@ -130,7 +131,9 @@ rules:
   - RULE-SET,bytedance@!cn_domain,TikTok
   - RULE-SET,bytedance_domain,抖音
   - RULE-SET,github_domain,GitHub
+  - RULE-SET,category-ai-!cn@ads_domain,REJECT
   - RULE-SET,category-ai-!cn_domain,AI-!cn
+  - RULE-SET,category-ai-cn_domain,AI-cn
   - RULE-SET,onedrive_domain,OneDrive
   - RULE-SET,microsoft_domain,Microsoft
   - RULE-SET,apple-cn_domain,苹果
@@ -165,7 +168,9 @@ rule-providers:
   youtube_domain: { !!merge <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/youtube.mrs"} 
   google-play_domain: { !!merge <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/google-play.mrs"}
   google_domain: { !!merge <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/google.mrs"}
+  category-ai-!cn@ads_domain: { !!merge <<: *domain, url: "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geosite/category-ai-!cn@ads.mrs" }
   category-ai-!cn_domain: { !!merge <<: *domain, url: "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geosite/category-ai-!cn.mrs" }
+  category-ai-cn_domain: { !!merge <<: *domain, url: "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geosite/category-ai-cn.mrs" }
   github_domain: { !!merge <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/github.mrs"}
   telegram_domain: { !!merge <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/telegram.mrs"}
   netflix_domain: { !!merge <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/netflix.mrs"}
