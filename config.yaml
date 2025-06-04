@@ -85,7 +85,7 @@ dns:
 pr: &pr {type: url-test, proxies: [香港节点, 台湾节点, 日本节点, 韩国节点, 新加坡节点, 美国节点], interval: 10, tolerance: 1}
 url: &url {type: url-test, include-all: true, interval: 10, tolerance: 1}
 proxy-groups:
-  - {name: 自动选择, type: url-test, include-all: true, interval: 10, tolerance: 1, icon: "https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Large/Auto_Link.png"}
+  - {name: 自动选择, !!merge <<: *url, icon: "https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Large/Auto_Link.png"}
   - {name: TikTok, type: url-test, proxies: [台湾节点, 日本节点, 韩国节点, 新加坡节点, 美国节点], icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/tiktok.com/tiktok.svg"}
   - {name: Netflix, !!merge <<: *pr, icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/netflix.com/netflix.svg"}
   - {name: Disney+, !!merge <<: *pr, icon: "https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Large/Disney_plus.png"}
