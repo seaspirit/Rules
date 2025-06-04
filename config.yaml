@@ -82,21 +82,21 @@ dns:
     - 202.102.152.3
     - 202.102.154.3 
 # 出站策略
-pr: &pr {type: url-test, proxies: [自动选择, 香港节点, 台湾节点, 日本节点, 韩国节点, 新加坡节点, 美国节点], interval: 10, tolerance: 1}
+pr: &pr {type: url-test, proxies: [香港节点, 台湾节点, 日本节点, 韩国节点, 新加坡节点, 美国节点], interval: 10, tolerance: 1}
+url: &url {type: url-test, include-all: true, interval: 10, tolerance: 1}
 proxy-groups:
   - {name: 自动选择, type: url-test, include-all: true, interval: 10, tolerance: 1, icon: "https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Large/Auto_Link.png"}
-  - {name: 国别选择, !!merge <<: *pr, icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/netflix.com/netflix.svg"}
   - {name: TikTok, type: url-test, proxies: [台湾节点, 日本节点, 韩国节点, 新加坡节点, 美国节点], icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/tiktok.com/tiktok.svg"}
-  - {name: 漏网之鱼, !!merge <<: *pr, icon: "https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Large/Fish.png"}
-  - {name: 香港节点, type: url-test, include-all: true, interval: 10, tolerance: 1, filter: "港|HK|(?i)Hong", icon: "https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Large/Hong_Kong.png"}
-  - {name: 台湾节点, type: url-test, include-all: true, interval: 10, tolerance: 1, filter: "台|TW|(?i)Taiwan", icon: "https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Large/China_Taipei.png"}
-  - {name: 日本节点, type: url-test, include-all: true, interval: 10, tolerance: 1, filter: "日|JP|(?i)Japan|Tokyo", icon: "https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Large/Japan.png"}
-  - {name: 韩国节点, type: url-test, include-all: true, interval: 10, tolerance: 1, filter: "韩|KR|(?i)Korea|Incheon", icon: "https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Large/South_Korea.png"}
-  - {name: 新加坡节点, type: url-test, include-all: true, interval: 10, tolerance: 1, filter: "新|狮|SG|(?i)Singapore", icon: "https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Large/Singapore.png"}
-  - {name: 美国节点, type: url-test, include-all: true, interval: 10, tolerance: 1, filter: "美|US|(?i)States|America|California", icon: "https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Large/USA.png"}
+  - {name: Netflix, !!merge <<: *pr, icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/netflix.com/netflix.svg"}
+  - {name: Disney+, !!merge <<: *pr, icon: "https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Large/Disney_plus.png"}
+  - {name: 香港节点, !!merge <<: *url, filter: "港|HK|(?i)Hong", icon: "https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Large/Hong_Kong.png"}
+  - {name: 台湾节点, !!merge <<: *url, filter: "台|TW|(?i)Taiwan", icon: "https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Large/China_Taipei.png"}
+  - {name: 日本节点, !!merge <<: *url, filter: "日|JP|(?i)Japan|Tokyo", icon: "https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Large/Japan.png"}
+  - {name: 韩国节点, !!merge <<: *url, filter: "韩|KR|(?i)Korea|Incheon", icon: "https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Large/South_Korea.png"}
+  - {name: 新加坡节点, !!merge <<: *url, filter: "新|狮|SG|(?i)Singapore", icon: "https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Large/Singapore.png"}
+  - {name: 美国节点, !!merge <<: *url, filter: "美|US|(?i)States|America|California", icon: "https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Large/USA.png"}
 # 规则匹配
 rules:
-  - SNIFFER,QUIC,REJECT-DROP
   - RULE-SET,category-ads-all_domain,REJECT-DROP
   - RULE-SET,www_youtube_com,美国节点 # 用于指定油管国家/地区
   - RULE-SET,youtube_domain,自动选择
@@ -115,11 +115,11 @@ rules:
   - RULE-SET,apple-cn_domain,DIRECT
   - RULE-SET,apple@cn_domain,DIRECT
   - RULE-SET,apple_domain,自动选择
-  - RULE-SET,netflix_domain,国别选择
-  - RULE-SET,disney_domain,国别选择
+  - RULE-SET,netflix_domain,Netflix
+  - RULE-SET,disney_domain,Disney+
   - RULE-SET,telegram_domain,自动选择
   - RULE-SET,speedtest_domain,自动选择
-  - RULE-SET,paypal_domain,国别选择
+  - RULE-SET,paypal_domain,自动选择
   - RULE-SET,test-ipv6_domain,DIRECT
   - RULE-SET,_jp,日本节点
   - RULE-SET,qnap_com,DIRECT
@@ -128,12 +128,12 @@ rules:
   - RULE-SET,geolocation-!cn,自动选择
   - RULE-SET,cn_domain,DIRECT
   - RULE-SET,private_domain,DIRECT
-  - RULE-SET,google_ip,Google,no-resolve
+  - RULE-SET,google_ip,美国节点,no-resolve
   - RULE-SET,netflix_ip,Netflix,no-resolve
-  - RULE-SET,telegram_ip,Telegram,no-resolve
+  - RULE-SET,telegram_ip,自动选择,no-resolve
   - RULE-SET,cn_ip,DIRECT
   - RULE-SET,private_ip,DIRECT
-  - MATCH,漏网之鱼
+  - MATCH,自动选择
 # 规则集
 rule-anchor:
   ip: &ip {type: http, interval: 86400, behavior: ipcidr, format: mrs}
