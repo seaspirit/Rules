@@ -121,7 +121,7 @@ rules:
   - RULE-SET,speedtest_domain,🚀 自动选择
   - RULE-SET,paypal_domain,🚀 自动选择
   - RULE-SET,test-ipv6_domain,DIRECT
-  - RULE-SET,_jp,🇯🇵 日本节点
+  - RULE-SET,domain_jp,🇯🇵 日本节点
   - RULE-SET,qnap_com,DIRECT
   - RULE-SET,softonic_cn,🚀 自动选择
   - RULE-SET,gfw_domain,🚀 自动选择
@@ -165,7 +165,7 @@ rule-providers:
   apple_domain: { !!merge <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/apple.mrs"}
   speedtest_domain: { !!merge <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/ookla-speedtest.mrs"}
   test-ipv6_domain: { !!merge <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/test-ipv6.mrs"}
-  _jp: { !!merge <<: *yaml, url: "https://raw.githubusercontent.com/seaspirit/ruleset/refs/heads/main/_jp.yaml"}
+  domain_jp: { !!merge <<: *yaml, url: "https://raw.githubusercontent.com/seaspirit/ruleset/refs/heads/main/domain_jp.yaml"}
   qnap_com: { !!merge <<: *yaml, url: "https://raw.githubusercontent.com/seaspirit/ruleset/refs/heads/main/qnap_com.yaml"}
   softonic_cn: { !!merge <<: *yaml, url: "https://raw.githubusercontent.com/seaspirit/ruleset/refs/heads/main/softonic_cn.yaml"}
   gfw_domain: { !!merge <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/gfw.mrs"}
