@@ -1,5 +1,5 @@
 # 机场订阅
-pp: &pp {type: http, interval: 86400, health-check: {enable: true, url: "https://www.gstatic.com/generate_204", interval: 20}, proxy: DIRECT}
+pp: &pp {type: http, interval: 86400, health-check: {enable: true, url: "https://www.gstatic.com/generate_204", interval: 300}, proxy: DIRECT}
 proxy-providers:
   GFWAirPort:
     url: "https://www9th.ga-sub.baby/api/v1/client/subscribe?token=3d36b6d2b1d958987ee709354d9ebb94"
@@ -25,7 +25,7 @@ find-process-mode: 'off'
 # interface-name: en0
 global-client-fingerprint: chrome
 keep-alive-idle: 60
-keep-alive-interval: 10
+keep-alive-interval: 20
 disable-keep-alive: false
 profile:
   store-selected: true
@@ -82,19 +82,19 @@ dns:
     - 202.102.152.3
     - 202.102.154.3 
 # 出站策略
-pr: &pr {type: url-test, proxies: [🇭🇰 香港节点, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇺🇲 美国节点], url: "https://www.gstatic.com/generate_204", interval: 20, tolerance: 1}
-url: &url {type: url-test, include-all: true, url: "https://www.gstatic.com/generate_204", interval: 20, tolerance: 1}
+pr: &pr {type: url-test, proxies: [🇭🇰 香港节点, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇺🇲 美国节点], health-check: {enable: true, url: "https://www.gstatic.com/generate_204", interval: 300, tolerance: 10}}
+pr2: &pr2 {type: url-test, include-all: true, tolerance: 10}
 proxy-groups:
-  - {name: 🚀 自动选择, !!merge <<: *url}
+  - {name: 🚀 自动选择, !!merge <<: *pr2}
   - {name: 🎵 TikTok, type: url-test, proxies: [🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇺🇲 美国节点]}
   - {name: 🎥 NETFLIX, !!merge <<: *pr}
   - {name: 📹 Disney+, !!merge <<: *pr}
-  - {name: 🇭🇰 香港节点, !!merge <<: *url, filter: "港|HK|(?i)Hong"}
-  - {name: 🇹🇼 台湾节点, !!merge <<: *url, filter: "台|TW|(?i)Taiwan"}
-  - {name: 🇯🇵 日本节点, !!merge <<: *url, filter: "日|JP|(?i)Japan|Tokyo"}
-  - {name: 🇰🇷 韩国节点, !!merge <<: *url, filter: "韩|KR|(?i)Korea|Incheon"}
-  - {name: 🇸🇬 新加坡节点, !!merge <<: *url, filter: "新|狮|SG|(?i)Singapore"}
-  - {name: 🇺🇲 美国节点, !!merge <<: *url, filter: "美|US|(?i)States|America|California"}
+  - {name: 🇭🇰 香港节点, !!merge <<: *pr2, filter: "港|HK|(?i)Hong"}
+  - {name: 🇹🇼 台湾节点, !!merge <<: *pr2, filter: "台|TW|(?i)Taiwan"}
+  - {name: 🇯🇵 日本节点, !!merge <<: *pr2, filter: "日|JP|(?i)Japan|Tokyo"}
+  - {name: 🇰🇷 韩国节点, !!merge <<: *pr2, filter: "韩|KR|(?i)Korea|Incheon"}
+  - {name: 🇸🇬 新加坡节点, !!merge <<: *pr2, filter: "新|狮|SG|(?i)Singapore"}
+  - {name: 🇺🇲 美国节点, !!merge <<: *pr2, filter: "美|US|(?i)States|America|California"}
 # 规则匹配
 rules:
   - RULE-SET,category-ads-all_domain,REJECT-DROP
