@@ -1,5 +1,5 @@
 # 机场订阅
-pp: &pp {type: http, interval: 3600, health-check: {enable: true, url: "https://www.gstatic.com/generate_204", interval: 300}, proxy: DIRECT}
+pp: &pp {type: http, interval: 86400, health-check: {enable: true, url: "https://www.gstatic.com/generate_204", interval: 20}, proxy: DIRECT}
 proxy-providers:
   GFWAirPort:
     url: "https://www9th.ga-sub.baby/api/v1/client/subscribe?token=3d36b6d2b1d958987ee709354d9ebb94"
@@ -82,58 +82,58 @@ dns:
     - 202.102.152.3
     - 202.102.154.3 
 # 出站策略
-pr: &pr {type: url-test, proxies: [香港节点, 台湾节点, 日本节点, 韩国节点, 新加坡节点, 美国节点], interval: 10, tolerance: 1}
-url: &url {type: url-test, include-all: true, interval: 10, tolerance: 1}
+pr: &pr {type: url-test, proxies: [🇭🇰 香港节点, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇺🇲 美国节点], interval: 15, tolerance: 1}
+url: &url {type: url-test, include-all: true, interval: 15, tolerance: 1}
 proxy-groups:
-  - {name: 自动选择, !!merge <<: *url, icon: "https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Large/Auto_Link.png"}
-  - {name: TikTok, type: url-test, proxies: [台湾节点, 日本节点, 韩国节点, 新加坡节点, 美国节点], icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/tiktok.com/tiktok.svg"}
-  - {name: Netflix, !!merge <<: *pr, icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/netflix.com/netflix.svg"}
-  - {name: Disney+, !!merge <<: *pr, icon: "https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Large/Disney_plus.png"}
-  - {name: 香港节点, !!merge <<: *url, filter: "港|HK|(?i)Hong", icon: "https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Large/Hong_Kong.png"}
-  - {name: 台湾节点, !!merge <<: *url, filter: "台|TW|(?i)Taiwan", icon: "https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Large/China_Taipei.png"}
-  - {name: 日本节点, !!merge <<: *url, filter: "日|JP|(?i)Japan|Tokyo", icon: "https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Large/Japan.png"}
-  - {name: 韩国节点, !!merge <<: *url, filter: "韩|KR|(?i)Korea|Incheon", icon: "https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Large/South_Korea.png"}
-  - {name: 新加坡节点, !!merge <<: *url, filter: "新|狮|SG|(?i)Singapore", icon: "https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Large/Singapore.png"}
-  - {name: 美国节点, !!merge <<: *url, filter: "美|US|(?i)States|America|California", icon: "https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Large/USA.png"}
+  - {name: 🚀 自动选择, !!merge <<: *url}
+  - {name: 🎵 TikTok, type: url-test, proxies: [🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇺🇲 美国节点]}
+  - {name: 🎥 NETFLIX, !!merge <<: *pr}
+  - {name: 📹 Disney+, !!merge <<: *pr}
+  - {name: 🇭🇰 香港节点, !!merge <<: *url, filter: "港|HK|(?i)Hong"}
+  - {name: 🇹🇼 台湾节点, !!merge <<: *url, filter: "台|TW|(?i)Taiwan"}
+  - {name: 🇯🇵 日本节点, !!merge <<: *url, filter: "日|JP|(?i)Japan|Tokyo"}
+  - {name: 🇰🇷 韩国节点, !!merge <<: *url, filter: "韩|KR|(?i)Korea|Incheon"}
+  - {name: 🇸🇬 新加坡节点, !!merge <<: *url, filter: "新|狮|SG|(?i)Singapore"}
+  - {name: 🇺🇲 美国节点, !!merge <<: *url, filter: "美|US|(?i)States|America|California"}
 # 规则匹配
 rules:
   - RULE-SET,category-ads-all_domain,REJECT-DROP
-  - RULE-SET,www_youtube_com,美国节点 # 用于指定油管国家/地区
-  - RULE-SET,youtube_domain,自动选择
-  - RULE-SET,google-play_domain,自动选择
-  - RULE-SET,google_domain,美国节点
-  - RULE-SET,amemv_com,香港节点 # 用于指定抖音省/市/区
+  - RULE-SET,www_youtube_com,🇺🇲 美国节点 # 用于指定油管国家/地区
+  - RULE-SET,youtube_domain,🚀 自动选择
+  - RULE-SET,google-play_domain,🚀 自动选择
+  - RULE-SET,google_domain,🇺🇲 美国节点
+  - RULE-SET,amemv_com,🇭🇰 香港节点 # 用于指定抖音省/市/区
   - RULE-SET,bytedance@ads_domain,REJECT-DROP
-  - RULE-SET,bytedance@!cn_domain,TikTok
+  - RULE-SET,bytedance@!cn_domain,🎵 TikTok
   - RULE-SET,bytedance_domain,DIRECT
-  - RULE-SET,github_domain,自动选择
+  - RULE-SET,github_domain,🚀 自动选择
   - RULE-SET,category-ai-!cn@ads_domain,REJECT-DROP
-  - RULE-SET,category-ai-!cn_domain,自动选择
+  - RULE-SET,category-ai-!cn_domain,🚀 自动选择
   - RULE-SET,category-ai-cn_domain,DIRECT
   - RULE-SET,onedrive_domain,DIRECT
-  - RULE-SET,microsoft_domain,自动选择
+  - RULE-SET,microsoft_domain,🚀 自动选择
   - RULE-SET,apple-cn_domain,DIRECT
   - RULE-SET,apple@cn_domain,DIRECT
-  - RULE-SET,apple_domain,自动选择
-  - RULE-SET,netflix_domain,Netflix
-  - RULE-SET,disney_domain,Disney+
-  - RULE-SET,telegram_domain,自动选择
-  - RULE-SET,speedtest_domain,自动选择
-  - RULE-SET,paypal_domain,自动选择
+  - RULE-SET,apple_domain,🚀 自动选择
+  - RULE-SET,netflix_domain,🎥 NETFLIX
+  - RULE-SET,disney_domain,📹 Disney+
+  - RULE-SET,telegram_domain,🚀 自动选择
+  - RULE-SET,speedtest_domain,🚀 自动选择
+  - RULE-SET,paypal_domain,🚀 自动选择
   - RULE-SET,test-ipv6_domain,DIRECT
-  - RULE-SET,_jp,日本节点
+  - RULE-SET,_jp,🇯🇵 日本节点
   - RULE-SET,qnap_com,DIRECT
-  - RULE-SET,softonic_cn,自动选择
-  - RULE-SET,gfw_domain,自动选择
-  - RULE-SET,geolocation-!cn,自动选择
+  - RULE-SET,softonic_cn,🚀 自动选择
+  - RULE-SET,gfw_domain,🚀 自动选择
+  - RULE-SET,geolocation-!cn,🚀 自动选择
   - RULE-SET,cn_domain,DIRECT
   - RULE-SET,private_domain,DIRECT
-  - RULE-SET,google_ip,美国节点,no-resolve
-  - RULE-SET,netflix_ip,Netflix,no-resolve
-  - RULE-SET,telegram_ip,自动选择,no-resolve
+  - RULE-SET,google_ip,🇺🇲 美国节点,no-resolve
+  - RULE-SET,netflix_ip,🎥 NETFLIX,no-resolve
+  - RULE-SET,telegram_ip,🚀 自动选择,no-resolve
   - RULE-SET,cn_ip,DIRECT
   - RULE-SET,private_ip,DIRECT
-  - MATCH,自动选择
+  - MATCH,🚀 自动选择
 # 规则集
 rule-anchor:
   ip: &ip {type: http, interval: 86400, behavior: ipcidr, format: mrs}
@@ -175,6 +175,6 @@ rule-providers:
 # IP
   google_ip: { !!merge <<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/google.mrs"}
   telegram_ip: { !!merge <<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/telegram.mrs"}
-  netflix_ip: { !!merge <<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/netflix.mrs"} 
+  netflix_ip: { !!merge <<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/netflix.mrs"}
   cn_ip: { !!merge <<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/cn.mrs"}
   private_ip: { !!merge <<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/private.mrs"}
