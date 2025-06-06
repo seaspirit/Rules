@@ -82,8 +82,8 @@ dns:
     - 202.102.152.3
     - 202.102.154.3 
 # 出站策略
-pr: &pr {type: url-test, lazy: false, tolerance: 10, proxies: [🇭🇰 香港节点, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇺🇲 美国节点]}
-pr2: &pr2 {type: url-test, include-all: true, lazy: false, tolerance: 10}
+pr: &pr {type: url-test, lazy: false, tolerance: 5, proxies: [🇭🇰 香港节点, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇺🇲 美国节点]}
+pr2: &pr2 {type: url-test, include-all: true, lazy: false, tolerance: 5}
 proxy-groups:
   - {name: 🇭🇰 香港节点, !!merge <<: *pr2, filter: "港|HK|(?i)Hong"}
   - {name: 🇹🇼 台湾节点, !!merge <<: *pr2, filter: "台|TW|(?i)Taiwan"}
@@ -92,7 +92,7 @@ proxy-groups:
   - {name: 🇸🇬 新加坡节点, !!merge <<: *pr2, filter: "新|狮|SG|(?i)Singapore"}
   - {name: 🇺🇲 美国节点, !!merge <<: *pr2, filter: "美|US|(?i)States|America|California"}
   - {name: ♻️ 自动选择, !!merge <<: *pr2}
-  - {name: 🎵 TikTok, type: url-test, lazy: false, tolerance: 10, proxies: [🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇺🇲 美国节点]}
+  - {name: 🎵 TikTok, type: url-test, lazy: false, tolerance: 5, proxies: [🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇺🇲 美国节点]}
   - {name: 🎥 NETFLIX, !!merge <<: *pr}
   - {name: 📹 Disney+, !!merge <<: *pr}
 # 规则匹配
@@ -100,7 +100,7 @@ rules:
   - RULE-SET,category-ads-all_domain,REJECT-DROP
   - RULE-SET,www_youtube_com,🇺🇲 美国节点 # 用于指定油管国家/地区
   - RULE-SET,youtube_domain,♻️ 自动选择
-  - RULE-SET,google-play_domain,🇺🇲 美国节点
+  - RULE-SET,google-play_domain,🇭🇰 香港节点
   - RULE-SET,google_domain,🇺🇲 美国节点
   - RULE-SET,amemv_com,🇭🇰 香港节点 # 用于指定抖音省/市/区
   - RULE-SET,bytedance@ads_domain,REJECT-DROP
