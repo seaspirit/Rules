@@ -82,7 +82,7 @@ dns:
     - 202.102.152.3
     - 202.102.154.3 
 # 出站策略
-pr: &pr {type: url-test, lazy: false, proxies: [香港节点, 台湾节点, 日本节点, 韩国节点, 新加坡节点, 美国节点]}
+pr: &pr {type: url-test, lazy: false, tolerance: 10, proxies: [香港节点, 台湾节点, 日本节点, 韩国节点, 新加坡节点, 美国节点]}
 pr2: &pr2 {type: url-test, include-all: true, tolerance: 10}
 pr3: &pr3 {type: fallback, lazy: false, proxies: [DIRECT, 自动选择]}
 proxy-groups:
