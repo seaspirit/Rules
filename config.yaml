@@ -1,5 +1,5 @@
 # 机场订阅
-pp: &pp {type: http, interval: 86400, health-check: {enable: true, url: "https://www.gstatic.com/generate_204", interval: 300}, proxy: DIRECT}
+pp: &pp {type: http, interval: 86400, health-check: {enable: true, url: "https://www.gstatic.com/generate_204", interval: 60}, proxy: DIRECT}
 proxy-providers:
   GFWAirPort:
     url: "https://www9th.ga-sub.baby/api/v1/client/subscribe?token=3d36b6d2b1d958987ee709354d9ebb94"
@@ -82,8 +82,8 @@ dns:
     - 202.102.152.3
     - 202.102.154.3 
 # 出站策略
-pr: &pr {type: url-test, lazy: false, tolerance: 5, proxies: [🇭🇰 香港节点, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇺🇲 美国节点]}
-pr2: &pr2 {type: url-test, include-all: true, lazy: false, tolerance: 5}
+pr: &pr {type: url-test, lazy: false, tolerance: 2, proxies: [🇭🇰 香港节点, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇺🇲 美国节点]}
+pr2: &pr2 {type: url-test, include-all: true, lazy: false, tolerance: 2}
 proxy-groups:
   - {name: 🇭🇰 香港节点, !!merge <<: *pr2, filter: "港|HK|(?i)Hong"}
   - {name: 🇹🇼 台湾节点, !!merge <<: *pr2, filter: "台|TW|(?i)Taiwan"}
@@ -92,7 +92,7 @@ proxy-groups:
   - {name: 🇸🇬 新加坡节点, !!merge <<: *pr2, filter: "新|狮|SG|(?i)Singapore"}
   - {name: 🇺🇲 美国节点, !!merge <<: *pr2, filter: "美|US|(?i)States|America|California"}
   - {name: ♻️ 自动选择, !!merge <<: *pr2}
-  - {name: 🎵 TikTok, type: url-test, lazy: false, tolerance: 5, proxies: [🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇺🇲 美国节点]}
+  - {name: 🎵 TikTok, type: url-test, lazy: false, tolerance: 2, proxies: [🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇺🇲 美国节点]}
   - {name: 🎥 NETFLIX, !!merge <<: *pr}
   - {name: 📹 Disney+, !!merge <<: *pr}
 # 规则匹配
