@@ -108,18 +108,18 @@ rules:
   - RULE-SET,bytedance_domain,DIRECT
   - RULE-SET,github_domain,🇭🇰 香港节点
   - RULE-SET,category-ai-!cn@ads_domain,REJECT-DROP
-  - RULE-SET,category-ai-!cn_domain,🇭🇰 香港节点
+  - RULE-SET,category-ai-!cn_domain,🇺🇲 美国节点
   - RULE-SET,category-ai-cn_domain,DIRECT
   - RULE-SET,onedrive_domain,DIRECT
   - RULE-SET,microsoft_domain,🇭🇰 香港节点
   - RULE-SET,apple-cn_domain,DIRECT
   - RULE-SET,apple@cn_domain,DIRECT
-  - RULE-SET,apple_domain,🇭🇰 香港节点
+  - RULE-SET,apple_domain,🇺🇲 美国节点
   - RULE-SET,netflix_domain,🎥 NETFLIX
   - RULE-SET,disney_domain,📹 Disney+
-  - RULE-SET,telegram_domain,🇭🇰 香港节点
+  - RULE-SET,telegram_domain,🇺🇲 美国节点
   - RULE-SET,speedtest_domain,🇭🇰 香港节点
-  - RULE-SET,paypal_domain,🇭🇰 香港节点
+  - RULE-SET,paypal_domain,🇺🇲 美国节点
   - RULE-SET,test-ipv6_domain,DIRECT
   - RULE-SET,suffix_jp,🇯🇵 日本节点
   - RULE-SET,qnap_com,DIRECT
@@ -130,7 +130,7 @@ rules:
   - RULE-SET,private_domain,DIRECT
   - RULE-SET,google_ip,🇺🇲 美国节点,no-resolve
   - RULE-SET,netflix_ip,🎥 NETFLIX,no-resolve
-  - RULE-SET,telegram_ip,🇭🇰 香港节点,no-resolve
+  - RULE-SET,telegram_ip,🇺🇲 美国节点,no-resolve
   - RULE-SET,cn_ip,DIRECT
   - RULE-SET,private_ip,DIRECT
   - MATCH,🇭🇰 香港节点
