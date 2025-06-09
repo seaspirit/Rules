@@ -98,6 +98,7 @@ proxy-groups:
 # 规则匹配
 rules:
   - RULE-SET,category-ads-all_domain,REJECT-DROP
+  - RULE-SET,AdBlock_Rule_For_Clash,REJECT-DROP
   - RULE-SET,www_youtube_com,🇺🇲 美国节点 # 用于指定油管国家/地区
   - RULE-SET,youtube_domain,🇭🇰 香港节点
   - RULE-SET,google-play_domain,🇹🇼 台湾节点
@@ -121,6 +122,7 @@ rules:
   - RULE-SET,speedtest_domain,🇭🇰 香港节点
   - RULE-SET,paypal_domain,🇺🇲 美国节点
   - RULE-SET,test-ipv6_domain,DIRECT
+  - RULE-SET,suffix_tw,🇹🇼 台湾节点
   - RULE-SET,suffix_jp,🇯🇵 日本节点
   - RULE-SET,qnap_com,DIRECT
   - RULE-SET,softonic_cn,🇭🇰 香港节点
@@ -142,6 +144,7 @@ rule-anchor:
 rule-providers:
 # DOMAIN
   category-ads-all_domain: { !!merge <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/category-ads-all.mrs"}
+  AdBlock_Rule_For_Clash: { !!merge <<: *domain, url: "https://raw.githubusercontent.com/REIJI007/AdBlock_Rule_For_Clash/main/adblock_reject.mrs"}
   www_youtube_com: { !!merge <<: *yaml, url: "https://raw.githubusercontent.com/seaspirit/ruleset/refs/heads/main/www_youtube_com.yaml"}
   youtube_domain: { !!merge <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/youtube.mrs"} 
   google-play_domain: { !!merge <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/google-play.mrs"}
@@ -165,6 +168,7 @@ rule-providers:
   apple_domain: { !!merge <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/apple.mrs"}
   speedtest_domain: { !!merge <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/ookla-speedtest.mrs"}
   test-ipv6_domain: { !!merge <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/test-ipv6.mrs"}
+  suffix_tw: { !!merge <<: *yaml, url: "https://raw.githubusercontent.com/seaspirit/ruleset/refs/heads/main/suffix_tw.yaml"}
   suffix_jp: { !!merge <<: *yaml, url: "https://raw.githubusercontent.com/seaspirit/ruleset/refs/heads/main/suffix_jp.yaml"}
   qnap_com: { !!merge <<: *yaml, url: "https://raw.githubusercontent.com/seaspirit/ruleset/refs/heads/main/qnap_com.yaml"}
   softonic_cn: { !!merge <<: *yaml, url: "https://raw.githubusercontent.com/seaspirit/ruleset/refs/heads/main/softonic_cn.yaml"}
