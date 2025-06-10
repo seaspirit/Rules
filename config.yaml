@@ -1,5 +1,5 @@
 # 机场订阅
-pp: &pp {type: http, interval: 86400, health-check: {enable: true, url: "https://www.gstatic.com/generate_204", interval: 300}, proxy: DIRECT}
+pp: &pp {type: http, interval: 86400, health-check: {enable: true, url: "https://www.gstatic.com/generate_204", interval: 30}, proxy: DIRECT}
 proxy-providers:
   GFWAirPort:
     url: "https://www9th.ga-sub.baby/api/v1/client/subscribe?token=3d36b6d2b1d958987ee709354d9ebb94"
@@ -79,6 +79,7 @@ dns:
     - 8.8.8.8
     - tls://1.12.12.12:853
     - tls://223.5.5.5:853
+    - system # append DNS server from system configuration. If not found, it would print an error log and skip.
   proxy-server-nameserver:
     - https://doh.pub/dns-query
     - https://dns.alidns.com/dns-query
@@ -91,9 +92,11 @@ dns:
     - https://mozilla.cloudflare-dns.com/dns-query#DNS&h3=true # 指定策略组和使用 HTTP/3
     - dhcp://eth1 # dns from dhcp
     - quic://dns.adguard.com:784 # DNS over QUIC
+    - '8.8.8.8#RULES' # 效果同respect-rules，但仅对该服务器生效
+    - '8.8.8.8#eth1' # 兼容指定 DNS 出口网卡
 # 出站策略
-pr: &pr {type: url-test, lazy: false, tolerance: 5, proxies: [🇭🇰 香港节点, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇺🇲 美国节点]}
-pr2: &pr2 {type: url-test, include-all: true, lazy: false, tolerance: 5}
+pr: &pr {type: url-test, lazy: false, tolerance: 1, proxies: [🇭🇰 香港节点, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇺🇲 美国节点]}
+pr2: &pr2 {type: url-test, include-all: true, lazy: false, tolerance: 1}
 proxy-groups:
   - {name: 🇭🇰 香港节点, !!merge <<: *pr2, filter: "港|HK|(?i)Hong"}
   - {name: 🇹🇼 台湾节点, !!merge <<: *pr2, filter: "台|TW|(?i)Taiwan"}
@@ -102,7 +105,7 @@ proxy-groups:
   - {name: 🇸🇬 新加坡节点, !!merge <<: *pr2, filter: "新|狮|SG|(?i)Singapore"}
   - {name: 🇺🇲 美国节点, !!merge <<: *pr2, filter: "美|US|(?i)States|America|California"}
   - {name: ♻️ 自动选择, !!merge <<: *pr2}
-  - {name: 🎵 TikTok, type: url-test, lazy: false, tolerance: 5, proxies: [🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇺🇲 美国节点]}
+  - {name: 🎵 TikTok, type: url-test, lazy: false, tolerance: 1, proxies: [🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇺🇲 美国节点]}
   - {name: 🎥 NETFLIX, !!merge <<: *pr}
   - {name: 📹 Disney+, !!merge <<: *pr}
 # 规则匹配
