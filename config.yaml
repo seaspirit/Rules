@@ -63,6 +63,7 @@ tun:
 # DNS模块
 dns:
   enable: true
+  prefer-h3: true
   listen: 0.0.0.0:1053
   ipv6: false
   respect-rules: true
@@ -74,15 +75,20 @@ dns:
     - "+.msftconnecttest.com"
     - "+.msftncsi.com"
     - "time.*.com"
-  default-nameserver:
-    - 223.5.5.5
-  proxy-server-nameserver:
-    - https://223.5.5.5/dns-query
   nameserver:  # namesever尽量用运营商提供的DNS
     - 223.5.5.5
-    - 119.29.29.29
     - 202.102.152.3
-    - 202.102.154.3
+  proxy-server-nameserver:
+    - 223.5.5.5
+    - 8.8.8.8
+  nameserver-policy:
+    "rule-set:google_domain,geolocation-!cn,category-ai-!cn_domain,gfw_domain":
+      - 8.8.8.8
+      - 1.1.1.1
+    "rule-set:private_domain,cn_domain":
+      - 223.5.5.5
+      - 202.102.152.3
+    "rule-set:category-ads-all_domain,bytedance@ads_domain,category-ai-!cn@ads_domain,AdBlock_Rule_For_Clash": rcode://success
 # 出站策略
 pr: &pr {type: url-test, lazy: false, tolerance: 1, proxies: [🇭🇰 香港节点, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇺🇲 美国节点]}
 pr2: &pr2 {type: url-test, include-all: true, lazy: false, tolerance: 1}
