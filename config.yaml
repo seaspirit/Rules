@@ -81,6 +81,8 @@ dns:
   nameserver:  # namesever尽量用运营商提供的DNS
     - 223.5.5.5
     - 119.29.29.29
+    - 202.102.152.3
+    - 202.102.154.3
 # 出站策略
 pr: &pr {type: url-test, lazy: false, tolerance: 1, proxies: [🇭🇰 香港节点, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇺🇲 美国节点]}
 pr2: &pr2 {type: url-test, include-all: true, lazy: false, tolerance: 1}
