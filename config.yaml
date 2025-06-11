@@ -76,8 +76,8 @@ dns:
     - "+.msftncsi.com"
     - "time.*.com"
   nameserver:  # namesever尽量用运营商提供的DNS
-    - 202.102.152.3
     - 223.5.5.5
+    - 202.102.152.3
   proxy-server-nameserver:
     - 223.5.5.5
     - 8.8.8.8
@@ -114,7 +114,7 @@ rules:
   - RULE-SET,bytedance@ads_domain,REJECT-DROP
   - RULE-SET,bytedance@!cn_domain,🎵 TikTok
   - RULE-SET,bytedance_domain,DIRECT
-  - RULE-SET,github_domain,🇺🇲 美国节点
+  - RULE-SET,github_domain,🇭🇰 香港节点
   - RULE-SET,category-ai-!cn@ads_domain,REJECT-DROP
   - RULE-SET,category-ai-!cn_domain,🇺🇲 美国节点
   - RULE-SET,category-ai-cn_domain,DIRECT
