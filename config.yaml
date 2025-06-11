@@ -85,9 +85,9 @@ dns:
     "rule-set:google_domain,geolocation-!cn,category-ai-!cn_domain,gfw_domain":
       - 8.8.8.8
       - 1.1.1.1
-    "rule-set:private_domain,cn_domain":
+    "MATCH":
+      - 8.8.8.8
       - 223.5.5.5
-      - 202.102.152.3
     "rule-set:category-ads-all_domain,bytedance@ads_domain,category-ai-!cn@ads_domain,AdBlock_Rule_For_Clash": rcode://success
 # 出站策略
 pr: &pr {type: url-test, lazy: false, tolerance: 1, proxies: [🇭🇰 香港节点, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇺🇲 美国节点]}
