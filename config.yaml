@@ -76,8 +76,8 @@ dns:
     - "+.msftncsi.com"
     - "time.*.com"
   nameserver:  # namesever尽量用运营商提供的DNS
-    - 223.5.5.5
     - 202.102.152.3
+    - 223.5.5.5
   proxy-server-nameserver:
     - 223.5.5.5
     - 8.8.8.8
