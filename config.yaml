@@ -81,10 +81,13 @@ dns:
     - 1.1.1.1
     - 1.0.0.1
   nameserver-policy:
+    "rule-set:amemv_com":
+      - 223.5.5.5
+      - 223.6.6.6
     "rule-set:google_domain,category-ai-!cn_domain":
       - 8.8.8.8
       - 8.8.4.4
-    "rule-set:amemv_com,github_domain,geolocation-!cn,gfw_domain":
+    "rule-set:github_domain,geolocation-!cn,gfw_domain":
       - 1.1.1.1
       - 1.0.0.1
     "rule-set:category-ads-all_domain,bytedance@ads_domain,category-ai-!cn@ads_domain,AdBlock_Rule_For_Clash": rcode://success
