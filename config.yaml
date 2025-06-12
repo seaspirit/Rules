@@ -81,10 +81,10 @@ dns:
     - 1.1.1.1
     - 1.0.0.1
   nameserver-policy:
-    "rule-set:amemv_com,google_domain,category-ai-!cn_domain":
+    "rule-set:google_domain,category-ai-!cn_domain":
       - 8.8.8.8
       - 8.8.4.4
-    "rule-set:github_domain,geolocation-!cn,gfw_domain":
+    "rule-set:amemv_com,github_domain,geolocation-!cn,gfw_domain":
       - 1.1.1.1
       - 1.0.0.1
     "rule-set:category-ads-all_domain,bytedance@ads_domain,category-ai-!cn@ads_domain,AdBlock_Rule_For_Clash": rcode://success
@@ -116,7 +116,7 @@ rules:
   - RULE-SET,bytedance@ads_domain,REJECT-DROP
   - RULE-SET,bytedance@!cn_domain,🎵 TikTok
   - RULE-SET,bytedance_domain,DIRECT
-  - RULE-SET,github_domain,🇺🇲 美国节点
+  - RULE-SET,github_domain,🇭🇰 香港节点
   - RULE-SET,category-ai-!cn@ads_domain,REJECT-DROP
   - RULE-SET,category-ai-!cn_domain,🇭🇰 香港节点
   - RULE-SET,category-ai-cn_domain,DIRECT
