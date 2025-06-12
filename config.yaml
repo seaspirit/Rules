@@ -81,10 +81,10 @@ dns:
     - 1.1.1.1
     - 1.0.0.1
   nameserver-policy:
-    "rule-set:google_domain":
+    "rule-set:amemv_com,google_domain,category-ai-!cn_domain":
       - 8.8.8.8
       - 8.8.4.4
-    "rule-set:amemv_com,github_domain,geolocation-!cn,category-ai-!cn_domain,gfw_domain":
+    "rule-set:github_domain,geolocation-!cn,gfw_domain":
       - 1.1.1.1
       - 1.0.0.1
     "rule-set:category-ads-all_domain,bytedance@ads_domain,category-ai-!cn@ads_domain,AdBlock_Rule_For_Clash": rcode://success
@@ -152,19 +152,19 @@ rules:
 rule-anchor:
   ip: &ip {type: http, interval: 86400, behavior: ipcidr, format: mrs}
   domain: &domain {type: http, interval: 86400, behavior: domain, format: mrs}
-  class: &class {type: http, interval: 86400, behavior: classical, format: yaml}
+  yaml: &yaml {type: http, interval: 86400, behavior: domain, format: yaml}
 rule-providers:
 # DOMAIN
   category-ads-all_domain: { !!merge <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/category-ads-all.mrs"}
   AdBlock_Rule_For_Clash: { !!merge <<: *domain, url: "https://raw.githubusercontent.com/REIJI007/AdBlock_Rule_For_Clash/main/adblock_reject.mrs"}
-  www_youtube_com: { !!merge <<: *class, url: "https://raw.githubusercontent.com/seaspirit/ruleset/refs/heads/main/www_youtube_com.yaml"}
+  www_youtube_com: { !!merge <<: *yaml, url: "https://raw.githubusercontent.com/seaspirit/ruleset/refs/heads/main/www_youtube_com.yaml"}
   youtube_domain: { !!merge <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/youtube.mrs"} 
   google-play_domain: { !!merge <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/google-play.mrs"}
   google_domain: { !!merge <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/google.mrs"}
   category-ai-!cn@ads_domain: { !!merge <<: *domain, url: "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geosite/category-ai-!cn@ads.mrs" }
   category-ai-!cn_domain: { !!merge <<: *domain, url: "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geosite/category-ai-!cn.mrs" }
   category-ai-cn_domain: { !!merge <<: *domain, url: "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geosite/category-ai-cn.mrs" }
-  amemv_com: { !!merge <<: *class, url: "https://raw.githubusercontent.com/seaspirit/ruleset/refs/heads/main/amemv_com.yaml"}
+  amemv_com: { !!merge <<: *yaml, url: "https://raw.githubusercontent.com/seaspirit/ruleset/refs/heads/main/amemv_com.yaml"}
   bytedance@ads_domain: { !!merge <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/bytedance@ads.mrs"}
   bytedance@!cn_domain: { !!merge <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/bytedance@!cn.mrs"}
   bytedance_domain: { !!merge <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/bytedance.mrs"}
@@ -182,10 +182,10 @@ rule-providers:
   test-ipv6_domain: { !!merge <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/test-ipv6.mrs"}
   reddit_domain: { !!merge <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/reddit.mrs"}
   pornhub_domain: { !!merge <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/pornhub.mrs"}
-  suffix_tw: { !!merge <<: *class, url: "https://raw.githubusercontent.com/seaspirit/ruleset/refs/heads/main/suffix_tw.yaml"}
-  suffix_jp: { !!merge <<: *class, url: "https://raw.githubusercontent.com/seaspirit/ruleset/refs/heads/main/suffix_jp.yaml"}
-  qnap_com: { !!merge <<: *class, url: "https://raw.githubusercontent.com/seaspirit/ruleset/refs/heads/main/qnap_com.yaml"}
-  softonic_cn: { !!merge <<: *class, url: "https://raw.githubusercontent.com/seaspirit/ruleset/refs/heads/main/softonic_cn.yaml"}
+  suffix_tw: { !!merge <<: *yaml, url: "https://raw.githubusercontent.com/seaspirit/ruleset/refs/heads/main/suffix_tw.yaml"}
+  suffix_jp: { !!merge <<: *yaml, url: "https://raw.githubusercontent.com/seaspirit/ruleset/refs/heads/main/suffix_jp.yaml"}
+  qnap_com: { !!merge <<: *yaml, url: "https://raw.githubusercontent.com/seaspirit/ruleset/refs/heads/main/qnap_com.yaml"}
+  softonic_cn: { !!merge <<: *yaml, url: "https://raw.githubusercontent.com/seaspirit/ruleset/refs/heads/main/softonic_cn.yaml"}
   gfw_domain: { !!merge <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/gfw.mrs"}
   geolocation-!cn: { !!merge <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/geolocation-!cn.mrs"}
   cn_domain: { !!merge <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/cn.mrs"} 
