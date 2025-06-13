@@ -1,9 +1,23 @@
 # 机场订阅
-pp: &pp {type: http, interval: 86400, health-check: {enable: true, url: "https://www.gstatic.com/generate_204", interval: 30}, proxy: DIRECT}
 proxy-providers:
+  ssy:
+    url: "https://su.xfjhchr.com:8888/api/v1/client/subscribe?token=35ed675d0e2e1ae13cb0366a03408258"
+    type: http
+    interval: 86400
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 30
+    proxy: DIRECT
   GFWAirPort:
     url: "https://www9th.ga-sub.baby/api/v1/client/subscribe?token=3d36b6d2b1d958987ee709354d9ebb94"
-    !!merge <<: *pp
+    type: http
+    interval: 86400
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 30
+    proxy: DIRECT
     override:
       skip-cert-verify: true
 # 全局配置 
