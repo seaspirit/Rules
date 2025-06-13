@@ -6,9 +6,6 @@ proxy-providers:
     !!merge <<: *pp
     override:
       skip-cert-verify: true
-  流量光:
-    url: "https://rgergergergerg6555.saojc.xyz/api/v1/client/subscribe?token=eb4ad7f46a7a918cd2711a0551553e8d"
-    !!merge <<: *pp
 # 全局配置 
 port: 7890
 socks-port: 7891
@@ -33,7 +30,7 @@ profile:
 # 控制面板
 external-controller: 0.0.0.0:9090
 secret: ""
-external-ui: "/etc/mihomo/run/ui"
+external-ui: "/etc/nikki/run/ui"
 external-ui-name: zashboard
 external-ui-url: "https://github.com/Zephyruso/zashboard/archive/refs/heads/gh-pages.zip"
 # 嗅探
