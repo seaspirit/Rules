@@ -1,6 +1,6 @@
 # 机场订阅
 proxy-providers:
-  ssy:
+  山水云:
     url: "https://su.xfjhchr.com:8888/api/v1/client/subscribe?token=35ed675d0e2e1ae13cb0366a03408258"
     type: http
     interval: 86400
