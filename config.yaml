@@ -87,24 +87,22 @@ dns:
     - "+.msftncsi.com"
     - "time.*.com"
   nameserver:  # namesever尽量用运营商提供的DNS
-    - system # append DNS server from system configuration
+    - 223.5.5.5
+    - 119.29.29.29
   proxy-server-nameserver:
-    - 8.8.8.8
-    - 8.8.4.4
+    - 223.5.5.5
+    - 119.29.29.29
   nameserver-policy:
     "rule-set:amemv_com":
       - 223.5.5.5
-      - 223.6.6.6
-    "rule-set:google_domain,category-ai-!cn_domain":
+      - 119.29.29.29
+    "rule-set:google_domain,category-ai-!cn_domain,github_domain,geolocation-!cn,gfw_domain":
       - 1.1.1.1
-      - 1.0.0.1
-    "rule-set:github_domain,geolocation-!cn,gfw_domain":
       - 8.8.8.8
-      - 8.8.4.4
     "rule-set:category-ads-all_domain,bytedance@ads_domain,category-ai-!cn@ads_domain,AdBlock_Rule_For_Clash": rcode://success
     "MATCH":
       - 1.1.1.1
-      - 1.0.0.1
+      - 8.8.8.8
 # 出站策略
 pr: &pr {type: url-test, lazy: false, tolerance: 1, proxies: [🇭🇰 香港节点, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇺🇲 美国节点]}
 pr2: &pr2 {type: url-test, include-all: true, lazy: false, tolerance: 1}
@@ -121,47 +119,47 @@ proxy-groups:
   - {name: 📹 Disney+, !!merge <<: *pr}
 # 规则匹配
 rules:
-  - RULE-SET,www_youtube_com,🇺🇲 美国节点 # 用于指定油管国家/地区
-  - RULE-SET,youtube_domain,🇭🇰 香港节点
+  - RULE-SET,www_youtube_com,🇺🇲 美国节点 # 用于指定油管(和谷歌搜索等服务)的国家/地区
+  - RULE-SET,youtube_domain,♻️ 自动选择
   - RULE-SET,google-play_domain,🇭🇰 香港节点
   - RULE-SET,category-ads-all_domain,REJECT-DROP
-  - RULE-SET,google_domain,🇺🇲 美国节点
-  - RULE-SET,amemv_com,🇭🇰 香港节点 # 用于指定抖音省/市/区
+  - RULE-SET,google_domain,♻️ 自动选择
+  - RULE-SET,amemv_com,🇭🇰 香港节点 # 用于指定抖音省(市/区)
   - RULE-SET,bytedance@ads_domain,REJECT-DROP
   - RULE-SET,bytedance@!cn_domain,🎵 TikTok
   - RULE-SET,bytedance_domain,DIRECT
-  - RULE-SET,github_domain,🇭🇰 香港节点
+  - RULE-SET,github_domain,♻️ 自动选择
   - RULE-SET,category-ai-!cn@ads_domain,REJECT-DROP
-  - RULE-SET,category-ai-!cn_domain,🇭🇰 香港节点
+  - RULE-SET,category-ai-!cn_domain,♻️ 自动选择
   - RULE-SET,category-ai-cn_domain,DIRECT
   - RULE-SET,onedrive_domain,DIRECT
-  - RULE-SET,microsoft_domain,🇭🇰 香港节点
+  - RULE-SET,microsoft_domain,♻️ 自动选择
   - RULE-SET,apple-cn_domain,DIRECT
   - RULE-SET,apple@cn_domain,DIRECT
-  - RULE-SET,apple_domain,🇭🇰 香港节点
+  - RULE-SET,apple_domain,♻️ 自动选择
   - RULE-SET,netflix_domain,🎥 NETFLIX
   - RULE-SET,disney_domain,📹 Disney+
-  - RULE-SET,telegram_domain,🇺🇲 美国节点
-  - RULE-SET,speedtest_domain,🇭🇰 香港节点
-  - RULE-SET,paypal_domain,🇭🇰 香港节点
+  - RULE-SET,telegram_domain,♻️ 自动选择
+  - RULE-SET,speedtest_domain,♻️ 自动选择
+  - RULE-SET,paypal_domain,♻️ 自动选择
   - RULE-SET,test-ipv6_domain,DIRECT
-  - RULE-SET,reddit_domain,🇺🇲 美国节点
-  - RULE-SET,pornhub_domain,🇺🇲 美国节点
+  - RULE-SET,reddit_domain,♻️ 自动选择
+  - RULE-SET,pornhub_domain,♻️ 自动选择
   - RULE-SET,suffix_tw,🇹🇼 台湾节点
   - RULE-SET,suffix_jp,🇯🇵 日本节点
   - RULE-SET,qnap_com,DIRECT
-  - RULE-SET,softonic_cn,🇭🇰 香港节点
+  - RULE-SET,softonic_cn,♻️ 自动选择
   - RULE-SET,AdBlock_Rule_For_Clash,REJECT-DROP
-  - RULE-SET,gfw_domain,🇺🇲 美国节点
-  - RULE-SET,geolocation-!cn,🇺🇲 美国节点
+  - RULE-SET,gfw_domain,♻️ 自动选择
+  - RULE-SET,geolocation-!cn,♻️ 自动选择
   - RULE-SET,cn_domain,DIRECT
   - RULE-SET,private_domain,DIRECT
-  - RULE-SET,google_ip,🇺🇲 美国节点,no-resolve
+  - RULE-SET,google_ip,♻️ 自动选择,no-resolve
   - RULE-SET,netflix_ip,🎥 NETFLIX,no-resolve
-  - RULE-SET,telegram_ip,🇺🇲 美国节点,no-resolve
+  - RULE-SET,telegram_ip,♻️ 自动选择,no-resolve
   - RULE-SET,cn_ip,DIRECT
   - RULE-SET,private_ip,DIRECT
-  - MATCH,🇺🇲 美国节点
+  - MATCH,♻️ 自动选择
 # 规则集
 rule-anchor:
   ip: &ip {type: http, interval: 86400, behavior: ipcidr, format: mrs}
