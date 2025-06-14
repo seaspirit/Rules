@@ -60,9 +60,9 @@ sniffer:
       ports: [80, 8080-8880]
       override-destination: true
   force-domain:
-    - "+.v2ex.com"
+    - +.googlevideo.com
   skip-domain:
-    - "+.baidu.com"
+    - +.baidu.com
 # 入站  
 tun:
   enable: true
