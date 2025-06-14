@@ -122,11 +122,11 @@ proxy-groups:
   - {name: 📹 Disney+, !!merge <<: *pr}
 # 规则匹配
 rules:
-  - RULE-SET,www_youtube_com,🇺🇲 美国节点 # 用于指定油管(和谷歌搜索等服务)的国家/地区
-  - RULE-SET,youtube_domain,♻️ 自动选择
-  - RULE-SET,google-play_domain,🇭🇰 香港节点
-  - RULE-SET,google_domain,♻️ 自动选择
   - RULE-SET,amemv_com,🇭🇰 香港节点 # 用于指定抖音省(市/区)
+  - RULE-SET,www_youtube_com,🇺🇲 美国节点 # 用于指定油管(和谷歌搜索等服务)的国家/地区
+  - RULE-SET,google-play_domain,🇭🇰 香港节点
+  - RULE-SET,youtube_domain,♻️ 自动选择
+  - RULE-SET,google_domain,🇺🇲 美国节点
   - RULE-SET,bytedance@ads_domain,REJECT-DROP
   - RULE-SET,bytedance@!cn_domain,🎵 TikTok
   - RULE-SET,bytedance_domain,DIRECT
