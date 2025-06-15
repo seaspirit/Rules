@@ -89,15 +89,12 @@ dns:
     - 223.5.5.5
     - 223.6.6.6
   nameserver-policy:
-    "rule-set:bytedance@!cn_domain":
+    "rule-set:category-ai-!cn_domain,github_domain,bytedance@!cn_domain":
       - 1.1.1.1
       - 1.0.0.1
     "rule-set:bytedance_domain":
-      - 180.184.1.1
-      - 180.184.2.2
-    "rule-set:category-ai-!cn_domain,github_domain":
-      - 1.1.1.1
-      - 1.0.0.1
+      - 223.5.5.5
+      - 223.6.6.6
     "rule-set:google_domain,geolocation-!cn,gfw_domain":
       - 8.8.8.8
       - 8.8.4.4
