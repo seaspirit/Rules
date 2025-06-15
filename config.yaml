@@ -89,13 +89,13 @@ dns:
     - 223.5.5.5
     - 223.6.6.6
   nameserver-policy:
-    "rule-set:category-ai-!cn_domain,github_domain,bytedance@!cn_domain":
+    "rule-set:amemv_com":
+      - 180.184.1.1
+      - 180.184.2.2
+    "rule-set:category-ai-!cn_domain,github_domain,bytedance@!cn_domain,microsoft_domain,apple_domain,netflix_domain,disney_domain,telegram_domain,speedtest_domain,paypal_domain,redgifs,reddit_domain,pornhub_domain,suffix_tw,suffix_jp":
       - 1.1.1.1
       - 1.0.0.1
-    "rule-set:bytedance_domain":
-      - 223.5.5.5
-      - 223.6.6.6
-    "rule-set:google_domain,geolocation-!cn,gfw_domain":
+    "rule-set:www_youtube_com,google-play_domain,youtube_domain,google_domain,geolocation-!cn,gfw_domain":
       - 8.8.8.8
       - 8.8.4.4
     "rule-set:category-ads-all_domain,bytedance@ads_domain,category-ai-!cn@ads_domain,AdBlock_Rule_For_Clash": rcode://success
