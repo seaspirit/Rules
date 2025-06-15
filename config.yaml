@@ -144,14 +144,15 @@ rules:
   - RULE-SET,speedtest_domain,♻️ 自动选择
   - RULE-SET,paypal_domain,♻️ 自动选择
   - RULE-SET,test-ipv6_domain,DIRECT
-  - RULE-SET,reddit_domain,♻️ 自动选择
-  - RULE-SET,pornhub_domain,♻️ 自动选择
   - RULE-SET,suffix_tw,🇹🇼 台湾节点
   - RULE-SET,suffix_jp,🇯🇵 日本节点
   - RULE-SET,qnap_com,DIRECT
   - RULE-SET,softonic_cn,♻️ 自动选择
   - RULE-SET,category-ads-all_domain,REJECT-DROP
   - RULE-SET,AdBlock_Rule_For_Clash,REJECT-DROP
+  - RULE-SET,redgifs,🇺🇲 美国节点
+  - RULE-SET,reddit_domain,♻️ 自动选择
+  - RULE-SET,pornhub_domain,♻️ 自动选择
   - RULE-SET,gfw_domain,♻️ 自动选择
   - RULE-SET,geolocation-!cn,♻️ 自动选择
   - RULE-SET,cn_domain,DIRECT
@@ -200,6 +201,7 @@ rule-providers:
   suffix_jp: { !!merge <<: *yaml, url: "https://raw.githubusercontent.com/seaspirit/ruleset/refs/heads/main/suffix_jp.yaml"}
   qnap_com: { !!merge <<: *yaml, url: "https://raw.githubusercontent.com/seaspirit/ruleset/refs/heads/main/qnap_com.yaml"}
   softonic_cn: { !!merge <<: *yaml, url: "https://raw.githubusercontent.com/seaspirit/ruleset/refs/heads/main/softonic_cn.yaml"}
+  redgifs: { !!merge <<: *yaml, url: "https://raw.githubusercontent.com/seaspirit/ruleset/refs/heads/main/redgifs.yaml"}
   gfw_domain: { !!merge <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/gfw.mrs"}
   geolocation-!cn: { !!merge <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/geolocation-!cn.mrs"}
   cn_domain: { !!merge <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/cn.mrs"} 
