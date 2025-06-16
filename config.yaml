@@ -95,19 +95,19 @@ dns:
     "rule-set:amemv_com":
       - 180.184.1.1
       - 180.184.2.2
-    "rule-set:category-ai-!cn_domain,github_domain,bytedance@!cn_domain,microsoft_domain,apple_domain,netflix_domain,disney_domain":
-      - 1.1.1.1
-      - 1.0.0.1
-    "rule-set:www_youtube_com,google-play_domain,youtube_domain,google_domain,geolocation-!cn,gfw_domain":
+    "rule-set:www_youtube_com,google-play_domain,youtube_domain,google_domain":
       - 8.8.8.8
       - 8.8.4.4
-    "rule-set:redgifsdownloader,reddit_domain,pornhub_domain,telegram_domain,speedtest_domain,paypal_domain,suffix_tw,suffix_jp":
+    "rule-set:category-ai-!cn_domain,bytedance@!cn_domain,microsoft_domain,apple_domain,netflix_domain,disney_domain,geolocation-!cn,gfw_domain":
+      - 1.1.1.1
+      - 1.0.0.1
+    "rule-set:github_domain,telegram_domain,speedtest_domain,paypal_domain,suffix_tw,suffix_jp,redgifsdownloader,reddit_domain,pornhub_domain":
       - 1.1.1.1
       - 1.0.0.1
     "rule-set:category-ads-all_domain,bytedance@ads_domain,category-ai-!cn@ads_domain,AdBlock_Rule_For_Clash": rcode://success
     "MATCH":
-      - 8.8.8.8
-      - 8.8.4.4
+      - 1.1.1.1
+      - 1.0.0.1
 # 出站策略
 pr: &pr {type: url-test, lazy: false, tolerance: 1, proxies: [🇭🇰 香港节点, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇺🇲 美国节点]}
 pr2: &pr2 {type: url-test, include-all: true, lazy: false, tolerance: 1}
