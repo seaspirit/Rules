@@ -91,6 +91,9 @@ dns:
     - 223.5.5.5
     - 223.6.6.6
   nameserver-policy:
+    "rule-set:amemv_com":
+      - 223.5.5.5
+      - 223.6.6.6
     "rule-set:google_geo,google-play_domain,google_domain":
       - 8.8.8.8
       - 8.8.4.4
