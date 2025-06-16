@@ -93,8 +93,8 @@ dns:
     - 223.6.6.6
   nameserver-policy:
     "rule-set:amemv_com":
-      - 180.184.1.1
-      - 180.184.2.2
+      - 223.5.5.5
+      - 223.6.6.6
     "rule-set:www_youtube_com,google-play_domain,youtube_domain,google_domain":
       - 8.8.8.8
       - 8.8.4.4
@@ -126,11 +126,11 @@ proxy-groups:
 rules:
   - RULE-SET,category-ads-all_domain,REJECT-DROP
   - RULE-SET,AdBlock_Rule_For_Clash,REJECT-DROP
-  - RULE-SET,amemv_com,🇭🇰 香港节点 # 用于指定抖音省(市/区)
   - RULE-SET,www_youtube_com,🇺🇲 美国节点 # 用于指定油管(和谷歌搜索等服务)的国家/地区
   - RULE-SET,google-play_domain,🇭🇰 香港节点
   - RULE-SET,youtube_domain,♻️ 自动选择
   - RULE-SET,google_domain,🇺🇲 美国节点
+  - RULE-SET,amemv_com,🇭🇰 香港节点 # 用于指定抖音省(市/区)
   - RULE-SET,bytedance@ads_domain,REJECT-DROP
   - RULE-SET,bytedance@!cn_domain,🎵 TikTok
   - RULE-SET,bytedance_domain,DIRECT
