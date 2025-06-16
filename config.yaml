@@ -103,7 +103,7 @@ dns:
     "rule-set:github_domain,telegram_domain,speedtest_domain,paypal_domain,suffix_tw,suffix_jp,redgifsdownloader,reddit_domain,pornhub_domain":
       - 1.1.1.1
       - 1.0.0.1
-    "rule-set:category-ads-all_domain,bytedance@ads_domain,category-ai-!cn@ads_domain,AdBlock_Rule_For_Clash": rcode://success
+    "rule-set:category-ads-all_domain,bytedance@ads_domain,category-ai-!cn@ads_domain,adblock_reject": rcode://success
     "MATCH":
       - 1.1.1.1
       - 1.0.0.1
@@ -124,7 +124,7 @@ proxy-groups:
 # 规则匹配
 rules:
   - RULE-SET,category-ads-all_domain,REJECT-DROP
-  - RULE-SET,AdBlock_Rule_For_Clash,REJECT-DROP
+  - RULE-SET,adblock_reject,REJECT-DROP
   - RULE-SET,google_geo,🇺🇲 美国节点 # 用于指定谷歌搜索、油管的国家/地区
   - RULE-SET,google-play_domain,🇭🇰 香港节点
   - RULE-SET,google_domain,🚀 自动选择
@@ -172,7 +172,7 @@ rule-anchor:
 rule-providers:
 # DOMAIN
   category-ads-all_domain: { !!merge <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/category-ads-all.mrs"}
-  AdBlock_Rule_For_Clash: { !!merge <<: *domain, url: "https://raw.githubusercontent.com/REIJI007/AdBlock_Rule_For_Clash/main/adblock_reject.mrs"}
+  adblock_reject: { !!merge <<: *domain, url: "https://raw.githubusercontent.com/REIJI007/AdBlock_Rule_For_Clash/main/adblock_reject.mrs"}
   google_geo: { !!merge <<: *yaml, url: "https://raw.githubusercontent.com/seaspirit/ruleset/refs/heads/main/google_geo.yaml"}
   google-play_domain: { !!merge <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/google-play.mrs"}
   google_domain: { !!merge <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/google.mrs"}
