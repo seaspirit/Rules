@@ -70,10 +70,9 @@ tun:
 # DNS模块
 dns:
   enable: true
-  prefer-h3: true
   listen: 0.0.0.0:1053
   ipv6: false
-  respect-rules: true
+  respect-rules: false
   enhanced-mode: fake-ip
   fake-ip-range: 28.0.0.1/8
   fake-ip-filter-mode: blacklist
@@ -92,10 +91,7 @@ dns:
     - 223.5.5.5
     - 223.6.6.6
   nameserver-policy:
-    "rule-set:amemv_com":
-      - 223.5.5.5
-      - 223.6.6.6
-    "rule-set:www_youtube_com,google-play_domain,youtube_domain,google_domain":
+    "rule-set:google_geo,google-play_domain,google_domain":
       - 8.8.8.8
       - 8.8.4.4
     "rule-set:category-ai-!cn_domain,bytedance@!cn_domain,microsoft_domain,apple_domain,netflix_domain,disney_domain,geolocation-!cn,gfw_domain":
@@ -126,11 +122,10 @@ proxy-groups:
 rules:
   - RULE-SET,category-ads-all_domain,REJECT-DROP
   - RULE-SET,AdBlock_Rule_For_Clash,REJECT-DROP
-  - RULE-SET,www_youtube_com,🇺🇲 美国节点 # 用于指定油管(和谷歌搜索等服务)的国家/地区
+  - RULE-SET,google_geo,🇺🇲 美国节点 # 用于指定谷歌搜索、油管的国家/地区
   - RULE-SET,google-play_domain,🇭🇰 香港节点
-  - RULE-SET,youtube_domain,♻️ 自动选择
-  - RULE-SET,google_domain,🇺🇲 美国节点
-  - RULE-SET,amemv_com,🇭🇰 香港节点 # 用于指定抖音省(市/区)
+  - RULE-SET,google_domain,♻️ 自动选择
+  - RULE-SET,amemv_com,🇭🇰 香港节点 # 用于指定抖音的省(市/区)
   - RULE-SET,bytedance@ads_domain,REJECT-DROP
   - RULE-SET,bytedance@!cn_domain,🎵 TikTok
   - RULE-SET,bytedance_domain,DIRECT
@@ -175,8 +170,7 @@ rule-providers:
 # DOMAIN
   category-ads-all_domain: { !!merge <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/category-ads-all.mrs"}
   AdBlock_Rule_For_Clash: { !!merge <<: *domain, url: "https://raw.githubusercontent.com/REIJI007/AdBlock_Rule_For_Clash/main/adblock_reject.mrs"}
-  www_youtube_com: { !!merge <<: *yaml, url: "https://raw.githubusercontent.com/seaspirit/ruleset/refs/heads/main/www_youtube_com.yaml"}
-  youtube_domain: { !!merge <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/youtube.mrs"} 
+  google_geo: { !!merge <<: *yaml, url: "https://raw.githubusercontent.com/seaspirit/ruleset/refs/heads/main/google_geo.yaml"}
   google-play_domain: { !!merge <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/google-play.mrs"}
   google_domain: { !!merge <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/google.mrs"}
   category-ai-!cn@ads_domain: { !!merge <<: *domain, url: "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geosite/category-ai-!cn@ads.mrs" }
