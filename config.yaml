@@ -88,12 +88,12 @@ dns:
     - 202.102.128.68
     - 202.102.152.3
   proxy-server-nameserver:
-    - 202.102.128.68
-    - 202.102.152.3
+    - 223.5.5.5
+    - 223.6.6.6
   nameserver-policy:
     "api6-normal-lf.amemv.com":
-      - 1.1.1.1
-      - 1.0.0.1
+      - 223.5.5.5
+      - 223.6.6.6
     "www.youtube.com,www.google.com":
       - 8.8.8.8
       - 8.8.4.4
