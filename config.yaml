@@ -82,34 +82,34 @@ dns:
     - "+.msftncsi.com"
     - "time.*.com"
   default-nameserver:
-    - 202.102.128.68
-    - 202.102.152.3
-  nameserver:  # namesever尽量用运营商提供的DNS
-    - 202.102.128.68
-    - 202.102.152.3
-  proxy-server-nameserver:
+    - 180.76.76.76
     - 223.5.5.5
-    - 223.6.6.6
+  nameserver:  # namesever尽量用运营商提供的DNS
+    - 180.76.76.76
+    - 223.5.5.5
+  proxy-server-nameserver:
+    - 180.76.76.76
+    - 223.5.5.5
   nameserver-policy:
     "api6-normal-lf.amemv.com":
+      - 180.76.76.76
       - 223.5.5.5
-      - 223.6.6.6
     "www.youtube.com,www.google.com":
       - 8.8.8.8
-      - 8.8.4.4
+      - 1.1.1.1
     "rule-set:google_domain":
       - 8.8.8.8
-      - 8.8.4.4
+      - 1.1.1.1
     "rule-set:category-ai-!cn_domain,bytedance@!cn_domain,microsoft_domain,apple_domain,netflix_domain,disney_domain,geolocation-!cn,gfw_domain":
       - 1.1.1.1
-      - 1.0.0.1
+      - 8.8.8.8
     "rule-set:github_domain,telegram_domain,speedtest_domain,paypal_domain,reddit_domain,category-porn_domain":
       - 1.1.1.1
-      - 1.0.0.1
+      - 8.8.8.8
     "rule-set:google@ads,bytedance@ads,category-ai-!cn@ads,microsoft@ads,apple@ads,category-porn@ads": rcode://success
     "MATCH":
       - 1.1.1.1
-      - 1.0.0.1
+      - 8.8.8.8
 # 出站策略
 pr: &pr {type: url-test, lazy: false, tolerance: 1, proxies: [🇭🇰 香港节点, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇺🇲 美国节点]}
 pr2: &pr2 {type: url-test, include-all: true, lazy: false, tolerance: 1}
