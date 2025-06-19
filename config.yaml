@@ -107,7 +107,6 @@ dns:
     "rule-set:github_domain,telegram_domain,speedtest_domain,paypal_domain,reddit_domain,category-porn_domain":
       - 1.1.1.1
       - 1.0.0.1
-    "rule-set:google@ads,bytedance@ads,category-ai-!cn@ads,microsoft@ads,apple@ads,category-porn@ads": rcode://success
     "MATCH":
       - 1.1.1.1
       - 1.0.0.1
@@ -129,15 +128,20 @@ proxy-groups:
 rules:
   - DOMAIN,api6-normal-lf.amemv.com,🇭🇰 香港节点 # 用于指定抖音的省(市/区)
   - DOMAIN,www.youtube.com,🇺🇲 美国节点 # 用于指定油管的国家/地区
-  - DOMAIN,www.google.com,🇺🇲 美国节点 # 用于指定谷歌搜索的国家/地区
-  - RULE-SET,google_domain,🚀 自动选择
+  - DOMAIN,www.google.com,🇺🇲 美国节点 # 用于指定谷歌搜索的国家/地区  
+  - RULE-SET,google@ads,REJECT-DROP  
+  - RULE-SET,google_domain,🚀 自动选择  
+  - RULE-SET,bytedance@ads,REJECT-DROP  
   - RULE-SET,bytedance@!cn_domain,📽️ TikTok
   - RULE-SET,bytedance_domain,DIRECT
-  - RULE-SET,github_domain,🚀 自动选择
+  - RULE-SET,github_domain,🚀 自动选择  
+  - RULE-SET,category-ai-!cn@ads,REJECT-DROP  
   - RULE-SET,category-ai-!cn_domain,🚀 自动选择
-  - RULE-SET,category-ai-cn_domain,DIRECT
+  - RULE-SET,category-ai-cn_domain,DIRECT  
+  - RULE-SET,microsoft@ads,REJECT-DROP  
   - RULE-SET,onedrive_domain,DIRECT
-  - RULE-SET,microsoft_domain,🚀 自动选择
+  - RULE-SET,microsoft_domain,🚀 自动选择  
+  - RULE-SET,apple@ads,REJECT-DROP  
   - RULE-SET,apple-cn_domain,DIRECT
   - RULE-SET,apple@cn_domain,DIRECT
   - RULE-SET,apple_domain,🚀 自动选择
@@ -151,9 +155,8 @@ rules:
   - DOMAIN-SUFFIX,co.jp,🇯🇵 日本节点
   - DOMAIN-SUFFIX,qnap.com,DIRECT
   - DOMAIN-SUFFIX,softonic.cn,🚀 自动选择
-  - DOMAIN-SUFFIX,redgifs.com,🇺🇲 美国节点
-  - DOMAIN-KEYWORD,redgifsdownloader,🇺🇲 美国节点
-  - RULE-SET,reddit_domain,🚀 自动选择
+  - RULE-SET,reddit_domain,🚀 自动选择  
+  - RULE-SET,category-porn@ads,REJECT-DROP  
   - RULE-SET,category-porn_domain,🚀 自动选择
   - RULE-SET,gfw_domain,🚀 自动选择
   - RULE-SET,geolocation-!cn,🚀 自动选择
