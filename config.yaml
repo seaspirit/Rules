@@ -72,7 +72,7 @@ dns:
   enable: true
   listen: 0.0.0.0:1053
   ipv6: false
-  respect-rules: true
+  respect-rules: false
   enhanced-mode: fake-ip
   fake-ip-range: 28.0.0.1/8
   fake-ip-filter-mode: blacklist
