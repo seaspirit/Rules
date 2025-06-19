@@ -72,6 +72,7 @@ dns:
   enable: true
   listen: 0.0.0.0:1053
   ipv6: false
+  prefer-h3: true
   respect-rules: false
   enhanced-mode: fake-ip
   fake-ip-range: 28.0.0.1/8
@@ -85,8 +86,8 @@ dns:
     - 223.5.5.5
     - 223.6.6.6
   nameserver:  # namesever尽量用运营商提供的DNS
-    - 223.5.5.5
-    - 223.6.6.6
+    - 202.102.128.68
+    - 202.102.134.68
   proxy-server-nameserver:
     - 223.5.5.5
     - 223.6.6.6
@@ -150,6 +151,7 @@ rules:
   - DOMAIN-SUFFIX,co.jp,🇯🇵 日本节点
   - DOMAIN-SUFFIX,qnap.com,DIRECT
   - DOMAIN-SUFFIX,softonic.cn,🚀 自动选择
+  - DOMAIN-SUFFIX,redgifs.com,🇺🇲 美国节点
   - DOMAIN-KEYWORD,redgifsdownloader,🇺🇲 美国节点
   - RULE-SET,reddit_domain,🚀 自动选择
   - RULE-SET,category-porn_domain,🚀 自动选择
