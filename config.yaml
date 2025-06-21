@@ -81,8 +81,7 @@ dns:
     - "+.msftncsi.com"
     - "time.*.com"
   default-nameserver:
-    - 223.5.5.5
-    - 223.6.6.6
+    - system://
   nameserver: # namesever尽量用运营商提供的DNS
     - system://
   proxy-server-nameserver:
@@ -91,13 +90,19 @@ dns:
     "api6-normal-lf.amemv.com":
       - '180.184.1.1#🇭🇰 香港节点'
       - '180.184.2.2#🇭🇰 香港节点'
+    "rule-set:bytedance@!cn_domain":
+      - 1.1.1.1
+      - 1.0.0.1
+    "rule-set:bytedance_domain":
+      - 180.184.1.1
+      - 180.184.2.2
     "www.youtube.com,www.google.com":
       - 8.8.8.8
       - 8.8.4.4
     "rule-set:google_domain":
       - 8.8.8.8
       - 8.8.4.4
-    "rule-set:category-ai-!cn_domain,bytedance@!cn_domain,microsoft_domain,apple_domain,netflix_domain,disney_domain,geolocation-!cn,gfw_domain":
+    "rule-set:category-ai-!cn_domain,microsoft_domain,apple_domain,netflix_domain,disney_domain,geolocation-!cn,gfw_domain":
       - 1.1.1.1
       - 1.0.0.1
     "rule-set:github_domain,telegram_domain,speedtest_domain,paypal_domain,reddit_domain,category-porn_domain":
