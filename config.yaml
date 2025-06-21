@@ -61,8 +61,7 @@ sniffer:
 # 入站  
 tun:
   enable: true
-  # system/gvisor/mixed
-  stack: mixed
+  stack: mixed # system/gvisor/mixed
   dns-hijack: ["any:53", "tcp://any:53"]
   auto-route: true
   auto-redirect: true
@@ -84,7 +83,7 @@ dns:
   default-nameserver:
     - 223.5.5.5
     - 223.6.6.6
-  nameserver:  # namesever尽量用运营商提供的DNS
+  nameserver: # namesever尽量用运营商提供的DNS
     - 223.5.5.5
     - 223.6.6.6
   proxy-server-nameserver:
@@ -92,14 +91,14 @@ dns:
     - 223.6.6.6
   nameserver-policy:
     "api6-normal-lf.amemv.com":
-      - 223.5.5.5
-      - 223.6.6.6
+      - 180.184.1.1
+      - 180.184.2.2
     "www.youtube.com,www.google.com":
-      - 1.1.1.1
-      - 1.0.0.1
+      - 8.8.8.8
+      - 8.8.4.4
     "rule-set:google_domain":
-      - 1.1.1.1
-      - 1.0.0.1
+      - 8.8.8.8
+      - 8.8.4.4
     "rule-set:category-ai-!cn_domain,bytedance@!cn_domain,microsoft_domain,apple_domain,netflix_domain,disney_domain,geolocation-!cn,gfw_domain":
       - 1.1.1.1
       - 1.0.0.1
@@ -110,19 +109,19 @@ dns:
       - 1.1.1.1
       - 1.0.0.1
 # 出站策略
-pr: &pr {type: url-test, tolerance: 1, proxies: [🇭🇰 香港节点, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇺🇲 美国节点]}
-pr2: &pr2 {type: url-test, include-all: true, tolerance: 1}
+pr: &pr {type: url-test, include-all: true, tolerance: 1}
+pr2: &pr2 {type: url-test, tolerance: 1, proxies: [🇭🇰 香港节点, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇺🇲 美国节点]}
 proxy-groups:
-  - {name: 🇭🇰 香港节点, !!merge <<: *pr2, filter: "港|HK|(?i)Hong"}
-  - {name: 🇹🇼 台湾节点, !!merge <<: *pr2, filter: "台|TW|(?i)Taiwan"}
-  - {name: 🇯🇵 日本节点, !!merge <<: *pr2, filter: "日|JP|(?i)Japan|Tokyo"}
-  - {name: 🇰🇷 韩国节点, !!merge <<: *pr2, filter: "韩|KR|(?i)Korea|Incheon"}
-  - {name: 🇸🇬 新加坡节点, !!merge <<: *pr2, filter: "新|狮|SG|(?i)Singapore"}
-  - {name: 🇺🇲 美国节点, !!merge <<: *pr2, filter: "美|US|(?i)States|America|California"}
-  - {name: 🚀 自动选择, !!merge <<: *pr2}
+  - {name: 🇭🇰 香港节点, !!merge <<: *pr, filter: "港|HK|(?i)Hong"}
+  - {name: 🇹🇼 台湾节点, !!merge <<: *pr, filter: "台|TW|(?i)Taiwan"}
+  - {name: 🇯🇵 日本节点, !!merge <<: *pr, filter: "日|JP|(?i)Japan|Tokyo"}
+  - {name: 🇰🇷 韩国节点, !!merge <<: *pr, filter: "韩|KR|(?i)Korea|Incheon"}
+  - {name: 🇸🇬 新加坡节点, !!merge <<: *pr, filter: "新|狮|SG|(?i)Singapore"}
+  - {name: 🇺🇲 美国节点, !!merge <<: *pr, filter: "美|US|(?i)States|America|California"}
+  - {name: 🚀 自动选择, !!merge <<: *pr}
   - {name: 📽️ TikTok, type: url-test, tolerance: 1, proxies: [🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇺🇲 美国节点]}
-  - {name: 🎥 NETFLIX, !!merge <<: *pr}
-  - {name: 📹 Disney+, !!merge <<: *pr}
+  - {name: 🎥 NETFLIX, !!merge <<: *pr2}
+  - {name: 📹 Disney+, !!merge <<: *pr2}
 # 规则匹配
 rules:
   - DOMAIN,api6-normal-lf.amemv.com,🇭🇰 香港节点 # 用于指定抖音的省(市/区)
