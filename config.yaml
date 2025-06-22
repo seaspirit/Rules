@@ -80,8 +80,6 @@ dns:
     - "+.msftconnecttest.com"
     - "+.msftncsi.com"
     - "time.*.com"
-  default-nameserver:
-    - system
   nameserver: # namesever尽量用运营商提供的DNS
     - system
   proxy-server-nameserver:
