@@ -81,11 +81,12 @@ dns:
     - "+.msftncsi.com"
     - "time.*.com"
   default-nameserver:
-    - system://
+    - system
   nameserver: # namesever尽量用运营商提供的DNS
-    - system://
+    - system
   proxy-server-nameserver:
-    - system://
+    - 223.5.5.5
+    - 223.6.6.6
   nameserver-policy:
     "api6-normal-lf.amemv.com":
       - '180.184.1.1#🇭🇰 香港节点'
