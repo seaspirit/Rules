@@ -156,6 +156,7 @@ rules:
   - DOMAIN-SUFFIX,co.jp,🇯🇵 日本节点
   - DOMAIN-SUFFIX,qnap.com,DIRECT
   - DOMAIN-SUFFIX,softonic.cn,🚀 自动选择
+  - DOMAIN-SUFFIX,postimg.cc,🇺🇲 美国节点
   - RULE-SET,reddit_domain,🚀 自动选择  
   - RULE-SET,category-porn@ads,REJECT-DROP  
   - RULE-SET,category-porn_domain,🚀 自动选择
