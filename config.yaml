@@ -81,8 +81,8 @@ dns:
     - "+.msftncsi.com"
     - "time.*.com"
   nameserver: # namesever尽量用运营商提供的DNS
-    - 223.5.5.5
-    - 223.6.6.6
+    - 202.102.128.68
+    - 202.102.134.68
   proxy-server-nameserver:
     - 223.5.5.5
     - 223.6.6.6
@@ -131,11 +131,11 @@ rules:
   - DOMAIN,www.youtube.com,🇺🇲 美国节点 # 用于指定油管的国家/地区
   - DOMAIN,www.google.com,🇺🇲 美国节点 # 用于指定谷歌搜索的国家/地区  
   - RULE-SET,google@ads,REJECT-DROP  
-  - RULE-SET,google_domain,🇯🇵 日本节点  
+  - RULE-SET,google_domain,🚀 自动选择
   - RULE-SET,bytedance@ads,REJECT-DROP  
   - RULE-SET,bytedance@!cn_domain,📽️ TikTok
   - RULE-SET,bytedance_domain,DIRECT
-  - RULE-SET,github_domain,🇯🇵 日本节点  
+  - RULE-SET,github_domain,🚀 自动选择
   - RULE-SET,category-ai-!cn@ads,REJECT-DROP  
   - RULE-SET,category-ai-!cn_domain,🚀 自动选择
   - RULE-SET,category-ai-cn_domain,DIRECT  
@@ -152,16 +152,17 @@ rules:
   - RULE-SET,speedtest_domain,🚀 自动选择
   - RULE-SET,paypal_domain,🚀 自动选择
   - RULE-SET,test-ipv6_domain,DIRECT
-  - DOMAIN-SUFFIX,com.tw,🇹🇼 台湾节点
+  - DOMAIN-SUFFIX,cloudflare.com,🇺🇲 美国节点
+  - DOMAIN-SUFFIX,postimg.cc,🇺🇲 美国节点
   - DOMAIN-SUFFIX,co.jp,🇯🇵 日本节点
+  - DOMAIN-SUFFIX,com.tw,🇹🇼 台湾节点
   - DOMAIN-SUFFIX,qnap.com,DIRECT
   - DOMAIN-SUFFIX,softonic.cn,🚀 自动选择
-  - DOMAIN-SUFFIX,postimg.cc,🇯🇵 日本节点
-  - RULE-SET,reddit_domain,🇯🇵 日本节点  
+  - RULE-SET,reddit_domain,🚀 自动选择
   - RULE-SET,category-porn@ads,REJECT-DROP  
-  - RULE-SET,category-porn_domain,🇯🇵 日本节点
-  - RULE-SET,gfw_domain,🇯🇵 日本节点
-  - RULE-SET,geolocation-!cn,🇯🇵 日本节点
+  - RULE-SET,category-porn_domain,🚀 自动选择
+  - RULE-SET,gfw_domain,🚀 自动选择
+  - RULE-SET,geolocation-!cn,🚀 自动选择
   - RULE-SET,cn_domain,DIRECT
   - RULE-SET,private_domain,DIRECT
   - RULE-SET,google_ip,🚀 自动选择,no-resolve
@@ -169,7 +170,7 @@ rules:
   - RULE-SET,telegram_ip,🚀 自动选择,no-resolve
   - RULE-SET,cn_ip,DIRECT
   - RULE-SET,private_ip,DIRECT
-  - MATCH,🇯🇵 日本节点
+  - MATCH,🚀 自动选择
 # 规则集
 rule-anchor:
   ip: &ip {type: http, interval: 86400, behavior: ipcidr, format: mrs}
