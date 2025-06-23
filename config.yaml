@@ -81,14 +81,15 @@ dns:
     - "+.msftncsi.com"
     - "time.*.com"
   nameserver: # namesever尽量用运营商提供的DNS
-    - system
+    - 223.5.5.5
+    - 223.6.6.6
   proxy-server-nameserver:
     - 223.5.5.5
     - 223.6.6.6
   nameserver-policy:
     "api6-normal-lf.amemv.com":
-      - '180.184.1.1#🇭🇰 香港节点'
-      - '180.184.2.2#🇭🇰 香港节点'
+      - 180.184.1.1
+      - 180.184.2.2
     "rule-set:bytedance@!cn_domain":
       - 1.1.1.1
       - 1.0.0.1
