@@ -1,23 +1,12 @@
 # 机场订阅
+pp: &pp {type: http, interval: 3600, proxy: DIRECT, health-check: {enable: true, interval: 300, url: "https://www.gstatic.com/generate_204"}}
 proxy-providers:
   山水云:
     url: "https://su.xfjhchr.com:8888/api/v1/client/subscribe?token=35ed675d0e2e1ae13cb0366a03408258"
-    type: http
-    interval: 86400
-    health-check:
-      enable: true
-      url: https://www.gstatic.com/generate_204
-      interval: 30
-    proxy: DIRECT
+    !!merge <<: *pp
   GFWAirPort:
     url: "https://www9th.ga-sub.baby/api/v1/client/subscribe?token=3d36b6d2b1d958987ee709354d9ebb94"
-    type: http
-    interval: 86400
-    health-check:
-      enable: true
-      url: https://www.gstatic.com/generate_204
-      interval: 30
-    proxy: DIRECT
+    !!merge <<: *pp
     override:
       skip-cert-verify: true
 # 全局配置 
@@ -111,8 +100,8 @@ dns:
       - 1.1.1.1
       - 1.0.0.1
 # 出站策略
-pr: &pr {type: url-test, include-all: true, tolerance: 1}
-pr2: &pr2 {type: url-test, tolerance: 1, proxies: [🇭🇰 香港节点, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇺🇲 美国节点]}
+pr: &pr {type: url-test, interval: 30, tolerance: 1, lazy: true, include-all: true}
+pr2: &pr2 {type: url-test, interval: 30, tolerance: 1, lazy: true, proxies: [🇭🇰 香港节点, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇺🇲 美国节点]}
 proxy-groups:
   - {name: 🇭🇰 香港节点, !!merge <<: *pr, filter: "港|HK|(?i)Hong"}
   - {name: 🇹🇼 台湾节点, !!merge <<: *pr, filter: "台|TW|(?i)Taiwan"}
