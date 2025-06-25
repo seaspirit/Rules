@@ -1,12 +1,12 @@
 # 机场订阅
-pp: &pp {type: http, interval: 86400, proxy: DIRECT, health-check: {enable: true, interval: 300, lazy: false, url: "https://www.gstatic.com/generate_204"}}
+pp: &pp {type: http, interval: 86400, proxy: DIRECT, health-check: {enable: true, interval: 30, url: "https://www.gstatic.com/generate_204"}}
 proxy-providers:
   山水云:
     url: "https://su.xfjhchr.com:8888/api/v1/client/subscribe?token=35ed675d0e2e1ae13cb0366a03408258"
-    !!merge <<: *pp
+    <<: *pp
   GFWAirPort:
     url: "https://www9th.ga-sub.baby/api/v1/client/subscribe?token=3d36b6d2b1d958987ee709354d9ebb94"
-    !!merge <<: *pp
+    <<: *pp
     override:
       skip-cert-verify: true
 # 全局配置 
@@ -33,7 +33,7 @@ profile:
 # 控制面板
 external-controller: 0.0.0.0:9090
 secret: ""
-external-ui: "/etc/nikki/run/ui"
+external-ui: "/etc/nikki/run"
 external-ui-name: zashboard
 external-ui-url: "https://github.com/Zephyruso/zashboard/archive/refs/heads/gh-pages.zip"
 # 嗅探
@@ -70,24 +70,24 @@ dns:
     - "+.msftncsi.com"
     - "time.*.com"
   default-nameserver:
-    - 202.102.128.68
-    - 202.102.134.68
+    - 223.5.5.5
+    - 223.6.6.6
   nameserver: # namesever尽量用运营商提供的DNS
-    - 202.102.128.68
-    - 202.102.134.68
+    - 202.102.152.3
+    - 202.102.154.3
   proxy-server-nameserver:
-    - 202.102.128.68
-    - 202.102.134.68
+    - 223.5.5.5
+    - 223.6.6.6
   nameserver-policy:
     "api6-normal-lf.amemv.com":
-      - 202.102.128.68
-      - 202.102.134.68
+      - 202.102.152.3
+      - 202.102.154.3
     "rule-set:bytedance@!cn_domain":
       - 1.1.1.1
       - 1.0.0.1
     "rule-set:bytedance_domain":
-      - 202.102.128.68
-      - 202.102.134.68
+      - 202.102.152.3
+      - 202.102.154.3
     "www.youtube.com,www.google.com":
       - 8.8.8.8
       - 8.8.4.4
@@ -107,16 +107,16 @@ dns:
 pr: &pr {type: url-test, tolerance: 1, include-all: true}
 pr2: &pr2 {type: url-test, interval: 30, tolerance: 1, lazy: false, proxies: [🇭🇰 香港节点, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇺🇲 美国节点]}
 proxy-groups:
-  - {name: 🇭🇰 香港节点, !!merge <<: *pr, filter: "港|HK|(?i)Hong"}
-  - {name: 🇹🇼 台湾节点, !!merge <<: *pr, filter: "台|TW|(?i)Taiwan"}
-  - {name: 🇯🇵 日本节点, !!merge <<: *pr, filter: "日|JP|(?i)Japan|Tokyo"}
-  - {name: 🇰🇷 韩国节点, !!merge <<: *pr, filter: "韩|KR|(?i)Korea|Incheon"}
-  - {name: 🇸🇬 新加坡节点, !!merge <<: *pr, filter: "新|狮|SG|(?i)Singapore"}
-  - {name: 🇺🇲 美国节点, !!merge <<: *pr, filter: "美|US|(?i)States|America|California"}
-  - {name: 🚀 自动选择, !!merge <<: *pr}
+  - {name: 🇭🇰 香港节点, <<: *pr, filter: "港|HK|(?i)Hong"}
+  - {name: 🇹🇼 台湾节点, <<: *pr, filter: "台|TW|(?i)Taiwan"}
+  - {name: 🇯🇵 日本节点, <<: *pr, filter: "日|JP|(?i)Japan|Tokyo"}
+  - {name: 🇰🇷 韩国节点, <<: *pr, filter: "韩|KR|(?i)Korea|Incheon"}
+  - {name: 🇸🇬 新加坡节点, <<: *pr, filter: "新|狮|SG|(?i)Singapore"}
+  - {name: 🇺🇲 美国节点, <<: *pr, filter: "美|US|(?i)States|America|California"}
+  - {name: 🚀 自动选择, <<: *pr}
   - {name: 📽️ TikTok, type: url-test, tolerance: 1, proxies: [🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇺🇲 美国节点]}
-  - {name: 🎥 NETFLIX, !!merge <<: *pr2}
-  - {name: 📹 Disney+, !!merge <<: *pr2}
+  - {name: 🎥 NETFLIX, <<: *pr2}
+  - {name: 📹 Disney+, <<: *pr2}
 # 规则匹配
 rules:
   - DOMAIN,api6-normal-lf.amemv.com,🇭🇰 香港节点 # 用于指定抖音的省(市/区)
@@ -169,38 +169,38 @@ rule-anchor:
   domain: &domain {type: http, interval: 86400, behavior: domain, format: mrs}
 rule-providers:
 # DOMAIN
-  google@ads: { !!merge <<: *domain, url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/google@ads.mrs"}
-  google_domain: { !!merge <<: *domain, url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/google.mrs"}
-  category-ai-!cn@ads: { !!merge <<: *domain, url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/category-ai-!cn@ads.mrs" }
-  category-ai-!cn_domain: { !!merge <<: *domain, url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/category-ai-!cn.mrs" }
-  category-ai-cn_domain: { !!merge <<: *domain, url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/category-ai-cn.mrs" }
-  bytedance@ads: { !!merge <<: *domain, url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/bytedance@ads.mrs"}
-  bytedance@!cn_domain: { !!merge <<: *domain, url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/bytedance@!cn.mrs"}
-  bytedance_domain: { !!merge <<: *domain, url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/bytedance.mrs"}
-  github_domain: { !!merge <<: *domain, url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/github.mrs"}
-  telegram_domain: { !!merge <<: *domain, url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/telegram.mrs"}
-  netflix_domain: { !!merge <<: *domain, url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/netflix.mrs"}
-  disney_domain: { !!merge <<: *domain, url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/disney.mrs"}
-  paypal_domain: { !!merge <<: *domain, url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/paypal.mrs"}
-  microsoft@ads: { !!merge <<: *domain, url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/microsoft@ads.mrs"}
-  onedrive_domain: { !!merge <<: *domain, url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/onedrive.mrs"}
-  microsoft_domain: { !!merge <<: *domain, url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/microsoft.mrs"}
-  apple@ads: { !!merge <<: *domain, url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/apple@ads.mrs"}
-  apple-cn_domain: { !!merge <<: *domain, url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/apple-cn.mrs"}
-  apple@cn_domain: { !!merge <<: *domain, url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/apple@cn.mrs"}
-  apple_domain: { !!merge <<: *domain, url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/apple.mrs"}
-  speedtest_domain: { !!merge <<: *domain, url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/ookla-speedtest.mrs"}
-  test-ipv6_domain: { !!merge <<: *domain, url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/test-ipv6.mrs"}
-  reddit_domain: { !!merge <<: *domain, url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/reddit.mrs"}
-  category-porn@ads: { !!merge <<: *domain, url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/category-porn@ads.mrs"}
-  category-porn_domain: { !!merge <<: *domain, url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/category-porn.mrs"}
-  gfw_domain: { !!merge <<: *domain, url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/gfw.mrs"}
-  geolocation-!cn: { !!merge <<: *domain, url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/geolocation-!cn.mrs"}
-  cn_domain: { !!merge <<: *domain, url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/cn.mrs"} 
-  private_domain: { !!merge <<: *domain, url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/private.mrs"}
+  google@ads: { <<: *domain, url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/google@ads.mrs"}
+  google_domain: { <<: *domain, url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/google.mrs"}
+  category-ai-!cn@ads: { <<: *domain, url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/category-ai-!cn@ads.mrs" }
+  category-ai-!cn_domain: { <<: *domain, url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/category-ai-!cn.mrs" }
+  category-ai-cn_domain: { <<: *domain, url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/category-ai-cn.mrs" }
+  bytedance@ads: { <<: *domain, url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/bytedance@ads.mrs"}
+  bytedance@!cn_domain: { <<: *domain, url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/bytedance@!cn.mrs"}
+  bytedance_domain: { <<: *domain, url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/bytedance.mrs"}
+  github_domain: { <<: *domain, url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/github.mrs"}
+  telegram_domain: { <<: *domain, url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/telegram.mrs"}
+  netflix_domain: { <<: *domain, url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/netflix.mrs"}
+  disney_domain: { <<: *domain, url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/disney.mrs"}
+  paypal_domain: { <<: *domain, url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/paypal.mrs"}
+  microsoft@ads: { <<: *domain, url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/microsoft@ads.mrs"}
+  onedrive_domain: { <<: *domain, url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/onedrive.mrs"}
+  microsoft_domain: { <<: *domain, url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/microsoft.mrs"}
+  apple@ads: { <<: *domain, url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/apple@ads.mrs"}
+  apple-cn_domain: { <<: *domain, url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/apple-cn.mrs"}
+  apple@cn_domain: { <<: *domain, url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/apple@cn.mrs"}
+  apple_domain: { <<: *domain, url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/apple.mrs"}
+  speedtest_domain: { <<: *domain, url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/ookla-speedtest.mrs"}
+  test-ipv6_domain: { <<: *domain, url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/test-ipv6.mrs"}
+  reddit_domain: { <<: *domain, url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/reddit.mrs"}
+  category-porn@ads: { <<: *domain, url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/category-porn@ads.mrs"}
+  category-porn_domain: { <<: *domain, url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/category-porn.mrs"}
+  gfw_domain: { <<: *domain, url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/gfw.mrs"}
+  geolocation-!cn: { <<: *domain, url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/geolocation-!cn.mrs"}
+  cn_domain: { <<: *domain, url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/cn.mrs"} 
+  private_domain: { <<: *domain, url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/private.mrs"}
 # IP
-  google_ip: { !!merge <<: *ip, url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geoip/google.mrs"}
-  telegram_ip: { !!merge <<: *ip, url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geoip/telegram.mrs"}
-  netflix_ip: { !!merge <<: *ip, url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geoip/netflix.mrs"}
-  cn_ip: { !!merge <<: *ip, url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geoip/cn.mrs"}
-  private_ip: { !!merge <<: *ip, url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geoip/private.mrs"}
+  google_ip: { <<: *ip, url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geoip/google.mrs"}
+  telegram_ip: { <<: *ip, url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geoip/telegram.mrs"}
+  netflix_ip: { <<: *ip, url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geoip/netflix.mrs"}
+  cn_ip: { <<: *ip, url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geoip/cn.mrs"}
+  private_ip: { <<: *ip, url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geoip/private.mrs"}
