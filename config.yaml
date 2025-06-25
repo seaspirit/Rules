@@ -73,21 +73,21 @@ dns:
     - 223.5.5.5
     - 223.6.6.6
   nameserver: # namesever尽量用运营商提供的DNS
-    - 202.102.152.3
-    - 202.102.154.3
+    - 202.102.128.68
+    - 202.102.134.68
   proxy-server-nameserver:
     - 223.5.5.5
     - 223.6.6.6
   nameserver-policy:
     "api6-normal-lf.amemv.com":
-      - 202.102.152.3
-      - 202.102.154.3
+      - 202.102.128.68
+      - 202.102.134.68
     "rule-set:bytedance@!cn_domain":
       - 1.1.1.1
       - 1.0.0.1
     "rule-set:bytedance_domain":
-      - 202.102.152.3
-      - 202.102.154.3
+      - 202.102.128.68
+      - 202.102.134.68
     "www.youtube.com,www.google.com":
       - 8.8.8.8
       - 8.8.4.4
