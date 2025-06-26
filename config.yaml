@@ -91,7 +91,7 @@ dns:
     "www.youtube.com,www.google.com":
       - 8.8.8.8
       - 8.8.4.4
-    "rule-set:google_domain":
+    "rule-set:google-play_domain,google_domain":
       - 8.8.8.8
       - 8.8.4.4
     "rule-set:category-ai-!cn_domain,microsoft_domain,apple_domain,netflix_domain,disney_domain,geolocation-!cn,gfw_domain":
