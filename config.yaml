@@ -82,16 +82,15 @@ dns:
     "api6-normal-lf.amemv.com":
       - 202.102.128.68
       - 202.102.134.68
-    "rule-set:bytedance@!cn_domain":
-      - 1.1.1.1
-      - 1.0.0.1
+    "+.googlevideo.com":
+      - https://dns.google/dns-query#h3=true
     "www.youtube.com,www.google.com":
       - 8.8.8.8
       - 8.8.4.4
     "rule-set:google-play_domain,google_domain":
       - 8.8.8.8
       - 8.8.4.4
-    "rule-set:category-ai-!cn_domain,netflix_domain,disney_domain,geolocation-!cn,gfw_domain":
+    "rule-set:category-ai-!cn_domain,bytedance@!cn_domain,netflix_domain,disney_domain,geolocation-!cn,gfw_domain":
       - 1.1.1.1
       - 1.0.0.1
     "rule-set:github_domain,telegram_domain,speedtest_domain,paypal_domain,reddit_domain,category-porn_domain":
