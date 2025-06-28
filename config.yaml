@@ -91,7 +91,7 @@ dns:
     "rule-set:google-play_domain,google_domain":
       - 8.8.8.8
       - 8.8.4.4
-    "rule-set:category-ai-!cn_domain,microsoft_domain,apple_domain,netflix_domain,disney_domain,geolocation-!cn,gfw_domain":
+    "rule-set:category-ai-!cn_domain,netflix_domain,disney_domain,geolocation-!cn,gfw_domain":
       - 1.1.1.1
       - 1.0.0.1
     "rule-set:github_domain,telegram_domain,speedtest_domain,paypal_domain,reddit_domain,category-porn_domain":
@@ -128,12 +128,9 @@ rules:
   - RULE-SET,category-ai-!cn@ads,REJECT-DROP
   - RULE-SET,category-ai-!cn_domain,🚀 自动选择 
   - RULE-SET,microsoft@ads,REJECT-DROP
-  - RULE-SET,onedrive_domain,DIRECT
   - RULE-SET,microsoft_domain,DIRECT
   - RULE-SET,apple@ads,REJECT-DROP
-  - RULE-SET,apple-cn_domain,DIRECT
-  - RULE-SET,apple@cn_domain,DIRECT
-  - RULE-SET,apple_domain,🚀 自动选择
+  - RULE-SET,apple_domain,DIRECT
   - RULE-SET,netflix_domain,🎥 NETFLIX
   - RULE-SET,disney_domain,📹 Disney+
   - RULE-SET,telegram_domain,🚀 自动选择
@@ -178,11 +175,8 @@ rule-providers:
   disney_domain: { <<: *domain, url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/disney.mrs"}
   paypal_domain: { <<: *domain, url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/paypal.mrs"}
   microsoft@ads: { <<: *domain, url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/microsoft@ads.mrs"}
-  onedrive_domain: { <<: *domain, url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/onedrive.mrs"}
   microsoft_domain: { <<: *domain, url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/microsoft.mrs"}
   apple@ads: { <<: *domain, url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/apple@ads.mrs"}
-  apple-cn_domain: { <<: *domain, url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/apple-cn.mrs"}
-  apple@cn_domain: { <<: *domain, url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/apple@cn.mrs"}
   apple_domain: { <<: *domain, url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/apple.mrs"}
   speedtest_domain: { <<: *domain, url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/ookla-speedtest.mrs"}
   test-ipv6_domain: { <<: *domain, url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/test-ipv6.mrs"}
