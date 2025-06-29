@@ -82,8 +82,6 @@ dns:
     "api6-normal-lf.amemv.com":
       - 202.102.128.68
       - 202.102.134.68
-    "+.googlevideo.com":
-      - https://dns.google/dns-query#h3=true
     "www.youtube.com,www.google.com":
       - 8.8.8.8
       - 8.8.4.4
