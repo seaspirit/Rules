@@ -94,11 +94,9 @@ dns:
       - 1.1.1.1
       - 1.0.0.1
     "rule-set:github_domain,telegram_domain,speedtest_domain,paypal_domain,reddit_domain,category-porn_domain":
-      - 1.1.1.1
-      - 1.0.0.1
+      - https://1.1.1.1/dns-query
     "MATCH":
-      - 1.1.1.1
-      - 1.0.0.1
+      - https://1.1.1.1/dns-query
 # 出站策略
 pr: &pr {type: url-test, interval: 300, tolerance: 1, include-all: true}
 pr2: &pr2 {type: url-test, interval: 300, tolerance: 1, lazy: false, proxies: [🇭🇰 香港节点, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇺🇲 美国节点]}
