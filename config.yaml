@@ -42,7 +42,6 @@ sniffer:
   sniff:
     HTTP:
       ports: [80, 8080-8880]
-      override-destination: true
     TLS:
       ports: [443, 8443]
     QUIC:
@@ -123,7 +122,7 @@ rules:
   - RULE-SET,category-ai-!cn@ads,REJECT-DROP
   - RULE-SET,category-ai-!cn_domain,🚀 自动选择 
   - RULE-SET,microsoft@ads,REJECT-DROP
-  - RULE-SET,microsoft_domain,DIRECT
+  - RULE-SET,microsoft_domain,🚀 自动选择
   - RULE-SET,apple@ads,REJECT-DROP
   - RULE-SET,apple_domain,DIRECT
   - RULE-SET,netflix_domain,🎥 NETFLIX
@@ -134,8 +133,9 @@ rules:
   - RULE-SET,test-ipv6_domain,DIRECT
   - DOMAIN-SUFFIX,cloudflare.com,🇺🇲 美国节点
   - DOMAIN-SUFFIX,postimg.cc,🇺🇲 美国节点
-  - DOMAIN-SUFFIX,co.jp,🇯🇵 日本节点
-  - DOMAIN-SUFFIX,com.tw,🇹🇼 台湾节点
+  - DOMAIN-SUFFIX,jp,🇯🇵 日本节点
+  - DOMAIN-SUFFIX,tw,🇹🇼 台湾节点
+  - DOMAIN-SUFFIX,us,🚀 自动选择
   - DOMAIN-SUFFIX,qnap.com,DIRECT
   - DOMAIN-SUFFIX,softonic.cn,🚀 自动选择
   - RULE-SET,reddit_domain,🚀 自动选择
