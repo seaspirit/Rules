@@ -98,13 +98,13 @@ dns:
 pr: &pr {type: url-test, interval: 300, tolerance: 5, include-all: true}
 pr2: &pr2 {type: url-test, interval: 300, tolerance: 5, lazy: false, proxies: [🇭🇰 香港节点, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇺🇲 美国节点]}
 proxy-groups:
-  - {name: 🇭🇰 香港节点, type: load-balance, strategy: consistent-hashing, interval: 300, include-all: true, filter: "港|HK|(?i)HongXX", url: "https://www.gstatic.com/generate_204"}
+  - {name: 🇭🇰 香港节点, <<: *pr, filter: "港|HK|(?i)HongXX"}
   - {name: 🇹🇼 台湾节点, <<: *pr, filter: "台|TW|(?i)Taiwan"}
   - {name: 🇯🇵 日本节点, <<: *pr, filter: "日|JP|(?i)Japan|Tokyo"}
   - {name: 🇰🇷 韩国节点, <<: *pr, filter: "韩|KR|(?i)Korea|Incheon"}
   - {name: 🇸🇬 新加坡节点, <<: *pr, filter: "新|狮|SG|(?i)Singapore"}
   - {name: 🇺🇲 美国节点, <<: *pr, filter: "美|US|(?i)States|America|California"}
-  - {name: 🚀 自动选择, type: load-balance, strategy: consistent-hashing, interval: 300, include-all: true, url: "https://www.gstatic.com/generate_204"}
+  - {name: 🚀 自动选择, type: load-balance, strategy: consistent-hashing, interval: 300, include-all: true}
   - {name: 📽️ TikTok, type: url-test, tolerance: 5, proxies: [🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇺🇲 美国节点]}
   - {name: 🎥 NETFLIX, <<: *pr2}
   - {name: 📹 Disney+, <<: *pr2}
@@ -118,6 +118,7 @@ rules:
   - RULE-SET,google_domain,🚀 自动选择
   - RULE-SET,bytedance@ads,REJECT-DROP
   - RULE-SET,bytedance@!cn_domain,📽️ TikTok
+  - RULE-SET,bytedance_domain,DIRECT
   - RULE-SET,github_domain,🚀 自动选择
   - RULE-SET,category-ai-!cn@ads,REJECT-DROP
   - RULE-SET,category-ai-!cn_domain,🚀 自动选择 
@@ -162,6 +163,7 @@ rule-providers:
   category-ai-!cn_domain: { <<: *domain, url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/category-ai-!cn.mrs" }
   bytedance@ads: { <<: *domain, url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/bytedance@ads.mrs"}
   bytedance@!cn_domain: { <<: *domain, url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/bytedance@!cn.mrs"}
+  bytedance_domain: { <<: *domain, url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/bytedance.mrs"}
   github_domain: { <<: *domain, url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/github.mrs"}
   telegram_domain: { <<: *domain, url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/telegram.mrs"}
   netflix_domain: { <<: *domain, url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/netflix.mrs"}
