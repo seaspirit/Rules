@@ -111,8 +111,6 @@ proxy-groups:
 # 规则匹配
 rules:
   - DOMAIN,api6-normal-lf.amemv.com,🇭🇰 香港节点 # 用于指定抖音的省(市/区)
-  - DOMAIN,www.youtube.com,🇺🇲 美国节点 # 用于指定油管的国家/地区
-  - DOMAIN,www.google.com,🇺🇲 美国节点 # 用于指定谷歌搜索的国家/地区
   - RULE-SET,google-play_domain,🇭🇰 香港节点
   - RULE-SET,google@ads,REJECT-DROP
   - RULE-SET,google_domain,🚀 自动选择
@@ -131,8 +129,6 @@ rules:
   - RULE-SET,speedtest_domain,🚀 自动选择
   - RULE-SET,paypal_domain,🚀 自动选择
   - RULE-SET,test-ipv6_domain,DIRECT
-  - DOMAIN-SUFFIX,cloudflare.com,🇺🇲 美国节点
-  - DOMAIN-SUFFIX,postimg.cc,🇺🇲 美国节点
   - DOMAIN-SUFFIX,jp,🇯🇵 日本节点
   - DOMAIN-SUFFIX,tw,🇹🇼 台湾节点
   - DOMAIN-SUFFIX,us,🚀 自动选择
