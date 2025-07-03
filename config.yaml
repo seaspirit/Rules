@@ -85,13 +85,10 @@ dns:
     "api6-normal-lf.amemv.com":
       - 202.102.128.68
       - 202.102.134.68
-    "rule-set:google-play_domain":
-      - 1.1.1.1
-      - 1.0.0.1
     "www.youtube.com,www.google.com":
       - 1.1.1.1
       - 1.0.0.1
-    "rule-set:google_domain":
+    "rule-set:google-play_domain,google_domain":
       - 1.1.1.1
       - 1.0.0.1
     "rule-set:github_domain,category-ai-!cn_domain,bytedance@!cn_domain,telegram_domain,speedtest_domain,paypal_domain,netflix_domain,disney_domain":
@@ -99,8 +96,10 @@ dns:
       - 1.0.0.1
     "rule-set:geolocation-!cn,gfw_domain,reddit_domain,category-porn_domain":
       - https://1.1.1.1/dns-query
+      - https://1.0.0.1/dns-query
     "MATCH":
       - https://1.1.1.1/dns-query
+      - https://1.0.0.1/dns-query
 # 出站策略
 pr: &pr {type: url-test, interval: 300, tolerance: 5, include-all: true}
 pr2: &pr2 {type: url-test, interval: 300, tolerance: 5, lazy: false, proxies: [🇭🇰 香港节点, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇺🇲 美国节点]}
