@@ -17,7 +17,7 @@ mixed-port: 7893
 tproxy-port: 7894
 allow-lan: true
 bind-address: "*"
-ipv6: false
+ipv6: true
 unified-delay: true
 tcp-concurrent: true
 log-level: warning
@@ -62,7 +62,7 @@ tun:
 dns:
   enable: true
   listen: 0.0.0.0:1053
-  ipv6: false
+  ipv6: true
   respect-rules: true
   enhanced-mode: fake-ip
   fake-ip-range: 28.0.0.1/8
@@ -85,16 +85,19 @@ dns:
     "api6-normal-lf.amemv.com":
       - 202.102.128.68
       - 202.102.134.68
-    "www.youtube.com,www.google.com":
-      - 8.8.8.8
-      - 8.8.4.4
-    "rule-set:google-play_domain,google_domain":
-      - 8.8.8.8
-      - 8.8.4.4
-    "rule-set:category-ai-!cn_domain,bytedance@!cn_domain,netflix_domain,disney_domain,geolocation-!cn,gfw_domain":
+    "rule-set:google-play_domain":
       - 1.1.1.1
       - 1.0.0.1
-    "rule-set:github_domain,telegram_domain,speedtest_domain,paypal_domain,reddit_domain,category-porn_domain":
+    "www.youtube.com,www.google.com":
+      - 1.1.1.1
+      - 1.0.0.1
+    "rule-set:google_domain":
+      - 1.1.1.1
+      - 1.0.0.1
+    "rule-set:github_domain,category-ai-!cn_domain,bytedance@!cn_domain,telegram_domain,speedtest_domain,paypal_domain,netflix_domain,disney_domain":
+      - 1.1.1.1
+      - 1.0.0.1
+    "rule-set:geolocation-!cn,gfw_domain,reddit_domain,category-porn_domain":
       - https://1.1.1.1/dns-query
     "MATCH":
       - https://1.1.1.1/dns-query
