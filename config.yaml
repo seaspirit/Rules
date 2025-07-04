@@ -83,15 +83,18 @@ dns:
     - 223.6.6.6
   nameserver-policy:
     "api6-normal-lf.amemv.com":
-      - 223.5.5.5
-      - 223.6.6.6
+      - 180.184.1.1
+      - 180.184.2.2
     "www.youtube.com,www.google.com":
       - 1.1.1.1
       - 1.0.0.1
-    "rule-set:google-play_domain,google_domain":
+    "rule-set:google-play_domain,google_domain,bytedance@!cn_domain":
       - 1.1.1.1
       - 1.0.0.1
-    "rule-set:github_domain,category-ai-!cn_domain,bytedance@!cn_domain,telegram_domain,speedtest_domain,paypal_domain,netflix_domain,disney_domain":
+    "rule-set:bytedance_domain":
+      - 180.184.1.1
+      - 180.184.2.2
+    "rule-set:github_domain,category-ai-!cn_domain,telegram_domain,speedtest_domain,paypal_domain,netflix_domain,disney_domain":
       - 1.1.1.1
       - 1.0.0.1
     "rule-set:geolocation-!cn,gfw_domain,reddit_domain,category-porn_domain":
