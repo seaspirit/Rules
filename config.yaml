@@ -82,7 +82,7 @@ dns:
     - 223.5.5.5
     - 223.6.6.6
   nameserver-policy:
-    "api6-normal-lf.amemv.com":
+    "+.amemv.com":
       - 180.184.1.1
       - 180.184.2.2
     "www.youtube.com,www.google.com":
@@ -119,7 +119,7 @@ proxy-groups:
   - {name: 📹 Disney+, <<: *pr2}
 # 规则匹配
 rules:
-  - DOMAIN,api6-normal-lf.amemv.com,🇭🇰 香港节点 # 用于指定抖音的省(市/区)
+  - DOMAIN-SUFFIX,amemv.com,🇭🇰 香港节点 # 用于指定抖音的省(市/区)
   - DOMAIN,www.youtube.com,🇺🇲 美国节点 # 用于指定油管的国家/地区
   - DOMAIN,www.google.com,🇺🇲 美国节点 # 用于指定谷歌搜索的国家/地区
   - RULE-SET,google-play_domain,🇭🇰 香港节点
