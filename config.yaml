@@ -2,7 +2,7 @@
 pp: &pp {type: http, interval: 86400, proxy: DIRECT, health-check: {enable: true, interval: 300, url: "https://www.gstatic.com/generate_204"}}
 proxy-providers:
   山水云:
-    url: "https://su.xfjhchr.com:8888/api/v1/client/subscribe?token=a5f68be74f12578660a0cc3ca731617e"
+    url: "https://su.xfjhchr.com:8888/api/v1/client/subscribe?token=04be42b29048295bad781b726a593ee8"
     <<: *pp
   GFWAirPort:
     url: "https://www9th.ga-sub.baby/api/v1/client/subscribe?token=3d36b6d2b1d958987ee709354d9ebb94"
