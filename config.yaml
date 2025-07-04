@@ -2,7 +2,7 @@
 pp: &pp {type: http, interval: 86400, proxy: DIRECT, health-check: {enable: true, interval: 300, url: "https://www.gstatic.com/generate_204"}}
 proxy-providers:
   山水云:
-    url: "https://su.xfjhchr.com:8888/api/v1/client/subscribe?token=35ed675d0e2e1ae13cb0366a03408258"
+    url: "https://su.xfjhchr.com:8888/api/v1/client/subscribe?token=a5f68be74f12578660a0cc3ca731617e"
     <<: *pp
   GFWAirPort:
     url: "https://www9th.ga-sub.baby/api/v1/client/subscribe?token=3d36b6d2b1d958987ee709354d9ebb94"
@@ -103,23 +103,28 @@ dns:
 # 出站策略
 pr: &pr {type: url-test, interval: 300, tolerance: 5, include-all: true}
 pr2: &pr2 {type: url-test, interval: 300, tolerance: 5, lazy: false, proxies: [🇭🇰 香港节点, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇺🇲 美国节点]}
+pr3: &pr3 {type: fallback, interval: 300, lazy: false}
 proxy-groups:
   - {name: 🇭🇰 香港节点, <<: *pr, filter: "港|HK|(?i)HongXX"}
+  - {name: 🇭🇰 香港优先, <<: *pr3, proxies: [🇭🇰 香港节点, 🚀 自动选择]}
   - {name: 🇹🇼 台湾节点, <<: *pr, filter: "台|TW|(?i)Taiwan"}
+  - {name: 🇹🇼 台湾优先, <<: *pr3, proxies: [🇹🇼 台湾节点, 🚀 自动选择]}
   - {name: 🇯🇵 日本节点, <<: *pr, filter: "日|JP|(?i)Japan|Tokyo"}
+  - {name: 🇯🇵 日本优先, <<: *pr3, proxies: [🇯🇵 日本节点, 🚀 自动选择]}
   - {name: 🇰🇷 韩国节点, <<: *pr, filter: "韩|KR|(?i)Korea|Incheon"}
   - {name: 🇸🇬 新加坡节点, <<: *pr, filter: "新|狮|SG|(?i)Singapore"}
   - {name: 🇺🇲 美国节点, <<: *pr, filter: "美|US|(?i)States|America|California"}
+  - {name: 🇺🇲 美国优先, <<: *pr3, proxies: [🇺🇲 美国节点, 🚀 自动选择]}
   - {name: 🚀 自动选择, <<: *pr}
-  - {name: 📽️ TikTok, type: url-test, tolerance: 5, proxies: [🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇺🇲 美国节点]}
+  - {name: 📽️ TikTok, type: url-test, interval: 300, tolerance: 5, lazy: false, proxies: [🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇺🇲 美国节点, 🚀 自动选择]}
   - {name: 🎥 NETFLIX, <<: *pr2}
   - {name: 📹 Disney+, <<: *pr2}
 # 规则匹配
 rules:
-  - DOMAIN,api6-normal-lf.amemv.com,🇭🇰 香港节点 # 用于指定抖音的省(市/区)
-  - DOMAIN,www.youtube.com,🇺🇲 美国节点 # 用于指定油管的国家/地区
-  - DOMAIN,www.google.com,🇺🇲 美国节点 # 用于指定谷歌搜索的国家/地区
-  - RULE-SET,google-play_domain,🇭🇰 香港节点
+  - DOMAIN,api6-normal-lf.amemv.com,🇭🇰 香港优先 # 用于指定抖音的省(市/区)
+  - DOMAIN,www.youtube.com,🇺🇲 美国优先 # 用于指定油管的国家/地区
+  - DOMAIN,www.google.com,🇺🇲 美国优先 # 用于指定谷歌搜索的国家/地区
+  - RULE-SET,google-play_domain,🇭🇰 香港优先
   - RULE-SET,google@ads,REJECT-DROP
   - RULE-SET,google_domain,🚀 自动选择
   - RULE-SET,bytedance@ads,REJECT-DROP
@@ -138,8 +143,8 @@ rules:
   - RULE-SET,speedtest_domain,🚀 自动选择
   - RULE-SET,paypal_domain,🚀 自动选择
   - RULE-SET,test-ipv6_domain,DIRECT
-  - DOMAIN-SUFFIX,jp,🇯🇵 日本节点
-  - DOMAIN-SUFFIX,tw,🇹🇼 台湾节点
+  - DOMAIN-SUFFIX,jp,🇯🇵 日本优先
+  - DOMAIN-SUFFIX,tw,🇹🇼 台湾优先
   - DOMAIN-SUFFIX,us,🚀 自动选择
   - DOMAIN-SUFFIX,qnap.com,DIRECT
   - DOMAIN-SUFFIX,softonic.cn,🚀 自动选择
