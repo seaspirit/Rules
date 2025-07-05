@@ -141,6 +141,7 @@ rules:
   - RULE-SET,speedtest_domain,🚀 自动选择
   - RULE-SET,paypal_domain,🚀 自动选择
   - RULE-SET,test-ipv6_domain,DIRECT
+  - DOMAIN-SUFFIX,postimg.cc,🇯🇵 日本节点
   - DOMAIN-SUFFIX,jp,🇯🇵 日本节点
   - DOMAIN-SUFFIX,tw,🇹🇼 台湾节点
   - DOMAIN-SUFFIX,us,🚀 自动选择
