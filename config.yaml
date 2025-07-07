@@ -1,5 +1,5 @@
 # 机场订阅
-pp: &pp {type: http, interval: 86400, proxy: DIRECT, health-check: {enable: true, interval: 30, url: "https://www.gstatic.com/generate_204"}}
+pp: &pp {type: http, interval: 86400, proxy: DIRECT, health-check: {enable: true, interval: 300, url: "https://www.gstatic.com/generate_204"}}
 proxy-providers:
   山水云:
     url: "https://su.xfjhchr.com:8888/api/v1/client/subscribe?token=04be42b29048295bad781b726a593ee8"
