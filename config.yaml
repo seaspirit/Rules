@@ -7,8 +7,6 @@ proxy-providers:
   GFWAirPort:
     url: "https://www9th.ga-sub.baby/api/v1/client/subscribe?token=3d36b6d2b1d958987ee709354d9ebb94"
     <<: *pp
-    override:
-      skip-cert-verify: true
 # 全局配置 
 port: 7890
 socks-port: 7891
@@ -87,11 +85,11 @@ dns:
       - 223.5.5.5
       - 223.6.6.6
     "www.youtube.com,www.google.com":
-      - 8.8.8.8
-      - 8.8.4.4
+      - 223.5.5.5
+      - 223.6.6.6
     "rule-set:google-play_domain,google_domain":
-      - 8.8.8.8
-      - 8.8.4.4
+      - 223.5.5.5
+      - 223.6.6.6
     "rule-set:github_domain,bytedance@!cn_domain,category-ai-!cn_domain,telegram_domain,speedtest_domain,paypal_domain,netflix_domain,disney_domain":
       - 1.1.1.1
       - 1.0.0.1
@@ -105,7 +103,7 @@ dns:
 pr: &pr {type: url-test, interval: 300, tolerance: 1, include-all: true}
 pr2: &pr2 {type: url-test, interval: 300, tolerance: 1, lazy: false, proxies: [🇭🇰 香港节点, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇺🇲 美国节点]}
 proxy-groups:
-  - {name: 🇭🇰 香港节点, <<: *pr, filter: "港|HK|(?i)HongXX"}
+  - {name: 🇭🇰 香港节点, <<: *pr, filter: "港|HK|(?i)hongkongXX|hong kong"}
   - {name: 🇹🇼 台湾节点, <<: *pr, filter: "台|TW|(?i)Taiwan"}
   - {name: 🇯🇵 日本节点, <<: *pr, filter: "日|JP|(?i)Japan|Tokyo"}
   - {name: 🇰🇷 韩国节点, <<: *pr, filter: "韩|KR|(?i)Korea|Incheon"}
