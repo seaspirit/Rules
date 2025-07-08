@@ -1,5 +1,5 @@
 # 机场订阅
-pp: &pp {type: http, interval: 86400, proxy: DIRECT, health-check: {enable: true, interval: 30, url: "https://www.gstatic.com/generate_204"}}
+pp: &pp {type: http, interval: 86400, proxy: DIRECT, health-check: {enable: true, interval: 300, url: "https://www.gstatic.com/generate_204"}}
 proxy-providers:
   山水云:
     url: "https://su.xfjhchr.com:8888/api/v1/client/subscribe?token=04be42b29048295bad781b726a593ee8"
@@ -77,15 +77,15 @@ dns:
     - 223.5.5.5
     - 223.6.6.6
   nameserver: # namesever尽量用运营商提供的DNS
-    - 202.102.152.3
-    - 202.102.154.3
+    - 202.102.128.68
+    - 202.102.134.68
   proxy-server-nameserver:
     - https://223.5.5.5/dns-query
     - https://223.6.6.6/dns-query
   nameserver-policy:
     "+.amemv.com":
-      - 180.184.1.1
-      - 180.184.2.2
+      - 223.5.5.5
+      - 223.6.6.6
     "www.youtube.com,www.google.com":
       - 8.8.8.8
       - 8.8.4.4
@@ -102,8 +102,8 @@ dns:
       - https://1.1.1.1/dns-query
       - https://1.0.0.1/dns-query
 # 出站策略
-pr: &pr {type: url-test, interval: 30, tolerance: 1, include-all: true}
-pr2: &pr2 {type: url-test, interval: 30, tolerance: 1, lazy: false, proxies: [🇭🇰 香港节点, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇺🇲 美国节点]}
+pr: &pr {type: url-test, interval: 300, tolerance: 1, include-all: true}
+pr2: &pr2 {type: url-test, interval: 300, tolerance: 1, lazy: false, proxies: [🇭🇰 香港节点, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇺🇲 美国节点]}
 proxy-groups:
   - {name: 🇭🇰 香港节点, <<: *pr, filter: "港|HK|(?i)HongXX"}
   - {name: 🇹🇼 台湾节点, <<: *pr, filter: "台|TW|(?i)Taiwan"}
@@ -112,7 +112,7 @@ proxy-groups:
   - {name: 🇸🇬 新加坡节点, <<: *pr, filter: "新|狮|SG|(?i)Singapore"}
   - {name: 🇺🇲 美国节点, <<: *pr, filter: "美|US|(?i)States|America|California"}
   - {name: 🚀 自动选择, <<: *pr}
-  - {name: 📽️ TikTok, type: url-test, interval: 30, tolerance: 1, lazy: false, proxies: [🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇺🇲 美国节点]}
+  - {name: 📽️ TikTok, type: url-test, interval: 300, tolerance: 1, lazy: false, proxies: [🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇺🇲 美国节点]}
   - {name: 🎥 NETFLIX, <<: *pr2}
   - {name: 📹 Disney+, <<: *pr2}
 # 规则匹配
