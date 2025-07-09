@@ -2,10 +2,15 @@
 pp: &pp {type: http, interval: 86400, proxy: DIRECT, health-check: {enable: true, interval: 300, url: "https://www.gstatic.com/generate_204"}}
 proxy-providers:
   山水云:
-    url: "https://su.xfjhchr.com:8888/api/v1/client/subscribe?token=04be42b29048295bad781b726a593ee8"
+    url: "https://su.xfjhchr.com:8888/api/v1/client/subscribe?token=cc52647adbc816a383c560692461ab47"
     <<: *pp
   GFWAirPort:
     url: "https://www9th.ga-sub.baby/api/v1/client/subscribe?token=3d36b6d2b1d958987ee709354d9ebb94"
+    <<: *pp
+    override:
+      skip-cert-verify: true
+  中国国际机场:
+    url: "https://xtls.rprx.vision/api/v1/client/subscribe?token=57aee2c27a8df31f48b11c62c6de6832"
     <<: *pp
 # 全局配置 
 port: 7890
@@ -84,19 +89,20 @@ dns:
 pr: &pr {type: url-test, interval: 300, tolerance: 1, include-all: true}
 pr2: &pr2 {type: url-test, interval: 300, tolerance: 1, lazy: false, proxies: [🇭🇰 香港节点, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇺🇲 美国节点]}
 proxy-groups:
-  - {name: 🇭🇰 香港节点, <<: *pr, filter: "港|HK|(?i)hongkongXX|hong kong"}
+  - {name: 🇭🇰 香港节点, <<: *pr, filter: "港|HK|(?i)hongkong|hong kong"}
   - {name: 🇹🇼 台湾节点, <<: *pr, filter: "台|TW|(?i)Taiwan"}
   - {name: 🇯🇵 日本节点, <<: *pr, filter: "日|JP|(?i)Japan|Tokyo"}
   - {name: 🇰🇷 韩国节点, <<: *pr, filter: "韩|KR|(?i)Korea|Incheon"}
   - {name: 🇸🇬 新加坡节点, <<: *pr, filter: "新|狮|SG|(?i)Singapore"}
   - {name: 🇺🇲 美国节点, <<: *pr, filter: "美|US|(?i)States|America|California"}
-  - {name: 🚀 自动选择, <<: *pr}
+  - {name: 🇨🇳 国内节点, <<: *pr, filter: "(?=.*(联通|电信|移动))^((?!(济南)).)*$"}
+  - {name: 🚀 自动选择, <<: *pr, filter: "^((?!(Tj - B Group)).)*$"}
   - {name: 📽️ TikTok, type: url-test, interval: 300, tolerance: 1, lazy: false, proxies: [🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇺🇲 美国节点]}
   - {name: 🎥 NETFLIX, <<: *pr2}
   - {name: 📹 Disney+, <<: *pr2}
 # 规则匹配
 rules:
-  - DOMAIN-SUFFIX,amemv.com,🇭🇰 香港节点 # 用于指定抖音的省(市/区)
+  - DOMAIN-SUFFIX,amemv.com,🇨🇳 国内节点 # 用于指定抖音的省(市/区)
   - DOMAIN,www.youtube.com,🇺🇲 美国节点 # 用于指定油管的国家/地区
   - DOMAIN,www.google.com,🇺🇲 美国节点 # 用于指定谷歌搜索的国家/地区
   - RULE-SET,google-play_domain,🇭🇰 香港节点
