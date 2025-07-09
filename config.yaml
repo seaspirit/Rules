@@ -79,7 +79,7 @@ dns:
   default-nameserver:
     - 223.5.5.5
     - 223.6.6.6
-  nameserver: # namesever尽量用运营商提供的DNS
+  nameserver: # 尽量用运营商提供的DNS
     - 223.5.5.5
     - 223.6.6.6
   proxy-server-nameserver:
@@ -96,7 +96,7 @@ proxy-groups:
   - {name: 🇸🇬 新加坡节点, <<: *pr, filter: "新|狮|SG|(?i)Singapore"}
   - {name: 🇺🇲 美国节点, <<: *pr, filter: "美|US|(?i)States|America|California"}
   - {name: 🇨🇳 国内节点, <<: *pr, filter: "(?=.*(联通|电信|移动))^((?!(济南)).)*$"}
-  - {name: 🚀 自动选择, <<: *pr, filter: "^((?!(Tj - B Group)).)*$"}
+  - {name: 🚀 自动选择, <<: *pr, filter: "^((?!(Tj - B Group|联通|电信|移动)).)*$"}
   - {name: 📽️ TikTok, type: url-test, interval: 300, tolerance: 1, lazy: false, proxies: [🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇺🇲 美国节点]}
   - {name: 🎥 NETFLIX, <<: *pr2}
   - {name: 📹 Disney+, <<: *pr2}
