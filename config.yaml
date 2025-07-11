@@ -10,7 +10,7 @@ proxy-providers:
     override:
       skip-cert-verify: true
   中国国际机场:
-    url: "https://xtls.rprx.vision/api/v1/client/subscribe?token=57aee2c27a8df31f48b11c62c6de6832"
+    url: "https://www.carpetpacific.com/blanket/api/v1/client/subscribe?token=57aee2c27a8df31f48b11c62c6de6832"
     <<: *pp
 # 全局配置 
 port: 7890
