@@ -93,7 +93,7 @@ proxy-groups:
   - {name: 🇹🇼 台湾节点, <<: *pr, filter: "台|TW|(?i)Taiwan"}
   - {name: 🇯🇵 日本节点, <<: *pr, filter: "日|JP|(?i)Japan|Tokyo"}
   - {name: 🇰🇷 韩国节点, <<: *pr, filter: "韩|KR|(?i)Korea|Incheon"}
-  - {name: 🇸🇬 新加坡节点, <<: *pr, filter: "新加坡|坡|狮城|SG|(?i)Singapore"}
+  - {name: 🇸🇬 新加坡节点, <<: *pr, filter: "新加坡|狮城|SG|(?i)Singapore"}
   - {name: 🇺🇲 美国节点, <<: *pr, filter: "美|US|(?i)States|America|California"}
   - {name: 🇨🇳 国内节点, <<: *pr, filter: "(?=.*(联通|电信|移动))^((?!(济南)).)*$"}
   - {name: 🚀 自动选择, <<: *pr, filter: "^((?!(Tj - B Group|联通|电信|移动|剩余|到期|官网|导航|禁止|以下)).)*$"}
