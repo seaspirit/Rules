@@ -4,11 +4,6 @@ proxy-providers:
   山水云:
     url: "https://su.xfjhchr.com:8888/api/v1/client/subscribe?token=cc52647adbc816a383c560692461ab47"
     <<: *pp
-  GFWAirPort:
-    url: "https://www9th.ga-sub.baby/api/v1/client/subscribe?token=3d36b6d2b1d958987ee709354d9ebb94"
-    <<: *pp
-    override:
-      skip-cert-verify: true
   中国国际机场:
     url: "https://www.carpetpacific.com/blanket/api/v1/client/subscribe?token=57aee2c27a8df31f48b11c62c6de6832"
     <<: *pp
@@ -91,18 +86,20 @@ pr2: &pr2 {type: url-test, interval: 300, tolerance: 1, lazy: false, proxies: [�
 proxy-groups:
   - {name: 🇭🇰 香港节点, <<: *pr, filter: "港|HK|(?i)hongkong|hong kong"}
   - {name: 🇹🇼 台湾节点, <<: *pr, filter: "台|TW|(?i)Taiwan"}
-  - {name: 🇯🇵 日本节点, <<: *pr, filter: "日|JP|(?i)Japan|Tokyo"}
-  - {name: 🇰🇷 韩国节点, <<: *pr, filter: "韩|KR|(?i)Korea|Incheon"}
+  - {name: 🇯🇵 日本节点, <<: *pr, filter: "日|JP|(?i)Japan"}
+  - {name: 🇰🇷 韩国节点, <<: *pr, filter: "韩|KR|(?i)Korea"}
   - {name: 🇸🇬 新加坡节点, <<: *pr, filter: "新加坡|狮城|SG|(?i)Singapore"}
-  - {name: 🇺🇲 美国节点, <<: *pr, filter: "美|US|(?i)States|America|California"}
-  - {name: 🇨🇳 国内节点, <<: *pr, filter: "(?=.*(联通|电信|移动))^((?!(济南|武汉电信|徐州移动 01|徐州移动 04|镇江联通)).)*$"}
-  - {name: ♻️ 自动选择, <<: *pr, filter: "^((?!(Tj - B Group|联通|电信|移动|剩余|到期|官网|导航|禁止|以下)).)*$"}
+  - {name: 🇺🇲 美国节点, <<: *pr, filter: "美|US|(?i)States|America"}
+  - {name: 🇨🇳 江苏节点, <<: *pr, filter: "徐州移动 01|徐州移动 02|徐州移动 03"}
+  - {name: 🇨🇳 广东节点, <<: *pr, filter: "徐州移动 04|镇江联通|武汉电信"}
+  - {name: 🇨🇳 国内节点, type: fallback, interval: 300, tolerance: 1, lazy: false, proxies: [🇨🇳 江苏节点, 🇨🇳 广东节点]}
+  - {name: ♻️ 自动选择, <<: *pr, filter: "^((?!(联通|电信|移动|剩余|到期|官网|导航|禁止|以下)).)*$"}
   - {name: 📽️ TikTok, type: url-test, interval: 300, tolerance: 1, lazy: false, proxies: [🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇺🇲 美国节点]}
   - {name: 🎥 NETFLIX, <<: *pr2}
   - {name: 📹 Disney+, <<: *pr2}
 # 规则匹配
 rules:
-  - DOMAIN-SUFFIX,amemv.com,🇨🇳 国内节点 # 用于指定抖音的省(市/区)
+  - DOMAIN-SUFFIX,amemv.com,🇨🇳 江苏节点 # 用于指定抖音的省(市/区)
   - DOMAIN,www.youtube.com,🇺🇲 美国节点 # 用于指定油管的国家/地区
   - DOMAIN,www.google.com,🇺🇲 美国节点 # 用于指定谷歌搜索的国家/地区
   - RULE-SET,google-play_domain,🇭🇰 香港节点
