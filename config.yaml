@@ -100,9 +100,11 @@ proxy-groups:
 # 规则匹配
 rules:
   - DOMAIN-SUFFIX,amemv.com,🇨🇳 国内节点 # 用于指定抖音的省(市/区)
-  - RULE-SET,google-play_domain,🇺🇲 美国节点
+  - DOMAIN,www.youtube.com,🇺🇲 美国节点 # 用于指定油管的国家/地区
+  - DOMAIN,www.google.com,🇺🇲 美国节点 # 用于指定谷歌搜索的国家/地区
+  - RULE-SET,google-play_domain,🇭🇰 香港节点
   - RULE-SET,google@ads,REJECT-DROP
-  - RULE-SET,google_domain,🇺🇲 美国节点
+  - RULE-SET,google_domain,♻️ 自动选择
   - RULE-SET,bytedance@ads,REJECT-DROP
   - RULE-SET,bytedance@!cn_domain,📽️ TikTok
   - RULE-SET,bytedance_domain,DIRECT
