@@ -85,12 +85,17 @@ pr: &pr {type: url-test, interval: 300, tolerance: 1, include-all: true}
 pr2: &pr2 {type: url-test, interval: 300, tolerance: 1, lazy: false, proxies: [🇭🇰 香港节点, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇺🇲 美国节点]}
 pr3: &pr3 {type: fallback, interval: 300, tolerance: 1, lazy: false}
 proxy-groups:
-  - {name: 🍀 Google, <<: *pr2}
-  - {name: 📽️ TikTok, type: url-test, interval: 300, tolerance: 1, lazy: false, proxies: [🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇺🇲 美国节点]}
-  - {name: 🎥 NETFLIX, <<: *pr2}
-  - {name: 📹 Disney+, <<: *pr2}
+  - {name: Google, <<: *pr2, icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/master/vectors/google.com/google.svg"}
+  - {name: TikTok, type: url-test, interval: 300, tolerance: 1, lazy: false, proxies: [🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇺🇲 美国节点], icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/master/vectors/tiktok.com/tiktok.svg"}
+  - {name: NETFLIX, <<: *pr2, icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/master/vectors/netflix.com/netflix.svg"}
+  - {name: Disney+, <<: *pr2, icon: "https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Large/Disney_plus.png"}
   - {name: ♻️ 自动选择, <<: *pr, filter: "^((?!(联通|电信|移动|剩余|到期|官网|导航|禁止|以下)).)*$"}
   - {name: 🇨🇳 国内节点, type: fallback, interval: 300, tolerance: 1, lazy: false, proxies: [🇨🇳 江苏节点, 🇨🇳 广东节点, DIRECT]}
+  - {name: 🇭🇰 香港节点优先, <<: *pr3, proxies: [🇭🇰 香港节点, ♻️ 自动选择]}
+  - {name: 🇹🇼 台湾节点优先, <<: *pr3, proxies: [🇹🇼 台湾节点, ♻️ 自动选择]}
+  - {name: 🇯🇵 日本节点优先, <<: *pr3, proxies: [🇯🇵 日本节点, ♻️ 自动选择]}
+  - {name: 🇺🇲 美国节点优先, <<: *pr3, proxies: [🇺🇲 美国节点, ♻️ 自动选择]}
+  # 分隔,下面是地区分组
   - {name: 🇨🇳 江苏节点, <<: *pr, filter: "徐州移动 01|徐州移动 02|徐州移动 03"}
   - {name: 🇨🇳 广东节点, <<: *pr, filter: "徐州移动 04|镇江联通|武汉电信"}
   - {name: 🇭🇰 香港节点, <<: *pr, filter: "港|HK|(?i)hongkong|hong kong"}
@@ -99,20 +104,16 @@ proxy-groups:
   - {name: 🇰🇷 韩国节点, <<: *pr, filter: "韩|KR|(?i)Korea"}
   - {name: 🇸🇬 新加坡节点, <<: *pr, filter: "新加坡|狮城|SG|(?i)Singapore"}
   - {name: 🇺🇲 美国节点, <<: *pr, filter: "美|US|(?i)States|America"}
-  - {name: 🇭🇰 香港故转, <<: *pr3, proxies: [🇭🇰 香港节点, ♻️ 自动选择]}
-  - {name: 🇹🇼 台湾故转, <<: *pr3, proxies: [🇹🇼 台湾节点, ♻️ 自动选择]}
-  - {name: 🇯🇵 日本故转, <<: *pr3, proxies: [🇯🇵 日本节点, ♻️ 自动选择]}
-  - {name: 🇺🇲 美国故转, <<: *pr3, proxies: [🇺🇲 美国节点, ♻️ 自动选择]}
 # 规则匹配
 rules:
-  - DOMAIN-SUFFIX,amemv.com,🇨🇳 国内节点 # 用于指定抖音的省(市/区)
-  - DOMAIN,www.youtube.com,🇺🇲 美国故转 # 用于指定油管的国家/地区
-  - DOMAIN,www.google.com,🇺🇲 美国故转 # 用于指定谷歌搜索的国家/地区
-  - RULE-SET,google-play_domain,🇭🇰 香港故转
+  - DOMAIN-SUFFIX,amemv.com,🇨🇳 国内节点 # 指定抖音的省(市/区)
+  - DOMAIN,www.youtube.com,🇺🇲 美国节点优先 # 指定油管的国家/地区
+  - DOMAIN,www.google.com,🇺🇲 美国节点优先 # 指定谷歌搜索的国家/地区
+  - RULE-SET,google-play_domain,🇭🇰 香港节点优先
   - RULE-SET,google@ads,REJECT-DROP
-  - RULE-SET,google_domain,🍀 Google
+  - RULE-SET,google_domain,Google
   - RULE-SET,bytedance@ads,REJECT-DROP
-  - RULE-SET,bytedance@!cn_domain,📽️ TikTok
+  - RULE-SET,bytedance@!cn_domain,TikTok
   - RULE-SET,bytedance_domain,DIRECT
   - RULE-SET,github_domain,♻️ 自动选择
   - RULE-SET,category-ai-!cn@ads,REJECT-DROP
@@ -121,15 +122,15 @@ rules:
   - RULE-SET,microsoft_domain,♻️ 自动选择
   - RULE-SET,apple@ads,REJECT-DROP
   - RULE-SET,apple_domain,DIRECT
-  - RULE-SET,netflix_domain,🎥 NETFLIX
-  - RULE-SET,disney_domain,📹 Disney+
+  - RULE-SET,netflix_domain,NETFLIX
+  - RULE-SET,disney_domain,Disney+
   - RULE-SET,telegram_domain,♻️ 自动选择
   - RULE-SET,speedtest_domain,♻️ 自动选择
   - RULE-SET,paypal_domain,♻️ 自动选择
   - RULE-SET,test-ipv6_domain,DIRECT
-  - DOMAIN-SUFFIX,postimg.cc,🇯🇵 日本故转
-  - DOMAIN-SUFFIX,jp,🇯🇵 日本故转
-  - DOMAIN-SUFFIX,tw,🇹🇼 台湾故转
+  - DOMAIN-SUFFIX,postimg.cc,🇯🇵 日本节点优先
+  - DOMAIN-SUFFIX,jp,🇯🇵 日本节点优先
+  - DOMAIN-SUFFIX,tw,🇹🇼 台湾节点优先
   - DOMAIN-SUFFIX,us,♻️ 自动选择
   - DOMAIN-SUFFIX,qnap.com,DIRECT
   - DOMAIN-SUFFIX,softonic.cn,♻️ 自动选择
@@ -140,8 +141,8 @@ rules:
   - RULE-SET,geolocation-!cn,♻️ 自动选择
   - RULE-SET,cn_domain,DIRECT
   - RULE-SET,private_domain,DIRECT
-  - RULE-SET,google_ip,🇭🇰 香港故转,no-resolve
-  - RULE-SET,netflix_ip,🎥 NETFLIX,no-resolve
+  - RULE-SET,google_ip,Google,no-resolve
+  - RULE-SET,netflix_ip,NETFLIX,no-resolve
   - RULE-SET,telegram_ip,♻️ 自动选择,no-resolve
   - RULE-SET,cn_ip,DIRECT
   - RULE-SET,private_ip,DIRECT
@@ -151,36 +152,36 @@ rule-anchor:
   ip: &ip {type: http, interval: 86400, behavior: ipcidr, format: mrs}
   domain: &domain {type: http, interval: 86400, behavior: domain, format: mrs}
 rule-providers:
-# DOMAIN
-  google@ads: { <<: *domain, url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/google@ads.mrs"}
-  google-play_domain: { <<: *domain, url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/google-play.mrs"}
-  google_domain: { <<: *domain, url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/google.mrs"}
-  category-ai-!cn@ads: { <<: *domain, url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/category-ai-!cn@ads.mrs" }
-  category-ai-!cn_domain: { <<: *domain, url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/category-ai-!cn.mrs" }
-  bytedance@ads: { <<: *domain, url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/bytedance@ads.mrs"}
-  bytedance@!cn_domain: { <<: *domain, url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/bytedance@!cn.mrs"}
-  bytedance_domain: { <<: *domain, url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/bytedance.mrs"}
-  github_domain: { <<: *domain, url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/github.mrs"}
-  telegram_domain: { <<: *domain, url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/telegram.mrs"}
-  netflix_domain: { <<: *domain, url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/netflix.mrs"}
-  disney_domain: { <<: *domain, url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/disney.mrs"}
-  paypal_domain: { <<: *domain, url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/paypal.mrs"}
-  microsoft@ads: { <<: *domain, url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/microsoft@ads.mrs"}
-  microsoft_domain: { <<: *domain, url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/microsoft.mrs"}
-  apple@ads: { <<: *domain, url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/apple@ads.mrs"}
-  apple_domain: { <<: *domain, url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/apple.mrs"}
-  speedtest_domain: { <<: *domain, url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/ookla-speedtest.mrs"}
-  test-ipv6_domain: { <<: *domain, url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/test-ipv6.mrs"}
-  reddit_domain: { <<: *domain, url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/reddit.mrs"}
-  category-porn@ads: { <<: *domain, url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/category-porn@ads.mrs"}
-  category-porn_domain: { <<: *domain, url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/category-porn.mrs"}
-  gfw_domain: { <<: *domain, url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/gfw.mrs"}
-  geolocation-!cn: { <<: *domain, url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/geolocation-!cn.mrs"}
-  cn_domain: { <<: *domain, url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/cn.mrs"} 
-  private_domain: { <<: *domain, url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/private.mrs"}
-# IP
-  google_ip: { <<: *ip, url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geoip/google.mrs"}
-  telegram_ip: { <<: *ip, url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geoip/telegram.mrs"}
-  netflix_ip: { <<: *ip, url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geoip/netflix.mrs"}
-  cn_ip: { <<: *ip, url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geoip/cn.mrs"}
-  private_ip: { <<: *ip, url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geoip/private.mrs"}
+  # 分隔,下面是DOMAIN分组
+  google@ads: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/google@ads.mrs"}
+  google-play_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/google-play.mrs"}
+  google_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/google.mrs"}
+  category-ai-!cn@ads: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-ai-!cn@ads.mrs" }
+  category-ai-!cn_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-ai-!cn.mrs" }
+  bytedance@ads: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/bytedance@ads.mrs"}
+  bytedance@!cn_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/bytedance@!cn.mrs"}
+  bytedance_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/bytedance.mrs"}
+  github_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/github.mrs"}
+  telegram_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/telegram.mrs"}
+  netflix_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/netflix.mrs"}
+  disney_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/disney.mrs"}
+  paypal_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/paypal.mrs"}
+  microsoft@ads: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/microsoft@ads.mrs"}
+  microsoft_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/microsoft.mrs"}
+  apple@ads: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/apple@ads.mrs"}
+  apple_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/apple.mrs"}
+  speedtest_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/ookla-speedtest.mrs"}
+  test-ipv6_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/test-ipv6.mrs"}
+  reddit_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/reddit.mrs"}
+  category-porn@ads: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-porn@ads.mrs"}
+  category-porn_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-porn.mrs"}
+  gfw_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/gfw.mrs"}
+  geolocation-!cn: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/geolocation-!cn.mrs"}
+  cn_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/cn.mrs"} 
+  private_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/private.mrs"}
+  # 分隔,下面是IP分组
+  google_ip: { <<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/google.mrs"}
+  telegram_ip: { <<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/telegram.mrs"}
+  netflix_ip: { <<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/netflix.mrs"}
+  cn_ip: { <<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/cn.mrs"}
+  private_ip: { <<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/private.mrs"}
