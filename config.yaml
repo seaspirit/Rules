@@ -91,10 +91,10 @@ proxy-groups:
   - {name: Disney+, <<: *pr2, icon: "https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Large/Disney_plus.png"}
   - {name: ♻️ 自动选择, <<: *pr, filter: "^((?!(联通|电信|移动|剩余|到期|官网|导航|禁止|以下)).)*$"}
   - {name: 🇨🇳 国内节点, type: fallback, interval: 300, tolerance: 1, lazy: false, proxies: [🇨🇳 江苏节点, 🇨🇳 广东节点, DIRECT]}
-  - {name: 🇭🇰 港节首选, <<: *pr3, proxies: [🇭🇰 香港节点, ♻️ 自动选择]}
-  - {name: 🇹🇼 台节首选, <<: *pr3, proxies: [🇹🇼 台湾节点, ♻️ 自动选择]}
-  - {name: 🇯🇵 日节首选, <<: *pr3, proxies: [🇯🇵 日本节点, ♻️ 自动选择]}
-  - {name: 🇺🇲 美节首选, <<: *pr3, proxies: [🇺🇲 美国节点, ♻️ 自动选择]}
+  - {name: 🇭🇰 港节优先, <<: *pr3, proxies: [🇭🇰 香港节点, ♻️ 自动选择]}
+  - {name: 🇹🇼 台节优先, <<: *pr3, proxies: [🇹🇼 台湾节点, ♻️ 自动选择]}
+  - {name: 🇯🇵 日节优先, <<: *pr3, proxies: [🇯🇵 日本节点, ♻️ 自动选择]}
+  - {name: 🇺🇲 美节优先, <<: *pr3, proxies: [🇺🇲 美国节点, ♻️ 自动选择]}
   # 分隔,下面是地区分组
   - {name: 🇨🇳 江苏节点, <<: *pr, filter: "徐州移动 01|徐州移动 02|徐州移动 03"}
   - {name: 🇨🇳 广东节点, <<: *pr, filter: "徐州移动 04|镇江联通|武汉电信"}
@@ -107,9 +107,9 @@ proxy-groups:
 # 规则匹配
 rules:
   - DOMAIN-SUFFIX,amemv.com,🇨🇳 国内节点 # 指定抖音的省(市/区)
-  - DOMAIN,www.youtube.com,🇺🇲 美节首选 # 指定油管的国家/地区
-  - DOMAIN,www.google.com,🇺🇲 美节首选 # 指定谷歌搜索的国家/地区
-  - RULE-SET,google-play_domain,🇭🇰 港节首选
+  - DOMAIN,www.youtube.com,🇺🇲 美节优先 # 指定油管的国家/地区
+  - DOMAIN,www.google.com,🇺🇲 美节优先 # 指定谷歌搜索的国家/地区
+  - RULE-SET,google-play_domain,🇭🇰 港节优先
   - RULE-SET,google@ads,REJECT-DROP
   - RULE-SET,google_domain,Google
   - RULE-SET,bytedance@ads,REJECT-DROP
@@ -128,9 +128,9 @@ rules:
   - RULE-SET,speedtest_domain,♻️ 自动选择
   - RULE-SET,paypal_domain,♻️ 自动选择
   - RULE-SET,test-ipv6_domain,DIRECT
-  - DOMAIN-SUFFIX,postimg.cc,🇯🇵 日节首选
-  - DOMAIN-SUFFIX,jp,🇯🇵 日节首选
-  - DOMAIN-SUFFIX,tw,🇹🇼 台节首选
+  - DOMAIN-SUFFIX,postimg.cc,🇯🇵 日节优先
+  - DOMAIN-SUFFIX,jp,🇯🇵 日节优先
+  - DOMAIN-SUFFIX,tw,🇹🇼 台节优先
   - DOMAIN-SUFFIX,us,♻️ 自动选择
   - DOMAIN-SUFFIX,qnap.com,DIRECT
   - DOMAIN-SUFFIX,softonic.cn,♻️ 自动选择
