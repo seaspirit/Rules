@@ -2,8 +2,8 @@
 pp: &pp {type: http, interval: 86400, proxy: DIRECT, health-check: {enable: true, interval: 300, url: "https://www.gstatic.com/generate_204"}}
 proxy-providers:
   山水云:
-    url: "https://su.xfjhchr.com:8888/api/v1/client/subscribe?token=cc52647adbc816a383c560692461ab47"
     <<: *pp
+    url: "https://su.xfjhchr.com:8888/api/v1/client/subscribe?token=aac9933d991cb9900b423c3314425291"
 # 全局配置 
 port: 7890
 socks-port: 7891
