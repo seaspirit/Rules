@@ -3,7 +3,7 @@ pp: &pp {type: http, interval: 86400, proxy: DIRECT, health-check: {enable: true
 proxy-providers:
   山水云:
     <<: *pp
-    url: "https://su.xfjhchr.com:8888/api/v1/client/subscribe?token=aac9933d991cb9900b423c3314425291"
+    url: "https://su.xfjhchr.com:8888/api/v1/client/subscribe?token=bcded7af61da46438b22e7833aef79cf"
 # 全局配置 
 port: 7890
 socks-port: 7891
