@@ -79,22 +79,10 @@ dns:
     - https://223.6.6.6/dns-query
 # 出站策略
 pr: &pr {type: url-test, interval: 300, tolerance: 1, include-all: true}
-pr2: &pr2 {type: url-test, interval: 300, tolerance: 1, lazy: false, proxies: [🇭🇰 香港节点, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇺🇲 美国节点]}
-pr3: &pr3 {type: fallback, interval: 300, lazy: false}
+pr2: &pr2 {type: fallback, interval: 300, lazy: false}
 proxy-groups:
-  - {name: Google, <<: *pr2, icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/master/vectors/google.com/google.svg"}
-  - {name: TikTok, type: url-test, interval: 300, tolerance: 1, lazy: false, proxies: [🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇺🇲 美国节点], icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/master/vectors/tiktok.com/tiktok.svg"}
-  - {name: NETFLIX, <<: *pr2, icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/master/vectors/netflix.com/netflix.svg"}
-  - {name: Disney+, <<: *pr2, icon: "https://raw.githubusercontent.com/Vbaethon/HOMOMIX/main/Icon/Color/Large/Disney_plus.png"}
   - {name: ♻️ 自动选择, <<: *pr, filter: "^((?!(联通|电信|移动|剩余|到期|官网|导航|禁止|以下)).)*$"}
-  - {name: 🇨🇳 国内节点, type: fallback, interval: 300, lazy: false, proxies: [DIRECT, 🇨🇳 江苏节点, 🇨🇳 广东节点]}
-  - {name: 🇭🇰 港节优先, <<: *pr3, proxies: [🇭🇰 香港节点, ♻️ 自动选择]}
-  - {name: 🇹🇼 台节优先, <<: *pr3, proxies: [🇹🇼 台湾节点, ♻️ 自动选择]}
-  - {name: 🇯🇵 日节优先, <<: *pr3, proxies: [🇯🇵 日本节点, ♻️ 自动选择]}
-  - {name: 🇺🇲 美节优先, <<: *pr3, proxies: [🇺🇲 美国节点, ♻️ 自动选择]}
-  # 分隔,下面是地区分组
-  - {name: 🇨🇳 江苏节点, <<: *pr, filter: "徐州移动 01|徐州移动 02|徐州移动 03"}
-  - {name: 🇨🇳 广东节点, <<: *pr, filter: "徐州移动 04|镇江联通|武汉电信"}
+  - {name: 🇨🇳 国内节点, <<: *pr, filter: "徐州移动 01|徐州移动 02|徐州移动 03"} # 当前指定江苏节点
   - {name: 🇭🇰 香港节点, <<: *pr, filter: "港|HK|(?i)hongkong|hong kong"}
   - {name: 🇹🇼 台湾节点, <<: *pr, filter: "台|TW|(?i)Taiwan"}
   - {name: 🇯🇵 日本节点, <<: *pr, filter: "日|JP|(?i)Japan"}
@@ -103,14 +91,12 @@ proxy-groups:
   - {name: 🇺🇲 美国节点, <<: *pr, filter: "美|US|(?i)States|America"}
 # 规则匹配
 rules:
-  - DOMAIN-SUFFIX,amemv.com,🇨🇳 国内节点 # 指定抖音的省(市/区)
-  - DOMAIN,www.youtube.com,🇺🇲 美节优先 # 指定油管的国家/地区
-  - DOMAIN,www.google.com,🇺🇲 美节优先 # 指定谷歌搜索的国家/地区
-  - RULE-SET,google-play_domain,🇭🇰 港节优先
+  #- DOMAIN-SUFFIX,amemv.com,🇨🇳 国内节点 # 指定抖音的省(市/区)
+  - RULE-SET,google-play_domain,🇭🇰 香港节点
   - RULE-SET,google@ads,REJECT-DROP
-  - RULE-SET,google_domain,Google
+  - RULE-SET,google_domain,🇺🇲 美国节点
   - RULE-SET,bytedance@ads,REJECT-DROP
-  - RULE-SET,bytedance@!cn_domain,TikTok
+  - RULE-SET,bytedance@!cn_domain,🇺🇲 美国节点
   - RULE-SET,bytedance_domain,DIRECT
   - RULE-SET,github_domain,♻️ 自动选择
   - RULE-SET,category-ai-!cn@ads,REJECT-DROP
@@ -119,16 +105,16 @@ rules:
   - RULE-SET,microsoft_domain,♻️ 自动选择
   - RULE-SET,apple@ads,REJECT-DROP
   - RULE-SET,apple_domain,DIRECT
-  - RULE-SET,netflix_domain,NETFLIX
-  - RULE-SET,disney_domain,Disney+
+  - RULE-SET,netflix_domain,🇺🇲 美国节点
+  - RULE-SET,disney_domain,🇺🇲 美国节点
   - RULE-SET,telegram_domain,♻️ 自动选择
   - RULE-SET,speedtest_domain,♻️ 自动选择
   - RULE-SET,paypal_domain,♻️ 自动选择
   - RULE-SET,test-ipv6_domain,DIRECT
-  - DOMAIN-SUFFIX,postimg.cc,🇯🇵 日节优先
-  - DOMAIN-SUFFIX,jp,🇯🇵 日节优先
-  - DOMAIN-SUFFIX,tw,🇹🇼 台节优先
-  - DOMAIN-SUFFIX,us,♻️ 自动选择
+  - DOMAIN-SUFFIX,postimg.cc,🇯🇵 日本节点
+  - DOMAIN-SUFFIX,jp,🇯🇵 日本节点
+  - DOMAIN-SUFFIX,tw,🇹🇼 台湾节点
+  - DOMAIN-SUFFIX,us,🇺🇲 美国节点
   - DOMAIN-SUFFIX,qnap.com,DIRECT
   - DOMAIN-SUFFIX,softonic.cn,♻️ 自动选择
   - RULE-SET,reddit_domain,♻️ 自动选择
@@ -138,8 +124,8 @@ rules:
   - RULE-SET,geolocation-!cn,♻️ 自动选择
   - RULE-SET,cn_domain,DIRECT
   - RULE-SET,private_domain,DIRECT
-  - RULE-SET,google_ip,Google,no-resolve
-  - RULE-SET,netflix_ip,NETFLIX,no-resolve
+  - RULE-SET,google_ip,🇺🇲 美国节点,no-resolve
+  - RULE-SET,netflix_ip,🇺🇲 美国节点,no-resolve
   - RULE-SET,telegram_ip,♻️ 自动选择,no-resolve
   - RULE-SET,cn_ip,DIRECT
   - RULE-SET,private_ip,DIRECT
