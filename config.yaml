@@ -92,7 +92,7 @@ proxy-groups:
 # 规则匹配
 rules:
   #- DOMAIN-SUFFIX,amemv.com,🇨🇳 国内节点 # 指定抖音的省(市/区)
-  - RULE-SET,google-play_domain,🇭🇰 香港节点
+  - RULE-SET,google-play_domain,🇺🇲 美国节点
   - RULE-SET,google@ads,REJECT-DROP
   - RULE-SET,google_domain,🇺🇲 美国节点
   - RULE-SET,bytedance@ads,REJECT-DROP
