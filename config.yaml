@@ -3,7 +3,10 @@ pp: &pp {type: http, interval: 86400, proxy: DIRECT, health-check: {enable: true
 proxy-providers:
   山水云:
     <<: *pp
-    url: "https://su.xfjhchr.com:8888/api/v1/client/subscribe?token=bcded7af61da46438b22e7833aef79cf"
+    url: "https://su.xfjhchr.com:8888/api/v1/client/subscribe?token=0702ffb7b45508acbf467d46307fc95d"
+  良心云:
+    <<: *pp
+    url: "https://liangxin.xyz/api/v1/liangxin?OwO=317e68590c0df3ab336cfb6cc8c37b5c"
 # 全局配置 
 port: 7890
 socks-port: 7891
