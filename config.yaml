@@ -92,7 +92,7 @@ proxy-groups:
 rules:
   - DOMAIN-SUFFIX,amemv.com,DIRECT # 指定抖音的省(市/区)；当前指定江苏节点
   - RULE-SET,google@ads,REJECT-DROP
-  - RULE-SET,google_domain,♻️ 自动选择
+  - RULE-SET,google_domain,🇭🇰 香港节点
   - RULE-SET,bytedance@ads,REJECT-DROP
   - RULE-SET,bytedance@!cn_domain,🇺🇲 美国节点
   - RULE-SET,bytedance_domain,DIRECT
@@ -113,6 +113,7 @@ rules:
   - DOMAIN-SUFFIX,jp,🇯🇵 日本节点
   - DOMAIN-SUFFIX,tw,🇹🇼 台湾节点
   - DOMAIN-SUFFIX,us,🇺🇲 美国节点
+  - DOMAIN-SUFFIX,hk,🇭🇰 香港节点
   - DOMAIN-SUFFIX,qnap.com,DIRECT
   - DOMAIN-SUFFIX,softonic.cn,♻️ 自动选择
   - RULE-SET,reddit_domain,♻️ 自动选择
