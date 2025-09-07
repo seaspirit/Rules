@@ -90,7 +90,7 @@ proxy-groups:
   - {name: 🇺🇲 美国节点, <<: *pr, filter: "美|US|(?i)States|America"}
 # 规则匹配
 rules:
-  #- DOMAIN-SUFFIX,amemv.com,🇨🇳 国内节点 # 指定抖音的省(市/区)；当前指定江苏节点
+  - DOMAIN-SUFFIX,amemv.com,DIRECT # 指定抖音的省(市/区)；当前指定江苏节点
   - RULE-SET,google@ads,REJECT-DROP
   - RULE-SET,google_domain,♻️ 自动选择
   - RULE-SET,bytedance@ads,REJECT-DROP
