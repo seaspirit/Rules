@@ -122,7 +122,7 @@ rules:
   - RULE-SET,netflix_ip,🇺🇲 美国节点,no-resolve
   - RULE-SET,telegram_ip,♻️ 自动选择,no-resolve
   - RULE-SET,cn_ip,DIRECT
-  - RULE-SET,private_ip,DIRECT
+  - RULE-SET,private_ip,DIRECT,no-resolve
   - MATCH,♻️ 自动选择
 # 规则集
 rule-anchor:
