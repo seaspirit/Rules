@@ -67,7 +67,6 @@ dns:
     - "+.msftconnecttest.com"
     - "+.msftncsi.com"
     - "time.*.com"
-    - "+.market.xiaomi.com"
   default-nameserver:
     - 223.5.5.5
     - 223.6.6.6
