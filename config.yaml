@@ -55,7 +55,7 @@ tun:
   dns-hijack: ["any:53", "tcp://any:53"]
   auto-route: true
   auto-redirect: true
-  auto-detect-interface: true  
+  auto-detect-interface: true
 # DNS模块
 dns:
   enable: true
@@ -83,7 +83,7 @@ dns:
 pr: &pr {type: url-test, interval: 30, tolerance: 1, include-all: true}
 proxy-groups:
   - {name: ♻️ 自动选择, <<: *pr, filter: "^((?!(官网|联通 0|电信 0|移动 0|禁止|以下)).)*$"}
-  - {name: Vless, <<: *pr, filter: "vless"}
+  - {name: Vless, <<: *pr, filter: "^((?!(官网|联通 0|电信 0|移动 0|禁止|以下|Trojan| 0)).)*$"}
   - {name: Trojan, <<: *pr, filter: "Trojan"}
   - {name: 原生地址, <<: *pr, filter: "原生地址"}
   - {name: 联通, <<: *pr, filter: "联通-"}
