@@ -83,7 +83,7 @@ proxy-groups:
   - {name: 🔯 自动转移, type: fallback, proxies: [联通, 🇺🇲 美国节点, Vless, Trojan, 电信, 移动, ♻️ 自动选择]}
   - {name: Vless, <<: *pr, filter: "^((?!(官网|联通 0|电信 0|移动 0|禁止|以下|Trojan| 0)).)*$"}
   - {name: Trojan, <<: *pr, filter: "Trojan"}
-  - {name: 原生地址, <<: *pr, filter: "原生地址"}
+  - {name: 原生, <<: *pr, filter: "原生"}
   - {name: 联通, <<: *pr, filter: "联通-"}
   - {name: 电信, <<: *pr, filter: "电信-"}
   - {name: 移动, <<: *pr, filter: "移动-"}
