@@ -1,9 +1,9 @@
 # 机场订阅
-pp: &pp {type: http, interval: 3600, proxy: DIRECT, health-check: {enable: true, interval: 300, url: "https://www.gstatic.com/generate_204"}}
+pp: &pp {type: http, interval: 86400, proxy: DIRECT, health-check: {enable: true, interval: 300, url: "https://www.gstatic.com/generate_204"}}
 proxy-providers:
-  Joey blog:
+  中国国际机场:
     <<: *pp
-    url: "https://url.v1.mk/sub?target=clash&url=https%3A%2F%2Fjoey.seaspirit.dpdns.org%2Fjoey%2Fsub&insert=false"
+    url: "https://xtls.rprx.vision/api/v1/client/subscribe?token=57aee2c27a8df31f48b11c62c6de6832"
 # 全局配置 
 port: 7890
 socks-port: 7891
@@ -12,7 +12,7 @@ mixed-port: 7893
 tproxy-port: 7894
 allow-lan: true
 bind-address: "*"
-ipv6: true
+ipv6: false
 unified-delay: true
 tcp-concurrent: true
 log-level: warning
@@ -57,7 +57,7 @@ tun:
 dns:
   enable: true
   listen: 0.0.0.0:1053
-  ipv6: true
+  ipv6: false
   respect-rules: true
   enhanced-mode: fake-ip
   fake-ip-range: 28.0.0.1/8
@@ -80,17 +80,20 @@ dns:
 pr: &pr {type: url-test, interval: 30, tolerance: 1, include-all: true}
 proxy-groups:
   - {name: ♻️ 自动选择, <<: *pr, filter: "^((?!(官网|联通 0|电信 0|移动 0|禁止|以下)).)*$"}
-  - {name: Vless, <<: *pr, filter: "^((?!(官网|联通 0|电信 0|移动 0|禁止|以下|Trojan| 0)).)*$"}
-  - {name: Trojan, <<: *pr, filter: "Trojan"}
-  - {name: 原生地址, <<: *pr, filter: "原生地址"}
-  - {name: 联通, <<: *pr, filter: "联通-"}
-  - {name: 电信, <<: *pr, filter: "电信-"}
-  - {name: 移动, <<: *pr, filter: "移动-"}
+  - {name: 🇨🇳 江苏节点, <<: *pr, filter: "徐州"}
+  - {name: 🇨🇳 湖北节点, <<: *pr, filter: "武汉"}
+  - {name: 🇨🇳 山东节点, <<: *pr, filter: "济南"}
+  - {name: 🇭🇰 香港节点, <<: *pr, filter: "港|HK|(?i)hongkong|hong kong"}
+  - {name: 🇹🇼 台湾节点, <<: *pr, filter: "台|TW|(?i)Taiwan"}
+  - {name: 🇯🇵 日本节点, <<: *pr, filter: "日|JP|(?i)Japan"}
+  - {name: 🇰🇷 韩国节点, <<: *pr, filter: "韩|KR|(?i)Korea"}
+  - {name: 🇸🇬 新加坡节点, <<: *pr, filter: "新加坡|狮城|SG|(?i)Singapore"}
   - {name: 🇺🇲 美国节点, <<: *pr, filter: "美|US|(?i)States|America"}
 # 规则匹配
 rules:
+  - DOMAIN-SUFFIX,amemv.com,DIRECT # 指定抖音的省(市/区)；当前指定江苏节点
   - RULE-SET,google@ads,REJECT-DROP
-  - RULE-SET,google_domain,🇺🇲 美国节点
+  - RULE-SET,google_domain,♻️ 自动选择
   - RULE-SET,bytedance@ads,REJECT-DROP
   - RULE-SET,bytedance@!cn_domain,🇺🇲 美国节点
   - RULE-SET,bytedance_domain,DIRECT
@@ -107,6 +110,11 @@ rules:
   - RULE-SET,speedtest_domain,♻️ 自动选择
   - RULE-SET,paypal_domain,♻️ 自动选择
   - RULE-SET,test-ipv6_domain,DIRECT
+  - DOMAIN-SUFFIX,postimg.cc,🇯🇵 日本节点
+  - DOMAIN-SUFFIX,jp,🇯🇵 日本节点
+  - DOMAIN-SUFFIX,tw,🇹🇼 台湾节点
+  - DOMAIN-SUFFIX,us,🇺🇲 美国节点
+  - DOMAIN-SUFFIX,hk,🇭🇰 香港节点
   - DOMAIN-SUFFIX,qnap.com,DIRECT
   - DOMAIN-SUFFIX,softonic.cn,♻️ 自动选择
   - RULE-SET,reddit_domain,♻️ 自动选择
