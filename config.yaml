@@ -96,7 +96,7 @@ rules:
   - RULE-SET,bytedance_domain,DIRECT
   - RULE-SET,github_domain,🇺🇲 美国节点
   - RULE-SET,category-ai-!cn@ads,REJECT-DROP
-  - RULE-SET,category-ai-!cn_domain,CDN
+  - RULE-SET,category-ai-!cn_domain,🇺🇲 美国节点
   - RULE-SET,microsoft@ads,REJECT-DROP
   - RULE-SET,microsoft_domain,DIRECT
   - RULE-SET,apple@ads,REJECT-DROP
