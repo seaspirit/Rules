@@ -80,9 +80,6 @@ dns:
 pr: &pr {type: url-test, interval: 30, tolerance: 1, include-all: true}
 proxy-groups:
   - {name: ♻️ 自动选择, <<: *pr, filter: "^((?!(官网|联通 0|电信 0|移动 0|禁止|以下)).)*$"}
-  - {name: 🔯 自动转移, type: fallback, proxies: [联通, 🇺🇲 美国节点, Vless, Trojan, 电信, 移动, ♻️ 自动选择]}
-  - {name: Vless, <<: *pr, filter: "^((?!(官网|联通 0|电信 0|移动 0|禁止|以下|Trojan| 0)).)*$"}
-  - {name: Trojan, <<: *pr, filter: "Trojan"}
   - {name: 原生, <<: *pr, filter: "原生"}
   - {name: 联通, <<: *pr, filter: "联通-"}
   - {name: 电信, <<: *pr, filter: "电信-"}
@@ -110,11 +107,11 @@ rules:
   - RULE-SET,test-ipv6_domain,DIRECT
   - DOMAIN-SUFFIX,qnap.com,DIRECT
   - DOMAIN-SUFFIX,softonic.cn,♻️ 自动选择
-  - RULE-SET,reddit_domain,🔯 自动转移
+  - RULE-SET,reddit_domain,♻️ 自动选择
   - RULE-SET,category-porn@ads,REJECT-DROP
-  - RULE-SET,category-porn_domain,🔯 自动转移
-  - RULE-SET,gfw_domain,🔯 自动转移
-  - RULE-SET,geolocation-!cn,🔯 自动转移
+  - RULE-SET,category-porn_domain,♻️ 自动选择
+  - RULE-SET,gfw_domain,♻️ 自动选择
+  - RULE-SET,geolocation-!cn,♻️ 自动选择
   - RULE-SET,cn_domain,DIRECT
   - RULE-SET,private_domain,DIRECT
   - RULE-SET,google_ip,🇺🇲 美国节点,no-resolve
