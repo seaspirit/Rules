@@ -97,7 +97,7 @@ rules:
   - RULE-SET,bytedance_domain,DIRECT
   - RULE-SET,github_domain,♻️ 自动选择
   - RULE-SET,category-ai-!cn@ads,REJECT-DROP
-  - RULE-SET,category-ai-!cn_domain,♻️ 自动选择 
+  - RULE-SET,category-ai-!cn_domain,🔯 自动转移
   - RULE-SET,microsoft@ads,REJECT-DROP
   - RULE-SET,microsoft_domain,DIRECT
   - RULE-SET,apple@ads,REJECT-DROP
@@ -122,7 +122,7 @@ rules:
   - RULE-SET,telegram_ip,♻️ 自动选择,no-resolve
   - RULE-SET,cn_ip,DIRECT
   - RULE-SET,private_ip,DIRECT,no-resolve
-  - MATCH,♻️ 自动选择
+  - MATCH,🔯 自动转移
 # 规则集
 rule-anchor:
   ip: &ip {type: http, interval: 86400, behavior: ipcidr, format: mrs}
