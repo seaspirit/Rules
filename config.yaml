@@ -1,9 +1,9 @@
 # 机场订阅
-pp: &pp {type: http, interval: 3600, proxy: DIRECT, health-check: {enable: true, interval: 300, url: "https://www.gstatic.com/generate_204"}, header: {User-Agent: ["Clash/v1.18.0", "mihomo/1.18.3"]}}
+pp: &pp {type: http, interval: 3600, proxy: DIRECT, health-check: {enable: true, interval: 30, url: "https://www.gstatic.com/generate_204"}, header: {User-Agent: ["mihomo/1.19.15"]}}
 proxy-providers:
-  Joey blog:
+  Joey:
     <<: *pp
-    url: "https://url.v1.mk/sub?target=auto&url=https%3A%2F%2Fjoey.seaspirit.dpdns.org%2Fjoey%2Fsub&insert=false"
+    url: "https://url.v1.mk/sub?target=auto&url=https%3A%2F%2Fj.seaspirit.dpdns.org%2Fj%2Fsub&insert=false"
 # 全局配置 
 port: 7890
 socks-port: 7891
@@ -81,6 +81,8 @@ pr: &pr {type: url-test, interval: 30, tolerance: 1, include-all: true}
 proxy-groups:
   - {name: ♻️ 自动选择, <<: *pr, filter: "^((?!(官网|联通 0|电信 0|移动 0|禁止|以下)).)*$"}
   - {name: 🇺🇲 美国节点, <<: *pr, filter: "美|US|(?i)States|America"}
+  - {name: 🇯🇵 日本节点, <<: *pr, filter: "日|JP|(?i)Japan"}
+  - {name: 🇸🇬 新加坡节点, <<: *pr, filter: "新加坡|狮城|SG|(?i)Singapore"}
   - {name: CDN, <<: *pr, filter: "(?i)cdn"}
   - {name: Cloudflare, <<: *pr, filter: "(?i)cloudflare|cf"}
   - {name: 联通, <<: *pr, filter: "联通-"}
