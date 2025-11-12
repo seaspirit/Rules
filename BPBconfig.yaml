@@ -1,7 +1,7 @@
 # 机场订阅
 pp: &pp {type: http, interval: 3600, proxy: DIRECT, health-check: {enable: true, interval: 30, url: "https://www.gstatic.com/generate_204"}, header: {User-Agent: ["Clash/v1.18.0", "mihomo/1.19.15"]}}
 proxy-providers:
-  bpb:
+  BPB:
     <<: *pp
     url: "https://bpb.seaspirit.dpdns.org/sub/normal/de5eb6ed-ceee-4de9-b5a5-7ee799dc99aa?app=clash#%F0%9F%92%A6%20BPB%20Normal"
 # 全局配置 
