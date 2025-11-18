@@ -4,6 +4,9 @@ proxy-providers:
   BPB:
     <<: *pp
     url: "https://bpb.seaspirit.dpdns.org/sub/normal/de5eb6ed-ceee-4de9-b5a5-7ee799dc99aa?app=clash#%F0%9F%92%A6%20BPB%20Normal"
+  中国国际机场:
+    <<: *pp
+    url: "https://xtls.rprx.vision/api/v1/client/subscribe?token=57aee2c27a8df31f48b11c62c6de6832"
 # 全局配置 
 port: 7890
 socks-port: 7891
@@ -83,12 +86,32 @@ dns:
 # 出站策略
 pr: &pr {type: url-test, interval: 30, tolerance: 1, include-all: true}
 proxy-groups:
-  - {name: ♻️ 自动选择, <<: *pr}
+  - name: BPB
+    type: url-test
+    interval: 30
+    tolerance: 1
+    use:
+      - BPB
+  - name: 中国国际
+    type: url-test
+    interval: 30
+    tolerance: 1
+    use:
+      - 中国国际机场
+  - {name: ♻️ 自动选择, <<: *pr, filter: "^((?!(官网|联通 0|电信 0|移动 0|禁止|以下)).)*$"}
   - {name: Domain, <<: *pr, filter: "(?i)Domain"}
   - {name: IPv4, <<: *pr, filter: "(?i)IPv4"}
   - {name: IPv6, <<: *pr, filter: "(?i)IPv6"}
   - {name: VLESS, <<: *pr, filter: "(?i)VLESS"}
   - {name: Trojan, <<: *pr, filter: "(?i)Trojan"}
+  - {name: 🇨🇳 江苏节点, <<: *pr, filter: "徐州"}
+  - {name: 🇨🇳 湖北节点, <<: *pr, filter: "武汉"}
+  - {name: 🇨🇳 山东节点, <<: *pr, filter: "济南"}
+  - {name: 🇭🇰 香港节点, <<: *pr, filter: "港|HK|(?i)hongkong|hong kong"}
+  - {name: 🇹🇼 台湾节点, <<: *pr, filter: "台|TW|(?i)Taiwan"}
+  - {name: 🇯🇵 日本节点, <<: *pr, filter: "日|JP|(?i)Japan"}
+  - {name: 🇸🇬 新加坡节点, <<: *pr, filter: "新加坡|狮城|SG|(?i)Singapore"}
+  - {name: 🇺🇲 美国节点, <<: *pr, filter: "美|US|(?i)States|America"}
 # 规则匹配
 rules:
   - RULE-SET,google@ads,REJECT-DROP
@@ -123,6 +146,7 @@ rules:
   - RULE-SET,telegram_ip,♻️ 自动选择,no-resolve
   - RULE-SET,cn_ip,DIRECT
   - RULE-SET,private_ip,DIRECT,no-resolve
+  - DOMAIN-SUFFIX,torrentdownloads.pro,BPB
   - MATCH,♻️ 自动选择
 # 规则集
 rule-anchor:
