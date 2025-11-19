@@ -86,7 +86,7 @@ dns:
 # 出站策略
 pr: &pr {type: url-test, interval: 30, tolerance: 1, include-all: true}
 proxy-groups:
-  - name: BPB
+  - name: ♻️ 自动选择
     type: url-test
     interval: 30
     tolerance: 1
@@ -98,7 +98,6 @@ proxy-groups:
     tolerance: 1
     use:
       - 中国国际机场
-  - {name: ♻️ 自动选择, <<: *pr, filter: "^((?!(官网|联通 0|电信 0|移动 0|禁止|以下)).)*$"}
   - {name: Domain, <<: *pr, filter: "(?i)Domain"}
   - {name: IPv4, <<: *pr, filter: "(?i)IPv4"}
   - {name: IPv6, <<: *pr, filter: "(?i)IPv6"}
@@ -115,7 +114,7 @@ proxy-groups:
 # 规则匹配
 rules:
   - RULE-SET,google@ads,REJECT-DROP
-  - RULE-SET,google_domain,♻️ 自动选择
+  - RULE-SET,google_domain,中国国际
   - RULE-SET,bytedance@ads,REJECT-DROP
   - RULE-SET,bytedance@!cn_domain,♻️ 自动选择
   - RULE-SET,bytedance_domain,DIRECT
@@ -146,7 +145,6 @@ rules:
   - RULE-SET,telegram_ip,♻️ 自动选择,no-resolve
   - RULE-SET,cn_ip,DIRECT
   - RULE-SET,private_ip,DIRECT,no-resolve
-  - DOMAIN-SUFFIX,torrentdownloads.pro,BPB
   - MATCH,♻️ 自动选择
 # 规则集
 rule-anchor:
