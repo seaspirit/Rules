@@ -98,6 +98,7 @@ proxy-groups:
     tolerance: 1
     use:
       - 中国国际机场
+    filter: "^((?!(官网|联通 0|电信 0|移动 0|禁止|以下)).)*$"
   - {name: Domain, <<: *pr, filter: "(?i)Domain"}
   - {name: IPv4, <<: *pr, filter: "(?i)IPv4"}
   - {name: IPv6, <<: *pr, filter: "(?i)IPv6"}
