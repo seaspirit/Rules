@@ -79,46 +79,46 @@ dns:
 # 出站策略
 pg: &pg {type: url-test, interval: 30, tolerance: 1, include-all: true}
 proxy-groups:
-  - {name: ♻️ 自动选择, <<: *pg}
+  - {name: 💦 Auto, <<: *pg}
   - {name: 💦 Domain, <<: *pg, filter: "(?i)Domain"}
-  - {name: IPv4, <<: *pg, filter: "(?i)IPv4"}
-  - {name: IPv6, <<: *pg, filter: "(?i)IPv6"}
-  - {name: VLESS, <<: *pg, filter: "(?i)VLESS"}
-  - {name: Trojan, <<: *pg, filter: "(?i)Trojan"}
+  - {name: 💦 IPv4, <<: *pg, filter: "(?i)IPv4"}
+  - {name: 💦 IPv6, <<: *pg, filter: "(?i)IPv6"}
+  - {name: 💦 VLESS, <<: *pg, filter: "(?i)VLESS"}
+  - {name: 💦 Trojan, <<: *pg, filter: "(?i)Trojan"}
 rules:
   - RULE-SET,google@ads,REJECT-DROP
-  - RULE-SET,google_domain,♻️ 自动选择
+  - RULE-SET,google_domain,💦 Auto
   - RULE-SET,bytedance@ads,REJECT-DROP
-  - RULE-SET,bytedance@!cn_domain,♻️ 自动选择
+  - RULE-SET,bytedance@!cn_domain,💦 Auto
   - RULE-SET,bytedance_domain,DIRECT
-  - RULE-SET,github_domain,♻️ 自动选择
+  - RULE-SET,github_domain,💦 Auto
   - RULE-SET,category-ai-!cn@ads,REJECT-DROP
-  - RULE-SET,category-ai-!cn_domain,♻️ 自动选择
+  - RULE-SET,category-ai-!cn_domain,💦 Auto
   - RULE-SET,microsoft@ads,REJECT-DROP
   - RULE-SET,microsoft_domain,DIRECT
   - RULE-SET,apple@ads,REJECT-DROP
   - RULE-SET,apple_domain,DIRECT
-  - RULE-SET,netflix_domain,♻️ 自动选择
-  - RULE-SET,disney_domain,♻️ 自动选择
-  - RULE-SET,telegram_domain,♻️ 自动选择
-  - RULE-SET,speedtest_domain,♻️ 自动选择
-  - RULE-SET,paypal_domain,♻️ 自动选择
+  - RULE-SET,netflix_domain,💦 Auto
+  - RULE-SET,disney_domain,💦 Auto
+  - RULE-SET,telegram_domain,💦 Auto
+  - RULE-SET,speedtest_domain,💦 Auto
+  - RULE-SET,paypal_domain,💦 Auto
   - RULE-SET,test-ipv6_domain,DIRECT
   - DOMAIN-SUFFIX,qnap.com,DIRECT
-  - DOMAIN-SUFFIX,softonic.cn,♻️ 自动选择
-  - RULE-SET,reddit_domain,♻️ 自动选择
+  - DOMAIN-SUFFIX,softonic.cn,💦 Auto
+  - RULE-SET,reddit_domain,💦 Auto
   - RULE-SET,category-porn@ads,REJECT-DROP
-  - RULE-SET,category-porn_domain,♻️ 自动选择
-  - RULE-SET,gfw_domain,♻️ 自动选择
-  - RULE-SET,geolocation-!cn,♻️ 自动选择
+  - RULE-SET,category-porn_domain,💦 Auto
+  - RULE-SET,gfw_domain,💦 Auto
+  - RULE-SET,geolocation-!cn,💦 Auto
   - RULE-SET,cn_domain,DIRECT
   - RULE-SET,private_domain,DIRECT
-  - RULE-SET,google_ip,♻️ 自动选择,no-resolve
-  - RULE-SET,netflix_ip,♻️ 自动选择,no-resolve
-  - RULE-SET,telegram_ip,♻️ 自动选择,no-resolve
+  - RULE-SET,google_ip,💦 Auto,no-resolve
+  - RULE-SET,netflix_ip,💦 Auto,no-resolve
+  - RULE-SET,telegram_ip,💦 Auto,no-resolve
   - RULE-SET,cn_ip,DIRECT
   - RULE-SET,private_ip,DIRECT,no-resolve
-  - MATCH,♻️ 自动选择
+  - MATCH,💦 Auto
 # 规则集
 rule-anchor:
   domain: &domain {type: http, interval: 86400, behavior: domain, format: mrs}
