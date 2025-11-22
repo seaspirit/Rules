@@ -10,7 +10,7 @@ socks-port: 7891
 redir-port: 7892
 mixed-port: 7893
 tproxy-port: 7894
-allow-lan: false
+allow-lan: true
 bind-address: "*"
 ipv6: true
 unified-delay: true
@@ -70,7 +70,6 @@ dns:
     - "+.msftconnecttest.com"
     - "+.msftncsi.com"
     - "time.*.com"
-    - "+.market.xiaomi.com"
   proxy-server-nameserver:
     - 223.5.5.5
     - 119.29.29.29
@@ -81,7 +80,10 @@ dns:
     - https://8.8.8.8/dns-query
     - https://1.1.1.1/dns-query
   nameserver-policy:
-    "rule-set:private_domain,cn_domain,apple_domain":
+    "rule-set:bytedance_domain":
+      - 180.184.1.1
+      - 180.184.2.2
+    "rule-set:private_domain,cn_domain,microsoft_domain,apple_domain,test-ipv6_domain":
       - 223.5.5.5
       - 119.29.29.29
 # 出站策略
