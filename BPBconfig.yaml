@@ -80,6 +80,12 @@ dns:
     - https://8.8.8.8/dns-query
     - https://1.1.1.1/dns-query
   nameserver-policy:
+    "rule-set:google_domain":
+      - 8.8.8.8
+      - 8.8.4.4
+    "rule-set:cloudflare_domain":
+      - 1.1.1.1
+      - 1.0.0.1
     "rule-set:bytedance_domain":
       - 180.184.1.1
       - 180.184.2.2
@@ -98,6 +104,7 @@ proxy-groups:
 rules:
   - RULE-SET,google@ads,REJECT-DROP
   - RULE-SET,google_domain,💦 Auto
+  - RULE-SET,cloudflare_domain,💦 Auto
   - RULE-SET,bytedance@ads,REJECT-DROP
   - RULE-SET,bytedance@!cn_domain,💦 Auto
   - RULE-SET,bytedance_domain,DIRECT
@@ -137,6 +144,7 @@ rule-providers:
   # 分隔,下面是DOMAIN分组
   google@ads: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/google@ads.mrs"}
   google_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/google.mrs"}
+  cloudflare_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/cloudflare.mrs"}
   category-ai-!cn@ads: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-ai-!cn@ads.mrs" }
   category-ai-!cn_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-ai-!cn.mrs" }
   bytedance@ads: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/bytedance@ads.mrs"}
