@@ -72,7 +72,7 @@ dns:
     - "time.*.com"
   proxy-server-nameserver:
     - 223.5.5.5
-    - 1.1.1.1
+    - 119.29.29.29
   nameserver:
     - 8.8.8.8
     - 1.1.1.1
