@@ -68,8 +68,8 @@ dns:
     - "+.msftncsi.com"
     - "time.*.com"
   nameserver:
-    - 8.8.8.8
-    - 1.1.1.1
+    - 223.5.5.5
+    - 114.114.114.114
   proxy-server-nameserver:
     - 223.5.5.5
     - 114.114.114.114
@@ -77,10 +77,13 @@ dns:
     - 223.5.5.5
     - 114.114.114.114
   nameserver-policy:
+    "rule-set:google_domain,cloudflare_domain,reddit_domain,category-porn_domain":
+      - 8.8.8.8
+      - 1.1.1.1
     "rule-set:bytedance_domain":
       - 180.184.1.1
       - 180.184.2.2
-    "rule-set:private_domain,cn_domain,apple_domain":
+    "rule-set:private_domain,cn_domain,github_domain":
       - 223.5.5.5
       - 114.114.114.114
 # 出站策略
