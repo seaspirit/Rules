@@ -71,9 +71,12 @@ dns:
     - "+.msftncsi.com"
     - "time.*.com"
   nameserver:
-    - 1.1.1.1
     - 8.8.8.8
+    - 1.1.1.1
   proxy-server-nameserver:
+    - 223.5.5.5
+    - 114.114.114.114
+  direct-nameserver:
     - 223.5.5.5
     - 114.114.114.114
   nameserver-policy:
