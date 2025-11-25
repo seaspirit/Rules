@@ -12,7 +12,7 @@ mixed-port: 7893
 tproxy-port: 7894
 allow-lan: true
 bind-address: "*"
-ipv6: true
+ipv6: false
 unified-delay: true
 tcp-concurrent: true
 log-level: warning
@@ -55,12 +55,10 @@ dns:
   enable: true # 关闭将使用系统 DNS
   prefer-h3: true # 是否开启 DoH 支持 HTTP/3，将并发尝试
   listen: 0.0.0.0:1053 # 开启 DNS 服务器监听
-  ipv6: true
-  ipv6-timeout: 300 # 单位：ms，内部双栈并发时，向上游查询 AAAA 时，等待 AAAA 的时间，默认 100ms
+  ipv6: false
   respect-rules: true
   enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.1/16 # fake-ip 池设置
-  fake-ip-range6: fdfe:dcba:9876::1/64 # fake-ip6 池设置
   fake-ip-filter-mode: blacklist
   fake-ip-filter:
     - "*"
