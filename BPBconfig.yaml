@@ -76,9 +76,6 @@ dns:
   proxy-server-nameserver:
     - 223.5.5.5
     - 114.114.114.114
-  direct-nameserver:
-    - 223.5.5.5
-    - 114.114.114.114
   nameserver-policy:
     "rule-set:bytedance_domain":
       - 180.184.1.1
