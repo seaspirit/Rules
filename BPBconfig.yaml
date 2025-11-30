@@ -12,7 +12,7 @@ mixed-port: 7893
 tproxy-port: 7894
 allow-lan: true
 bind-address: "*"
-ipv6: false
+ipv6: true
 unified-delay: true
 tcp-concurrent: true
 log-level: warning
@@ -55,7 +55,7 @@ dns:
   enable: true # 关闭将使用系统 DNS
   prefer-h3: false # 是否开启 DoH 支持 HTTP/3，将并发尝试
   listen: 0.0.0.0:1053 # 开启 DNS 服务器监听
-  ipv6: false
+  ipv6: true
   respect-rules: true
   enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.1/16 # fake-ip 池设置
@@ -126,6 +126,7 @@ rules:
   - RULE-SET,cn_domain,DIRECT
   - RULE-SET,private_domain,DIRECT
   - RULE-SET,google_ip,Auto,no-resolve
+  - RULE-SET,cloudflare_ip,DIRECT
   - RULE-SET,netflix_ip,Auto,no-resolve
   - RULE-SET,telegram_ip,Auto,no-resolve
   - RULE-SET,cn_ip,DIRECT
@@ -165,6 +166,7 @@ rule-providers:
   private_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/private.mrs"}
   # 分隔,下面是IP分组
   google_ip: { <<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/google.mrs"}
+  cloudflare_ip: { <<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/cloudflare.mrs"}
   telegram_ip: { <<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/telegram.mrs"}
   netflix_ip: { <<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/netflix.mrs"}
   cn_ip: { <<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/cn.mrs"}
