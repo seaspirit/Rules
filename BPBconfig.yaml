@@ -15,7 +15,7 @@ mixed-port: 7893
 tproxy-port: 7894
 allow-lan: true
 bind-address: "*"
-ipv6: true
+ipv6: false
 unified-delay: true
 tcp-concurrent: true
 log-level: warning
@@ -57,7 +57,7 @@ dns:
   enable: true # 关闭将使用系统 DNS
   prefer-h3: false # 是否开启 DoH 支持 HTTP/3，将并发尝试
   listen: 0.0.0.0:1053 # 开启 DNS 服务器监听
-  ipv6: true
+  ipv6: false
   respect-rules: true
   enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.1/16 # fake-ip 池设置
@@ -109,7 +109,7 @@ proxy-groups:
   - {name: Trojan, <<: *pg, filter: "(?i)Trojan"}
 rules:
   - RULE-SET,google@ads,REJECT-DROP
-  - RULE-SET,google_domain,Auto
+  - RULE-SET,google_domain,EdgeTunnel
   - RULE-SET,cloudflare_domain,DIRECT
   - RULE-SET,bytedance@ads,REJECT-DROP
   - RULE-SET,bytedance@!cn_domain,Auto
