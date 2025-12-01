@@ -109,7 +109,7 @@ proxy-groups:
   - {name: Trojan, <<: *pg, filter: "(?i)Trojan"}
 rules:
   - RULE-SET,google@ads,REJECT-DROP
-  - RULE-SET,google_domain,EdgeTunnel
+  - RULE-SET,google_domain,Auto
   - RULE-SET,cloudflare_domain,DIRECT
   - RULE-SET,bytedance@ads,REJECT-DROP
   - RULE-SET,bytedance@!cn_domain,Auto
