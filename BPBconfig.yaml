@@ -72,28 +72,19 @@ dns:
     - "+.msftncsi.com"
     - "time.*.com"
   nameserver:
-    - https://1.1.1.1/dns-query
     - https://223.5.5.5/dns-query
+    - https://119.29.29.29/dns-query
   proxy-server-nameserver:
     - 223.5.5.5
     - 119.29.29.29
   nameserver-policy:
-    "rule-set:google_domain":
-      - https://8.8.8.8/dns-query
-      - https://223.5.5.5/dns-query
-    "rule-set:cloudflare_domain":
-      - https://1.1.1.1/dns-query
-      - https://223.5.5.5/dns-query
-    "rule-set:bytedance_domain":
-      - 223.5.5.5
-      - 180.184.1.1
     "rule-set:private_domain,cn_domain,apple_domain":
       - 223.5.5.5
       - 119.29.29.29
 # 出站策略
 pg: &pg {type: url-test, interval: 30, tolerance: 1, include-all: true}
 proxy-groups:
-  - name: BPB
+  - name: 💦 BPB
     type: url-test
     use:
       - BPB
@@ -101,48 +92,46 @@ proxy-groups:
     type: url-test
     use:
       - EdgeTunnel
-  - {name: Auto, <<: *pg}
+  - {name: ♻️ Auto, <<: *pg, filter: "^((?!((?i)IPv6)).)*$"}
   - {name: Domain, <<: *pg, filter: "(?i)Domain"}
-  - {name: IPv4, <<: *pg, filter: "(?i)IPv4"}
-  - {name: IPv6, <<: *pg, filter: "(?i)IPv6"}
   - {name: VLESS, <<: *pg, filter: "(?i)VLESS"}
   - {name: Trojan, <<: *pg, filter: "(?i)Trojan"}
 rules:
   - RULE-SET,google@ads,REJECT-DROP
-  - RULE-SET,google_domain,Auto
-  - RULE-SET,cloudflare_domain,DIRECT
+  - RULE-SET,google_domain,♻️ Auto
+  - RULE-SET,cloudflare_domain,💦 BPB
   - RULE-SET,bytedance@ads,REJECT-DROP
-  - RULE-SET,bytedance@!cn_domain,Auto
+  - RULE-SET,bytedance@!cn_domain,♻️ Auto
   - RULE-SET,bytedance_domain,DIRECT
-  - RULE-SET,github_domain,BPB
+  - RULE-SET,github_domain,💦 BPB
   - RULE-SET,category-ai-!cn@ads,REJECT-DROP
-  - RULE-SET,category-ai-!cn_domain,Auto
+  - RULE-SET,category-ai-!cn_domain,💦 BPB
   - RULE-SET,microsoft@ads,REJECT-DROP
   - RULE-SET,microsoft_domain,DIRECT
   - RULE-SET,apple@ads,REJECT-DROP
   - RULE-SET,apple_domain,DIRECT
-  - RULE-SET,netflix_domain,Auto
-  - RULE-SET,disney_domain,Auto
-  - RULE-SET,telegram_domain,Auto
-  - RULE-SET,speedtest_domain,Auto
-  - RULE-SET,paypal_domain,Auto
+  - RULE-SET,netflix_domain,♻️ Auto
+  - RULE-SET,disney_domain,♻️ Auto
+  - RULE-SET,telegram_domain,♻️ Auto
+  - RULE-SET,speedtest_domain,♻️ Auto
+  - RULE-SET,paypal_domain,♻️ Auto
   - RULE-SET,test-ipv6_domain,DIRECT
   - DOMAIN-SUFFIX,qnap.com,DIRECT
-  - DOMAIN-SUFFIX,softonic.cn,Auto
-  - RULE-SET,reddit_domain,Auto
+  - DOMAIN-SUFFIX,softonic.cn,♻️ Auto
+  - RULE-SET,reddit_domain,♻️ Auto
   - RULE-SET,category-porn@ads,REJECT-DROP
-  - RULE-SET,category-porn_domain,Auto
-  - RULE-SET,gfw_domain,Auto
-  - RULE-SET,geolocation-!cn,Auto
+  - RULE-SET,category-porn_domain,♻️ Auto
+  - RULE-SET,gfw_domain,♻️ Auto
+  - RULE-SET,geolocation-!cn,♻️ Auto
   - RULE-SET,cn_domain,DIRECT
   - RULE-SET,private_domain,DIRECT
-  - RULE-SET,google_ip,Auto,no-resolve
-  - RULE-SET,cloudflare_ip,DIRECT
-  - RULE-SET,netflix_ip,Auto,no-resolve
-  - RULE-SET,telegram_ip,Auto,no-resolve
+  - RULE-SET,google_ip,♻️ Auto,no-resolve
+  - RULE-SET,cloudflare_ip,💦 BPB,no-resolve
+  - RULE-SET,netflix_ip,♻️ Auto,no-resolve
+  - RULE-SET,telegram_ip,♻️ Auto,no-resolve
   - RULE-SET,cn_ip,DIRECT
   - RULE-SET,private_ip,DIRECT,no-resolve
-  - MATCH,Auto
+  - MATCH,♻️ Auto
 # 规则集
 rule-anchor:
   domain: &domain {type: http, interval: 86400, behavior: domain, format: mrs}
