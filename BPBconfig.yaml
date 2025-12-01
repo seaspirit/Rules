@@ -64,25 +64,19 @@ dns:
   fake-ip-range6: fdfe:dcba:9876::1/64 # fake-ip6 池设置
   fake-ip-filter-mode: blacklist
   fake-ip-filter:
-    - "*"
-    - "+.lan"
-    - "+.local"
-    - "rule-set:private_domain,cn_domain,apple_domain"
-    - "+.msftconnecttest.com"
-    - "+.msftncsi.com"
-    - "time.*.com"
+    - rule-set:fakeipfilter_domain
   nameserver:
-    - https://1.1.1.1/dns-query
+    - https://1.1.1.1/dns-query#RULES&ecs=223.5.5.0/24
     - https://223.5.5.5/dns-query
   proxy-server-nameserver:
     - 223.5.5.5
     - 119.29.29.29
   nameserver-policy:
     "rule-set:google_domain":
-      - https://8.8.8.8/dns-query
+      - https://8.8.8.8/dns-query#RULES&ecs=223.5.5.0/24
       - https://223.5.5.5/dns-query
     "rule-set:cloudflare_domain":
-      - https://1.1.1.1/dns-query
+      - https://1.1.1.1/dns-query#RULES&ecs=223.5.5.0/24
       - https://223.5.5.5/dns-query
     "rule-set:bytedance_domain":
       - 223.5.5.5
@@ -147,6 +141,7 @@ rule-anchor:
   ip: &ip {type: http, interval: 86400, behavior: ipcidr, format: mrs}
 rule-providers:
   # 分隔,下面是DOMAIN分组
+  fakeipfilter_domain: {<<: *domain, url: "https://raw.githubusercontent.com/wwqgtxx/clash-rules/release/fakeip-filter.mrs"}
   google@ads: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/google@ads.mrs"}
   google_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/google.mrs"}
   cloudflare_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/cloudflare.mrs"}
