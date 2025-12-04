@@ -61,18 +61,18 @@ dns:
   fake-ip-filter-mode: blacklist
   fake-ip-filter:
     - rule-set:fakeipfilter_domain
-  nameserver:
-    - https://1.1.1.1/dns-query#RULES&ecs=223.5.5.0/24
-    - https://223.5.5.5/dns-query
   proxy-server-nameserver:
     - 223.5.5.5
     - 119.29.29.29
+  nameserver:
+    - https://1.1.1.1/dns-query
+    - https://223.5.5.5/dns-query
   nameserver-policy:
     "rule-set:google_domain":
-      - https://8.8.8.8/dns-query#RULES&ecs=223.5.5.0/24
+      - https://8.8.8.8/dns-query
       - https://223.5.5.5/dns-query
     "rule-set:cloudflare_domain":
-      - https://1.1.1.1/dns-query#RULES&ecs=223.5.5.0/24
+      - https://1.1.1.1/dns-query
       - https://223.5.5.5/dns-query
     "rule-set:bytedance_domain":
       - 223.5.5.5
