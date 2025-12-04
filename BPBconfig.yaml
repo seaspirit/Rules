@@ -12,7 +12,7 @@ mixed-port: 7893
 tproxy-port: 7894
 allow-lan: true
 bind-address: "*"
-ipv6: false
+ipv6: true
 unified-delay: true
 tcp-concurrent: true
 log-level: warning
@@ -55,24 +55,26 @@ dns:
   cache-algorithm: arc
   prefer-h3: false # 是否开启 DoH 支持 HTTP/3，将并发尝试
   listen: 0.0.0.0:1053 # 开启 DNS 服务器监听
-  ipv6: false # false 将返回 AAAA 的空结果
+  ipv6: true # false 将返回 AAAA 的空结果
+  ipv6-timeout: 300 # 单位：ms，内部双栈并发时，向上游查询 AAAA 时，等待 AAAA 的时间，默认 100ms
   respect-rules: true
   enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.1/16 # fake-ip 池设置
+  fake-ip-range6: fdfe:dcba:9876::1/64 # fake-ip6 池设置
   fake-ip-filter-mode: blacklist
   fake-ip-filter:
     - rule-set:fakeipfilter_domain
-  proxy-server-nameserver:
-    - 223.5.5.5
-    - 119.29.29.29
   nameserver:
+    - https://1.1.1.1/dns-query
+    - https://223.5.5.5/dns-query
+  proxy-server-nameserver:
     - 223.5.5.5
     - 119.29.29.29
   nameserver-policy:
     "rule-set:google_domain":
       - https://8.8.8.8/dns-query
       - https://223.5.5.5/dns-query
-    "rule-set:cloudflare_domain,reddit_domain,category-porn_domain":
+    "rule-set:cloudflare_domain":
       - https://1.1.1.1/dns-query
       - https://223.5.5.5/dns-query
     "rule-set:bytedance_domain":
