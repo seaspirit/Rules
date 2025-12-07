@@ -75,11 +75,11 @@ dns:
     - https://119.29.29.29/dns-query
   nameserver-policy:
     "rule-set:google_domain":
-      - https://8.8.8.8/dns-query#RULES&ecs=223.5.5.0/24
-      - https://1.1.1.1/dns-query#RULES&ecs=223.5.5.0/24
+      - https://8.8.8.8/dns-query
+      - https://1.1.1.1/dns-query
     "rule-set:cloudflare_domain":
-      - https://1.1.1.1/dns-query#RULES&ecs=223.5.5.0/24
-      - https://8.8.8.8/dns-query#RULES&ecs=223.5.5.0/24
+      - https://1.1.1.1/dns-query
+      - https://8.8.8.8/dns-query
     "rule-set:bytedance_domain":
       - 180.184.1.1
       - 223.5.5.5
