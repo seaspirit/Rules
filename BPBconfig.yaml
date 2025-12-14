@@ -72,7 +72,7 @@ dns:
     "rule-set:google_domain":
       - https://8.8.8.8/dns-query#RULES&ecs=223.5.5.0/24
       - https://1.1.1.1/dns-query#RULES&ecs=223.5.5.0/24
-    "rule-set:bytedance_domain,private_domain,cn_domain,apple_domain,cloudflare_domain":
+    "rule-set:bytedance_domain,private_domain,cn_domain,cloudflare_domain,apple_domain":
       - 223.5.5.5
       - 114.114.114.114
 # 出站策略
