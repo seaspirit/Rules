@@ -84,7 +84,7 @@ proxy-groups:
 rules:
   - RULE-SET,google@ads,REJECT-DROP
   - RULE-SET,google_domain,Auto
-  - RULE-SET,cloudflare_domain,DIRECT
+  - RULE-SET,cloudflare_domain,Auto
   - RULE-SET,bytedance@ads,REJECT-DROP
   - RULE-SET,bytedance@!cn_domain,Auto
   - RULE-SET,bytedance_domain,DIRECT
@@ -101,7 +101,6 @@ rules:
   - RULE-SET,speedtest_domain,Auto
   - RULE-SET,paypal_domain,Auto
   - RULE-SET,test-ipv6_domain,DIRECT
-  - DOMAIN-SUFFIX,returnyoutubedislikeapi.com,DIRECT
   - DOMAIN-SUFFIX,qnap.com,DIRECT
   - DOMAIN-SUFFIX,softonic.cn,Auto
   - RULE-SET,reddit_domain,Auto
@@ -112,7 +111,7 @@ rules:
   - RULE-SET,cn_domain,DIRECT
   - RULE-SET,private_domain,DIRECT
   - RULE-SET,google_ip,Auto,no-resolve
-  - RULE-SET,cloudflare_ip,DIRECT,no-resolve
+  - RULE-SET,cloudflare_ip,Auto,no-resolve
   - RULE-SET,netflix_ip,Auto,no-resolve
   - RULE-SET,telegram_ip,Auto,no-resolve
   - RULE-SET,cn_ip,DIRECT
