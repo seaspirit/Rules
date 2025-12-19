@@ -1,5 +1,5 @@
 # 机场订阅
-pp: &pp {type: http, interval: 3600, proxy: DIRECT, health-check: {enable: true, interval: 30, url: "https://www.gstatic.com/generate_204"}, header: {User-Agent: ["Clash/v1.18.0", "mihomo/1.19.17"]}}
+pp: &pp {type: http, interval: 1800, proxy: DIRECT, health-check: {enable: true, interval: 30, url: "https://www.gstatic.com/generate_204"}, header: {User-Agent: ["Clash/v1.18.0", "mihomo/1.19.17"]}}
 proxy-providers:
   BPB:
     <<: *pp
