@@ -63,7 +63,9 @@ dns:
   fake-ip-ttl: 600 # 增加 fake-ip 记录在客户端的缓存时间（单位：秒）
   fake-ip-filter-mode: blacklist
   fake-ip-filter:
+    - rule-set:category-ai-!cn_domain
     - rule-set:fakeipfilter_domain
+    - "+.torrentdownloads.pro"
   nameserver:
     - https://8.8.8.8/dns-query
     - https://8.8.4.4/dns-query
