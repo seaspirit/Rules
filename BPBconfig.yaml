@@ -77,11 +77,11 @@ dns:
     - https://223.6.6.6/dns-query
   nameserver-policy:
     "rule-set:category-ai-!cn_domain":
-      - 1.1.1.1
-      - 1.0.0.1
+      - 8.8.8.8
+      - 8.8.4.4
     "+.torrentdownloads.pro,+.torrentgalaxy.one,+.yysub.*":
-      - 223.5.5.5
-      - 223.6.6.6
+      - 8.8.8.8
+      - 8.8.4.4
     "rule-set:bytedance_domain,private_domain,cn_domain,apple_domain":
       - 223.5.5.5
       - 223.6.6.6
