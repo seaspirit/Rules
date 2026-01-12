@@ -77,8 +77,8 @@ dns:
     - https://223.6.6.6/dns-query
   nameserver-policy:
     "+.torrentdownloads.pro,+.torrentgalaxy.one,+.yysub.*,+.uindex.org":
-      - 223.5.5.5
-      - 223.6.6.6
+      - https://223.5.5.5/dns-query
+      - https://223.6.6.6/dns-query
     "rule-set:bytedance_domain,private_domain,cn_domain,apple_domain":
       - 223.5.5.5
       - 223.6.6.6
@@ -116,6 +116,7 @@ rules:
   - DOMAIN-SUFFIX,returnyoutubedislikeapi.com,DIRECT
   - DOMAIN-SUFFIX,seaspirit.dpdns.org,DIRECT
   - DOMAIN-SUFFIX,qnap.com,DIRECT
+  - DOMAIN-SUFFIX,downloadtorrentfile.com,DIRECT
   - DOMAIN-SUFFIX,softonic.cn,Auto
   - RULE-SET,reddit_domain,Auto
   - RULE-SET,category-porn@ads,REJECT-DROP
