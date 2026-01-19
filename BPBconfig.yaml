@@ -97,7 +97,7 @@ rules:
   - RULE-SET,category-ai-!cn_domain,Auto
   - RULE-SET,category-ai-cn_domain,Auto
   - RULE-SET,microsoft@ads,REJECT-DROP
-  - RULE-SET,microsoft_domain,Auto
+  - RULE-SET,microsoft_domain,DIRECT
   - RULE-SET,apple@ads,REJECT-DROP
   - RULE-SET,apple_domain,DIRECT
   - RULE-SET,netflix_domain,Auto
