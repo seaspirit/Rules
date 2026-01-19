@@ -76,7 +76,7 @@ dns:
     - https://223.5.5.5/dns-query
     - https://119.29.29.29/dns-query
   nameserver-policy:
-    "rule-set:google_domain,category-ai-!cn_domain,reddit_domain,category-porn_domain,gfw_domain,geolocation-!cn,netflix_domain":
+    "rule-set:google_domain,reddit_domain,category-porn_domain,gfw_domain,geolocation-!cn,netflix_domain":
       - https://8.8.8.8/dns-query
       - https://9.9.9.9/dns-query
 # 出站策略
@@ -110,6 +110,7 @@ rules:
   - RULE-SET,speedtest_domain,Auto
   - RULE-SET,paypal_domain,Auto
   - RULE-SET,test-ipv6_domain,DIRECT
+  - DOMAIN-SUFFIX,amemv.com,Auto
   - DOMAIN-KEYWORD,subhd,DIRECT
   - DOMAIN-KEYWORD,uupdump,DIRECT
   - DOMAIN-SUFFIX,returnyoutubedislikeapi.com,DIRECT
