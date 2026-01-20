@@ -118,8 +118,8 @@ rules:
   - RULE-SET,speedtest_domain,Auto
   - RULE-SET,paypal_domain,Auto
   - RULE-SET,test-ipv6_domain,DIRECT
-  - DOMAIN-SUFFIX,amemv.com,Auto
   - DOMAIN-KEYWORD,subhd,DIRECT
+  - DOMAIN-KEYWORD,uupdump,DIRECT
   - DOMAIN-SUFFIX,returnyoutubedislikeapi.com,DIRECT
   - DOMAIN-SUFFIX,seaspirit.dpdns.org,DIRECT
   - DOMAIN-SUFFIX,qnap.com,DIRECT
