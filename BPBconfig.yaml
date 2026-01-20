@@ -106,7 +106,7 @@ rules:
   - RULE-SET,category-ai-!cn_domain,Auto
   - RULE-SET,category-ai-cn_domain,Auto
   - RULE-SET,microsoft@ads,REJECT-DROP
-  - RULE-SET,microsoft_domain,DIRECT
+  - RULE-SET,microsoft_domain,Auto
   - RULE-SET,apple@ads,REJECT-DROP
   - RULE-SET,apple_domain,DIRECT
   - RULE-SET,huawei_domain,DIRECT
@@ -120,7 +120,6 @@ rules:
   - RULE-SET,test-ipv6_domain,DIRECT
   - DOMAIN-SUFFIX,amemv.com,Auto
   - DOMAIN-KEYWORD,subhd,DIRECT
-  - DOMAIN-KEYWORD,uupdump,DIRECT
   - DOMAIN-SUFFIX,returnyoutubedislikeapi.com,DIRECT
   - DOMAIN-SUFFIX,seaspirit.dpdns.org,DIRECT
   - DOMAIN-SUFFIX,qnap.com,DIRECT
