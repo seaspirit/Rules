@@ -61,6 +61,7 @@ dns:
     - "+.yysub.*"
     - "+.torrentgalaxy.one"
     - "+.torrentdownloads.pro"
+    - "+.returnyoutubedislikeapi.com"
     - rule-set:cn_domain
     - rule-set:fakeipfilter_domain
     - rule-set:category-ai-!cn_domain
