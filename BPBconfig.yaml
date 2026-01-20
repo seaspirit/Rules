@@ -16,7 +16,6 @@ ipv6: false
 unified-delay: true
 tcp-concurrent: true
 log-level: warning
-# interface-name: en0
 keep-alive-idle: 600
 keep-alive-interval: 15
 profile:
@@ -48,20 +47,21 @@ tun:
   auto-detect-interface: true
 # DNS模块
 dns:
+  enable: true
   cache-algorithm: arc
-  enable: true # 关闭将使用系统 DNS
-  prefer-h3: false # 是否开启 DoH 支持 HTTP/3，将并发尝试
-  listen: 0.0.0.0:1053 # 开启 DNS 服务器监听
-  ipv6: false # false 将返回 AAAA 的空结果
+  prefer-h3: false
+  listen: 0.0.0.0:1053
+  ipv6: false
   respect-rules: true
   enhanced-mode: fake-ip
-  fake-ip-range: 198.18.0.1/16 # fake-ip 池设置
+  fake-ip-range: 198.18.0.1/16
   fake-ip-filter-mode: blacklist
   fake-ip-filter:
     - "+.subhd.*"
     - "+.yysub.*"
     - "+.torrentgalaxy.one"
     - "+.torrentdownloads.pro"
+    - rule-set:cn_domain
     - rule-set:fakeipfilter_domain
     - rule-set:category-ai-!cn_domain
     - rule-set:category-ai-cn_domain
@@ -72,9 +72,18 @@ dns:
     - 223.5.5.5
     - 119.29.29.29
   nameserver-policy:
-    "rule-set:google_domain,reddit_domain,category-porn_domain,gfw_domain,geolocation-!cn,netflix_domain":
+    "rule-set:google_domain,reddit_domain,category-porn_domain,gfw_domain,geolocation-!cn,netflix_domain,microsoft_domain":
       - https://8.8.8.8/dns-query
       - https://223.5.5.5/dns-query
+    "rule-set:bytedance_domain,bytedance@!cn_domain":
+      - 180.184.1.1
+      - 223.5.5.5
+    "rule-set:huawei_domain":
+      - '1.1.1.1#DIRECT'
+      - 223.5.5.5
+    "rule-set:tencent_domain":
+      - 119.29.29.29
+      - 223.5.5.5
 # 出站策略
 pg: &pg {type: url-test, interval: 30, tolerance: 1, include-all: true}
 proxy-groups:
@@ -84,6 +93,7 @@ proxy-groups:
   - {name: Trojan, <<: *pg, filter: "(?i)Trojan"}
 # 规则匹配
 rules:
+  - DOMAIN-SUFFIX,amemv.com,Auto
   - RULE-SET,google@ads,REJECT-DROP
   - RULE-SET,google_domain,Auto
   - RULE-SET,cloudflare_domain,DIRECT
@@ -98,6 +108,9 @@ rules:
   - RULE-SET,microsoft_domain,DIRECT
   - RULE-SET,apple@ads,REJECT-DROP
   - RULE-SET,apple_domain,DIRECT
+  - RULE-SET,huawei_domain,DIRECT
+  - RULE-SET,alibaba_domain,DIRECT
+  - RULE-SET,tencent_domain,DIRECT
   - RULE-SET,netflix_domain,Auto
   - RULE-SET,disney_domain,Auto
   - RULE-SET,telegram_domain,Auto
@@ -151,6 +164,9 @@ rule-providers:
   microsoft_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/microsoft.mrs"}
   apple@ads: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/apple@ads.mrs"}
   apple_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/apple.mrs"}
+  huawei_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/huawei.mrs"}
+  alibaba_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/alibaba.mrs"}
+  tencent_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/tencent.mrs"}
   speedtest_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/ookla-speedtest.mrs"}
   test-ipv6_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/test-ipv6.mrs"}
   reddit_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/reddit.mrs"}
