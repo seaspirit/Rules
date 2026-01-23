@@ -94,6 +94,7 @@ proxy-groups:
   - {name: IPv6, <<: *pg, filter: "(?i)IPv6"}
   - {name: VLESS, <<: *pg, filter: "(?i)VLESS"}
   - {name: Trojan, <<: *pg, filter: "(?i)Trojan"}
+  - {name: Clean IP, <<: *pg, filter: "(?i)Clean IP"}
 # 规则匹配
 rules:
   - DOMAIN-SUFFIX,amemv.com,Auto
