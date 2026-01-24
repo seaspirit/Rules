@@ -37,6 +37,9 @@ sniffer:
       ports: [443, 8443]
     QUIC:
       ports: [443, 8443]
+  force-dst-address:
+    - 104.18.28.234
+    - 172.64.155.209
 # 入站  
 tun:
   enable: true
@@ -136,7 +139,7 @@ rules:
   - RULE-SET,cn_domain,DIRECT
   - RULE-SET,private_domain,DIRECT
   - RULE-SET,google_ip,Auto,no-resolve
-  - RULE-SET,cloudflare_ip,DIRECT,no-resolve
+  - RULE-SET,cloudflare_ip,Auto,no-resolve
   - RULE-SET,netflix_ip,Auto,no-resolve
   - RULE-SET,telegram_ip,Auto,no-resolve
   - RULE-SET,cn_ip,DIRECT
