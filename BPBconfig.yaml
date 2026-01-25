@@ -37,9 +37,6 @@ sniffer:
       ports: [443, 8443]
     QUIC:
       ports: [443, 8443]
-  force-dst-address:
-    - 104.18.28.234
-    - 172.64.155.209
 # 入站  
 tun:
   enable: true
@@ -97,6 +94,7 @@ proxy-groups:
   - {name: IPv6, <<: *pg, filter: "(?i)IPv6"}
   - {name: VLESS, <<: *pg, filter: "(?i)VLESS"}
   - {name: Trojan, <<: *pg, filter: "(?i)Trojan"}
+  - {name: BPB, <<: *pg, filter: "^((?!(Clean IP)).)*$"}
   - {name: Clean IP, <<: *pg, filter: "(?i)Clean IP"}
 # 规则匹配
 rules:
