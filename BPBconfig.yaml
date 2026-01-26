@@ -80,8 +80,8 @@ dns:
       - 180.184.1.1
       - 223.5.5.5
     "rule-set:huawei_domain":
+      - '1.1.1.1#DIRECT'
       - 223.5.5.5
-      - 119.29.29.29
     "rule-set:tencent_domain":
       - 119.29.29.29
       - 223.5.5.5
