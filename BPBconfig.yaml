@@ -85,9 +85,15 @@ dns:
     "rule-set:douyin_domain":
       - 180.184.1.1
       - 180.184.2.2
+    "rule-set:huawei_domain":
+      - 122.112.208.1
+      - 139.9.23.90
     "rule-set:tencent_domain":
       - 119.29.29.29
-      - 119.28.28.28
+      - 182.254.116.116
+    "rule-set:baidu_domain":
+      - 180.76.76.76
+      - 223.5.5.5
 # 出站策略
 pg: &pg {type: url-test, interval: 30, tolerance: 1, include-all: true}
 proxy-groups:
@@ -114,6 +120,7 @@ rules:
   - RULE-SET,huawei_domain,DIRECT
   - RULE-SET,alibaba_domain,DIRECT
   - RULE-SET,tencent_domain,DIRECT
+  - RULE-SET,baidu_domain,DIRECT
   - RULE-SET,netflix_domain,Auto
   - RULE-SET,disney_domain,Auto
   - RULE-SET,telegram_domain,Auto
@@ -164,6 +171,7 @@ rule-providers:
   huawei_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/huawei.mrs"}
   alibaba_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/alibaba.mrs"}
   tencent_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/tencent.mrs"}
+  baidu_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/baidu.mrs"}
   speedtest_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/ookla-speedtest.mrs"}
   test-ipv6_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/test-ipv6.mrs"}
   reddit_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/reddit.mrs"}
