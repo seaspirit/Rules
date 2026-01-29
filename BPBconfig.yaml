@@ -71,23 +71,23 @@ dns:
     - rule-set:category-ai-cn_domain
   nameserver:
     - 223.5.5.5
-    - 119.29.29.29
+    - 223.6.6.6
   proxy-server-nameserver:
     - 223.5.5.5
-    - 119.29.29.29
+    - 223.6.6.6
   nameserver-policy:
-    "rule-set:google_domain,reddit_domain,category-porn_domain,gfw_domain,geolocation-!cn,netflix_domain,microsoft_domain":
-      - https://1.1.1.1/dns-query
+    "rule-set:google_domain":
       - https://8.8.8.8/dns-query
-    "rule-set:bytedance_domain,bytedance@!cn_domain":
+      - https://8.8.4.4/dns-query
+    "rule-set:reddit_domain,category-porn_domain,gfw_domain,geolocation-!cn,netflix_domain,microsoft_domain,tiktok_domain":
+      - https://1.1.1.1/dns-query
+      - https://1.0.0.1/dns-query
+    "rule-set:douyin_domain":
       - 180.184.1.1
-      - 223.5.5.5
-    "rule-set:huawei_domain":
-      - '1.1.1.1#DIRECT'
-      - 223.5.5.5
+      - 180.184.2.2
     "rule-set:tencent_domain":
       - 119.29.29.29
-      - 223.5.5.5
+      - 119.28.28.28
 # 出站策略
 pg: &pg {type: url-test, interval: 30, tolerance: 1, include-all: true}
 proxy-groups:
@@ -101,20 +101,15 @@ proxy-groups:
   - {name: Clean IPs, <<: *pg, filter: "(?i)Clean IP"}
 # 规则匹配
 rules:
-  - DOMAIN-SUFFIX,amemv.com,Auto
-  - RULE-SET,google@ads,REJECT-DROP
   - RULE-SET,google_domain,Auto
   - RULE-SET,cloudflare_domain,DIRECT
-  - RULE-SET,bytedance@ads,REJECT-DROP
-  - RULE-SET,bytedance@!cn_domain,Auto
-  - RULE-SET,bytedance_domain,DIRECT
+  - RULE-SET,douyin_domain,Auto
+  - RULE-SET,tiktok_domain,Auto
+  - RULE-SET,115_domain,DIRECT
   - RULE-SET,github_domain,Auto
-  - RULE-SET,category-ai-!cn@ads,REJECT-DROP
   - RULE-SET,category-ai-!cn_domain,Auto
   - RULE-SET,category-ai-cn_domain,Auto
-  - RULE-SET,microsoft@ads,REJECT-DROP
   - RULE-SET,microsoft_domain,Auto
-  - RULE-SET,apple@ads,REJECT-DROP
   - RULE-SET,apple_domain,DIRECT
   - RULE-SET,huawei_domain,DIRECT
   - RULE-SET,alibaba_domain,DIRECT
@@ -133,7 +128,6 @@ rules:
   - DOMAIN-SUFFIX,downloadtorrentfile.com,DIRECT
   - DOMAIN-SUFFIX,softonic.cn,Auto
   - RULE-SET,reddit_domain,Auto
-  - RULE-SET,category-porn@ads,REJECT-DROP
   - RULE-SET,category-porn_domain,Auto
   - RULE-SET,gfw_domain,Auto
   - RULE-SET,geolocation-!cn,Auto
@@ -153,23 +147,19 @@ rule-anchor:
 rule-providers:
   # 分隔,下面是DOMAIN分组
   fakeipfilter_domain: { <<: *domain, url: "https://raw.githubusercontent.com/wwqgtxx/clash-rules/release/fakeip-filter.mrs"}
-  google@ads: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/google@ads.mrs"}
   google_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/google.mrs"}
   cloudflare_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/cloudflare.mrs"}
-  category-ai-!cn@ads: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-ai-!cn@ads.mrs" }
   category-ai-!cn_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-ai-!cn.mrs" }
   category-ai-cn_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-ai-cn.mrs" }
-  bytedance@ads: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/bytedance@ads.mrs"}
-  bytedance@!cn_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/bytedance@!cn.mrs"}
-  bytedance_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/bytedance.mrs"}
+  douyin_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/douyin.mrs"}
+  tiktok_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/tiktok.mrs"}
+  115_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/115.mrs"}
   github_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/github.mrs"}
   telegram_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/telegram.mrs"}
   netflix_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/netflix.mrs"}
   disney_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/disney.mrs"}
   paypal_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/paypal.mrs"}
-  microsoft@ads: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/microsoft@ads.mrs"}
   microsoft_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/microsoft.mrs"}
-  apple@ads: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/apple@ads.mrs"}
   apple_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/apple.mrs"}
   huawei_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/huawei.mrs"}
   alibaba_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/alibaba.mrs"}
@@ -177,7 +167,6 @@ rule-providers:
   speedtest_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/ookla-speedtest.mrs"}
   test-ipv6_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/test-ipv6.mrs"}
   reddit_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/reddit.mrs"}
-  category-porn@ads: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-porn@ads.mrs"}
   category-porn_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-porn.mrs"}
   gfw_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/gfw.mrs"}
   geolocation-!cn: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/geolocation-!cn.mrs"}
