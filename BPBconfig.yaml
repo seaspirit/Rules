@@ -85,9 +85,6 @@ dns:
     "rule-set:douyin_domain":
       - 180.184.1.1
       - 180.184.2.2
-    "rule-set:huawei_domain":
-      - 122.112.208.1
-      - 139.9.23.90
     "rule-set:tencent_domain":
       - 119.29.29.29
       - 182.254.116.116
