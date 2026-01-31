@@ -102,7 +102,7 @@ proxy-groups:
 rules:
   - RULE-SET,google_domain,Auto
   - RULE-SET,cloudflare_domain,DIRECT
-  - RULE-SET,douyin_domain,Auto
+  - RULE-SET,douyin_domain,DIRECT
   - RULE-SET,tiktok_domain,Auto
   - RULE-SET,115_domain,DIRECT
   - RULE-SET,github_domain,Auto
