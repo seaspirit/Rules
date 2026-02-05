@@ -71,20 +71,23 @@ dns:
     - rule-set:category-ai-cn_domain
   nameserver:
     - 223.5.5.5
-    - 119.29.29.29
+    - 223.6.6.6
   proxy-server-nameserver:
     - 223.5.5.5
-    - 119.29.29.29
+    - 223.6.6.6
   nameserver-policy:
-    "rule-set:google_domain,reddit_domain,category-porn_domain,gfw_domain,geolocation-!cn,netflix_domain,microsoft_domain,tiktok_domain":
-      - https://1.1.1.1/dns-query
+    "rule-set:google_domain":
       - https://8.8.8.8/dns-query
+      - https://8.8.4.4/dns-query
+    "rule-set:reddit_domain,category-porn_domain,gfw_domain,geolocation-!cn,netflix_domain,microsoft_domain,tiktok_domain":
+      - https://1.1.1.1/dns-query
+      - https://1.0.0.1/dns-query
     "rule-set:douyin_domain":
       - 180.184.1.1
       - 180.184.2.2
     "rule-set:baidu_domain":
       - 180.76.76.76
-    "+.redgifsdownloader.net,+.redgifsdownloader.org": [https://1.1.1.1/dns-query, https://8.8.8.8/dns-query]
+    "+.redgifsdownloader.net,+.redgifsdownloader.org": [https://1.1.1.1/dns-query, https://1.0.0.1/dns-query]
 # 出站策略
 pg: &pg {type: url-test, interval: 30, tolerance: 1, include-all: true}
 proxy-groups:
