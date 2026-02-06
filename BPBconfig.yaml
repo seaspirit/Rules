@@ -101,6 +101,7 @@ proxy-groups:
   - {name: Clean IPs, <<: *pg, filter: "(?i)Clean IP"}
 # 规则匹配
 rules:
+  - RULE-SET,google@ads,REJECT-DROP
   - RULE-SET,google_domain,Auto
   - RULE-SET,cloudflare_domain,DIRECT
   - RULE-SET,douyin_domain,DIRECT
@@ -149,6 +150,7 @@ rule-anchor:
 rule-providers:
   # 分隔,下面是DOMAIN分组
   fakeipfilter_domain: { <<: *domain, url: "https://raw.githubusercontent.com/wwqgtxx/clash-rules/release/fakeip-filter.mrs"}
+  google@ads: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/google@ads.mrs"}
   google_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/google.mrs"}
   cloudflare_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/cloudflare.mrs"}
   category-ai-!cn_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-ai-!cn.mrs" }
