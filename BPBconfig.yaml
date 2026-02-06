@@ -104,13 +104,17 @@ rules:
   - RULE-SET,google@ads,REJECT-DROP
   - RULE-SET,google_domain,Auto
   - RULE-SET,cloudflare_domain,DIRECT
+  - RULE-SET,bytedance@ads,REJECT-DROP
   - RULE-SET,douyin_domain,DIRECT
   - RULE-SET,tiktok_domain,Auto
   - RULE-SET,115_domain,DIRECT
   - RULE-SET,github_domain,Auto
+  - RULE-SET,category-ai-!cn@ads,REJECT-DROP
   - RULE-SET,category-ai-!cn_domain,Auto
   - RULE-SET,category-ai-cn_domain,Auto
+  - RULE-SET,microsoft@ads,REJECT-DROP
   - RULE-SET,microsoft_domain,Auto
+  - RULE-SET,apple@ads,REJECT-DROP
   - RULE-SET,apple_domain,DIRECT
   - RULE-SET,huawei_domain,DIRECT
   - RULE-SET,alibaba_domain,DIRECT
@@ -153,8 +157,10 @@ rule-providers:
   google@ads: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/google@ads.mrs"}
   google_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/google.mrs"}
   cloudflare_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/cloudflare.mrs"}
+  category-ai-!cn@ads: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-ai-!cn@ads.mrs" }
   category-ai-!cn_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-ai-!cn.mrs" }
   category-ai-cn_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-ai-cn.mrs" }
+  bytedance@ads: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/bytedance@ads.mrs"}
   douyin_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/douyin.mrs"}
   tiktok_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/tiktok.mrs"}
   115_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/115.mrs"}
@@ -163,7 +169,9 @@ rule-providers:
   netflix_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/netflix.mrs"}
   disney_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/disney.mrs"}
   paypal_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/paypal.mrs"}
+  microsoft@ads: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/microsoft@ads.mrs"}
   microsoft_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/microsoft.mrs"}
+  apple@ads: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/apple@ads.mrs"}
   apple_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/apple.mrs"}
   huawei_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/huawei.mrs"}
   alibaba_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/alibaba.mrs"}
