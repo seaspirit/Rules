@@ -1,5 +1,5 @@
 # 机场订阅
-pp: &pp {type: http, interval: 86400, proxy: DIRECT, health-check: {enable: true, interval: 90, url: "https://www.gstatic.com/generate_204"}, header: {User-Agent: ["Clash/v1.18.0", "mihomo/1.19.20"]}, override: {client-fingerprint: chrome}}
+pp: &pp {type: http, interval: 86400, proxy: DIRECT, health-check: {enable: true, interval: 30, url: "https://www.gstatic.com/generate_204"}, header: {User-Agent: ["Clash/v1.18.0", "mihomo/1.19.20"]}, override: {client-fingerprint: chrome}}
 proxy-providers:
   BPB:
     <<: *pp
@@ -89,7 +89,7 @@ dns:
       - 180.76.76.76
     "+.redgifsdownloader.net,+.redgifsdownloader.org": [https://1.1.1.1/dns-query, https://1.0.0.1/dns-query]
 # 出站策略
-pg: &pg {type: url-test, interval: 90, tolerance: 5, include-all: true}
+pg: &pg {type: url-test, interval: 30, tolerance: 1, include-all: true}
 proxy-groups:
   - {name: Auto, <<: *pg}
   - {name: Domain, <<: *pg, filter: "(?i)Domain"}
