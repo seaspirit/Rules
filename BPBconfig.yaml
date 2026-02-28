@@ -16,7 +16,6 @@ ipv6: true
 unified-delay: true
 tcp-concurrent: true
 log-level: warning
-disable-keep-alive: false
 keep-alive-idle: 600
 keep-alive-interval: 15
 profile:
@@ -53,12 +52,10 @@ dns:
   prefer-h3: false
   listen: 0.0.0.0:1053
   ipv6: true
-  ipv6-timeout: 300
   respect-rules: true
   enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.1/16
   fake-ip-range6: fdfe:dcba:9876::1/64
-  fake-ip-ttl: 600
   fake-ip-filter-mode: blacklist
   fake-ip-filter:
     - "+.subhd.*"
