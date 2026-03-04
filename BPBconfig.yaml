@@ -78,14 +78,14 @@ dns:
       - https://8.8.8.8/dns-query
       - https://8.8.4.4/dns-query
     "rule-set:reddit_domain,category-porn_domain,gfw_domain,geolocation-!cn,netflix_domain,microsoft_domain,tiktok_domain":
-      - https://1.1.1.1/dns-query
-      - https://1.0.0.1/dns-query
+      - https://1.1.1.1/dns-query#Auto
+      - https://1.0.0.1/dns-query#Auto
     "rule-set:douyin_domain":
       - 180.184.1.1
       - 180.184.2.2
     "rule-set:baidu_domain":
       - 180.76.76.76
-    "+.redgifsdownloader.net,+.redgifsdownloader.org": [https://1.1.1.1/dns-query, https://1.0.0.1/dns-query]
+    "+.redgifsdownloader.net,+.redgifsdownloader.org": [https://1.1.1.1/dns-query#Auto, https://1.0.0.1/dns-query#Auto]
 # 出站策略
 pg: &pg {type: url-test, interval: 60, tolerance: 0, include-all: true}
 proxy-groups:
@@ -95,8 +95,6 @@ proxy-groups:
   - {name: IPv6, <<: *pg, filter: "(?i)IPv6"}
   - {name: VLESS, <<: *pg, filter: "(?i)VLESS"}
   - {name: Trojan, <<: *pg, filter: "(?i)Trojan"}
-  - {name: BPB, <<: *pg, filter: "^((?!(Clean IP)).)*$"}
-  - {name: Clean IPs, <<: *pg, filter: "(?i)Clean IP"}
 # 规则匹配
 rules:
   - RULE-SET,google@ads_domain,REJECT-DROP
@@ -142,7 +140,7 @@ rules:
   - RULE-SET,cn_domain,DIRECT
   - RULE-SET,private_domain,DIRECT
   - RULE-SET,google_ip,Auto,no-resolve
-  - RULE-SET,cloudflare_ip,Auto,no-resolve
+  - RULE-SET,cloudflare_ip,DIRECT,no-resolve
   - RULE-SET,netflix_ip,Auto,no-resolve
   - RULE-SET,telegram_ip,Auto,no-resolve
   - RULE-SET,cn_ip,DIRECT
