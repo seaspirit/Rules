@@ -77,11 +77,6 @@ dns:
     "rule-set:google_domain,reddit_domain,category-porn_domain,gfw_domain,geolocation-!cn,netflix_domain,microsoft_domain,tiktok_domain":
       - https://1.1.1.1/dns-query#Auto
       - https://1.0.0.1/dns-query#Auto
-    "rule-set:douyin_domain":
-      - 180.184.1.1
-      - 180.184.2.2
-    "rule-set:baidu_domain":
-      - 180.76.76.76
     "+.redgifsdownloader.net,+.redgifsdownloader.org": [https://1.1.1.1/dns-query#Auto, https://1.0.0.1/dns-query#Auto]
 # 出站策略
 pg: &pg {type: url-test, interval: 60, tolerance: 0, include-all: true}
