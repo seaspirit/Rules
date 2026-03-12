@@ -61,11 +61,15 @@ dns:
   fake-ip-range6: fdfe:dcba:9876::1/64
   fake-ip-filter-mode: blacklist
   fake-ip-filter:
+    - "+.returnyoutubedislikeapi.com"
+    - "+.lh3.googleusercontent.com"
+    - "+.services.googleapis.cn"
+    - "+.xn--ngstr-lra8j.com"
+    - "+.xn--ngstr-cn-8za9o.com"
     - "+.subhd.*"
     - "+.yysub.*"
     - "+.torrentgalaxy.one"
     - "+.torrentdownloads.pro"
-    - "+.returnyoutubedislikeapi.com"
     - rule-set:cn_domain
     - rule-set:fakeipfilter_domain
     - rule-set:category-ai-!cn_domain
