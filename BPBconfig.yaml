@@ -4,6 +4,9 @@ proxy-providers:
   BPB:
     <<: *pp
     url: "https://bpb.seaspirit.dpdns.org/sub/normal/de5eb6ed-ceee-4de9-b5a5-7ee799dc99aa?app=clash#%F0%9F%92%A6%20BPB%20Normal"
+  openproxylist:
+    <<: *pp
+    url: "https://raw.githubusercontent.com/roosterkid/openproxylist/main/V2RAY_BASE64.txt"
 # 全局配置 
 port: 7890
 socks-port: 7891
@@ -95,10 +98,12 @@ proxy-groups:
   - {name: IPv6, <<: *pg, filter: "(?i)IPv6"}
   - {name: VLESS, <<: *pg, filter: "(?i)VLESS"}
   - {name: Trojan, <<: *pg, filter: "(?i)Trojan"}
+  - {name: BPB, <<: *pg, filter: "^((?!(openproxylist)).)*$"}
+  - {name: openproxylist, <<: *pg, filter: "(?i)openproxylist"}
 # 规则匹配
 rules:
   - RULE-SET,google@ads_domain,REJECT-DROP
-  - RULE-SET,google_domain,Auto
+  - RULE-SET,google_domain,BPB
   - RULE-SET,cloudflare_domain,DIRECT
   - RULE-SET,bytedance@ads_domain,REJECT-DROP
   - RULE-SET,douyin_domain,DIRECT
@@ -106,7 +111,7 @@ rules:
   - RULE-SET,115_domain,DIRECT
   - RULE-SET,github_domain,Auto
   - RULE-SET,category-ai-!cn@ads_domain,REJECT-DROP
-  - RULE-SET,category-ai-!cn_domain,Auto
+  - RULE-SET,category-ai-!cn_domain,openproxylist
   - RULE-SET,category-ai-cn_domain,Auto
   - RULE-SET,microsoft@ads_domain,REJECT-DROP
   - RULE-SET,microsoft_domain,Auto
