@@ -6,7 +6,7 @@ proxy-providers:
     url: "https://bpb.seaspirit.dpdns.org/sub/normal/de5eb6ed-ceee-4de9-b5a5-7ee799dc99aa?app=clash#%F0%9F%92%A6%20BPB%20Normal"
   BPII:
     <<: *pp
-    url: "https://bp2sdgdrujfd.pages.dev/sub/normal/2d42e47c-5813-48b5-a06a-d560f68eb69d?app=clash#%F0%9F%92%A6%20BPB%20Normal"
+    url: "https://bp2-e0x.pages.dev/sub/normal/3b1f0ca3-85b2-4039-82b5-6e14b0f71d5b?app=clash#%F0%9F%92%A6%20BPB%20Normal"
 # 全局配置 
 port: 7890
 socks-port: 7891
