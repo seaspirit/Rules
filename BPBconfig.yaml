@@ -1,12 +1,12 @@
 # 机场订阅
-pp: &pp {type: http, interval: 86400, proxy: DIRECT, health-check: {enable: true, interval: 60, url: "https://www.gstatic.com/generate_204"}, header: {User-Agent: ["Clash/v1.18.0", "mihomo/1.19.20"]}, override: {client-fingerprint: chrome}}
+pp: &pp {type: http, interval: 86400, proxy: DIRECT, header: {User-Agent: ["Clash/v1.18.0", "mihomo/1.19.20"]}, override: {client-fingerprint: chrome}}
 proxy-providers:
   BPB:
     <<: *pp
     url: "https://bpb.seaspirit.dpdns.org/sub/normal/de5eb6ed-ceee-4de9-b5a5-7ee799dc99aa?app=clash#%F0%9F%92%A6%20BPB%20Normal"
-  openproxylist:
+  BPII:
     <<: *pp
-    url: "https://raw.githubusercontent.com/roosterkid/openproxylist/main/V2RAY_BASE64.txt"
+    url: "https://bp2sdgdrujfd.pages.dev/sub/normal/2d42e47c-5813-48b5-a06a-d560f68eb69d?app=clash#%F0%9F%92%A6%20BPB%20Normal"
 # 全局配置 
 port: 7890
 socks-port: 7891
@@ -62,15 +62,12 @@ dns:
   fake-ip-filter-mode: blacklist
   fake-ip-filter:
     - "+.returnyoutubedislikeapi.com"
-    - "+.lh3.googleusercontent.com"
-    - "+.services.googleapis.cn"
-    - "+.xn--ngstr-lra8j.com"
-    - "+.xn--ngstr-cn-8za9o.com"
     - "+.subhd.*"
     - "+.yysub.*"
     - "+.torrentgalaxy.one"
     - "+.torrentdownloads.pro"
     - rule-set:cn_domain
+    - rule-set:private_domain
     - rule-set:fakeipfilter_domain
     - rule-set:category-ai-!cn_domain
     - rule-set:category-ai-cn_domain
@@ -94,20 +91,33 @@ dns:
     "rule-set:baidu_domain":
       - 180.76.76.76
 # 出站策略
-pg: &pg {type: url-test, interval: 60, tolerance: 0, include-all: true}
 proxy-groups:
-  - {name: Auto, <<: *pg}
-  - {name: Domain, <<: *pg, filter: "(?i)Domain"}
-  - {name: IPv4, <<: *pg, filter: "(?i)IPv4"}
-  - {name: IPv6, <<: *pg, filter: "(?i)IPv6"}
-  - {name: VLESS, <<: *pg, filter: "(?i)VLESS"}
-  - {name: Trojan, <<: *pg, filter: "(?i)Trojan"}
-  - {name: BPB, <<: *pg, filter: "^((?!(openproxylist)).)*$"}
-  - {name: openproxylist, <<: *pg, filter: "(?i)openproxylist"}
+  - name: "Auto"
+    type: url-test
+    use:
+      - BPB
+    url: "https://www.gstatic.com/generate_204"
+    interval: 60
+    tolerance: 0
+  - name: "BPII"
+    type: url-test
+    use:
+      - BPII
+    url: "https://www.youtube.com/generate_204"
+    interval: 60
+    tolerance: 0
 # 规则匹配
 rules:
+  - DOMAIN-SUFFIX,googlevideo.com,BPII
+  - DOMAIN-SUFFIX,returnyoutubedislikeapi.com,DIRECT
+  - DOMAIN-SUFFIX,seaspirit.dpdns.org,DIRECT
+  - DOMAIN-SUFFIX,qnap.com,DIRECT
+  - DOMAIN-SUFFIX,downloadtorrentfile.com,DIRECT
+  - DOMAIN-SUFFIX,softonic.cn,Auto
+  - DOMAIN-KEYWORD,subhd,DIRECT
+  - DOMAIN-KEYWORD,uupdump,DIRECT
   - RULE-SET,google@ads_domain,REJECT-DROP
-  - RULE-SET,google_domain,BPB
+  - RULE-SET,google_domain,Auto
   - RULE-SET,cloudflare_domain,DIRECT
   - RULE-SET,bytedance@ads_domain,REJECT-DROP
   - RULE-SET,douyin_domain,DIRECT
@@ -115,7 +125,7 @@ rules:
   - RULE-SET,115_domain,DIRECT
   - RULE-SET,github_domain,Auto
   - RULE-SET,category-ai-!cn@ads_domain,REJECT-DROP
-  - RULE-SET,category-ai-!cn_domain,openproxylist
+  - RULE-SET,category-ai-!cn_domain,Auto
   - RULE-SET,category-ai-cn_domain,Auto
   - RULE-SET,microsoft@ads_domain,REJECT-DROP
   - RULE-SET,microsoft_domain,Auto
@@ -134,13 +144,6 @@ rules:
   - RULE-SET,speedtest_domain,Auto
   - RULE-SET,paypal_domain,Auto
   - RULE-SET,test-ipv6_domain,DIRECT
-  - DOMAIN-KEYWORD,subhd,DIRECT
-  - DOMAIN-KEYWORD,uupdump,DIRECT
-  - DOMAIN-SUFFIX,returnyoutubedislikeapi.com,DIRECT
-  - DOMAIN-SUFFIX,seaspirit.dpdns.org,DIRECT
-  - DOMAIN-SUFFIX,qnap.com,DIRECT
-  - DOMAIN-SUFFIX,downloadtorrentfile.com,DIRECT
-  - DOMAIN-SUFFIX,softonic.cn,Auto
   - RULE-SET,reddit_domain,Auto
   - RULE-SET,category-porn@ads_domain,REJECT-DROP
   - RULE-SET,category-porn_domain,Auto
