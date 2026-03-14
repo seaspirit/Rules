@@ -1,5 +1,5 @@
 # 机场订阅
-pp: &pp {type: http, interval: 86400, proxy: DIRECT, header: {User-Agent: ["Clash/v1.18.0", "mihomo/1.19.20"]}, override: {client-fingerprint: chrome}}
+pp: &pp {type: http, interval: 86400, proxy: DIRECT, health-check: {enable: true, url: "https://www.gstatic.com/generate_204", interval: 60}, header: {User-Agent: ["Clash/v1.18.0", "mihomo/1.19.21"]}, override: {client-fingerprint: chrome}}
 proxy-providers:
   BPB:
     url: "https://bpb.seaspirit.dpdns.org/sub/normal/de5eb6ed-ceee-4de9-b5a5-7ee799dc99aa?app=clash#%F0%9F%92%A6%20BPB%20Normal"
@@ -91,7 +91,7 @@ dns:
     "rule-set:baidu_domain":
       - 180.76.76.76
 # 出站策略
-pg: &pg {type: url-test, health-check: true, url: "https://www.gstatic.com/generate_204", interval: 60, tolerance: 0}
+pg: &pg {type: url-test, interval: 60, tolerance: 0}
 proxy-groups:
   - name: "Auto"
     use:
