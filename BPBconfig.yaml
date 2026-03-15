@@ -78,6 +78,12 @@ dns:
     - 223.5.5.5
     - 223.6.6.6
   nameserver-policy:
+    "rule-set:douyin_domain":
+      - 180.184.1.1
+      - 180.184.2.2
+    "rule-set:tencent_domain":
+      - 119.29.29.29
+      - 182.254.116.116
     "rule-set:google_domain,github_domain,reddit_domain,category-porn_domain,gfw_domain,geolocation-!cn,netflix_domain,microsoft_domain,tiktok_domain":
       - https://1.1.1.1/dns-query#Auto
       - https://1.0.0.1/dns-query#Auto
@@ -93,6 +99,16 @@ proxy-groups:
     use:
       - BPX
     <<: *pg
+  - name: "BPX_VLESS"
+    use:
+      - BPX
+    <<: *pg
+    filter: "(?i)VLESS"
+  - name: "BPX_Trojan"
+    use:
+      - BPX
+    <<: *pg
+    filter: "(?i)Trojan"
 # 规则匹配
 rules:
   - DOMAIN-SUFFIX,returnyoutubedislikeapi.com,DIRECT
