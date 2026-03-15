@@ -83,7 +83,7 @@ dns:
       - https://1.0.0.1/dns-query#Auto
     "+.redgifsdownloader.net,+.redgifsdownloader.org": [https://1.1.1.1/dns-query#Auto, https://1.0.0.1/dns-query#Auto]
 # 出站策略
-pg: &pg {type: url-test, interval: 60, tolerance: 0}
+pg: &pg {type: url-test, health-check: true, url: "https://www.gstatic.com/generate_204", interval: 60, tolerance: 0}
 proxy-groups:
   - name: "Auto"
     use:
