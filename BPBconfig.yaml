@@ -99,16 +99,6 @@ proxy-groups:
     use:
       - BPX
     <<: *pg
-  - name: "BPX_VLESS"
-    use:
-      - BPX
-    <<: *pg
-    filter: "(?i)VLESS"
-  - name: "BPX_Trojan"
-    use:
-      - BPX
-    <<: *pg
-    filter: "(?i)Trojan"
 # 规则匹配
 rules:
   - DOMAIN-SUFFIX,returnyoutubedislikeapi.com,DIRECT
