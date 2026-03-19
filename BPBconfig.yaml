@@ -78,13 +78,16 @@ dns:
     - 223.5.5.5
     - 223.6.6.6
   nameserver-policy:
+    "rule-set:google_domain":
+      - 8.8.8.8
+      - 8.8.4.4
     "rule-set:douyin_domain":
       - 180.184.1.1
       - 180.184.2.2
     "rule-set:tencent_domain":
       - 119.29.29.29
       - 182.254.116.116
-    "rule-set:google_domain,github_domain,reddit_domain,category-porn_domain,gfw_domain,geolocation-!cn,netflix_domain,microsoft_domain,tiktok_domain":
+    "rule-set:github_domain,reddit_domain,category-porn_domain,gfw_domain,geolocation-!cn,netflix_domain,microsoft_domain,tiktok_domain":
       - https://1.1.1.1/dns-query#Auto
       - https://1.0.0.1/dns-query#Auto
     "+.redgifsdownloader.net,+.redgifsdownloader.org": [https://1.1.1.1/dns-query#Auto, https://1.0.0.1/dns-query#Auto]
