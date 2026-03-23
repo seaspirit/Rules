@@ -95,10 +95,6 @@ proxy-groups:
     use:
       - BPB
     <<: *pg
-  - name: "BPX"
-    use:
-      - BPX
-    <<: *pg
 # 规则匹配
 rules:
   - DOMAIN-SUFFIX,returnyoutubedislikeapi.com,DIRECT
@@ -109,7 +105,7 @@ rules:
   - DOMAIN-SUFFIX,qnap.com,DIRECT
   - DOMAIN-SUFFIX,softonic.cn,Auto
   - RULE-SET,google@ads_domain,REJECT-DROP
-  - RULE-SET,youtube_domain,BPX
+  - RULE-SET,youtube_domain,Auto
   - RULE-SET,google_domain,Auto
   - RULE-SET,cloudflare_domain,DIRECT
   - RULE-SET,bytedance@ads_domain,REJECT-DROP
