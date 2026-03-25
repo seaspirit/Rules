@@ -84,7 +84,7 @@ dns:
     "rule-set:tencent_domain":
       - 119.29.29.29
       - 182.254.116.116
-    "rule-set:youtube_domain,google_domain,category-ai-!cn_domain,github_domain,cloudflare_domain,microsoft_domain,netflix_domain,tiktok_domain,reddit_domain,category-porn_domain,gfw_domain,geolocation-!cn":
+    "rule-set:youtube_domain,google_domain,category-ai-!cn_domain,github_domain,microsoft_domain,netflix_domain,tiktok_domain,reddit_domain,category-porn_domain,gfw_domain,geolocation-!cn":
       - 'https://1.1.1.1/dns-query#Auto'
       - 'https://1.0.0.1/dns-query#Auto'
     "+.returnyoutubedislikeapi.com,+.redgifsdownloader.net,+.redgifsdownloader.org": ['https://1.1.1.1/dns-query#Auto', 'https://1.0.0.1/dns-query#Auto']
