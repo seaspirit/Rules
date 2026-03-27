@@ -105,9 +105,9 @@ rules:
   - DOMAIN-SUFFIX,media.redgifs.com,BPX
   - DOMAIN-SUFFIX,returnyoutubedislikeapi.com,DIRECT
   - DOMAIN-SUFFIX,seaspirit.dpdns.org,DIRECT
+  - DOMAIN-SUFFIX,subhd.me,DIRECT
+  - DOMAIN-SUFFIX,uupdump.net,DIRECT
   - DOMAIN-SUFFIX,downloadtorrentfile.com,DIRECT
-  - DOMAIN-KEYWORD,subhd,DIRECT
-  - DOMAIN-KEYWORD,uupdump,DIRECT
   - DOMAIN-SUFFIX,qnap.com,DIRECT
   - DOMAIN-SUFFIX,softonic.cn,Auto
   - RULE-SET,google@ads_domain,REJECT-DROP
