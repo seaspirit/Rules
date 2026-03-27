@@ -102,6 +102,7 @@ proxy-groups:
 # 规则匹配
 rules:
   - DOMAIN-SUFFIX,googlevideo.com,BPX
+  - DOMAIN-SUFFIX,media.redgifs.com,BPX
   - DOMAIN-SUFFIX,returnyoutubedislikeapi.com,DIRECT
   - DOMAIN-SUFFIX,seaspirit.dpdns.org,DIRECT
   - DOMAIN-SUFFIX,downloadtorrentfile.com,DIRECT
