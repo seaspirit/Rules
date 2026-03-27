@@ -120,7 +120,7 @@ rules:
   - RULE-SET,github_domain,Auto
   - RULE-SET,category-ai-!cn@ads_domain,REJECT-DROP
   - RULE-SET,category-ai-!cn_domain,Auto
-  - RULE-SET,category-ai-cn_domain,Auto
+  - RULE-SET,category-ai-cn_domain,DIRECT
   - RULE-SET,microsoft@ads_domain,REJECT-DROP
   - RULE-SET,microsoft_domain,Auto
   - RULE-SET,apple@ads_domain,REJECT-DROP
