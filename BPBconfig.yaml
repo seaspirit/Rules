@@ -62,10 +62,11 @@ dns:
   fake-ip-filter-mode: blacklist
   fake-ip-filter:
     - "+.returnyoutubedislikeapi.com"
-    - "+.subhd.*"
-    - "+.yysub.*"
+    - "+.subhd.me"
+    - "+.yysub.net"
     - "+.torrentgalaxy.one"
     - "+.torrentdownloads.pro"
+    - rule-set:google-play_domain
     - rule-set:cn_domain
     - rule-set:private_domain
     - rule-set:fakeipfilter_domain
@@ -78,13 +79,16 @@ dns:
     - 223.5.5.5
     - 223.6.6.6
   nameserver-policy:
+    "rule-set:google_domain":
+      - https://8.8.8.8/dns-query
+      - https://8.8.4.4/dns-query
     "rule-set:douyin_domain":
       - 180.184.1.1
       - 180.184.2.2
     "rule-set:tencent_domain":
       - 119.29.29.29
       - 182.254.116.116
-    "rule-set:google_domain,category-ai-!cn_domain,github_domain,microsoft_domain,netflix_domain,tiktok_domain,reddit_domain,category-porn_domain,gfw_domain,geolocation-!cn":
+    "rule-set:category-ai-!cn_domain,github_domain,microsoft_domain,netflix_domain,tiktok_domain,reddit_domain,category-porn_domain,gfw_domain,geolocation-!cn":
       - 'https://1.1.1.1/dns-query#Auto'
       - 'https://1.0.0.1/dns-query#Auto'
     "+.returnyoutubedislikeapi.com,+.redgifsdownloader.net,+.redgifsdownloader.org": ['https://1.1.1.1/dns-query#Auto', 'https://1.0.0.1/dns-query#Auto']
@@ -160,6 +164,7 @@ rule-providers:
   # 分隔,下面是DOMAIN分组
   fakeipfilter_domain: { <<: *domain, url: "https://raw.githubusercontent.com/wwqgtxx/clash-rules/release/fakeip-filter.mrs"}
   google@ads_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/google@ads.mrs"}
+  google-play_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/google-play.mrs"}
   google_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/google.mrs"}
   cloudflare_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/cloudflare.mrs"}
   category-ai-!cn@ads_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-ai-!cn@ads.mrs" }
