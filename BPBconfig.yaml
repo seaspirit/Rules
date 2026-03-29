@@ -64,6 +64,7 @@ dns:
     - "+.returnyoutubedislikeapi.com"
     - "+.subhd.me"
     - "+.yysub.net"
+    - "+.uupdump.net"
     - "+.torrentgalaxy.one"
     - "+.torrentdownloads.pro"
     - rule-set:google-play_domain
