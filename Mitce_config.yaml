@@ -1,5 +1,5 @@
 # 机场订阅
-pp: &pp {type: http, interval: 86400, proxy: DIRECT, health-check: {enable: true, url: "https://www.gstatic.com/generate_204", interval: 60}, header: {User-Agent: ["Clash/v1.18.0", "mihomo/1.19.21"]}, override: {client-fingerprint: chrome}}
+pp: &pp {type: http, interval: 86400, proxy: DIRECT, health-check: {enable: true, url: "https://www.gstatic.com/generate_204", interval: 300}, header: {User-Agent: ["Clash/v1.18.0", "mihomo/1.19.21"]}, override: {client-fingerprint: chrome}}
 proxy-providers:
   Mitce:
     url: "https://app.mitce.net/?sid=565383&token=srvszeee"
@@ -35,12 +35,10 @@ sniffer:
       ports: [80, 8080-8880]
     TLS:
       ports: [443, 8443]
-    QUIC:
-      ports: [443, 8443]
 # 入站  
 tun:
   enable: true
-  stack: system # system/gvisor/mixed
+  stack: mixed # system/gvisor/mixed
   dns-hijack: ["any:53", "tcp://any:53"]
   auto-route: true
   auto-redirect: true
@@ -58,6 +56,7 @@ dns:
   fake-ip-range6: fdfe:dcba:9876::1/64
   fake-ip-filter-mode: blacklist
   fake-ip-filter:
+    - "+.googlevideo.com"
     - "+.returnyoutubedislikeapi.com"
     - "+.subhd.me"
     - "+.yysub.net"
@@ -77,29 +76,37 @@ dns:
     - 223.5.5.5
     - 223.6.6.6
   nameserver-policy:
+    "rule-set:google-play_domain,youtube_domain,google_domain":
+      - 'https://1.1.1.1/dns-query#Auto'
+      - 'https://1.0.0.1/dns-query#Auto'
     "rule-set:douyin_domain":
       - 180.184.1.1
       - 180.184.2.2
     "rule-set:tencent_domain":
       - 119.29.29.29
       - 182.254.116.116
-    "rule-set:google_domain,category-ai-!cn_domain,github_domain,microsoft_domain,netflix_domain,tiktok_domain,reddit_domain,category-porn_domain,gfw_domain,geolocation-!cn":
+    "rule-set:category-ai-!cn_domain,github_domain,microsoft_domain,netflix_domain,tiktok_domain,reddit_domain,category-porn_domain,gfw_domain,geolocation-!cn":
       - 'https://1.1.1.1/dns-query#Auto'
       - 'https://1.0.0.1/dns-query#Auto'
     "+.returnyoutubedislikeapi.com,+.redgifsdownloader.net,+.redgifsdownloader.org": ['https://1.1.1.1/dns-query#Auto', 'https://1.0.0.1/dns-query#Auto']
 # 出站策略
-pg: &pg {type: url-test, include-all: true, health-check: true, url: "https://www.gstatic.com/generate_204", interval: 60, tolerance: 0}
+pg: &pg {type: url-test, include-all: true, health-check: true, url: "https://www.gstatic.com/generate_204", interval: 300, tolerance: 20}
 proxy-groups:
   - {name: Auto, <<: *pg}
-  - {name: Gemini, <<: *pg, filter: "(?i)gemini"}
-  - {name: 🇭🇰 香港节点, <<: *pg, filter: "(?i)港|hk|hongkong|hong kong"}
-  - {name: 🇹🇼 台湾节点, <<: *pg, filter: "(?i)台|TW|Taiwan"}
-  - {name: 🇯🇵 日本节点, <<: *pg, filter: "(?i)日|jp|japan|Tokyo"}
-  - {name: 🇰🇷 韩国节点, <<: *pg, filter: "(?i)韩|KR|Korea|Incheon"}
-  - {name: 🇸🇬 新加坡节点, <<: *pg, filter: "(?i)新|狮|SG|Singapore"}
-  - {name: 🇺🇲 美国节点, <<: *pg, filter: "(?i)美|us|unitedstates|united states|California"}
+  - {name: HY2, <<: *pg, filter: "(?i)HY2"}
+  - {name: YouTube, type: fallback, proxies: [🇯🇵 Japan, 🇭🇰 HongKong, Auto], icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/youtube.com/youtube.svg"}
+  - {name: Gemini, <<: *pg, filter: "(?i)gemini", icon: "https://raw.githubusercontent.com/raivo-otp/issuer-icons/refs/heads/master/vectors/google.com/google.svg"}
+  - {name: 🇭🇰 HongKong, <<: *pg, filter: "(?i)港|hk|hongkong|hong kong"}
+  - {name: 🇹🇼 Taiwan, <<: *pg, filter: "(?i)台|TW|Taiwan"}
+  - {name: 🇯🇵 Japan, <<: *pg, filter: "(?i)日|jp|japan|Tokyo"}
+  - {name: 🇰🇷 Korea, <<: *pg, filter: "(?i)韩|KR|Korea|Incheon"}
+  - {name: 🇸🇬 Singapore, <<: *pg, filter: "(?i)新|狮|SG|Singapore"}
+  - {name: 🇺🇸 USA, <<: *pg, filter: "(?i)美|us|unitedstates|united states|California"}
 # 规则匹配
 rules:
+  - DOMAIN-SUFFIX,googlevideo.com,YouTube
+  - DOMAIN-SUFFIX,gemini.google.com,YouTube
+  - DOMAIN-SUFFIX,media.redgifs.com,YouTube
   - DOMAIN-SUFFIX,returnyoutubedislikeapi.com,DIRECT
   - DOMAIN-SUFFIX,seaspirit.dpdns.org,DIRECT
   - DOMAIN-SUFFIX,subhd.me,DIRECT
@@ -108,9 +115,9 @@ rules:
   - DOMAIN-SUFFIX,qnap.com,DIRECT
   - DOMAIN-SUFFIX,softonic.cn,Auto
   - RULE-SET,google@ads_domain,REJECT-DROP
-  - RULE-SET,google-play_domain,Auto
-  - RULE-SET,youtube_domain,Auto
-  - RULE-SET,google_domain,Auto
+  - RULE-SET,google-play_domain,🇺🇸 USA
+  - RULE-SET,youtube_domain,🇺🇸 USA
+  - RULE-SET,google_domain,🇺🇸 USA
   - RULE-SET,cloudflare_domain,DIRECT
   - RULE-SET,bytedance@ads_domain,REJECT-DROP
   - RULE-SET,douyin_domain,DIRECT
