@@ -108,10 +108,12 @@ proxy-groups:
   - name: "Auto"
     use:
       - BPB
+      - Joey
     <<: *pg
   - name: "BPBB"
     use:
       - BPBB
+      - Joey
     <<: *pg
   - name: "Joey"
     use:
@@ -141,7 +143,7 @@ rules:
   - RULE-SET,tiktok_domain,Auto
   - RULE-SET,115_domain,DIRECT
   - RULE-SET,github_domain,Auto
-  - RULE-SET,category-ai-!cn@ads_domain,REJECT-DROP
+  - RULE-SET,openai@ads_domain,REJECT-DROP
   - RULE-SET,openai_domain,Auto
   - RULE-SET,x@ads_domain,REJECT-DROP
   - RULE-SET,x_domain,Joey
@@ -192,7 +194,7 @@ rule-providers:
   google-gemini_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/google-gemini.mrs"}
   google_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/google.mrs"}
   cloudflare_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/cloudflare.mrs"}
-  category-ai-!cn@ads_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-ai-!cn@ads.mrs" }
+  openai@ads_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/openai@ads.mrs" }
   openai_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/openai.mrs" }
   x@ads_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/x@ads.mrs" }
   x_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/x.mrs" }
