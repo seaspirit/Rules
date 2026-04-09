@@ -78,6 +78,7 @@ dns:
     - "+.postimg.cc"
     - "+.dmm.co.jp"
     - "+.mgstage.com"
+    - rule-set:115_domain
     - rule-set:cn_domain
     - rule-set:private_domain
     - rule-set:fakeipfilter_domain
