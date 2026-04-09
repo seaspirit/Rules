@@ -77,10 +77,8 @@ dns:
     - "+.postimg.cc"
     - "+.dmm.co.jp"
     - "+.mgstage.com"
-    - rule-set:google-play_domain
     - rule-set:cn_domain
     - rule-set:private_domain
-    - rule-set:category-ai-cn_domain
     - rule-set:fakeipfilter_domain
   nameserver:
     - 223.5.5.5
