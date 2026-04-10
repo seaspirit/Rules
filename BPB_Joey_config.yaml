@@ -75,33 +75,25 @@ dns:
     - "+.torrentgalaxy.one"
     - "+.torrentdownloads.pro"
     - "+.btdig.com"
-    - "+.postimg.cc"
-    - "+.dmm.co.jp"
-    - "+.mgstage.com"
+    - "+.maxjav.com"
+    - rule-set:google-play_domain
     - rule-set:115_domain
     - rule-set:cn_domain
     - rule-set:private_domain
     - rule-set:fakeipfilter_domain
-  nameserver:
+  default-nameserver:
     - 223.5.5.5
-    - 223.6.6.6
+    - 119.29.29.29
+  nameserver:
+    - 'https://1.1.1.1/dns-query#Auto&ecs=223.5.5.0/24'
+    - 'https://8.8.8.8/dns-query#Auto&ecs=223.5.5.0/24'
   proxy-server-nameserver:
     - 223.5.5.5
-    - 223.6.6.6
+    - 119.29.29.29
   nameserver-policy:
-    "rule-set:google-play_domain,youtube_domain,google_domain":
-      - https://8.8.8.8/dns-query
-      - https://1.1.1.1/dns-query
-    "rule-set:douyin_domain":
-      - 180.184.1.1
-      - 180.184.2.2
-    "rule-set:tencent_domain":
+    "rule-set:cn_domain,private_domain":
+      - 223.5.5.5
       - 119.29.29.29
-      - 182.254.116.116
-    "rule-set:github_domain,microsoft_domain,netflix_domain,tiktok_domain,reddit_domain,category-porn_domain,gfw_domain,geolocation-!cn":
-      - https://1.1.1.1/dns-query
-      - https://8.8.8.8/dns-query
-    "+.returnyoutubedislikeapi.com,+.redgifsdownloader.net,+.redgifsdownloader.org": ['https://1.1.1.1/dns-query#Auto', 'https://1.0.0.1/dns-query#Auto']
 # 出站策略
 pg: &pg {type: url-test, health-check: true, url: "https://www.gstatic.com/generate_204", interval: 300, tolerance: 20}
 proxy-groups:
@@ -112,6 +104,7 @@ proxy-groups:
   - name: "BPBB"
     use:
       - BPBB
+      - Joey
     <<: *pg
   - name: "Joey"
     use:
@@ -119,10 +112,7 @@ proxy-groups:
     <<: *pg
 # 规则匹配
 rules:
-  - AND,((NETWORK,UDP),(DST-PORT,443),(DOMAIN-SUFFIX,googlevideo.com)),REJECT-DROP
-  - AND,((NETWORK,UDP),(DST-PORT,443),(DOMAIN-SUFFIX,grok.com)),REJECT-DROP
-  - AND,((NETWORK,UDP),(DST-PORT,443),(DOMAIN-SUFFIX,redgifs.com)),REJECT-DROP
-  - DOMAIN-SUFFIX,googlevideo.com,BPBB
+  - AND,((NETWORK,UDP),(DST-PORT,443),(RULE-SET,geolocation-!cn)),REJECT-DROP
   - DOMAIN-SUFFIX,media.redgifs.com,BPBB
   - DOMAIN-SUFFIX,returnyoutubedislikeapi.com,DIRECT
   - DOMAIN-SUFFIX,subhd.me,DIRECT
@@ -130,21 +120,23 @@ rules:
   - DOMAIN-SUFFIX,downloadtorrentfile.com,DIRECT
   - DOMAIN-SUFFIX,qnap.com,DIRECT
   - DOMAIN-SUFFIX,softonic.cn,Auto
+  - DOMAIN-SUFFIX,bt4gprx.com,Joey
   - RULE-SET,google@ads_domain,REJECT-DROP
   - RULE-SET,google-play_domain,Auto
-  - RULE-SET,youtube_domain,Auto
+  - RULE-SET,youtube_domain,BPBB
   - RULE-SET,google-gemini_domain,Auto
   - RULE-SET,google_domain,Auto
-  - RULE-SET,cloudflare_domain,Auto
+  - RULE-SET,cloudflare_domain,DIRECT
   - RULE-SET,bytedance@ads_domain,REJECT-DROP
   - RULE-SET,douyin_domain,DIRECT
   - RULE-SET,tiktok_domain,Auto
   - RULE-SET,115_domain,DIRECT
   - RULE-SET,github_domain,Auto
-  - RULE-SET,openai@ads_domain,REJECT-DROP
+  - RULE-SET,category-ai-!cn@ads_domain,REJECT-DROP
   - RULE-SET,openai_domain,Auto
   - RULE-SET,x@ads_domain,REJECT-DROP
   - RULE-SET,x_domain,Joey
+  - RULE-SET,category-ai-!cn_domain,Joey
   - RULE-SET,category-ai-cn_domain,DIRECT
   - RULE-SET,microsoft@ads_domain,REJECT-DROP
   - RULE-SET,win-update_domain,Auto
@@ -172,7 +164,7 @@ rules:
   - RULE-SET,cn_domain,DIRECT
   - RULE-SET,private_domain,DIRECT
   - RULE-SET,google_ip,Auto,no-resolve
-  - RULE-SET,cloudflare_ip,Auto,no-resolve
+  - RULE-SET,cloudflare_ip,DIRECT,no-resolve
   - RULE-SET,netflix_ip,Auto,no-resolve
   - RULE-SET,telegram_ip,Auto,no-resolve
   - RULE-SET,apple_ip,DIRECT
@@ -192,10 +184,11 @@ rule-providers:
   google-gemini_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/google-gemini.mrs"}
   google_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/google.mrs"}
   cloudflare_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/cloudflare.mrs"}
-  openai@ads_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/openai@ads.mrs" }
+  category-ai-!cn@ads_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-ai-!cn@ads.mrs" }
   openai_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/openai.mrs" }
   x@ads_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/x@ads.mrs" }
   x_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/x.mrs" }
+  category-ai-!cn_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-ai-!cn.mrs" }
   category-ai-cn_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-ai-cn.mrs" }
   bytedance@ads_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/bytedance@ads.mrs"}
   douyin_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/douyin.mrs"}
