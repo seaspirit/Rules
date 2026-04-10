@@ -104,7 +104,6 @@ proxy-groups:
   - name: "BPBB"
     use:
       - BPBB
-      - Joey
     <<: *pg
   - name: "Joey"
     use:
