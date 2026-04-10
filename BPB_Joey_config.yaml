@@ -94,9 +94,6 @@ dns:
     "rule-set:douyin_domain":
       - 180.184.1.1
       - 223.5.5.5
-    "rule-set:tencent_domain":
-      - 119.29.29.29
-      - 223.5.5.5
     "rule-set:cn_domain,private_domain":
       - 223.5.5.5
       - 119.29.29.29
