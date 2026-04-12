@@ -47,7 +47,6 @@ sniffer:
   skip-domain:
     - "Mijia Cloud"
     - "+.push.apple.com"
-    - "+.btdig.com"
     - rule-set:openai_domain
 # 入站  
 tun:
@@ -67,7 +66,7 @@ dns:
   respect-rules: true
   enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.1/16
-  fake-ip-range6: fc00::/18
+  fake-ip-range6: fdfe:dcba:9876::1/64
   fake-ip-filter-mode: blacklist
   fake-ip-filter:
     - "+.returnyoutubedislikeapi.com"
@@ -77,29 +76,30 @@ dns:
     - "+.torrentgalaxy.one"
     - "+.torrentdownloads.pro"
     - "+.maxjav.com"
-    - "+.btdig.com"
     - rule-set:google-play_domain
     - rule-set:x_domain
+    - rule-set:github_domain # 初次安装后更新面板用
     - rule-set:115_domain
     - rule-set:cn_domain
     - rule-set:private_domain
     - rule-set:fakeipfilter_domain
-  default-nameserver:
-    - 223.5.5.5
-    - 119.29.29.29
   nameserver:
-    - https://cloudflare-dns.com/dns-query
-    - https://dns.google/dns-query
+    - https://1.1.1.1/dns-query
+    - https://8.8.8.8/dns-query
   proxy-server-nameserver:
-    - https://dns.alidns.com/dns-query
-    - https://doh.pub/dns-query
+    - https://223.5.5.5/dns-query
+    - https://119.29.29.29/dns-query
   nameserver-policy:
-    "rule-set:cn_domain,private_domain":
-      - https://dns.alidns.com/dns-query
-      - https://doh.pub/dns-query
+    "rule-set:cn_domain,private_domain,github_domain": # github_domain为初次安装后更新面板用
+      - https://223.5.5.5/dns-query
+      - https://119.29.29.29/dns-query
     "+.btdig.com":
-      - https://cloudflare-dns.com/dns-query
-      - https://dns.alidns.com/dns-query
+      - https://1.1.1.1/dns-query
+      - https://8.8.8.8/dns-query
+      - https://9.9.9.9/dns-query
+      - https://223.5.5.5/dns-query
+      - https://119.29.29.29/dns-query
+      - https://114.114.114.114/dns-query
 # 出站策略
 pg: &pg {type: url-test, health-check: true, url: "https://www.gstatic.com/generate_204", interval: 60, tolerance: 0}
 proxy-groups:
