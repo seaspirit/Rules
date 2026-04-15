@@ -135,7 +135,7 @@ proxy-groups:
     use:
       - Joey
     <<: *pg
-  - {name: Tube, <<: *pg, proxies: [BPBB, Joey, Auto]}
+  - {name: Tube, <<: *pg, proxies: [Joey, BPBB, Auto]}
 # 规则匹配
 rules:
   - AND,((NETWORK,UDP),(DST-PORT,443),(NOT,((RULE-SET,cn_domain)))),REJECT-DROP
