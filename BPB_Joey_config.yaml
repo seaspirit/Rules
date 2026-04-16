@@ -1,5 +1,5 @@
 # 机场订阅
-pp: &pp {type: http, interval: 86400, proxy: DIRECT, health-check: {enable: true, url: "https://www.gstatic.com/generate_204", interval: 60}, header: {User-Agent: ["Clash/v1.18.0", "mihomo/1.19.23"]}, override: {client-fingerprint: chrome}}
+pp: &pp {type: http, interval: 86400, proxy: DIRECT, health-check: {enable: true, url: "https://www.gstatic.com/generate_204", interval: 90}, header: {User-Agent: ["Clash/v1.18.0", "mihomo/1.19.23"]}, override: {client-fingerprint: chrome}}
 proxy-providers:
   BPB:
     url: "https://bpb.seaspirit.dpdns.org/sub/normal/de5eb6ed-ceee-4de9-b5a5-7ee799dc99aa?app=clash#%F0%9F%92%A6%20BPB%20Normal"
@@ -111,6 +111,9 @@ dns:
     "rule-set:youtube_domain,google-play_domain,google-gemini_domain,google_domain":
       - https://dns.google/dns-query#ecs=223.5.5.0/24
       - https://cloudflare-dns.com/dns-query#ecs=223.5.5.0/24
+    "rule-set:douyin_domain":
+      - 180.184.1.1
+      - 180.184.2.2
     "rule-set:tencent_domain":
       - https://doh.pub/dns-query
       - https://dns.alidns.com/dns-query
@@ -121,7 +124,7 @@ dns:
       - https://cloudflare-dns.com/dns-query#ecs=223.5.5.0/24
       - https://dns.google/dns-query#ecs=223.5.5.0/24
 # 出站策略
-pg: &pg {type: url-test, health-check: true, url: "https://www.gstatic.com/generate_204", interval: 60, tolerance: 0}
+pg: &pg {type: url-test, health-check: true, url: "https://www.gstatic.com/generate_204", interval: 90, tolerance: 0}
 proxy-groups:
   - name: "Auto"
     use:
@@ -135,7 +138,7 @@ proxy-groups:
     use:
       - Joey
     <<: *pg
-  - {name: Tube, <<: *pg, proxies: [Joey, BPBB, Auto]}
+  - {name: Tube, <<: *pg, proxies: [Joey, BPBB]}
 # 规则匹配
 rules:
   - AND,((NETWORK,UDP),(DST-PORT,443),(NOT,((RULE-SET,cn_domain)))),REJECT-DROP
@@ -148,7 +151,7 @@ rules:
   - DOMAIN-SUFFIX,softonic.cn,Auto
   - DOMAIN-SUFFIX,bt4gprx.com,Joey
   - RULE-SET,google@ads_domain,REJECT-DROP
-  - RULE-SET,google-play_domain,Auto
+  - RULE-SET,google-play_domain,Joey
   - RULE-SET,youtube_domain,Tube
   - RULE-SET,google-gemini_domain,Auto
   - RULE-SET,google_domain,Auto
