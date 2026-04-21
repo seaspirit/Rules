@@ -138,7 +138,11 @@ proxy-groups:
     use:
       - Joey
     <<: *pg
-  - {name: Tube, <<: *pg, proxies: [Joey, BPBB]}
+  - name: "Tube"
+    use:
+      - Joey
+      - BPBB
+    <<: *pg
 # 规则匹配
 rules:
   - AND,((NETWORK,UDP),(DST-PORT,443),(NOT,((RULE-SET,cn_domain)))),REJECT-DROP
