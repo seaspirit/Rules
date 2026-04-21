@@ -18,7 +18,7 @@ mixed-port: 7893
 tproxy-port: 7894
 allow-lan: true
 bind-address: "*"
-ipv6: false
+ipv6: true
 unified-delay: true
 tcp-concurrent: true
 log-level: warning
@@ -69,7 +69,7 @@ dns:
   cache-algorithm: arc
   prefer-h3: false
   listen: 0.0.0.0:1053
-  ipv6: false
+  ipv6: true
   respect-rules: true
   enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.1/16
