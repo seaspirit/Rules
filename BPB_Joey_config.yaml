@@ -158,7 +158,7 @@ rules:
   - RULE-SET,google-play_domain,Joey
   - RULE-SET,youtube_domain,Tube
   - RULE-SET,google-gemini_domain,Auto
-  - RULE-SET,google_domain,Auto
+  - RULE-SET,google_domain,Tube
   - RULE-SET,cloudflare@cn_domain,DIRECT
   - RULE-SET,cloudflare_domain,Auto
   - RULE-SET,bytedance@ads_domain,REJECT-DROP
@@ -173,7 +173,7 @@ rules:
   - RULE-SET,category-ai-!cn_domain,Auto
   - RULE-SET,category-ai-cn_domain,DIRECT
   - RULE-SET,microsoft@ads_domain,REJECT-DROP
-  - RULE-SET,win-update_domain,Auto
+  - RULE-SET,win-update_domain,Tube
   - RULE-SET,microsoft_domain,Auto
   - RULE-SET,apple@ads_domain,REJECT-DROP
   - RULE-SET,apple_domain,DIRECT
