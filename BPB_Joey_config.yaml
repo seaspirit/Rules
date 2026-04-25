@@ -4,6 +4,9 @@ proxy-providers:
   BPB:
     url: "https://bpb.seaspirit.dpdns.org/sub/normal/de5eb6ed-ceee-4de9-b5a5-7ee799dc99aa?app=clash#%F0%9F%92%A6%20BPB%20Normal"
     <<: *pp
+  BPBB:
+    url: "https://b2.seaspirit.dpdns.org/sub/normal/2d42e47c-5813-48b5-a06a-d560f68eb69d?app=clash#%F0%9F%92%A6%20BPB%20Normal"
+    <<: *pp
   Joey:
     url: "https://j.seaspirit.dpdns.org/j/sub"
     <<: *pp
@@ -130,9 +133,18 @@ proxy-groups:
     use:
       - BPB
     <<: *pg
+  - name: "BPBB"
+    use:
+      - BPBB
+    <<: *pg
   - name: "Joey"
     use:
       - Joey
+    <<: *pg
+  - name: "Tube"
+    use:
+      - Joey
+      - BPBB
     <<: *pg
 # 规则匹配
 rules:
