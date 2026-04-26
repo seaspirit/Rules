@@ -119,6 +119,7 @@ proxy-groups:
       - Joey
     <<: *pg
     filter: "^((?!(移动-SEA-)).)*$"
+# 规则匹配
 rules:
   - AND,((NETWORK,UDP),(DST-PORT,443),(NOT,((RULE-SET,cn_domain)))),REJECT-DROP
   - DOMAIN-SUFFIX,media.redgifs.com,Joey
