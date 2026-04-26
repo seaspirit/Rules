@@ -15,7 +15,7 @@ mixed-port: 7893
 tproxy-port: 7894
 allow-lan: true
 bind-address: "*"
-ipv6: true
+ipv6: false
 unified-delay: true
 tcp-concurrent: true
 log-level: warning
@@ -60,13 +60,10 @@ dns:
   cache-algorithm: arc
   prefer-h3: false
   listen: 0.0.0.0:1053
-  ipv6: true
-  ipv6-timeout: 300
+  ipv6: false
   respect-rules: true
   enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.1/16
-  fake-ip-range6: fdfe:dcba:9876::1/64
-  fake-ip-ttl: 600
   fake-ip-filter-mode: blacklist
   fake-ip-filter:
     - "+.returnyoutubedislikeapi.com"
@@ -101,10 +98,10 @@ dns:
     "rule-set:tencent_domain":
       - https://doh.pub/dns-query
       - https://dns.alidns.com/dns-query
-    "rule-set:cloudflare@cn_domain,cloudflare_domain,cn_domain,private_domain":
+    "rule-set:cloudflare@cn_domain,cloudflare_domain,x_domain,cn_domain,private_domain":
       - https://dns.alidns.com/dns-query
       - https://doh.pub/dns-query
-    "rule-set:github_domain,x_domain,category-ai-!cn_domain,win-update_domain,geolocation-!cn":
+    "rule-set:github_domain,category-ai-!cn_domain,win-update_domain,geolocation-!cn":
       - https://cloudflare-dns.com/dns-query#Auto&ecs=223.5.5.0/24
       - https://dns.google/dns-query#ecs=223.5.5.0/24
 # 出站策略
@@ -118,7 +115,6 @@ proxy-groups:
     use:
       - Joey
     <<: *pg
-    filter: "^((?!(移动-SEA-)).)*$"
 # 规则匹配
 rules:
   - AND,((NETWORK,UDP),(DST-PORT,443),(NOT,((RULE-SET,cn_domain)))),REJECT-DROP
