@@ -4,9 +4,6 @@ proxy-providers:
   BPB:
     url: "https://bpb.seaspirit.dpdns.org/sub/normal/de5eb6ed-ceee-4de9-b5a5-7ee799dc99aa?app=clash#%F0%9F%92%A6%20BPB%20Normal"
     <<: *pp
-  BPBB:
-    url: "https://b2.seaspirit.dpdns.org/sub/normal/2d42e47c-5813-48b5-a06a-d560f68eb69d?app=clash#%F0%9F%92%A6%20BPB%20Normal"
-    <<: *pp
   Joey:
     url: "https://j.seaspirit.dpdns.org/j/sub"
     <<: *pp
@@ -27,12 +24,6 @@ keep-alive-interval: 15
 profile:
   store-selected: true
   store-fake-ip: true
-#自定义 geodata url
-geox-url:
-  geoip: "https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geoip.metadb"
-  geosite: "https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geosite.dat"
-geo-auto-update: true # 是否自动更新 geodata
-geo-update-interval: 72 # 更新间隔，单位：小时
 # 控制面板
 external-controller: 0.0.0.0:9090
 secret: ""
@@ -96,16 +87,6 @@ dns:
   nameserver:
     - https://dns.alidns.com/dns-query
     - https://doh.pub/dns-query
-  fallback:
-    - https://cloudflare-dns.com/dns-query#Auto&ecs=223.5.5.0/24
-    - https://dns.google/dns-query#ecs=223.5.5.0/24
-  fallback-filter:
-    geoip: true
-    geoip-code: CN
-    geosite:
-      - gfw
-    ipcidr:
-      - 240.0.0.0/4   # 保留地址（污染常见）
   proxy-server-nameserver:
     - https://dns.alidns.com/dns-query
     - https://doh.pub/dns-query
@@ -123,7 +104,7 @@ dns:
     "rule-set:cloudflare@cn_domain,cloudflare_domain,cn_domain,private_domain":
       - https://dns.alidns.com/dns-query
       - https://doh.pub/dns-query
-    "rule-set:github_domain,category-ai-!cn_domain,win-update_domain,geolocation-!cn":
+    "rule-set:github_domain,x_domain,category-ai-!cn_domain,win-update_domain,geolocation-!cn":
       - https://cloudflare-dns.com/dns-query#Auto&ecs=223.5.5.0/24
       - https://dns.google/dns-query#ecs=223.5.5.0/24
 # 出站策略
@@ -133,20 +114,11 @@ proxy-groups:
     use:
       - BPB
     <<: *pg
-  - name: "BPBB"
-    use:
-      - BPBB
-    <<: *pg
   - name: "Joey"
     use:
       - Joey
     <<: *pg
-  - name: "Tube"
-    use:
-      - Joey
-      - BPBB
-    <<: *pg
-# 规则匹配
+    filter: "^((?!(移动-SEA-)).)*$"
 rules:
   - AND,((NETWORK,UDP),(DST-PORT,443),(NOT,((RULE-SET,cn_domain)))),REJECT-DROP
   - DOMAIN-SUFFIX,media.redgifs.com,Joey
