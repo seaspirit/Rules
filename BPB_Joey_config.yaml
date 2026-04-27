@@ -144,7 +144,7 @@ rules:
   - RULE-SET,openai_domain,Auto
   - RULE-SET,x@ads_domain,REJECT-DROP
   - RULE-SET,x_domain,Joey
-  - RULE-SET,category-ai-!cn_domain,Joey
+  - RULE-SET,category-ai-!cn_domain,Auto
   - RULE-SET,category-ai-cn_domain,DIRECT
   - RULE-SET,microsoft@ads_domain,REJECT-DROP
   - RULE-SET,win-update_domain,Joey
