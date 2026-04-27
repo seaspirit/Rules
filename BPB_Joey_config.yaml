@@ -139,7 +139,7 @@ rules:
   - RULE-SET,bytedance@!cn_domain,Auto
   - RULE-SET,bytedance_domain,DIRECT
   - RULE-SET,115_domain,DIRECT
-  - RULE-SET,github_domain,Auto
+  - RULE-SET,github_domain,Joey
   - RULE-SET,category-ai-!cn@ads_domain,REJECT-DROP
   - RULE-SET,openai_domain,Auto
   - RULE-SET,x@ads_domain,REJECT-DROP
