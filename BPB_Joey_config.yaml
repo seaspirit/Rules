@@ -15,7 +15,7 @@ mixed-port: 7893
 tproxy-port: 7894
 allow-lan: true
 bind-address: "*"
-ipv6: false
+ipv6: true
 unified-delay: true
 tcp-concurrent: true
 log-level: warning
@@ -60,10 +60,11 @@ dns:
   cache-algorithm: arc
   prefer-h3: false
   listen: 0.0.0.0:1053
-  ipv6: false
+  ipv6: true
   respect-rules: true
   enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.1/16
+  fake-ip-range6: fdfe:dcba:9876::1/64
   fake-ip-filter-mode: blacklist
   fake-ip-filter:
     - "+.returnyoutubedislikeapi.com"
@@ -105,7 +106,7 @@ dns:
       - https://cloudflare-dns.com/dns-query#ecs=223.5.5.0/24
       - https://dns.google/dns-query#ecs=223.5.5.0/24
 # 出站策略
-pg: &pg {type: url-test, health-check: true, url: "https://www.gstatic.com/generate_204", interval: 120, tolerance: 0}
+pg: &pg {type: url-test, health-check: true, url: "https://www.gstatic.com/generate_204", interval: 60, tolerance: 0}
 proxy-groups:
   - name: "Auto"
     use:
@@ -126,7 +127,7 @@ rules:
   - DOMAIN-SUFFIX,softonic.cn,Auto
   - DOMAIN-SUFFIX,bt4gprx.com,Joey
   - RULE-SET,google@ads_domain,REJECT-DROP
-  - RULE-SET,google-play_domain,Joey
+  - RULE-SET,google-play_domain,Auto
   - RULE-SET,youtube_domain,Joey
   - RULE-SET,google-gemini_domain,Joey
   - RULE-SET,google_domain,Joey
@@ -140,7 +141,7 @@ rules:
   - RULE-SET,115_domain,DIRECT
   - RULE-SET,github_domain,Joey
   - RULE-SET,category-ai-!cn@ads_domain,REJECT-DROP
-  - RULE-SET,openai_domain,Auto
+  - RULE-SET,openai_domain,Joey
   - RULE-SET,x@ads_domain,REJECT-DROP
   - RULE-SET,x_domain,Joey
   - RULE-SET,category-ai-!cn_domain,Auto
