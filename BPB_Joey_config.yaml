@@ -129,8 +129,8 @@ rules:
   - RULE-SET,google@ads_domain,REJECT-DROP
   - RULE-SET,google-play_domain,Auto
   - RULE-SET,youtube_domain,Joey
-  - RULE-SET,google-gemini_domain,Auto
-  - RULE-SET,google_domain,Auto
+  - RULE-SET,google-gemini_domain,Joey
+  - RULE-SET,google_domain,Joey
   - RULE-SET,cloudflare@cn_domain,DIRECT
   - RULE-SET,cloudflare_domain,Auto
   - RULE-SET,bytedance@ads_domain,REJECT-DROP
