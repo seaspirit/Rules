@@ -93,15 +93,12 @@ dns:
     "rule-set:youtube_domain,google-play_domain,google-gemini_domain,google_domain":
       - https://dns.google/dns-query#ecs=223.5.5.0/24
       - https://cloudflare-dns.com/dns-query#ecs=223.5.5.0/24
-    "rule-set:douyin_domain":
-      - 180.184.1.1
-      - 180.184.2.2
+    "rule-set:douyin_domain,cloudflare@cn_domain,cn_domain,private_domain":
+      - https://dns.alidns.com/dns-query
+      - https://doh.pub/dns-query
     "rule-set:tencent_domain":
       - https://doh.pub/dns-query
       - https://dns.alidns.com/dns-query
-    "rule-set:cloudflare@cn_domain,cn_domain,private_domain":
-      - https://dns.alidns.com/dns-query
-      - https://doh.pub/dns-query
     "rule-set:cloudflare_domain,github_domain,x_domain,category-ai-!cn_domain,win-update_domain,geolocation-!cn":
       - https://cloudflare-dns.com/dns-query#ecs=223.5.5.0/24
       - https://dns.google/dns-query#ecs=223.5.5.0/24
