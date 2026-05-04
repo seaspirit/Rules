@@ -4,9 +4,6 @@ proxy-providers:
   BPB:
     url: "https://bpb.seaspirit.dpdns.org/sub/normal/de5eb6ed-ceee-4de9-b5a5-7ee799dc99aa?app=clash#%F0%9F%92%A6%20BPB%20Normal"
     <<: *pp
-  BPBB:
-    url: "https://bpb.seaspirit.dpdns.org/sub/normal/de5eb6ed-ceee-4de9-b5a5-7ee799dc99aa?app=clash#%F0%9F%92%A6%20BPB%20Normal"
-    <<: *pp
   Joey:
     url: "https://j.seaspirit.dpdns.org/j/sub"
     <<: *pp
@@ -112,10 +109,6 @@ proxy-groups:
     use:
       - BPB
     <<: *pg
-  - name: "BPBB"
-    use:
-      - BPBB
-    <<: *pg
   - name: "Joey"
     use:
       - Joey
@@ -123,7 +116,6 @@ proxy-groups:
 # 规则匹配
 rules:
   - AND,((NETWORK,UDP),(DST-PORT,443),(NOT,((RULE-SET,cn_domain)))),REJECT-DROP
-  - DOMAIN-SUFFIX,media.redgifs.com,BPBB
   - DOMAIN-SUFFIX,returnyoutubedislikeapi.com,DIRECT
   - DOMAIN-SUFFIX,subhd.me,DIRECT
   - DOMAIN-SUFFIX,uupdump.net,DIRECT
@@ -132,7 +124,7 @@ rules:
   - DOMAIN-SUFFIX,softonic.cn,Auto
   - RULE-SET,google@ads_domain,REJECT-DROP
   - RULE-SET,google-play_domain,Auto
-  - RULE-SET,youtube_domain,BPBB
+  - RULE-SET,youtube_domain,Auto
   - RULE-SET,google-gemini_domain,Joey
   - RULE-SET,google_domain,Auto
   - RULE-SET,cloudflare@cn_domain,DIRECT
