@@ -133,7 +133,7 @@ rules:
   - RULE-SET,google@ads_domain,REJECT-DROP
   - RULE-SET,google-play_domain,Auto
   - RULE-SET,youtube_domain,BPBB
-  - RULE-SET,google-gemini_domain,Auto
+  - RULE-SET,google-gemini_domain,Joey
   - RULE-SET,google_domain,Auto
   - RULE-SET,cloudflare@cn_domain,DIRECT
   - RULE-SET,cloudflare_domain,Auto
@@ -145,10 +145,10 @@ rules:
   - RULE-SET,115_domain,DIRECT
   - RULE-SET,github_domain,Auto
   - RULE-SET,category-ai-!cn@ads_domain,REJECT-DROP
-  - RULE-SET,openai_domain,Auto
+  - RULE-SET,openai_domain,Joey
   - RULE-SET,x@ads_domain,REJECT-DROP
   - RULE-SET,x_domain,Joey
-  - RULE-SET,category-ai-!cn_domain,Auto
+  - RULE-SET,category-ai-!cn_domain,Joey
   - RULE-SET,category-ai-cn_domain,DIRECT
   - RULE-SET,microsoft@ads_domain,REJECT-DROP
   - RULE-SET,win-update_domain,Auto
