@@ -7,6 +7,9 @@ proxy-providers:
   Joey:
     url: "https://j.seaspirit.dpdns.org/j/sub"
     <<: *pp
+  edgetunnel:
+    url: "https://e.seaspirit.dpdns.org/sub?token=88d956ad14af9eb88b1491cb25987659"
+    <<: *pp
 # 全局配置 
 port: 7890
 socks-port: 7891
@@ -113,6 +116,10 @@ proxy-groups:
     use:
       - Joey
     <<: *pg
+  - name: "edgetunnel"
+    use:
+      - edgetunnel
+    <<: *pg
 # 规则匹配
 rules:
   - AND,((NETWORK,UDP),(DST-PORT,443),(NOT,((RULE-SET,cn_domain)))),REJECT-DROP
@@ -140,7 +147,7 @@ rules:
   - RULE-SET,category-ai-!cn@ads_domain,REJECT-DROP
   - RULE-SET,openai_domain,Joey
   - RULE-SET,x@ads_domain,REJECT-DROP
-  - RULE-SET,x_domain,Joey
+  - RULE-SET,x_domain,edgetunnel
   - RULE-SET,category-ai-!cn_domain,Joey
   - RULE-SET,category-ai-cn_domain,DIRECT
   - RULE-SET,microsoft@ads_domain,REJECT-DROP
