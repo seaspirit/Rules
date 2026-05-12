@@ -7,7 +7,7 @@ proxy-providers:
   Joey:
     url: "https://j.seaspirit.dpdns.org/j/sub"
     <<: *pp
-  edgetunnel:
+  EdgeTunnel:
     url: "https://e.seaspirit.dpdns.org/sub?token=88d956ad14af9eb88b1491cb25987659"
     <<: *pp
 # 全局配置 
@@ -116,14 +116,14 @@ proxy-groups:
     use:
       - Joey
     <<: *pg
-  - name: "edgetunnel"
+  - name: "EdgeTunnel"
     use:
-      - edgetunnel
+      - EdgeTunnel
     <<: *pg
 # 规则匹配
 rules:
   - AND,((NETWORK,UDP),(DST-PORT,443),(NOT,((RULE-SET,cn_domain)))),REJECT-DROP
-  - DOMAIN-SUFFIX,media.redgifs.com,edgetunnel
+  - DOMAIN-SUFFIX,media.redgifs.com,EdgeTunnel
   - DOMAIN-SUFFIX,returnyoutubedislikeapi.com,DIRECT
   - DOMAIN-SUFFIX,subhd.me,DIRECT
   - DOMAIN-SUFFIX,uupdump.net,DIRECT
@@ -133,7 +133,7 @@ rules:
   - RULE-SET,google@ads_domain,REJECT-DROP
   - RULE-SET,google-play_domain,Auto
   - RULE-SET,youtube_domain,Joey
-  - RULE-SET,google-gemini_domain,Joey
+  - RULE-SET,google-gemini_domain,EdgeTunnel
   - RULE-SET,google_domain,Auto
   - RULE-SET,cloudflare@cn_domain,DIRECT
   - RULE-SET,cloudflare_domain,Auto
@@ -145,10 +145,10 @@ rules:
   - RULE-SET,115_domain,DIRECT
   - RULE-SET,github_domain,Auto
   - RULE-SET,category-ai-!cn@ads_domain,REJECT-DROP
-  - RULE-SET,openai_domain,Joey
+  - RULE-SET,openai_domain,EdgeTunnel
   - RULE-SET,x@ads_domain,REJECT-DROP
-  - RULE-SET,x_domain,edgetunnel
-  - RULE-SET,category-ai-!cn_domain,Joey
+  - RULE-SET,x_domain,EdgeTunnel
+  - RULE-SET,category-ai-!cn_domain,EdgeTunnel
   - RULE-SET,category-ai-cn_domain,DIRECT
   - RULE-SET,microsoft@ads_domain,REJECT-DROP
   - RULE-SET,win-update_domain,Auto
