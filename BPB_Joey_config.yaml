@@ -8,7 +8,7 @@ proxy-providers:
     url: "https://j.seaspirit.dpdns.org/j/sub"
     <<: *pp
   EdgeTunnel:
-    url: "https://e.seaspirit.dpdns.org/sub?token=88d956ad14af9eb88b1491cb25987659"
+    url: "https://et.seaspirit.dpdns.org/sub?token=5590787e890fbaea133abdefe8f7f438"
     <<: *pp
 # 全局配置 
 port: 7890
