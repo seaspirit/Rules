@@ -1,9 +1,9 @@
 # 机场订阅
-pp: &pp {type: http, interval: 3600, proxy: DIRECT, health-check: {enable: true, interval: 30, url: "https://www.gstatic.com/generate_204"}, header: {User-Agent: ["Clash/v1.18.0", "mihomo/1.19.15"]}}
+pp: &pp {type: http, interval: 86400, proxy: DIRECT, health-check: {enable: true, url: "https://www.gstatic.com/generate_204", interval: 120}, header: {User-Agent: ["Clash/v1.18.0", "mihomo/1.19.24"]}, override: {client-fingerprint: chrome}}
 proxy-providers:
   EdgeTunnel:
+    url: "https://et.seaspirit.dpdns.org/sub?token=5590787e890fbaea133abdefe8f7f438"
     <<: *pp
-    url: "https://e.seaspirit.dpdns.org/sub?token=88d956ad14af9eb88b1491cb25987659"
 # 全局配置 
 port: 7890
 socks-port: 7891
@@ -16,10 +16,7 @@ ipv6: true
 unified-delay: true
 tcp-concurrent: true
 log-level: warning
-find-process-mode: 'off'
-# interface-name: en0
-global-client-fingerprint: chrome
-keep-alive-idle: 600
+keep-alive-idle: 60
 keep-alive-interval: 15
 profile:
   store-selected: true
@@ -27,7 +24,7 @@ profile:
 # 控制面板
 external-controller: 0.0.0.0:9090
 secret: ""
-external-ui: "/etc/nikki/run/ui"
+external-ui: ui
 external-ui-name: zashboard
 external-ui-url: "https://github.com/Zephyruso/zashboard/archive/refs/heads/gh-pages.zip"
 # 嗅探
@@ -42,9 +39,10 @@ sniffer:
     QUIC:
       ports: [443, 8443]
   force-domain:
-    - "+.v2ex.com"
+    - +.v2ex.com
   skip-domain:
-    - "+.baidu.com"
+    - "Mijia Cloud"
+    - "+.push.apple.com"
 # 入站  
 tun:
   enable: true
@@ -55,101 +53,171 @@ tun:
   auto-detect-interface: true
 # DNS模块
 dns:
+  enable: true
   cache-algorithm: arc
-  enable: true # 关闭将使用系统 DNS
-  prefer-h3: false # 是否开启 DoH 支持 HTTP/3，将并发尝试
-  listen: 0.0.0.0:1053 # 开启 DNS 服务器监听
+  prefer-h3: false
+  listen: 0.0.0.0:1053
   ipv6: true
-  ipv6-timeout: 50 # 单位：ms，内部双栈并发时，向上游查询 AAAA 时，等待 AAAA 的时间，默认 100ms
   respect-rules: true
   enhanced-mode: fake-ip
-  fake-ip-range: 198.18.0.1/16 # fake-ip 池设置
-  fake-ip-range6: fdfe:dcba:9876::1/64 # fake-ip6 池设置
+  fake-ip-range: 198.18.0.1/16
+  fake-ip-range6: fdfe:dcba:9876::1/64
   fake-ip-filter-mode: blacklist
   fake-ip-filter:
-    - "rule-set:private_domain,cn_domain"
-    - "+.msftconnecttest.com"
-    - "+.msftncsi.com"
-    - "time.*.com"
+    - "+.returnyoutubedislikeapi.com"
+    - "+.subhd.me"
+    - "+.yysub.net"
+    - "+.uupdump.net"
+    - "+.torrentgalaxy.one"
+    - "+.torrentdownloads.pro"
+    - "+.maxjav.com"
+    - rule-set:google-play_domain
+    - rule-set:x_domain
+    - rule-set:cn_domain
+    - rule-set:private_domain
+    - rule-set:fakeipfilter_domain
   default-nameserver:
     - 223.5.5.5
-    - 119.29.29.29
-  nameserver: # 尽量用运营商提供的DNS
-    - 223.5.5.5
-    - 119.29.29.29
+    - 223.6.6.6
+  nameserver:
+    - https://dns.alidns.com/dns-query
+    - https://doh.pub/dns-query
   proxy-server-nameserver:
-    - https://223.5.5.5/dns-query
-    - https://119.29.29.29/dns-query
+    - https://dns.alidns.com/dns-query
+    - https://doh.pub/dns-query
+  nameserver-policy:
+    "rule-set:category-ads-all_domain": rcode://success
+    "rule-set:youtube_domain,google-play_domain,google-gemini_domain,google_domain":
+      - https://dns.google/dns-query#ecs=223.5.5.0/24
+      - https://cloudflare-dns.com/dns-query#ecs=223.5.5.0/24
+    "rule-set:douyin_domain,cloudflare@cn_domain,cn_domain,private_domain":
+      - https://dns.alidns.com/dns-query
+      - https://doh.pub/dns-query
+    "rule-set:tencent_domain":
+      - https://doh.pub/dns-query
+      - https://dns.alidns.com/dns-query
+    "rule-set:cloudflare_domain,github_domain,x_domain,category-ai-!cn_domain,win-update_domain,geolocation-!cn":
+      - https://cloudflare-dns.com/dns-query#ecs=223.5.5.0/24
+      - https://dns.google/dns-query#ecs=223.5.5.0/24
 # 出站策略
-pr: &pr {type: url-test, interval: 30, tolerance: 1, include-all: true}
+pg: &pg {type: url-test, health-check: true, url: "https://www.gstatic.com/generate_204", interval: 60, tolerance: 0}
 proxy-groups:
-  - {name: ♻️ 自动选择, <<: *pr}
-  - {name: Domain, <<: *pr, filter: "(?i)Domain"}
-  - {name: IPv4, <<: *pr, filter: "(?i)IPv4"}
-  - {name: IPv6, <<: *pr, filter: "(?i)IPv6"}
-  - {name: VLESS, <<: *pr, filter: "(?i)VLESS"}
-  - {name: Trojan, <<: *pr, filter: "(?i)Trojan"}
+  - name: "Auto"
+    use:
+      - EdgeTunnel
+    <<: *pg
 # 规则匹配
 rules:
-  - RULE-SET,google@ads,REJECT-DROP
-  - RULE-SET,google_domain,♻️ 自动选择
-  - RULE-SET,bytedance@ads,REJECT-DROP
-  - RULE-SET,bytedance@!cn_domain,♻️ 自动选择
-  - RULE-SET,bytedance_domain,DIRECT
-  - RULE-SET,github_domain,♻️ 自动选择
-  - RULE-SET,category-ai-!cn@ads,REJECT-DROP
-  - RULE-SET,category-ai-!cn_domain,♻️ 自动选择
-  - RULE-SET,microsoft@ads,REJECT-DROP
-  - RULE-SET,microsoft_domain,DIRECT
-  - RULE-SET,apple@ads,REJECT-DROP
-  - RULE-SET,apple_domain,DIRECT
-  - RULE-SET,netflix_domain,♻️ 自动选择
-  - RULE-SET,disney_domain,♻️ 自动选择
-  - RULE-SET,telegram_domain,♻️ 自动选择
-  - RULE-SET,speedtest_domain,♻️ 自动选择
-  - RULE-SET,paypal_domain,♻️ 自动选择
-  - RULE-SET,test-ipv6_domain,DIRECT
+  - AND,((NETWORK,UDP),(DST-PORT,443),(NOT,((RULE-SET,cn_domain)))),REJECT-DROP
+  - DOMAIN-SUFFIX,returnyoutubedislikeapi.com,DIRECT
+  - DOMAIN-SUFFIX,subhd.me,DIRECT
+  - DOMAIN-SUFFIX,uupdump.net,DIRECT
+  - DOMAIN-SUFFIX,downloadtorrentfile.com,DIRECT
   - DOMAIN-SUFFIX,qnap.com,DIRECT
-  - DOMAIN-SUFFIX,softonic.cn,♻️ 自动选择
-  - RULE-SET,reddit_domain,♻️ 自动选择
-  - RULE-SET,category-porn@ads,REJECT-DROP
-  - RULE-SET,category-porn_domain,♻️ 自动选择
-  - RULE-SET,gfw_domain,♻️ 自动选择
-  - RULE-SET,geolocation-!cn,♻️ 自动选择
+  - DOMAIN-SUFFIX,softonic.cn,Auto
+  - RULE-SET,google@ads_domain,REJECT-DROP
+  - RULE-SET,google-play_domain,Auto
+  - RULE-SET,youtube_domain,Auto
+  - RULE-SET,google-gemini_domain,Auto
+  - RULE-SET,google_domain,Auto
+  - RULE-SET,cloudflare@cn_domain,DIRECT
+  - RULE-SET,cloudflare_domain,Auto
+  - RULE-SET,bytedance@ads_domain,REJECT-DROP
+  - RULE-SET,douyin_domain,DIRECT
+  - RULE-SET,tiktok_domain,Auto
+  - RULE-SET,bytedance@!cn_domain,Auto
+  - RULE-SET,bytedance_domain,DIRECT
+  - RULE-SET,115_domain,DIRECT
+  - RULE-SET,github_domain,Auto
+  - RULE-SET,category-ai-!cn@ads_domain,REJECT-DROP
+  - RULE-SET,openai_domain,Auto
+  - RULE-SET,x@ads_domain,REJECT-DROP
+  - RULE-SET,x_domain,Auto
+  - RULE-SET,category-ai-!cn_domain,Auto
+  - RULE-SET,category-ai-cn_domain,DIRECT
+  - RULE-SET,microsoft@ads_domain,REJECT-DROP
+  - RULE-SET,win-update_domain,Auto
+  - RULE-SET,microsoft@cn_domain,DIRECT
+  - RULE-SET,microsoft_domain,Auto
+  - RULE-SET,apple@ads_domain,REJECT-DROP
+  - RULE-SET,apple_domain,DIRECT
+  - RULE-SET,huawei_domain,DIRECT
+  - RULE-SET,alibaba@ads_domain,REJECT-DROP
+  - RULE-SET,alibaba_domain,DIRECT
+  - RULE-SET,tencent@ads_domain,REJECT-DROP
+  - RULE-SET,tencent_domain,DIRECT
+  - RULE-SET,baidu@ads_domain,REJECT-DROP
+  - RULE-SET,baidu_domain,DIRECT
+  - RULE-SET,netflix_domain,Auto
+  - RULE-SET,disney_domain,Auto
+  - RULE-SET,telegram_domain,Auto
+  - RULE-SET,speedtest_domain,Auto
+  - RULE-SET,paypal_domain,Auto
+  - RULE-SET,test-ipv6_domain,DIRECT
+  - RULE-SET,reddit_domain,Auto
+  - RULE-SET,category-porn@ads_domain,REJECT-DROP
+  - RULE-SET,category-porn_domain,Auto
+  - RULE-SET,gfw_domain,Auto
+  - RULE-SET,geolocation-!cn,Auto
   - RULE-SET,cn_domain,DIRECT
   - RULE-SET,private_domain,DIRECT
-  - RULE-SET,google_ip,♻️ 自动选择,no-resolve
-  - RULE-SET,netflix_ip,♻️ 自动选择,no-resolve
-  - RULE-SET,telegram_ip,♻️ 自动选择,no-resolve
+  - RULE-SET,google_ip,Auto,no-resolve
+  - RULE-SET,cloudflare_ip,Auto,no-resolve
+  - RULE-SET,netflix_ip,Auto,no-resolve
+  - RULE-SET,telegram_ip,Auto,no-resolve
+  - RULE-SET,apple_ip,DIRECT
   - RULE-SET,cn_ip,DIRECT
   - RULE-SET,private_ip,DIRECT,no-resolve
-  - MATCH,♻️ 自动选择
+  - MATCH,Auto
 # 规则集
 rule-anchor:
-  ip: &ip {type: http, interval: 86400, behavior: ipcidr, format: mrs}
   domain: &domain {type: http, interval: 86400, behavior: domain, format: mrs}
+  ip: &ip {type: http, interval: 86400, behavior: ipcidr, format: mrs}
 rule-providers:
   # 分隔,下面是DOMAIN分组
-  google@ads: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/google@ads.mrs"}
+  category-ads-all_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-ads-all.mrs"}
+  fakeipfilter_domain: { <<: *domain, url: "https://raw.githubusercontent.com/wwqgtxx/clash-rules/release/fakeip-filter.mrs"}
+  google@ads_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/google@ads.mrs"}
+  google-play_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/google-play.mrs"}
+  youtube_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/youtube.mrs"}
+  google-gemini_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/google-gemini.mrs"}
   google_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/google.mrs"}
-  category-ai-!cn@ads: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-ai-!cn@ads.mrs" }
+  cloudflare@cn_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/cloudflare@cn.mrs"}
+  cloudflare_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/cloudflare.mrs"}
+  category-ai-!cn@ads_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-ai-!cn@ads.mrs" }
+  openai_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/openai.mrs" }
+  x@ads_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/x@ads.mrs" }
+  x_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/x.mrs" }
   category-ai-!cn_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-ai-!cn.mrs" }
-  bytedance@ads: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/bytedance@ads.mrs"}
+  category-ai-cn_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-ai-cn.mrs" }
+  bytedance@ads_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/bytedance@ads.mrs"}
+  douyin_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/douyin.mrs"}
+  tiktok_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/tiktok.mrs"}
   bytedance@!cn_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/bytedance@!cn.mrs"}
   bytedance_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/bytedance.mrs"}
+  115_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/115.mrs"}
   github_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/github.mrs"}
   telegram_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/telegram.mrs"}
   netflix_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/netflix.mrs"}
   disney_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/disney.mrs"}
   paypal_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/paypal.mrs"}
-  microsoft@ads: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/microsoft@ads.mrs"}
+  microsoft@ads_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/microsoft@ads.mrs"}
+  win-update_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/win-update.mrs"}
+  microsoft@cn_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/microsoft@cn.mrs"}
   microsoft_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/microsoft.mrs"}
-  apple@ads: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/apple@ads.mrs"}
+  apple@ads_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/apple@ads.mrs"}
   apple_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/apple.mrs"}
+  huawei_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/huawei.mrs"}
+  alibaba@ads_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/alibaba@ads.mrs"}
+  alibaba_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/alibaba.mrs"}
+  tencent@ads_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/tencent@ads.mrs"}
+  tencent_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/tencent.mrs"}
+  baidu@ads_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/baidu@ads.mrs"}
+  baidu_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/baidu.mrs"}
   speedtest_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/ookla-speedtest.mrs"}
   test-ipv6_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/test-ipv6.mrs"}
   reddit_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/reddit.mrs"}
-  category-porn@ads: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-porn@ads.mrs"}
+  category-porn@ads_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-porn@ads.mrs"}
   category-porn_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-porn.mrs"}
   gfw_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/gfw.mrs"}
   geolocation-!cn: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/geolocation-!cn.mrs"}
@@ -157,7 +225,9 @@ rule-providers:
   private_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/private.mrs"}
   # 分隔,下面是IP分组
   google_ip: { <<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/google.mrs"}
+  cloudflare_ip: { <<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/cloudflare.mrs"}
   telegram_ip: { <<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/telegram.mrs"}
   netflix_ip: { <<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/netflix.mrs"}
   cn_ip: { <<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/cn.mrs"}
   private_ip: { <<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/private.mrs"}
+  apple_ip: {<<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo-lite/geoip/apple.mrs"}
