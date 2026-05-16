@@ -150,7 +150,7 @@ rules:
   - RULE-SET,category-ai-!cn_domain,Auto
   - RULE-SET,category-ai-cn_domain,DIRECT
   - RULE-SET,microsoft@ads_domain,REJECT-DROP
-  - RULE-SET,win-update_domain,Joey
+  - RULE-SET,win-update_domain,Auto
   - RULE-SET,microsoft@cn_domain,DIRECT
   - RULE-SET,microsoft_domain,Auto
   - RULE-SET,apple@ads_domain,REJECT-DROP
