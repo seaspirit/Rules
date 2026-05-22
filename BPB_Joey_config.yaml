@@ -4,11 +4,8 @@ proxy-providers:
   BPB:
     url: "https://bpb.seaspirit.dpdns.org/sub/normal/de5eb6ed-ceee-4de9-b5a5-7ee799dc99aa?app=clash#%F0%9F%92%A6%20BPB%20Normal"
     <<: *pp
-  Joey:
-    url: "https://j.seaspirit.dpdns.org/j/sub?target=clash"
-    <<: *pp
   EdgeTunnel:
-    url: "https://et.seaspirit.dpdns.org/sub?token=5590787e890fbaea133abdefe8f7f438"
+    url: "https://et.seaspirit.dpdns.org/sub?token=f15947d0e777f1e16b9cf1c96dd283bf"
     <<: *pp
 # 全局配置 
 port: 7890
@@ -36,6 +33,7 @@ external-ui-url: "https://github.com/Zephyruso/zashboard/archive/refs/heads/gh-p
 # 嗅探
 sniffer:
   enable: true
+  parse-pure-ip: true
   sniff:
     HTTP:
       ports: [80, 8080-8880]
@@ -44,11 +42,6 @@ sniffer:
       ports: [443, 8443]
     QUIC:
       ports: [443, 8443]
-  force-domain:
-    - +.v2ex.com
-  skip-domain:
-    - "Mijia Cloud"
-    - "+.push.apple.com"
 # 入站  
 tun:
   enable: true
@@ -94,8 +87,8 @@ dns:
   nameserver-policy:
     "rule-set:category-ads-all_domain": rcode://success
     "rule-set:youtube_domain,google-play_domain,google-gemini_domain,google_domain":
-      - https://dns.google/dns-query#ecs=223.5.5.0/24
-      - https://cloudflare-dns.com/dns-query#ecs=223.5.5.0/24
+      - https://dns.google/dns-query
+      - https://cloudflare-dns.com/dns-query
     "rule-set:douyin_domain,cloudflare@cn_domain,cn_domain,private_domain":
       - https://dns.alidns.com/dns-query
       - https://doh.pub/dns-query
@@ -103,18 +96,15 @@ dns:
       - https://doh.pub/dns-query
       - https://dns.alidns.com/dns-query
     "rule-set:cloudflare_domain,github_domain,x_domain,category-ai-!cn_domain,win-update_domain,geolocation-!cn":
-      - https://cloudflare-dns.com/dns-query#ecs=223.5.5.0/24
-      - https://dns.google/dns-query#ecs=223.5.5.0/24
+      - https://cloudflare-dns.com/dns-query
+      - https://dns.google/dns-query
 # 出站策略
-pg: &pg {type: url-test, url: "https://www.gstatic.com/generate_204", interval: 120, tolerance: 0}
+pg: &pg {type: url-test, url: "https://www.gstatic.com/generate_204", interval: 60, tolerance: 0}
 proxy-groups:
   - name: "Auto"
     use:
       - BPB
-    <<: *pg
-  - name: "Joey"
-    use:
-      - Joey
+      - EdgeTunnel
     <<: *pg
   - name: "EdgeTunnel"
     use:
@@ -127,7 +117,7 @@ rules:
   - DOMAIN-SUFFIX,softonic.cn,Auto
   - RULE-SET,google@ads_domain,REJECT-DROP
   - RULE-SET,google-play_domain,Auto
-  - RULE-SET,youtube_domain,Joey
+  - RULE-SET,youtube_domain,EdgeTunnel
   - RULE-SET,google-gemini_domain,Auto
   - RULE-SET,google_domain,Auto
   - RULE-SET,cloudflare@cn_domain,DIRECT
