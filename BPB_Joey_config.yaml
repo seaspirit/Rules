@@ -33,6 +33,7 @@ external-ui-url: "https://github.com/Zephyruso/zashboard/archive/refs/heads/gh-p
 # 嗅探
 sniffer:
   enable: true
+  parse-pure-ip: true
   sniff:
     HTTP:
       ports: [80, 8080-8880]
@@ -43,6 +44,7 @@ sniffer:
       ports: [443, 8443]
   force-domain:
     - +.v2ex.com
+    - rule-set:x_domain
   skip-domain:
     - "Mijia Cloud"
     - "+.push.apple.com"
@@ -75,7 +77,6 @@ dns:
     - "+.torrentdownloads.pro"
     - "+.maxjav.com"
     - rule-set:google-play_domain
-    - rule-set:x_domain
     - rule-set:cn_domain
     - rule-set:private_domain
     - rule-set:fakeipfilter_domain
@@ -103,22 +104,30 @@ dns:
       - https://cloudflare-dns.com/dns-query#Auto
       - https://dns.google/dns-query
 # 出站策略
-pg: &pg {type: url-test, url: "https://www.gstatic.com/generate_204", interval: 300, tolerance: 20}
+pg: &pg {type: url-test, url: "https://www.gstatic.com/generate_204", tolerance: 10}
 proxy-groups:
   - name: "Auto"
     use:
       - BPB
+    interval: 90
     <<: *pg
   - name: "EdgeTunnel"
     use:
       - EdgeTunnel
+    interval: 600
     filter: "^((?!(▼)).)*$"
     <<: *pg
 # 规则匹配
 rules:
   - AND,((NETWORK,UDP),(DST-PORT,443),(NOT,((RULE-SET,cn_domain)))),REJECT-DROP
+  - DOMAIN-SUFFIX,returnyoutubedislikeapi.com,DIRECT
+  - DOMAIN-SUFFIX,ajay.app,DIRECT
+  - DOMAIN-SUFFIX,subhd.me,DIRECT
+  - DOMAIN-SUFFIX,uupdump.net,DIRECT
+  - DOMAIN-SUFFIX,downloadtorrentfile.com,DIRECT
   - DOMAIN-SUFFIX,qnap.com,DIRECT
   - DOMAIN-SUFFIX,softonic.cn,Auto
+  - DOMAIN-SUFFIX,seaspirit.dpdns.org,DIRECT
   - RULE-SET,google@ads_domain,REJECT-DROP
   - RULE-SET,google-play_domain,Auto
   - RULE-SET,youtube_domain,Auto
@@ -136,7 +145,7 @@ rules:
   - RULE-SET,category-ai-!cn@ads_domain,REJECT-DROP
   - RULE-SET,openai_domain,Auto
   - RULE-SET,x@ads_domain,REJECT-DROP
-  - RULE-SET,x_domain,Auto
+  - RULE-SET,x_domain,EdgeTunnel
   - RULE-SET,category-ai-!cn_domain,Auto
   - RULE-SET,category-ai-cn_domain,Auto
   - RULE-SET,microsoft@ads_domain,REJECT-DROP
