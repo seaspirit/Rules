@@ -142,7 +142,7 @@ rules:
   - RULE-SET,115_domain,DIRECT
   - RULE-SET,github_domain,Auto
   - RULE-SET,category-ai-!cn@ads_domain,REJECT-DROP
-  - RULE-SET,openai_domain,Auto
+  - RULE-SET,openai_domain,EdgeTunnel
   - RULE-SET,x@ads_domain,REJECT-DROP
   - RULE-SET,x_domain,EdgeTunnel
   - RULE-SET,category-ai-!cn_domain,Auto
