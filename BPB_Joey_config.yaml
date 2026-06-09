@@ -5,7 +5,7 @@ proxy-providers:
     url: "https://bpb.seaspirit.dpdns.org/sub/normal/de5eb6ed-ceee-4de9-b5a5-7ee799dc99aa?app=clash#%F0%9F%92%A6%20BPB%20Normal"
     <<: *pp
   EdgeTunnel:
-    url: "https://et.seaspirit.dpdns.org/sub?token=f15947d0e777f1e16b9cf1c96dd283bf"
+    url: "https://ee.seaspirit.dpdns.org/sub?token=886fdd19d63480321b0b1c98958a3ffa"
     <<: *pp
 # 全局配置 
 port: 7890
