@@ -107,13 +107,14 @@ pg: &pg {type: url-test, url: "https://www.gstatic.com/generate_204", tolerance:
 proxy-groups:
   - name: "Auto"
     use:
-      - BPB
+      - EdgeTunnel
     interval: 60
     <<: *pg
   - name: "EdgeTunnel"
     use:
       - EdgeTunnel
     interval: 300
+    filter: "^((?!(HK)).)*$"
     <<: *pg
 # 规则匹配
 rules:
@@ -128,22 +129,22 @@ rules:
   - DOMAIN-SUFFIX,seaspirit.dpdns.org,DIRECT
   - RULE-SET,google@ads_domain,REJECT-DROP
   - RULE-SET,google-play_domain,Auto
-  - RULE-SET,youtube_domain,Auto
+  - RULE-SET,youtube_domain,EdgeTunnel
   - RULE-SET,google-gemini_domain,Auto
   - RULE-SET,google_domain,Auto
   - RULE-SET,cloudflare@cn_domain,DIRECT
   - RULE-SET,cloudflare_domain,DIRECT
   - RULE-SET,bytedance@ads_domain,REJECT-DROP
   - RULE-SET,douyin_domain,DIRECT
-  - RULE-SET,tiktok_domain,Auto
-  - RULE-SET,bytedance@!cn_domain,Auto
+  - RULE-SET,tiktok_domain,EdgeTunnel
+  - RULE-SET,bytedance@!cn_domain,EdgeTunnel
   - RULE-SET,bytedance_domain,DIRECT
   - RULE-SET,115_domain,DIRECT
   - RULE-SET,github_domain,Auto
   - RULE-SET,category-ai-!cn@ads_domain,REJECT-DROP
-  - RULE-SET,openai_domain,EdgeTunnel
+  - RULE-SET,openai_domain,Auto
   - RULE-SET,x@ads_domain,REJECT-DROP
-  - RULE-SET,x_domain,EdgeTunnel
+  - RULE-SET,x_domain,Auto
   - RULE-SET,category-ai-!cn_domain,Auto
   - RULE-SET,category-ai-cn_domain,Auto
   - RULE-SET,microsoft@ads_domain,REJECT-DROP
@@ -167,7 +168,7 @@ rules:
   - RULE-SET,test-ipv6_domain,DIRECT
   - RULE-SET,reddit_domain,Auto
   - RULE-SET,category-porn@ads_domain,REJECT-DROP
-  - RULE-SET,category-porn_domain,Auto
+  - RULE-SET,category-porn_domain,EdgeTunnel
   - RULE-SET,gfw_domain,Auto
   - RULE-SET,geolocation-!cn,Auto
   - RULE-SET,cn_domain,DIRECT
