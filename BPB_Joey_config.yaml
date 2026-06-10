@@ -108,13 +108,12 @@ proxy-groups:
   - name: "Auto"
     use:
       - BPB
-    interval: 90
+    interval: 60
     <<: *pg
   - name: "EdgeTunnel"
     use:
       - EdgeTunnel
-    interval: 600
-    filter: "^((?!(▼)).)*$"
+    interval: 300
     <<: *pg
 # 规则匹配
 rules:
