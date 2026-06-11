@@ -69,9 +69,7 @@ dns:
     - "+.uupdump.net"
     - "+.torrentgalaxy.one"
     - "+.torrentdownloads.pro"
-    - "+.maxjav.com"
     - rule-set:google-play_domain
-    - rule-set:x_domain
     - rule-set:cn_domain
     - rule-set:private_domain
     - rule-set:fakeipfilter_domain
@@ -104,7 +102,7 @@ proxy-groups:
   - name: "Auto"
     use:
       - EdgeTunnel
-    filter: "(?i)JP|KR"
+    filter: "(?i)JP|KR|SG"
     <<: *pg
 # 规则匹配
 rules:
@@ -116,6 +114,7 @@ rules:
   - DOMAIN-SUFFIX,downloadtorrentfile.com,DIRECT
   - DOMAIN-SUFFIX,qnap.com,DIRECT
   - DOMAIN-SUFFIX,softonic.cn,Auto
+  - DOMAIN-SUFFIX,seaspirit.dpdns.org,DIRECT
   - RULE-SET,google@ads_domain,REJECT-DROP
   - RULE-SET,google-play_domain,Auto
   - RULE-SET,youtube_domain,Auto
