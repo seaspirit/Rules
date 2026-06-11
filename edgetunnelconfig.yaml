@@ -1,8 +1,8 @@
 # 机场订阅
-pp: &pp {type: http, interval: 86400, proxy: DIRECT, health-check: {enable: true, url: "https://www.gstatic.com/generate_204", interval: 120}, header: {User-Agent: ["Clash/v1.18.0", "mihomo/1.19.24"]}, override: {client-fingerprint: chrome}}
+pp: &pp {type: http, interval: 86400, proxy: DIRECT, health-check: {enable: true, url: "https://www.gstatic.com/generate_204", interval: 120}, header: {User-Agent: ["Clash/v1.18.0", "mihomo/1.19.27"]}, override: {client-fingerprint: chrome}}
 proxy-providers:
   EdgeTunnel:
-    url: "https://et.seaspirit.dpdns.org/sub?token=5590787e890fbaea133abdefe8f7f438"
+    url: "https://ee.seaspirit.dpdns.org/sub?token=886fdd19d63480321b0b1c98958a3ffa"
     <<: *pp
 # 全局配置 
 port: 7890
@@ -105,11 +105,13 @@ proxy-groups:
   - name: "Auto"
     use:
       - EdgeTunnel
+    filter: "(?i)JP|KR"
     <<: *pg
 # 规则匹配
 rules:
   - AND,((NETWORK,UDP),(DST-PORT,443),(NOT,((RULE-SET,cn_domain)))),REJECT-DROP
   - DOMAIN-SUFFIX,returnyoutubedislikeapi.com,DIRECT
+  - DOMAIN-SUFFIX,ajay.app,DIRECT
   - DOMAIN-SUFFIX,subhd.me,DIRECT
   - DOMAIN-SUFFIX,uupdump.net,DIRECT
   - DOMAIN-SUFFIX,downloadtorrentfile.com,DIRECT
