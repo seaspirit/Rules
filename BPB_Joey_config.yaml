@@ -115,7 +115,7 @@ proxy-groups:
     url: "https://www.gstatic.com/generate_204"
     interval: 30
     strategy: "round-robin"
-    filter: "^((?!((?i)HK|TW|MY|ID|VN)).)*$"
+    filter: "(?i)JP|KR"
 # 规则匹配
 rules:
   - AND,((NETWORK,UDP),(DST-PORT,443),(NOT,((RULE-SET,cn_domain)))),REJECT-DROP
@@ -142,7 +142,7 @@ rules:
   - RULE-SET,115_domain,DIRECT
   - RULE-SET,github_domain,Auto
   - RULE-SET,category-ai-!cn@ads_domain,REJECT-DROP
-  - RULE-SET,openai_domain,EdgeTunnel
+  - RULE-SET,openai_domain,Auto
   - RULE-SET,x@ads_domain,REJECT-DROP
   - RULE-SET,x_domain,EdgeTunnel
   - RULE-SET,category-ai-!cn_domain,Auto
