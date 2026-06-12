@@ -73,6 +73,7 @@ dns:
     - "+.uupdump.net"
     - "+.torrentgalaxy.one"
     - "+.torrentdownloads.pro"
+    - "+.maxjav.com"
     - rule-set:google-play_domain
     - rule-set:cn_domain
     - rule-set:private_domain
@@ -89,17 +90,17 @@ dns:
   nameserver-policy:
     "rule-set:category-ads-all_domain": rcode://success
     "rule-set:youtube_domain,google-play_domain,google-gemini_domain,google_domain":
-      - https://dns.google/dns-query#ecs=223.5.5.0/24
-      - https://cloudflare-dns.com/dns-query#Auto&ecs=223.5.5.0/24
+      - https://dns.google/dns-query
+      - https://cloudflare-dns.com/dns-query
+    "rule-set:github_domain,x_domain,category-ai-!cn_domain,win-update_domain,geolocation-!cn":
+      - https://cloudflare-dns.com/dns-query
+      - https://dns.google/dns-query
     "rule-set:douyin_domain,cloudflare_domain,cloudflare@cn_domain,cn_domain,private_domain":
       - https://dns.alidns.com/dns-query
       - https://doh.pub/dns-query
     "rule-set:tencent_domain":
       - https://doh.pub/dns-query
       - https://dns.alidns.com/dns-query
-    "rule-set:github_domain,x_domain,category-ai-!cn_domain,win-update_domain,geolocation-!cn":
-      - https://cloudflare-dns.com/dns-query#Auto&ecs=223.5.5.0/24
-      - https://dns.google/dns-query#ecs=223.5.5.0/24
 # 出站策略
 pg: &pg {type: url-test, url: "https://www.gstatic.com/generate_204", interval: 90, tolerance: 10}
 proxy-groups:
@@ -108,11 +109,6 @@ proxy-groups:
       - BPB
     <<: *pg
   - name: "EdgeTunnel"
-    use:
-      - EdgeTunnel
-    filter: "(?i)JP|KR"
-    <<: *pg
-  - name: "Tube"
     type: load-balance
     use:
       - EdgeTunnel
