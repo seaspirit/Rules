@@ -110,6 +110,11 @@ proxy-groups:
       - BPB
     <<: *pg
   - name: "EdgeTunnel"
+    use:
+      - EdgeTunnel
+    filter: "(?i)JP|KR"
+    <<: *pg
+  - name: "Tube"
     type: load-balance
     use:
       - EdgeTunnel
@@ -117,10 +122,12 @@ proxy-groups:
     interval: 30
     strategy: "round-robin"
     filter: "(?i)JP|KR"
+    hidden: true
 # 规则匹配
 rules:
   - AND,((NETWORK,UDP),(DST-PORT,443),(NOT,((RULE-SET,cn_domain)))),REJECT-DROP
-  - DOMAIN-SUFFIX,googlevideo.com,EdgeTunnel
+  - DOMAIN-SUFFIX,googlevideo.com,Tube
+  - DOMAIN-SUFFIX,media.redgifs.com,Tube
   - DOMAIN-SUFFIX,returnyoutubedislikeapi.com,DIRECT
   - DOMAIN-SUFFIX,ajay.app,DIRECT
   - DOMAIN-SUFFIX,subhd.me,DIRECT
@@ -131,7 +138,7 @@ rules:
   - DOMAIN-SUFFIX,seaspirit.dpdns.org,DIRECT
   - RULE-SET,google@ads_domain,REJECT-DROP
   - RULE-SET,google-play_domain,Auto
-  - RULE-SET,youtube_domain,Auto
+  - RULE-SET,youtube_domain,EdgeTunnel
   - RULE-SET,google-gemini_domain,Auto
   - RULE-SET,google_domain,Auto
   - RULE-SET,cloudflare@cn_domain,DIRECT
