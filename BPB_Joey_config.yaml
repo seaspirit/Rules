@@ -103,7 +103,7 @@ dns:
       - https://dns.alidns.com/dns-query
       - https://doh.pub/dns-query
 # 出站策略
-pg: &pg {type: url-test, url: "https://www.gstatic.com/generate_204", interval: 90, tolerance: 10}
+pg: &pg {type: url-test, url: "https://www.gstatic.com/generate_204", interval: 60, tolerance: 10}
 proxy-groups:
   - name: "Auto"
     use:
@@ -118,12 +118,10 @@ proxy-groups:
     type: load-balance
     use:
       - EdgeTunnel
-      - BPB
     url: "https://www.gstatic.com/generate_204"
-    interval: 30
+    interval: 60
     strategy: "round-robin"
-    filter: "^((?!((?i)HK|TW|MY|ID|VN)).)*$"
-    hidden: true
+    filter: "^((?!(HK|TW)).)*$"
 # 规则匹配
 rules:
   - AND,((NETWORK,UDP),(DST-PORT,443),(NOT,((RULE-SET,cn_domain)))),REJECT-DROP
