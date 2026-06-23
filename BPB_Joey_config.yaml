@@ -112,7 +112,7 @@ proxy-groups:
   - name: "EdgeTunnel"
     use:
       - EdgeTunnel
-    filter: "(?i)JP|KR"
+    filter: "(?i)JP|KR|SG"
     <<: *pg
   - name: "Tube"
     type: load-balance
@@ -121,7 +121,7 @@ proxy-groups:
     url: "https://www.gstatic.com/generate_204"
     interval: 60
     strategy: "round-robin"
-    filter: "^((?!(HK|TW)).)*$"
+    filter: "(?i)JP|KR|SG"
 # 规则匹配
 rules:
   - AND,((NETWORK,UDP),(DST-PORT,443),(NOT,((RULE-SET,cn_domain)))),REJECT-DROP
@@ -149,15 +149,15 @@ rules:
   - RULE-SET,115_domain,DIRECT
   - RULE-SET,github_domain,Auto
   - RULE-SET,category-ai-!cn@ads_domain,REJECT-DROP
-  - RULE-SET,openai_domain,EdgeTunnel
+  - RULE-SET,openai_domain,Auto
   - RULE-SET,x@ads_domain,REJECT-DROP
   - RULE-SET,x_domain,EdgeTunnel
   - RULE-SET,category-ai-!cn_domain,Auto
   - RULE-SET,category-ai-cn_domain,Auto
   - RULE-SET,microsoft@ads_domain,REJECT-DROP
-  - RULE-SET,win-update_domain,Auto
+  - RULE-SET,win-update_domain,DIRECT
   - RULE-SET,microsoft@cn_domain,DIRECT
-  - RULE-SET,microsoft_domain,Auto
+  - RULE-SET,microsoft_domain,DIRECT
   - RULE-SET,apple@ads_domain,REJECT-DROP
   - RULE-SET,apple_domain,DIRECT
   - RULE-SET,huawei_domain,DIRECT
