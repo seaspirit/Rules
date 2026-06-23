@@ -7,6 +7,9 @@ proxy-providers:
   EdgeTunnel:
     url: "https://ee.seaspirit.dpdns.org/sub?token=886fdd19d63480321b0b1c98958a3ffa"
     <<: *pp
+  Joey:
+    url: "https://c99c4620.edge-069caa23.pages.dev/j/sub?target=clash"
+    <<: *pp
 # 全局配置 
 port: 7890
 socks-port: 7891
@@ -114,14 +117,19 @@ proxy-groups:
       - EdgeTunnel
     filter: "(?i)JP|KR|SG"
     <<: *pg
+  - name: "Joey"
+    use:
+      - Joey
+    <<: *pg
   - name: "Tube"
     type: load-balance
     use:
       - EdgeTunnel
+      - Joey
     url: "https://www.gstatic.com/generate_204"
     interval: 60
     strategy: "round-robin"
-    filter: "(?i)JP|KR|SG"
+    filter: "(?i)JP|KR|SG|优选|联通|电信"
 # 规则匹配
 rules:
   - AND,((NETWORK,UDP),(DST-PORT,443),(NOT,((RULE-SET,cn_domain)))),REJECT-DROP
