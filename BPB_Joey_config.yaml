@@ -102,10 +102,13 @@ dns:
     "rule-set:github_domain,cloudflare_domain,x_domain,category-ai-!cn_domain,win-update_domain,geolocation-!cn":
       - https://cloudflare-dns.com/dns-query#Auto
       - https://dns.google/dns-query
+    "rule-set:douyin_domain":
+      - 180.184.1.1
+      - 180.184.2.2
     "rule-set:tencent_domain":
       - https://doh.pub/dns-query
       - https://dns.alidns.com/dns-query
-    "rule-set:douyin_domain,cloudflare@cn_domain,cn_domain,private_domain":
+    "rule-set:cloudflare@cn_domain,cn_domain,private_domain":
       - https://dns.alidns.com/dns-query
       - https://doh.pub/dns-query
 # 出站策略
@@ -133,7 +136,7 @@ proxy-groups:
     url: "https://www.gstatic.com/generate_204"
     interval: 60
     strategy: "round-robin"
-    filter: "(?i)JP|KR|SG|联通|电信|VLESS|"
+    filter: "(?=.*(联通|电信|(?i)JP|KR|SG|VLESS))^((?!(IPv6)).)*$"
 # 规则匹配
 rules:
   - AND,((NETWORK,UDP),(DST-PORT,443),(NOT,((RULE-SET,cn_domain)))),REJECT-DROP
