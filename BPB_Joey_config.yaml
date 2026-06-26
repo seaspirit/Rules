@@ -18,7 +18,7 @@ mixed-port: 7893
 tproxy-port: 7894
 allow-lan: true
 bind-address: "*"
-ipv6: true
+ipv6: false
 unified-delay: true
 tcp-concurrent: true
 log-level: warning
@@ -36,7 +36,6 @@ external-ui-url: "https://github.com/Zephyruso/zashboard/archive/refs/heads/gh-p
 # 嗅探
 sniffer:
   enable: true
-  parse-pure-ip: true
   sniff:
     HTTP:
       ports: [80, 8080-8880]
@@ -64,7 +63,7 @@ dns:
   cache-algorithm: arc
   prefer-h3: false
   listen: 0.0.0.0:1053
-  ipv6: true
+  ipv6: false
   respect-rules: true
   enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.1/16
@@ -78,10 +77,10 @@ dns:
     - "+.torrentgalaxy.one"
     - "+.torrentdownloads.pro"
     - rule-set:google-play_domain
-    - rule-set:openai_domain
     - rule-set:douyin_domain
     - rule-set:bytedance_domain
     - rule-set:tencent_domain
+    - rule-set:115_domain
     - rule-set:cn_domain
     - rule-set:private_domain
     - rule-set:fakeipfilter_domain
@@ -150,6 +149,8 @@ rules:
   - DOMAIN-SUFFIX,subhd.me,DIRECT
   - DOMAIN-SUFFIX,softonic.cn,Auto
   - DOMAIN-SUFFIX,seaspirit.dpdns.org,DIRECT
+  - DOMAIN-SUFFIX,speedtest.net,DIRECT
+  - DOMAIN-SUFFIX,ookla.com,DIRECT
   - RULE-SET,google@ads_domain,REJECT-DROP
   - RULE-SET,google-play_domain,Auto
   - RULE-SET,youtube_domain,Auto
@@ -165,7 +166,7 @@ rules:
   - RULE-SET,115_domain,DIRECT
   - RULE-SET,github_domain,Auto
   - RULE-SET,category-ai-!cn@ads_domain,REJECT-DROP
-  - RULE-SET,openai_domain,Auto
+  - RULE-SET,openai_domain,Joey
   - RULE-SET,x@ads_domain,REJECT-DROP
   - RULE-SET,x_domain,EdgeTunnel
   - RULE-SET,category-ai-!cn_domain,Auto
