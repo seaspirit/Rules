@@ -105,7 +105,7 @@ dns:
       - https://dns.alidns.com/dns-query
       - https://doh.pub/dns-query
 # 出站策略
-pg: &pg {type: url-test, url: "https://www.gstatic.com/generate_204", interval: 60, tolerance: 10}
+pg: &pg {type: url-test, url: "https://www.gstatic.com/generate_204", interval: 90, tolerance: 10}
 proxy-groups:
   - name: "Auto"
     use:
@@ -127,7 +127,7 @@ proxy-groups:
       - EdgeTunnel
       - Joey
     url: "https://www.gstatic.com/generate_204"
-    interval: 60
+    interval: 90
     strategy: "round-robin"
     filter: "(?=.*(联通|电信|(?i)JP|KR|SG|VLESS))^((?!(IPv6)).)*$"
 # 规则匹配
