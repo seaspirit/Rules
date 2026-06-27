@@ -110,8 +110,7 @@ pg: &pg {type: url-test, url: "https://www.gstatic.com/generate_204", interval: 
 proxy-groups:
   - name: "Auto"
     use:
-      - EdgeTunnel
-    filter: "(?i)JP|KR|SG"
+      - BPB
     <<: *pg
   - name: "EdgeTunnel"
     use:
