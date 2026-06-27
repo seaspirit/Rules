@@ -44,8 +44,6 @@ sniffer:
       ports: [443, 8443]
     QUIC:
       ports: [443, 8443]
-  force-domain:
-    - +.v2ex.com
   skip-domain:
     - "Mijia Cloud"
     - "+.push.apple.com"
