@@ -4,6 +4,9 @@ proxy-providers:
   BPB:
     url: "https://bpb.seaspirit.dpdns.org/sub/normal/de5eb6ed-ceee-4de9-b5a5-7ee799dc99aa?app=clash#%F0%9F%92%A6%20BPB%20Normal"
     <<: *pp
+  EdgeTunnel:
+    url: "https://eee-cor.pages.dev/sub?token=d9d8b1a07ce87410592c21766af042ea"
+    <<: *pp
   Joey:
     url: "https://j.seaspirit.dpdns.org/j/sub?target=clash"
     <<: *pp
@@ -109,6 +112,11 @@ proxy-groups:
     use:
       - BPB
     <<: *pg
+  - name: "EdgeTunnel"
+    use:
+      - EdgeTunnel
+    filter: "(?i)JP|KR|SG"
+    <<: *pg
   - name: "Joey"
     use:
       - Joey
@@ -117,10 +125,12 @@ proxy-groups:
     type: load-balance
     use:
       - BPB
+      - EdgeTunnel
       - Joey
     url: "https://www.gstatic.com/generate_204"
     interval: 300
     strategy: "round-robin"
+    filter: "(?=.*(联通|电信|(?i)JP|KR|SG|VLESS))^((?!(IPv6)).)*$"
 # 规则匹配
 rules:
   - AND,((NETWORK,UDP),(DST-PORT,443),(NOT,((RULE-SET,cn_domain)))),REJECT-DROP
@@ -128,9 +138,9 @@ rules:
   - DOMAIN-SUFFIX,returnyoutubedislikeapi.com,DIRECT
   - DOMAIN-SUFFIX,ajay.app,DIRECT
   - DOMAIN-SUFFIX,subhd.me,DIRECT
-  - DOMAIN-SUFFIX,grokipedia.com,Auto
-  - DOMAIN-SUFFIX,grokusercontent.com,Auto
-  - DOMAIN-SUFFIX,v2ex.com,Auto
+  - DOMAIN-SUFFIX,grokipedia.com,EdgeTunnel
+  - DOMAIN-SUFFIX,grokusercontent.com,EdgeTunnel
+  - DOMAIN-SUFFIX,v2ex.com,EdgeTunnel
   - DOMAIN-SUFFIX,uupdump.net,DIRECT
   - DOMAIN-SUFFIX,downloadtorrentfile.com,DIRECT
   - DOMAIN-SUFFIX,qnap.com,DIRECT
@@ -154,9 +164,9 @@ rules:
   - RULE-SET,115_domain,DIRECT
   - RULE-SET,github_domain,Auto
   - RULE-SET,category-ai-!cn@ads_domain,REJECT-DROP
-  - RULE-SET,openai_domain,Auto
+  - RULE-SET,openai_domain,EdgeTunnel
   - RULE-SET,x@ads_domain,REJECT-DROP
-  - RULE-SET,x_domain,Auto
+  - RULE-SET,x_domain,EdgeTunnel
   - RULE-SET,category-ai-!cn_domain,Auto
   - RULE-SET,category-ai-cn_domain,DIRECT
   - RULE-SET,microsoft@ads_domain,REJECT-DROP
