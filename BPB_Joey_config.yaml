@@ -116,6 +116,7 @@ proxy-groups:
     use:
       - EdgeTunnel
     <<: *pg
+    filter: "^((?!(导航)).)*$"
   - name: "Joey"
     use:
       - Joey
@@ -129,6 +130,7 @@ proxy-groups:
     url: "https://www.gstatic.com/generate_204"
     interval: 120
     strategy: "round-robin"
+    filter: "^((?!(导航)).)*$"
 # 规则匹配
 rules:
   - AND,((NETWORK,UDP),(DST-PORT,443),(NOT,((RULE-SET,cn_domain)))),REJECT-DROP
