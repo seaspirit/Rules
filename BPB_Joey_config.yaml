@@ -123,9 +123,9 @@ proxy-groups:
   - name: "Tube"
     type: load-balance
     use:
-      - BPB
       - EdgeTunnel
       - Joey
+      - BPB
     url: "https://www.gstatic.com/generate_204"
     interval: 120
     strategy: "round-robin"
