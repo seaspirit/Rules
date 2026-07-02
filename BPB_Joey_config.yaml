@@ -115,7 +115,6 @@ proxy-groups:
   - name: "EdgeTunnel"
     use:
       - EdgeTunnel
-    filter: "(?i)JP|KR|SG"
     <<: *pg
   - name: "Joey"
     use:
@@ -130,7 +129,6 @@ proxy-groups:
     url: "https://www.gstatic.com/generate_204"
     interval: 120
     strategy: "round-robin"
-    filter: "联通|电信|(?i)JP|KR|SG|VLESS|Trojan"
 # 规则匹配
 rules:
   - AND,((NETWORK,UDP),(DST-PORT,443),(NOT,((RULE-SET,cn_domain)))),REJECT-DROP
