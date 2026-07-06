@@ -70,10 +70,8 @@ dns:
   fake-ip-filter:
     - "+.subhd.me"
     - "+.yysub.net"
-    - "+.maxjav.com"
     - "+.uupdump.net"
     - "+.torrentgalaxy.one"
-    - "+.torrentdownloads.pro"
     - rule-set:google-play_domain
     - rule-set:openai_domain
     - rule-set:cn_domain
@@ -137,9 +135,6 @@ rules:
   - DOMAIN-SUFFIX,returnyoutubedislikeapi.com,DIRECT
   - DOMAIN-SUFFIX,ajay.app,DIRECT
   - DOMAIN-SUFFIX,subhd.me,DIRECT
-  - DOMAIN-SUFFIX,grokipedia.com,Auto
-  - DOMAIN-SUFFIX,grokusercontent.com,Auto
-  - DOMAIN-SUFFIX,v2ex.com,Auto
   - DOMAIN-SUFFIX,uupdump.net,DIRECT
   - DOMAIN-SUFFIX,downloadtorrentfile.com,DIRECT
   - DOMAIN-SUFFIX,qnap.com,DIRECT
@@ -148,6 +143,7 @@ rules:
   - DOMAIN-SUFFIX,seaspirit.dpdns.org,DIRECT
   - DOMAIN-SUFFIX,speedtest.net,DIRECT
   - DOMAIN-SUFFIX,ookla.com,DIRECT
+  - DOMAIN-SUFFIX,btdig.com,BPB
   - RULE-SET,google@ads_domain,REJECT-DROP
   - RULE-SET,google-play_domain,Auto
   - RULE-SET,youtube_domain,Auto
