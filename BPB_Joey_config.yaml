@@ -112,12 +112,10 @@ proxy-groups:
     use:
       - EdgeTunnel
     <<: *pg
-    filter: "^((?!(导航)).)*$"
-  - name: "EdgeTunnel"
+  - name: "BPB"
     use:
-      - EdgeTunnel
+      - BPB
     <<: *pg
-    filter: "^((?!(导航)).)*$"
   - name: "Joey"
     use:
       - Joey
@@ -139,9 +137,9 @@ rules:
   - DOMAIN-SUFFIX,returnyoutubedislikeapi.com,DIRECT
   - DOMAIN-SUFFIX,ajay.app,DIRECT
   - DOMAIN-SUFFIX,subhd.me,DIRECT
-  - DOMAIN-SUFFIX,grokipedia.com,EdgeTunnel
-  - DOMAIN-SUFFIX,grokusercontent.com,EdgeTunnel
-  - DOMAIN-SUFFIX,v2ex.com,EdgeTunnel
+  - DOMAIN-SUFFIX,grokipedia.com,Auto
+  - DOMAIN-SUFFIX,grokusercontent.com,Auto
+  - DOMAIN-SUFFIX,v2ex.com,Auto
   - DOMAIN-SUFFIX,uupdump.net,DIRECT
   - DOMAIN-SUFFIX,downloadtorrentfile.com,DIRECT
   - DOMAIN-SUFFIX,qnap.com,DIRECT
@@ -165,9 +163,9 @@ rules:
   - RULE-SET,115_domain,DIRECT
   - RULE-SET,github_domain,Auto
   - RULE-SET,category-ai-!cn@ads_domain,REJECT-DROP
-  - RULE-SET,openai_domain,EdgeTunnel
+  - RULE-SET,openai_domain,Auto
   - RULE-SET,x@ads_domain,REJECT-DROP
-  - RULE-SET,x_domain,EdgeTunnel
+  - RULE-SET,x_domain,Auto
   - RULE-SET,category-ai-!cn_domain,Auto
   - RULE-SET,category-ai-cn_domain,DIRECT
   - RULE-SET,microsoft@ads_domain,REJECT-DROP
