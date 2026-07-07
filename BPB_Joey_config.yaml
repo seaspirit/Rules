@@ -70,6 +70,7 @@ dns:
   fake-ip-filter:
     - "+.subhd.me"
     - "+.yysub.net"
+    - "+.maxjav.com"
     - "+.uupdump.net"
     - "+.torrentgalaxy.one"
     - rule-set:google-play_domain
@@ -144,7 +145,6 @@ rules:
   - DOMAIN-SUFFIX,speedtest.net,DIRECT
   - DOMAIN-SUFFIX,ookla.com,DIRECT
   - DOMAIN-SUFFIX,btdig.com,BPB
-  - DOMAIN-SUFFIX,maxjav.com,Joey
   - DOMAIN-SUFFIX,maxjav.xyz,Joey
   - RULE-SET,google@ads_domain,REJECT-DROP
   - RULE-SET,google-play_domain,Auto
