@@ -73,6 +73,7 @@ dns:
     - "+.maxjav.com"
     - "+.uupdump.net"
     - "+.torrentgalaxy.one"
+    - "+.torrentdownloads.pro"
     - rule-set:google-play_domain
     - rule-set:openai_domain
     - rule-set:cn_domain
@@ -90,11 +91,11 @@ dns:
   nameserver-policy:
     "rule-set:category-ads-all_domain": rcode://success
     "rule-set:youtube_domain,google-play_domain,google-gemini_domain,google_domain":
-      - https://dns.google/dns-query
-      - https://cloudflare-dns.com/dns-query#Auto
+      - https://dns.google/dns-query#ecs=223.5.5.0/24
+      - https://cloudflare-dns.com/dns-query#Auto&ecs=223.5.5.0/24
     "rule-set:github_domain,cloudflare_domain,x_domain,category-ai-!cn_domain,win-update_domain,geolocation-!cn":
-      - https://cloudflare-dns.com/dns-query#Auto
-      - https://dns.google/dns-query
+      - https://cloudflare-dns.com/dns-query#Auto&ecs=223.5.5.0/24
+      - https://dns.google/dns-query#ecs=223.5.5.0/24
     "rule-set:douyin_domain":
       - 180.184.1.1
       - 180.184.2.2
@@ -109,12 +110,13 @@ pg: &pg {type: url-test, url: "https://www.gstatic.com/generate_204", interval: 
 proxy-groups:
   - name: "Auto"
     use:
-      - EdgeTunnel
-    <<: *pg
-  - name: "BPB"
-    use:
       - BPB
     <<: *pg
+  - name: "EdgeTunnel"
+    use:
+      - EdgeTunnel
+    <<: *pg
+    filter: "^((?!(导航)).)*$"
   - name: "Joey"
     use:
       - Joey
@@ -124,7 +126,6 @@ proxy-groups:
     use:
       - EdgeTunnel
       - Joey
-      - BPB
     url: "https://www.gstatic.com/generate_204"
     interval: 120
     strategy: "round-robin"
@@ -136,6 +137,9 @@ rules:
   - DOMAIN-SUFFIX,returnyoutubedislikeapi.com,DIRECT
   - DOMAIN-SUFFIX,ajay.app,DIRECT
   - DOMAIN-SUFFIX,subhd.me,DIRECT
+  - DOMAIN-SUFFIX,grokipedia.com,EdgeTunnel
+  - DOMAIN-SUFFIX,grokusercontent.com,EdgeTunnel
+  - DOMAIN-SUFFIX,v2ex.com,EdgeTunnel
   - DOMAIN-SUFFIX,uupdump.net,DIRECT
   - DOMAIN-SUFFIX,downloadtorrentfile.com,DIRECT
   - DOMAIN-SUFFIX,qnap.com,DIRECT
@@ -144,8 +148,6 @@ rules:
   - DOMAIN-SUFFIX,seaspirit.dpdns.org,DIRECT
   - DOMAIN-SUFFIX,speedtest.net,DIRECT
   - DOMAIN-SUFFIX,ookla.com,DIRECT
-  - DOMAIN-SUFFIX,btdig.com,BPB
-  - DOMAIN-SUFFIX,maxjav.xyz,Joey
   - RULE-SET,google@ads_domain,REJECT-DROP
   - RULE-SET,google-play_domain,Auto
   - RULE-SET,youtube_domain,Auto
@@ -161,9 +163,9 @@ rules:
   - RULE-SET,115_domain,DIRECT
   - RULE-SET,github_domain,Auto
   - RULE-SET,category-ai-!cn@ads_domain,REJECT-DROP
-  - RULE-SET,openai_domain,Auto
+  - RULE-SET,openai_domain,EdgeTunnel
   - RULE-SET,x@ads_domain,REJECT-DROP
-  - RULE-SET,x_domain,Auto
+  - RULE-SET,x_domain,EdgeTunnel
   - RULE-SET,category-ai-!cn_domain,Auto
   - RULE-SET,category-ai-cn_domain,DIRECT
   - RULE-SET,microsoft@ads_domain,REJECT-DROP
