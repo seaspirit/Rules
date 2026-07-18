@@ -73,7 +73,6 @@ dns:
     - "+.maxjav.com"
     - "+.uupdump.net"
     - "+.torrentgalaxy.one"
-    - rule-set:google-play_domain
     - rule-set:openai_domain
     - rule-set:cn_domain
     - rule-set:private_domain
@@ -124,7 +123,6 @@ proxy-groups:
     use:
       - EdgeTunnel
       - Joey
-      - BPB
     url: "https://www.gstatic.com/generate_204"
     interval: 120
     strategy: "round-robin"
@@ -146,7 +144,7 @@ rules:
   - DOMAIN-SUFFIX,ookla.com,DIRECT
   - DOMAIN-SUFFIX,btdig.com,BPB
   - DOMAIN-SUFFIX,maxjav.xyz,Joey
-  - DOMAIN-SUFFIX,media.redgifs.com,Tube
+  - DOMAIN-SUFFIX,redgifs.com,Tube
   - RULE-SET,google@ads_domain,REJECT-DROP
   - RULE-SET,google-play_domain,Auto
   - RULE-SET,youtube_domain,Auto
@@ -162,7 +160,7 @@ rules:
   - RULE-SET,115_domain,DIRECT
   - RULE-SET,github_domain,Auto
   - RULE-SET,category-ai-!cn@ads_domain,REJECT-DROP
-  - RULE-SET,openai_domain,Auto
+  - RULE-SET,openai_domain,BPB
   - RULE-SET,x@ads_domain,REJECT-DROP
   - RULE-SET,x_domain,Auto
   - RULE-SET,category-ai-!cn_domain,Auto
