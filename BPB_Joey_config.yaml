@@ -73,6 +73,8 @@ dns:
     - "+.maxjav.com"
     - "+.uupdump.net"
     - "+.torrentgalaxy.one"
+    - "+.torrentdownloads.pro"
+    - "+.btdig.com"
     - rule-set:openai_domain
     - rule-set:cn_domain
     - rule-set:private_domain
