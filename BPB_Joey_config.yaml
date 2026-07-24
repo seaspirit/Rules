@@ -74,7 +74,6 @@ dns:
     - "+.uupdump.net"
     - "+.torrentgalaxy.one"
     - "+.torrentdownloads.pro"
-    - "+.btdig.com"
     - rule-set:google-play_domain
     - rule-set:openai_domain
     - rule-set:cn_domain
@@ -125,9 +124,9 @@ proxy-groups:
   - name: "Tube"
     type: load-balance
     use:
-      - BPB
       - EdgeTunnel
       - Joey
+      - BPB
     url: "https://www.gstatic.com/generate_204"
     interval: 120
     strategy: "round-robin"
