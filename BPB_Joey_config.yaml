@@ -92,9 +92,9 @@ dns:
     "rule-set:category-ads-all_domain": rcode://success
     "rule-set:youtube_domain,google-play_domain,google-gemini_domain,google_domain":
       - https://dns.google/dns-query
-      - https://cloudflare-dns.com/dns-query#Auto
+      - https://cloudflare-dns.com/dns-query#EdgeTunnel
     "rule-set:github_domain,cloudflare_domain,x_domain,category-ai-!cn_domain,win-update_domain,geolocation-!cn":
-      - https://cloudflare-dns.com/dns-query#Auto
+      - https://cloudflare-dns.com/dns-query#EdgeTunnel
       - https://dns.google/dns-query
     "rule-set:douyin_domain":
       - 180.184.1.1
