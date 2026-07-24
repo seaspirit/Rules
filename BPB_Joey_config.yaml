@@ -70,7 +70,6 @@ dns:
   fake-ip-filter:
     - "+.subhd.me"
     - "+.yysub.net"
-    - "+.maxjav.com"
     - "+.uupdump.net"
     - "+.torrentgalaxy.one"
     - "+.torrentdownloads.pro"
