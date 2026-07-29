@@ -2,7 +2,7 @@
 pp: &pp {type: http, interval: 86400, proxy: DIRECT, health-check: {enable: true, url: "https://www.gstatic.com/generate_204", interval: 300}, header: {User-Agent: ["Clash/v1.18.0", "mihomo/1.19.27"]}, override: {client-fingerprint: chrome}}
 proxy-providers:
   BPB:
-    url: "https://bpb.seaspirit.dpdns.org/sub/normal/de5eb6ed-ceee-4de9-b5a5-7ee799dc99aa?app=clash#%F0%9F%92%A6%20BPB%20Normal"
+    url: "https://5d-6rxhc7xhirkjssmpqenbd.pages.dev/g7raPHImF1ncQZI3/sub/normal?app=clash#%F0%9F%92%A6%20BPB%20Normal"
     <<: *pp
   EdgeTunnel:
     url: "https://eee-cor.pages.dev/sub?token=d9d8b1a07ce87410592c21766af042ea"
@@ -75,6 +75,7 @@ dns:
     - "+.torrentgalaxy.one"
     - "+.torrentdownloads.pro"
     - "+.btdig.com"
+    - rule-set:cloudflare_domain
     - rule-set:openai_domain
     - rule-set:cn_domain
     - rule-set:private_domain
