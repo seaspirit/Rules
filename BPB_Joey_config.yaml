@@ -2,7 +2,7 @@
 pp: &pp {type: http, interval: 86400, proxy: DIRECT, health-check: {enable: true, url: "https://www.gstatic.com/generate_204", interval: 300}, header: {User-Agent: ["Clash/v1.18.0", "mihomo/1.19.27"]}, override: {client-fingerprint: chrome}}
 proxy-providers:
   BPB:
-    url: "https://b.seaspirit.dpdns.org/g7raPHImF1ncQZI3/sub/normal?app=clash#%F0%9F%92%A6%20BPB%20Normal"
+    url: "https://b.seaspirit.dpdns.org/b/sub/normal?app=clash#%F0%9F%92%A6%20BPB%20Normal"
     <<: *pp
   EdgeTunnel:
     url: "https://eee-cor.pages.dev/sub?token=d9d8b1a07ce87410592c21766af042ea"
@@ -112,7 +112,7 @@ proxy-groups:
   - name: "Auto"
     use:
       - EdgeTunnel
-    filter: "^((?!(导航)).)*$"
+      - Joey
     <<: *pg
   - name: "BPB"
     use:
@@ -131,7 +131,6 @@ proxy-groups:
     url: "https://www.gstatic.com/generate_204"
     interval: 120
     strategy: "round-robin"
-    filter: "^((?!(导航)).)*$"
 # 规则匹配
 rules:
   - AND,((NETWORK,UDP),(DST-PORT,443),(NOT,((RULE-SET,cn_domain)))),REJECT-DROP
@@ -165,10 +164,10 @@ rules:
   - RULE-SET,115_domain,DIRECT
   - RULE-SET,github_domain,Auto
   - RULE-SET,category-ai-!cn@ads_domain,REJECT-DROP
-  - RULE-SET,openai_domain,BPB
+  - RULE-SET,openai_domain,Joey
   - RULE-SET,x@ads_domain,REJECT-DROP
-  - RULE-SET,x_domain,Auto
-  - RULE-SET,category-ai-!cn_domain,Auto
+  - RULE-SET,x_domain,Joey
+  - RULE-SET,category-ai-!cn_domain,Joey
   - RULE-SET,category-ai-cn_domain,DIRECT
   - RULE-SET,microsoft@ads_domain,REJECT-DROP
   - RULE-SET,win-update_domain,DIRECT
