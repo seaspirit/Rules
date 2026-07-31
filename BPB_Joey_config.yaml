@@ -4,11 +4,11 @@ proxy-providers:
   BPB:
     url: "https://b.seaspirit.dpdns.org/b/sub/normal?app=clash#%F0%9F%92%A6%20BPB%20Normal"
     <<: *pp
-  EdgeTunnel:
-    url: "https://eee-cor.pages.dev/sub?token=d9d8b1a07ce87410592c21766af042ea"
-    <<: *pp
   Joey:
     url: "https://j.seaspirit.dpdns.org/j/sub?target=clash"
+    <<: *pp
+  EdgeTunnel:
+    url: "https://eee-cor.pages.dev/sub?token=d9d8b1a07ce87410592c21766af042ea"
     <<: *pp
 # 全局配置 
 port: 7890
