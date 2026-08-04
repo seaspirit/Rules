@@ -8,7 +8,7 @@ proxy-providers:
     url: "https://j.seaspirit.dpdns.org/j/sub?target=clash"
     <<: *pp
   EdgeTunnel:
-    url: "https://eee-cor.pages.dev/sub?token=d9d8b1a07ce87410592c21766af042ea"
+    url: "https://e.seaspirit.kdns.fr/sub?token=fefdfe6efb584b6a7b68726634f948cc"
     <<: *pp
 # 全局配置 
 port: 7890
@@ -127,7 +127,6 @@ proxy-groups:
     use:
       - EdgeTunnel
       - Joey
-      - BPB
     url: "https://www.gstatic.com/generate_204"
     interval: 120
     strategy: "round-robin"
@@ -149,7 +148,6 @@ rules:
   - DOMAIN-SUFFIX,btdig.com,BPB
   - DOMAIN-SUFFIX,apkmirror.com,BPB
   - DOMAIN-SUFFIX,maxjav.xyz,Joey
-  - DOMAIN-SUFFIX,redgifs.com,Tube
   - RULE-SET,google@ads_domain,REJECT-DROP
   - RULE-SET,google-play_domain,Auto
   - RULE-SET,youtube_domain,Auto
