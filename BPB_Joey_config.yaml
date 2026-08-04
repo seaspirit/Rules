@@ -143,6 +143,7 @@ rules:
   - DOMAIN-SUFFIX,subhd.me,DIRECT
   - DOMAIN-SUFFIX,softonic.cn,Auto
   - DOMAIN-SUFFIX,seaspirit.dpdns.org,DIRECT
+  - DOMAIN-SUFFIX,seaspirit.kdns.fr,DIRECT
   - DOMAIN-SUFFIX,speedtest.net,DIRECT
   - DOMAIN-SUFFIX,ookla.com,DIRECT
   - DOMAIN-SUFFIX,btdig.com,BPB
