@@ -8,7 +8,7 @@ proxy-providers:
     url: "https://j.seaspirit.dpdns.org/j/sub?target=clash"
     <<: *pp
   EdgeTunnel:
-    url: "https://e.seaspirit.kdns.fr/sub?token=fefdfe6efb584b6a7b68726634f948cc"
+    url: "https://e.seaspirit.kdns.fr/sub?token=f34b1b01f42fa49e7f4d2d4f9f654e6e"
     <<: *pp
 # 全局配置 
 port: 7890
