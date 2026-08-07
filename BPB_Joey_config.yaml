@@ -7,8 +7,8 @@ proxy-providers:
   Joey:
     url: "https://j.seaspirit.dpdns.org/j/sub?target=clash"
     <<: *pp
-  EdgeTunnel:
-    url: "https://e.seaspirit.kdns.fr/sub?token=f34b1b01f42fa49e7f4d2d4f9f654e6e"
+  BB:
+    url: "https://bb.seaspirit.kdns.fr/bb/sub/normal?app=clash#%F0%9F%92%A6%20BPB%20Normal"
     <<: *pp
 # 全局配置 
 port: 7890
@@ -111,8 +111,7 @@ pg: &pg {type: url-test, url: "https://www.gstatic.com/generate_204", interval: 
 proxy-groups:
   - name: "Auto"
     use:
-      - EdgeTunnel
-      - Joey
+      - BB
     <<: *pg
   - name: "BPB"
     use:
@@ -125,7 +124,7 @@ proxy-groups:
   - name: "Tube"
     type: load-balance
     use:
-      - EdgeTunnel
+      - BB
       - Joey
     url: "https://www.gstatic.com/generate_204"
     interval: 120
@@ -142,6 +141,7 @@ rules:
   - DOMAIN-SUFFIX,qnap.com,DIRECT
   - DOMAIN-SUFFIX,subhd.me,DIRECT
   - DOMAIN-SUFFIX,softonic.cn,Auto
+  - DOMAIN-SUFFIX,bpb-panel.workers.dev,Auto
   - DOMAIN-SUFFIX,seaspirit.dpdns.org,DIRECT
   - DOMAIN-SUFFIX,seaspirit.kdns.fr,DIRECT
   - DOMAIN-SUFFIX,speedtest.net,DIRECT
@@ -190,7 +190,7 @@ rules:
   - RULE-SET,test-ipv6_domain,DIRECT
   - RULE-SET,reddit_domain,Auto
   - RULE-SET,category-porn@ads_domain,REJECT-DROP
-  - RULE-SET,category-porn_domain,Auto
+  - RULE-SET,category-porn_domain,Joey
   - RULE-SET,gfw_domain,Auto
   - RULE-SET,geolocation-!cn,Auto
   - RULE-SET,cn_domain,DIRECT
@@ -202,7 +202,7 @@ rules:
   - RULE-SET,apple_ip,DIRECT
   - RULE-SET,cn_ip,DIRECT
   - RULE-SET,private_ip,DIRECT,no-resolve
-  - MATCH,Auto
+  - MATCH,Joey
 # 规则集
 rule-anchor:
   domain: &domain {type: http, interval: 86400, behavior: domain, format: mrs}
