@@ -149,7 +149,6 @@ rules:
   - DOMAIN-SUFFIX,btdig.com,BPB
   - DOMAIN-SUFFIX,apkmirror.com,BPB
   - DOMAIN-SUFFIX,maxjav.xyz,Joey
-  - DOMAIN-SUFFIX,yt-dl.click,Auto
   - RULE-SET,google@ads_domain,REJECT-DROP
   - RULE-SET,google-play_domain,Auto
   - RULE-SET,youtube_domain,Auto
