@@ -74,7 +74,6 @@ dns:
     - "+.uupdump.net"
     - "+.torrentgalaxy.one"
     - "+.torrentdownloads.pro"
-    - "+.btdig.com"
     - rule-set:cloudflare_domain
     - rule-set:openai_domain
     - rule-set:cn_domain
@@ -111,7 +110,7 @@ pg: &pg {type: url-test, url: "https://www.gstatic.com/generate_204", interval: 
 proxy-groups:
   - name: "Auto"
     use:
-      - BB
+      - Joey
     <<: *pg
   - name: "BPB"
     use:
@@ -120,6 +119,10 @@ proxy-groups:
   - name: "Joey"
     use:
       - Joey
+    <<: *pg
+  - name: "BB"
+    use:
+      - BB
     <<: *pg
   - name: "Tube"
     type: load-balance
@@ -147,12 +150,12 @@ rules:
   - DOMAIN-SUFFIX,speedtest.net,DIRECT
   - DOMAIN-SUFFIX,ookla.com,DIRECT
   - RULE-SET,google@ads_domain,REJECT-DROP
-  - RULE-SET,google-play_domain,Auto
-  - RULE-SET,youtube_domain,Auto
-  - RULE-SET,google-gemini_domain,Auto
-  - RULE-SET,google_domain,Auto
+  - RULE-SET,google-play_domain,BB
+  - RULE-SET,youtube_domain,BB
+  - RULE-SET,google-gemini_domain,BB
+  - RULE-SET,google_domain,BB
   - RULE-SET,cloudflare@cn_domain,DIRECT
-  - RULE-SET,cloudflare_domain,BPB
+  - RULE-SET,cloudflare_domain,Auto
   - RULE-SET,bytedance@ads_domain,REJECT-DROP
   - RULE-SET,douyin_domain,DIRECT
   - RULE-SET,tiktok_domain,Auto
@@ -187,19 +190,19 @@ rules:
   - RULE-SET,test-ipv6_domain,DIRECT
   - RULE-SET,reddit_domain,Auto
   - RULE-SET,category-porn@ads_domain,REJECT-DROP
-  - RULE-SET,category-porn_domain,Joey
+  - RULE-SET,category-porn_domain,Auto
   - RULE-SET,gfw_domain,Auto
   - RULE-SET,geolocation-!cn,Auto
   - RULE-SET,cn_domain,DIRECT
   - RULE-SET,private_domain,DIRECT
   - RULE-SET,google_ip,Auto,no-resolve
-  - RULE-SET,cloudflare_ip,BPB,no-resolve
+  - RULE-SET,cloudflare_ip,Auto,no-resolve
   - RULE-SET,netflix_ip,Auto,no-resolve
   - RULE-SET,telegram_ip,Auto,no-resolve
   - RULE-SET,apple_ip,DIRECT
   - RULE-SET,cn_ip,DIRECT
   - RULE-SET,private_ip,DIRECT,no-resolve
-  - MATCH,Joey
+  - MATCH,Auto
 # 规则集
 rule-anchor:
   domain: &domain {type: http, interval: 86400, behavior: domain, format: mrs}
