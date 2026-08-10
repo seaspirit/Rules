@@ -150,7 +150,7 @@ rules:
   - DOMAIN-SUFFIX,speedtest.net,DIRECT
   - DOMAIN-SUFFIX,ookla.com,DIRECT
   - RULE-SET,google@ads_domain,REJECT-DROP
-  - RULE-SET,google-play_domain,Auto
+  - RULE-SET,google-play_domain,BPB
   - RULE-SET,youtube_domain,BB
   - RULE-SET,google-gemini_domain,Auto
   - RULE-SET,google_domain,Auto
