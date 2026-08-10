@@ -74,6 +74,7 @@ dns:
     - "+.uupdump.net"
     - "+.torrentgalaxy.one"
     - "+.torrentdownloads.pro"
+    - rule-set:google-play_domain
     - rule-set:cloudflare_domain
     - rule-set:openai_domain
     - rule-set:cn_domain
@@ -150,10 +151,10 @@ rules:
   - DOMAIN-SUFFIX,speedtest.net,DIRECT
   - DOMAIN-SUFFIX,ookla.com,DIRECT
   - RULE-SET,google@ads_domain,REJECT-DROP
-  - RULE-SET,google-play_domain,BPB
+  - RULE-SET,google-play_domain,BB
   - RULE-SET,youtube_domain,BB
-  - RULE-SET,google-gemini_domain,Auto
-  - RULE-SET,google_domain,Auto
+  - RULE-SET,google-gemini_domain,BPB
+  - RULE-SET,google_domain,BPB
   - RULE-SET,cloudflare@cn_domain,DIRECT
   - RULE-SET,cloudflare_domain,Auto
   - RULE-SET,bytedance@ads_domain,REJECT-DROP
