@@ -7,8 +7,8 @@ proxy-providers:
   Joey:
     url: "https://j.seaspirit.dpdns.org/j/sub?target=clash"
     <<: *pp
-  BB:
-    url: "https://bb.seaspirit.kdns.fr/bb/sub/normal?app=clash#%F0%9F%92%A6%20BPB%20Normal"
+  BPBP:
+    url: "https://bpbp.seaspirit.kdns.fr/bpbp/sub/normal?app=clash#%F0%9F%92%A6%20BPB%20Normal"
     <<: *pp
 # 全局配置 
 port: 7890
@@ -121,14 +121,14 @@ proxy-groups:
     use:
       - Joey
     <<: *pg
-  - name: "BB"
+  - name: "BPBP"
     use:
-      - BB
+      - BPBP
     <<: *pg
   - name: "Tube"
     type: load-balance
     use:
-      - BB
+      - BPBP
       - Joey
     url: "https://www.gstatic.com/generate_204"
     interval: 120
@@ -151,8 +151,8 @@ rules:
   - DOMAIN-SUFFIX,speedtest.net,DIRECT
   - DOMAIN-SUFFIX,ookla.com,DIRECT
   - RULE-SET,google@ads_domain,REJECT-DROP
-  - RULE-SET,google-play_domain,BB
-  - RULE-SET,youtube_domain,BB
+  - RULE-SET,google-play_domain,BPBP
+  - RULE-SET,youtube_domain,BPBP
   - RULE-SET,google-gemini_domain,BPB
   - RULE-SET,google_domain,BPB
   - RULE-SET,cloudflare@cn_domain,DIRECT
