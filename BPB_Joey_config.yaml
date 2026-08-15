@@ -4,8 +4,8 @@ proxy-providers:
   BPB:
     url: "https://b.seaspirit.dpdns.org/b/sub/normal?app=clash#%F0%9F%92%A6%20BPB%20Normal"
     <<: *pp
-  Joey:
-    url: "https://j.seaspirit.dpdns.org/j/sub?target=clash"
+  CFnew:
+    url: "https://c.seaspirit.dpdns.org/c/sub?target=clash"
     <<: *pp
   BPBP:
     url: "https://bpbp.seaspirit.kdns.fr/bpbp/sub/normal?app=clash#%F0%9F%92%A6%20BPB%20Normal"
@@ -111,15 +111,15 @@ pg: &pg {type: url-test, url: "https://www.gstatic.com/generate_204", interval: 
 proxy-groups:
   - name: "Auto"
     use:
-      - Joey
+      - CFnew
     <<: *pg
   - name: "BPB"
     use:
       - BPB
     <<: *pg
-  - name: "Joey"
+  - name: "CFnew"
     use:
-      - Joey
+      - CFnew
     <<: *pg
   - name: "BPBP"
     use:
@@ -129,7 +129,7 @@ proxy-groups:
     type: load-balance
     use:
       - BPBP
-      - Joey
+      - CFnew
     url: "https://www.gstatic.com/generate_204"
     interval: 120
     strategy: "round-robin"
@@ -150,11 +150,12 @@ rules:
   - DOMAIN-SUFFIX,seaspirit.kdns.fr,DIRECT
   - DOMAIN-SUFFIX,speedtest.net,DIRECT
   - DOMAIN-SUFFIX,ookla.com,DIRECT
+  - DOMAIN-SUFFIX,yt-dl.click,DIRECT
   - RULE-SET,google@ads_domain,REJECT-DROP
   - RULE-SET,google-play_domain,BPBP
   - RULE-SET,youtube_domain,BPBP
-  - RULE-SET,google-gemini_domain,BPB
-  - RULE-SET,google_domain,BPB
+  - RULE-SET,google-gemini_domain,BPBP
+  - RULE-SET,google_domain,BPBP
   - RULE-SET,cloudflare@cn_domain,DIRECT
   - RULE-SET,cloudflare_domain,Auto
   - RULE-SET,bytedance@ads_domain,REJECT-DROP
@@ -165,10 +166,10 @@ rules:
   - RULE-SET,115_domain,DIRECT
   - RULE-SET,github_domain,Auto
   - RULE-SET,category-ai-!cn@ads_domain,REJECT-DROP
-  - RULE-SET,openai_domain,Joey
+  - RULE-SET,openai_domain,CFnew
   - RULE-SET,x@ads_domain,REJECT-DROP
-  - RULE-SET,x_domain,Joey
-  - RULE-SET,category-ai-!cn_domain,Joey
+  - RULE-SET,x_domain,CFnew
+  - RULE-SET,category-ai-!cn_domain,CFnew
   - RULE-SET,category-ai-cn_domain,DIRECT
   - RULE-SET,microsoft@ads_domain,REJECT-DROP
   - RULE-SET,win-update_domain,DIRECT
