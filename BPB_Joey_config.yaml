@@ -74,7 +74,6 @@ dns:
     - "+.uupdump.net"
     - "+.torrentgalaxy.one"
     - "+.torrentdownloads.pro"
-    - rule-set:google-play_domain
     - rule-set:cloudflare_domain
     - rule-set:openai_domain
     - rule-set:cn_domain
@@ -121,10 +120,6 @@ proxy-groups:
     use:
       - CFnew
     <<: *pg
-  - name: "BPBP"
-    use:
-      - BPBP
-    <<: *pg
   - name: "Tube"
     type: load-balance
     use:
@@ -152,10 +147,10 @@ rules:
   - DOMAIN-SUFFIX,ookla.com,DIRECT
   - DOMAIN-SUFFIX,yt-dl.click,DIRECT
   - RULE-SET,google@ads_domain,REJECT-DROP
-  - RULE-SET,google-play_domain,BPBP
-  - RULE-SET,youtube_domain,BPBP
-  - RULE-SET,google-gemini_domain,BPBP
-  - RULE-SET,google_domain,BPBP
+  - RULE-SET,google-play_domain,BPB
+  - RULE-SET,youtube_domain,BPB
+  - RULE-SET,google-gemini_domain,BPB
+  - RULE-SET,google_domain,BPB
   - RULE-SET,cloudflare@cn_domain,DIRECT
   - RULE-SET,cloudflare_domain,Auto
   - RULE-SET,bytedance@ads_domain,REJECT-DROP
