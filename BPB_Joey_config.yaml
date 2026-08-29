@@ -65,8 +65,6 @@ dns:
   fake-ip-range6: fdfe:dcba:9876::1/64
   fake-ip-filter-mode: blacklist
   fake-ip-filter:
-    - "+.subhd.me"
-    - "+.yysub.net"
     - "+.maxjav.com"
     - "+.uupdump.net"
     - "+.torrentgalaxy.one"
@@ -127,14 +125,13 @@ proxy-groups:
 # 规则匹配
 rules:
   - AND,((NETWORK,UDP),(DST-PORT,443),(NOT,((RULE-SET,cn_domain)))),REJECT-DROP
-  - DOMAIN-SUFFIX,returnyoutubedislikeapi.com,BPB
+  - DOMAIN-SUFFIX,returnyoutubedislikeapi.com,CFnew
   - DOMAIN-SUFFIX,media.redgifs.com,BPB
   - DOMAIN-SUFFIX,ajay.app,DIRECT
   - DOMAIN-SUFFIX,subhd.me,DIRECT
   - DOMAIN-SUFFIX,uupdump.net,DIRECT
   - DOMAIN-SUFFIX,downloadtorrentfile.com,DIRECT
   - DOMAIN-SUFFIX,qnap.com,DIRECT
-  - DOMAIN-SUFFIX,subhd.me,DIRECT
   - DOMAIN-SUFFIX,seaspirit.dpdns.org,DIRECT
   - DOMAIN-SUFFIX,seaspirit.kdns.fr,DIRECT
   - DOMAIN-SUFFIX,speedtest.net,DIRECT
