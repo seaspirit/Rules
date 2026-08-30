@@ -125,7 +125,8 @@ proxy-groups:
 # 规则匹配
 rules:
   - AND,((NETWORK,UDP),(DST-PORT,443),(NOT,((RULE-SET,cn_domain)))),REJECT-DROP
-  - DOMAIN-SUFFIX,returnyoutubedislikeapi.com,CFnew
+  - DOMAIN-SUFFIX,googlevideo.com,Auto
+  - DOMAIN-SUFFIX,returnyoutubedislikeapi.com,Auto
   - DOMAIN-SUFFIX,media.redgifs.com,BPB
   - DOMAIN-SUFFIX,ajay.app,DIRECT
   - DOMAIN-SUFFIX,subhd.me,DIRECT
@@ -140,7 +141,7 @@ rules:
   - DOMAIN-SUFFIX,softonic.cn,Auto
   - RULE-SET,google@ads_domain,REJECT-DROP
   - RULE-SET,google-play_domain,Auto
-  - RULE-SET,youtube_domain,Auto
+  - RULE-SET,youtube_domain,BPB
   - RULE-SET,google-gemini_domain,BPB
   - RULE-SET,google_domain,BPB
   - RULE-SET,cloudflare@cn_domain,DIRECT
@@ -153,10 +154,10 @@ rules:
   - RULE-SET,115_domain,DIRECT
   - RULE-SET,github_domain,Auto
   - RULE-SET,category-ai-!cn@ads_domain,REJECT-DROP
-  - RULE-SET,openai_domain,CFnew
+  - RULE-SET,openai_domain,Auto
   - RULE-SET,x@ads_domain,REJECT-DROP
-  - RULE-SET,x_domain,CFnew
-  - RULE-SET,category-ai-!cn_domain,CFnew
+  - RULE-SET,x_domain,Auto
+  - RULE-SET,category-ai-!cn_domain,Auto
   - RULE-SET,category-ai-cn_domain,DIRECT
   - RULE-SET,microsoft@ads_domain,REJECT-DROP
   - RULE-SET,win-update_domain,DIRECT
