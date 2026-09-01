@@ -1,8 +1,8 @@
 # 机场订阅
 pp: &pp {type: http, interval: 7200, proxy: DIRECT, health-check: {enable: true, url: "https://www.gstatic.com/generate_204", interval: 120}, header: {User-Agent: ["Clash/v1.18.0", "mihomo/1.19.30"]}, override: {client-fingerprint: chrome}}
 proxy-providers:
-  BPB:
-    url: "https://b.seaspirit.dpdns.org/b/sub/normal?app=clash#%F0%9F%92%A6%20BPB%20Normal"
+  BPBP:
+    url: "https://bpbp.seaspirit.kdns.fr/bpbp/sub/normal?app=clash#%F0%9F%92%A6%20BPB%20Normal"
     <<: *pp
   CFnew:
     url: "https://c.seaspirit.dpdns.org/c/sub?target=clash"
@@ -69,11 +69,10 @@ dns:
     - "+.uupdump.net"
     - "+.torrentgalaxy.one"
     - "+.torrentdownloads.pro"
-    - rule-set:x_domain
+    - rule-set:cloudflare_domain
     - rule-set:openai_domain
     - rule-set:cn_domain
     - rule-set:private_domain
-    - rule-set:fakeipfilter_domain
   default-nameserver:
     - 223.5.5.5
     - 223.6.6.6
@@ -107,9 +106,9 @@ proxy-groups:
     use:
       - CFnew
     <<: *pg
-  - name: "BPB"
+  - name: "BPBP"
     use:
-      - BPB
+      - BPBP
     <<: *pg
   - name: "CFnew"
     use:
@@ -119,7 +118,7 @@ proxy-groups:
     type: load-balance
     use:
       - CFnew
-      - BPB
+      - BPBP
     url: "https://www.gstatic.com/generate_204"
     interval: 120
     strategy: "round-robin"
@@ -128,7 +127,7 @@ rules:
   - AND,((NETWORK,UDP),(DST-PORT,443),(NOT,((RULE-SET,cn_domain)))),REJECT-DROP
   - DOMAIN-SUFFIX,googlevideo.com,Tube
   - DOMAIN-SUFFIX,returnyoutubedislikeapi.com,Auto
-  - DOMAIN-SUFFIX,media.redgifs.com,BPB
+  - DOMAIN-SUFFIX,media.redgifs.com,BPBP
   - DOMAIN-SUFFIX,ajay.app,DIRECT
   - DOMAIN-SUFFIX,subhd.me,DIRECT
   - DOMAIN-SUFFIX,uupdump.net,DIRECT
@@ -142,11 +141,11 @@ rules:
   - DOMAIN-SUFFIX,softonic.cn,Auto
   - RULE-SET,google@ads_domain,REJECT-DROP
   - RULE-SET,google-play_domain,Auto
-  - RULE-SET,youtube_domain,BPB
-  - RULE-SET,google-gemini_domain,BPB
-  - RULE-SET,google_domain,BPB
+  - RULE-SET,youtube_domain,BPBP
+  - RULE-SET,google-gemini_domain,BPBP
+  - RULE-SET,google_domain,BPBP
   - RULE-SET,cloudflare@cn_domain,DIRECT
-  - RULE-SET,cloudflare_domain,BPB
+  - RULE-SET,cloudflare_domain,Auto
   - RULE-SET,bytedance@ads_domain,REJECT-DROP
   - RULE-SET,douyin_domain,DIRECT
   - RULE-SET,tiktok_domain,Auto
@@ -186,8 +185,8 @@ rules:
   - RULE-SET,geolocation-!cn,Auto
   - RULE-SET,cn_domain,DIRECT
   - RULE-SET,private_domain,DIRECT
-  - RULE-SET,google_ip,Auto,no-resolve
-  - RULE-SET,cloudflare_ip,BPB,no-resolve
+  - RULE-SET,google_ip,BPBP,no-resolve
+  - RULE-SET,cloudflare_ip,Auto,no-resolve
   - RULE-SET,netflix_ip,Auto,no-resolve
   - RULE-SET,telegram_ip,Auto,no-resolve
   - RULE-SET,apple_ip,DIRECT
