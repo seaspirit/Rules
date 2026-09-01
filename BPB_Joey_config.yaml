@@ -1,5 +1,5 @@
 # 机场订阅
-pp: &pp {type: http, interval: 7200, proxy: DIRECT, health-check: {enable: true, url: "https://www.gstatic.com/generate_204", interval: 120}, header: {User-Agent: ["Clash/v1.18.0", "mihomo/1.19.27"]}, override: {client-fingerprint: chrome}}
+pp: &pp {type: http, interval: 7200, proxy: DIRECT, health-check: {enable: true, url: "https://www.gstatic.com/generate_204", interval: 120}, header: {User-Agent: ["Clash/v1.18.0", "mihomo/1.19.30"]}, override: {client-fingerprint: chrome}}
 proxy-providers:
   BPB:
     url: "https://b.seaspirit.dpdns.org/b/sub/normal?app=clash#%F0%9F%92%A6%20BPB%20Normal"
@@ -119,13 +119,14 @@ proxy-groups:
     type: load-balance
     use:
       - CFnew
+      - BPB
     url: "https://www.gstatic.com/generate_204"
     interval: 120
     strategy: "round-robin"
 # 规则匹配
 rules:
   - AND,((NETWORK,UDP),(DST-PORT,443),(NOT,((RULE-SET,cn_domain)))),REJECT-DROP
-  - DOMAIN-SUFFIX,googlevideo.com,Auto
+  - DOMAIN-SUFFIX,googlevideo.com,Tube
   - DOMAIN-SUFFIX,returnyoutubedislikeapi.com,Auto
   - DOMAIN-SUFFIX,media.redgifs.com,BPB
   - DOMAIN-SUFFIX,ajay.app,DIRECT
