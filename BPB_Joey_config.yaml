@@ -69,6 +69,7 @@ dns:
     - "+.uupdump.net"
     - "+.torrentgalaxy.one"
     - "+.torrentdownloads.pro"
+    - rule-set:google-play_domain
     - rule-set:cloudflare_domain
     - rule-set:openai_domain
     - rule-set:cn_domain
