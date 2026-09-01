@@ -185,7 +185,7 @@ rules:
   - RULE-SET,geolocation-!cn,Auto
   - RULE-SET,cn_domain,DIRECT
   - RULE-SET,private_domain,DIRECT
-  - RULE-SET,google_ip,BPBP,no-resolve
+  - RULE-SET,google_ip,Auto,no-resolve
   - RULE-SET,cloudflare_ip,Auto,no-resolve
   - RULE-SET,netflix_ip,Auto,no-resolve
   - RULE-SET,telegram_ip,Auto,no-resolve
