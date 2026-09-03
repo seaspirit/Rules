@@ -4,8 +4,11 @@ proxy-providers:
   BPBP:
     url: "https://bpbp.seaspirit.kdns.fr/bpbp/sub/normal?app=clash#%F0%9F%92%A6%20BPB%20Normal"
     <<: *pp
-  CFnew:
-    url: "https://c.seaspirit.dpdns.org/c/sub?target=clash"
+  Joey:
+    url: "https://j.seaspirit.dpdns.org/j/sub?target=clash"
+    <<: *pp
+  BPB:
+    url: "https://b.seaspirit.dpdns.org/b/sub/normal?app=clash#%F0%9F%92%A6%20BPB%20Normal"
     <<: *pp
 # 全局配置 
 port: 7890
@@ -69,6 +72,7 @@ dns:
     - "+.uupdump.net"
     - "+.torrentgalaxy.one"
     - "+.torrentdownloads.pro"
+    - "+.btdig.com"
     - rule-set:google-play_domain
     - rule-set:cloudflare_domain
     - rule-set:x_domain
@@ -106,21 +110,21 @@ pg: &pg {type: url-test, url: "https://www.gstatic.com/generate_204", interval: 
 proxy-groups:
   - name: "Auto"
     use:
-      - CFnew
+      - Joey
     <<: *pg
   - name: "BPBP"
     use:
       - BPBP
     <<: *pg
-  - name: "CFnew"
+  - name: "BPB"
     use:
-      - CFnew
+      - BPB
     <<: *pg
   - name: "Tube"
     type: load-balance
     use:
       - BPBP
-      - CFnew
+      - Joey
     url: "https://www.gstatic.com/generate_204"
     interval: 120
     strategy: "round-robin"
@@ -141,6 +145,7 @@ rules:
   - DOMAIN-SUFFIX,ookla.com,DIRECT
   - DOMAIN-SUFFIX,yt-dl.click,DIRECT
   - DOMAIN-SUFFIX,softonic.cn,Auto
+  - DOMAIN-SUFFIX,btdig.com,BPB
   - RULE-SET,google@ads_domain,REJECT-DROP
   - RULE-SET,google-play_domain,Auto
   - RULE-SET,youtube_domain,BPBP
