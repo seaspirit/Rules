@@ -107,6 +107,7 @@ proxy-groups:
   - name: "Auto"
     use:
       - CFnew
+      - BPBP
     <<: *pg
   - name: "BPBP"
     use:
