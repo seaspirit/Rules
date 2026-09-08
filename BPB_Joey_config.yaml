@@ -4,7 +4,7 @@ proxy-providers:
   BPBP:
     url: "https://bpbp.seaspirit.kdns.fr/bpbp/sub/normal?app=clash#%F0%9F%92%A6%20BPB%20Normal"
     <<: *pp
-  CFnew:
+  Joey:
     url: "https://c.seaspirit.dpdns.org/c/sub?target=clash"
     <<: *pp
 # 全局配置 
@@ -106,22 +106,21 @@ pg: &pg {type: url-test, url: "https://www.gstatic.com/generate_204", interval: 
 proxy-groups:
   - name: "Auto"
     use:
-      - CFnew
-      - BPBP
+      - Joey
     <<: *pg
   - name: "BPBP"
     use:
       - BPBP
     <<: *pg
-  - name: "CFnew"
+  - name: "Joey"
     use:
-      - CFnew
+      - Joey
     <<: *pg
   - name: "Tube"
     type: load-balance
     use:
       - BPBP
-      - CFnew
+      - Joey
     url: "https://www.gstatic.com/generate_204"
     interval: 120
     strategy: "round-robin"
@@ -130,7 +129,6 @@ rules:
   - AND,((NETWORK,UDP),(DST-PORT,443),(NOT,((RULE-SET,cn_domain)))),REJECT-DROP
   - DOMAIN-SUFFIX,googlevideo.com,Tube
   - DOMAIN-SUFFIX,returnyoutubedislikeapi.com,Auto
-  - DOMAIN-SUFFIX,media.redgifs.com,BPBP
   - DOMAIN-SUFFIX,ajay.app,DIRECT
   - DOMAIN-SUFFIX,subhd.me,DIRECT
   - DOMAIN-SUFFIX,uupdump.net,DIRECT
