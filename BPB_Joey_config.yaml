@@ -7,6 +7,9 @@ proxy-providers:
   Joey:
     url: "https://c.seaspirit.dpdns.org/c/sub?target=clash"
     <<: *pp
+  BPB:
+    url: "https://b.seaspirit.dpdns.org/b/sub/normal?app=clash#%F0%9F%92%A6%20BPB%20Normal"
+    <<: *pp
 # 全局配置 
 port: 7890
 socks-port: 7891
@@ -112,9 +115,9 @@ proxy-groups:
     use:
       - BPBP
     <<: *pg
-  - name: "Joey"
+  - name: "BPB"
     use:
-      - Joey
+      - BPB
     <<: *pg
   - name: "Tube"
     type: load-balance
@@ -143,7 +146,7 @@ rules:
   - DOMAIN-SUFFIX,yt-dl.click,DIRECT
   - DOMAIN-SUFFIX,softonic.cn,Auto
   - RULE-SET,google@ads_domain,REJECT-DROP
-  - RULE-SET,google-play_domain,Auto
+  - RULE-SET,google-play_domain,BPB
   - RULE-SET,youtube_domain,Auto
   - RULE-SET,google-gemini_domain,Auto
   - RULE-SET,google_domain,Auto
