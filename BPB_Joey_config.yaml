@@ -92,7 +92,7 @@ dns:
     "rule-set:youtube_domain,google-play_domain,google-gemini_domain,google_domain":
       - https://dns.google/dns-query
       - https://cloudflare-dns.com/dns-query
-    "rule-set:github_domain,cloudflare_domain,x_domain,category-ai-!cn_domain,win-update_domain,geolocation-!cn":
+    "rule-set:github_domain,cloudflare_domain,x_domain,category-ai-!cn_domain,category-porn_domain,reddit_domain,gfw_domain,geolocation-!cn":
       - https://cloudflare-dns.com/dns-query
       - https://dns.google/dns-query
     "rule-set:douyin_domain":
@@ -104,9 +104,12 @@ dns:
     "rule-set:baidu_domain":
       - 180.76.76.76
       - https://dns.alidns.com/dns-query
-    "rule-set:cloudflare@cn_domain,cn_domain,private_domain":
+    "rule-set:cloudflare@cn_domain,win-update_domain,cn_domain,private_domain":
       - https://dns.alidns.com/dns-query
       - https://doh.pub/dns-query
+    "+.btdig.com":
+      - https://cloudflare-dns.com/dns-query
+      - https://dns.google/dns-query
 # 出站策略
 pg: &pg {type: url-test, url: "https://www.gstatic.com/generate_204", interval: 120, tolerance: 10}
 proxy-groups:
