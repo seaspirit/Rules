@@ -101,6 +101,9 @@ dns:
     "rule-set:tencent_domain":
       - https://doh.pub/dns-query
       - https://dns.alidns.com/dns-query
+    "rule-set:baidu_domain":
+      - 180.76.76.76
+      - https://dns.alidns.com/dns-query
     "rule-set:cloudflare@cn_domain,cn_domain,private_domain":
       - https://dns.alidns.com/dns-query
       - https://doh.pub/dns-query
