@@ -131,8 +131,6 @@ proxy-groups:
 rules:
   - AND,((NETWORK,UDP),(DST-PORT,443),(NOT,((RULE-SET,cn_domain)))),REJECT-DROP
   - DOMAIN-SUFFIX,googlevideo.com,Tube
-  - RULE-SET,AdDomain,REJECT-DROP
-  - RULE-SET,anti-ad-clash_domain,REJECT-DROP
   - DOMAIN-SUFFIX,returnyoutubedislikeapi.com,Auto
   - DOMAIN-SUFFIX,ajay.app,DIRECT
   - DOMAIN-SUFFIX,subhd.me,DIRECT
@@ -145,6 +143,8 @@ rules:
   - DOMAIN-SUFFIX,ookla.com,DIRECT
   - DOMAIN-SUFFIX,yt-dl.click,DIRECT
   - DOMAIN-SUFFIX,softonic.cn,Auto
+  - RULE-SET,AdDomain,REJECT-DROP
+  - RULE-SET,category-ads-all_domain,REJECT-DROP
   - RULE-SET,google@ads_domain,REJECT-DROP
   - RULE-SET,google-play_domain,BPB
   - RULE-SET,youtube_domain,Auto
@@ -203,12 +203,10 @@ rules:
 rule-anchor:
   domain: &domain {type: http, interval: 86400, behavior: domain, format: mrs}
   ip: &ip {type: http, interval: 86400, behavior: ipcidr, format: mrs}
-  yaml: &yaml {type: http, interval: 86400, behavior: domain, format: yaml}
   class: &class {type: http, interval: 86400, behavior: domain, format: text}
 rule-providers:
   # 分隔,下面是DOMAIN分组
   AdDomain: { <<: *class, url: "https://raw.githubusercontent.com/Thoseyearsbrian/Aegis/main/rules/AdDomain.list"}
-  anti-ad-clash_domain: { <<: *yaml, url: "https://raw.githubusercontent.com/privacy-protection-tools/anti-AD/master/anti-ad-clash.yaml"}
   category-ads-all_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-ads-all.mrs"}
   google@ads_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/google@ads.mrs"}
   google-play_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/google-play.mrs"}
