@@ -18,7 +18,7 @@ mixed-port: 7893
 tproxy-port: 7894
 allow-lan: true
 bind-address: "*"
-ipv6: true
+ipv6: false
 unified-delay: true
 tcp-concurrent: true
 log-level: warning
@@ -61,7 +61,7 @@ dns:
   cache-algorithm: arc
   prefer-h3: false
   listen: 0.0.0.0:1053
-  ipv6: true
+  ipv6: false
   respect-rules: true
   enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.1/16
@@ -107,9 +107,6 @@ dns:
     "rule-set:cloudflare@cn_domain,win-update_domain,cn_domain,private_domain":
       - https://dns.alidns.com/dns-query
       - https://doh.pub/dns-query
-    "+.btdig.com":
-      - https://cloudflare-dns.com/dns-query
-      - https://dns.google/dns-query
 # 出站策略
 pg: &pg {type: url-test, url: "https://www.gstatic.com/generate_204", interval: 120, tolerance: 10}
 proxy-groups:
@@ -137,7 +134,7 @@ proxy-groups:
 rules:
   - AND,((NETWORK,UDP),(DST-PORT,443),(NOT,((RULE-SET,cn_domain)))),REJECT-DROP
   - DOMAIN-SUFFIX,googlevideo.com,Tube
-  - DOMAIN-SUFFIX,returnyoutubedislikeapi.com,Auto
+  - DOMAIN-SUFFIX,returnyoutubedislikeapi.com,BPB
   - DOMAIN-SUFFIX,ajay.app,DIRECT
   - DOMAIN-SUFFIX,subhd.me,DIRECT
   - DOMAIN-SUFFIX,uupdump.net,DIRECT
@@ -153,9 +150,9 @@ rules:
   - RULE-SET,category-ads-all_domain,REJECT-DROP
   - RULE-SET,google@ads_domain,REJECT-DROP
   - RULE-SET,google-play_domain,BPB
-  - RULE-SET,youtube_domain,Auto
-  - RULE-SET,google-gemini_domain,Auto
-  - RULE-SET,google_domain,Auto
+  - RULE-SET,youtube_domain,BPB
+  - RULE-SET,google-gemini_domain,BPB
+  - RULE-SET,google_domain,BPB
   - RULE-SET,cloudflare@cn_domain,DIRECT
   - RULE-SET,cloudflare_domain,Auto
   - RULE-SET,bytedance@ads_domain,REJECT-DROP
@@ -204,7 +201,7 @@ rules:
   - RULE-SET,apple_ip,DIRECT
   - RULE-SET,cn_ip,DIRECT
   - RULE-SET,private_ip,DIRECT,no-resolve
-  - MATCH,Auto
+  - MATCH,BPB
 # 规则集
 rule-anchor:
   domain: &domain {type: http, interval: 86400, behavior: domain, format: mrs}
