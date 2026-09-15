@@ -201,7 +201,7 @@ rules:
   - RULE-SET,apple_ip,DIRECT
   - RULE-SET,cn_ip,DIRECT
   - RULE-SET,private_ip,DIRECT,no-resolve
-  - MATCH,BPB
+  - MATCH,Auto
 # 规则集
 rule-anchor:
   domain: &domain {type: http, interval: 86400, behavior: domain, format: mrs}
