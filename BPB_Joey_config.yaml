@@ -18,7 +18,7 @@ mixed-port: 7893
 tproxy-port: 7894
 allow-lan: true
 bind-address: "*"
-ipv6: false
+ipv6: true
 unified-delay: true
 tcp-concurrent: true
 log-level: warning
@@ -61,7 +61,7 @@ dns:
   cache-algorithm: arc
   prefer-h3: false
   listen: 0.0.0.0:1053
-  ipv6: false
+  ipv6: true
   respect-rules: true
   enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.1/16
@@ -75,7 +75,6 @@ dns:
     - rule-set:google-play_domain
     - rule-set:cloudflare_domain
     - rule-set:x_domain
-    - rule-set:openai_domain
     - rule-set:cn_domain
     - rule-set:private_domain
   default-nameserver:
@@ -134,7 +133,7 @@ proxy-groups:
 rules:
   - AND,((NETWORK,UDP),(DST-PORT,443),(NOT,((RULE-SET,cn_domain)))),REJECT-DROP
   - DOMAIN-SUFFIX,googlevideo.com,Tube
-  - DOMAIN-SUFFIX,returnyoutubedislikeapi.com,BPB
+  - DOMAIN-SUFFIX,returnyoutubedislikeapi.com,Auto
   - DOMAIN-SUFFIX,ajay.app,DIRECT
   - DOMAIN-SUFFIX,subhd.me,DIRECT
   - DOMAIN-SUFFIX,uupdump.net,DIRECT
@@ -149,8 +148,8 @@ rules:
   - RULE-SET,AdDomain,REJECT-DROP
   - RULE-SET,category-ads-all_domain,REJECT-DROP
   - RULE-SET,google@ads_domain,REJECT-DROP
-  - RULE-SET,google-play_domain,BPB
-  - RULE-SET,youtube_domain,BPB
+  - RULE-SET,google-play_domain,Auto
+  - RULE-SET,youtube_domain,Auto
   - RULE-SET,google-gemini_domain,BPB
   - RULE-SET,google_domain,BPB
   - RULE-SET,cloudflare@cn_domain,DIRECT
