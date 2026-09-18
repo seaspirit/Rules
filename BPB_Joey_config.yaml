@@ -50,7 +50,7 @@ sniffer:
 # 入站  
 tun:
   enable: true
-  stack: mixed # system/gvisor/mixed
+  stack: mips # gvisor/mixed/mips
   dns-hijack: ["any:53", "tcp://any:53"]
   auto-route: true
   auto-redirect: true
@@ -74,6 +74,7 @@ dns:
     - "+.torrentdownloads.pro"
     - rule-set:google-play_domain
     - rule-set:cloudflare_domain
+    - rule-set:openai_domain
     - rule-set:x_domain
     - rule-set:cn_domain
     - rule-set:private_domain
@@ -148,8 +149,8 @@ rules:
   - RULE-SET,AdDomain,REJECT-DROP
   - RULE-SET,category-ads-all_domain,REJECT-DROP
   - RULE-SET,google@ads_domain,REJECT-DROP
-  - RULE-SET,google-play_domain,Auto
-  - RULE-SET,youtube_domain,Auto
+  - RULE-SET,google-play_domain,BPB
+  - RULE-SET,youtube_domain,BPB
   - RULE-SET,google-gemini_domain,BPB
   - RULE-SET,google_domain,BPB
   - RULE-SET,cloudflare@cn_domain,DIRECT
@@ -162,7 +163,7 @@ rules:
   - RULE-SET,115_domain,DIRECT
   - RULE-SET,github_domain,Auto
   - RULE-SET,category-ai-!cn@ads_domain,REJECT-DROP
-  - RULE-SET,openai_domain,Auto
+  - RULE-SET,openai_domain,BPB
   - RULE-SET,x@ads_domain,REJECT-DROP
   - RULE-SET,x_domain,Auto
   - RULE-SET,category-ai-!cn_domain,Auto
