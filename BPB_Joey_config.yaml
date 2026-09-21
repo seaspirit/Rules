@@ -1,14 +1,19 @@
 # 机场订阅
-pp: &pp {type: http, interval: 7200, proxy: DIRECT, health-check: {enable: true, url: "https://www.gstatic.com/generate_204", interval: 120}, header: {User-Agent: ["Clash/v1.18.0", "mihomo/1.19.30"]}, override: {client-fingerprint: chrome}}
+pp: &pp {type: http, interval: 7200, proxy: DIRECT, health-check: {enable: true, url: "https://www.gstatic.com/generate_204", interval: 120}, header: {User-Agent: ["Clash meta/v2.11.34", "FlClash/v0.8.98"]}, override: {client-fingerprint: chrome}}
 proxy-providers:
+  BPB:
+    url: "https://b.seaspirit.dpdns.org/b/sub/normal?app=clash#%F0%9F%92%A6%20BPB%20Normal"
+    <<: *pp
   BPBP:
     url: "https://bpbp.seaspirit.kdns.fr/bpbp/sub/normal?app=clash#%F0%9F%92%A6%20BPB%20Normal"
     <<: *pp
   Joey:
     url: "https://c.seaspirit.dpdns.org/c/sub?target=clash"
+    filter: "^((?!(HKG)).)*$"
     <<: *pp
-  BPB:
-    url: "https://b.seaspirit.dpdns.org/b/sub/normal?app=clash#%F0%9F%92%A6%20BPB%20Normal"
+  ONE:
+    url: "https://login.yfjc.xyz/api/v1/client/subscribe?token=d8fa5d8ee52b40c4f745042ad64977d7"
+    filter: "^((?!(香港|台湾|剩余|到期)).)*$"
     <<: *pp
 # 全局配置 
 port: 7890
@@ -110,17 +115,21 @@ dns:
 # 出站策略
 pg: &pg {type: url-test, url: "https://www.gstatic.com/generate_204", interval: 120, tolerance: 10}
 proxy-groups:
-  - name: "Auto"
+  - name: "BPB"
     use:
-      - Joey
+      - BPB
     <<: *pg
   - name: "BPBP"
     use:
       - BPBP
     <<: *pg
-  - name: "BPB"
+  - name: "Joey"
     use:
-      - BPB
+      - Joey
+    <<: *pg
+  - name: "ONE"
+    use:
+      - ONE
     <<: *pg
   - name: "Tube"
     type: load-balance
@@ -134,7 +143,7 @@ proxy-groups:
 rules:
   - AND,((NETWORK,UDP),(DST-PORT,443),(NOT,((RULE-SET,cn_domain)))),REJECT-DROP
   - DOMAIN-SUFFIX,googlevideo.com,Tube
-  - DOMAIN-SUFFIX,returnyoutubedislikeapi.com,Auto
+  - DOMAIN-SUFFIX,returnyoutubedislikeapi.com,ONE
   - DOMAIN-SUFFIX,ajay.app,DIRECT
   - DOMAIN-SUFFIX,subhd.me,DIRECT
   - DOMAIN-SUFFIX,uupdump.net,DIRECT
@@ -145,28 +154,28 @@ rules:
   - DOMAIN-SUFFIX,speedtest.net,DIRECT
   - DOMAIN-SUFFIX,ookla.com,DIRECT
   - DOMAIN-SUFFIX,yt-dl.click,DIRECT
-  - DOMAIN-SUFFIX,softonic.cn,Auto
+  - DOMAIN-SUFFIX,softonic.cn,Joey
   - RULE-SET,AdDomain,REJECT-DROP
   - RULE-SET,category-ads-all_domain,REJECT-DROP
   - RULE-SET,google@ads_domain,REJECT-DROP
-  - RULE-SET,google-play_domain,BPB
+  - RULE-SET,google-play_domain,ONE
   - RULE-SET,youtube_domain,BPB
-  - RULE-SET,google-gemini_domain,BPB
-  - RULE-SET,google_domain,BPB
+  - RULE-SET,google-gemini_domain,Joey
+  - RULE-SET,google_domain,Joey
   - RULE-SET,cloudflare@cn_domain,DIRECT
-  - RULE-SET,cloudflare_domain,Auto
+  - RULE-SET,cloudflare_domain,ONE
   - RULE-SET,bytedance@ads_domain,REJECT-DROP
   - RULE-SET,douyin_domain,DIRECT
-  - RULE-SET,tiktok_domain,Auto
-  - RULE-SET,bytedance@!cn_domain,Auto
+  - RULE-SET,tiktok_domain,Joey
+  - RULE-SET,bytedance@!cn_domain,Joey
   - RULE-SET,bytedance_domain,DIRECT
   - RULE-SET,115_domain,DIRECT
-  - RULE-SET,github_domain,Auto
+  - RULE-SET,github_domain,Joey
   - RULE-SET,category-ai-!cn@ads_domain,REJECT-DROP
-  - RULE-SET,openai_domain,Auto
+  - RULE-SET,openai_domain,ONE
   - RULE-SET,x@ads_domain,REJECT-DROP
-  - RULE-SET,x_domain,Auto
-  - RULE-SET,category-ai-!cn_domain,Auto
+  - RULE-SET,x_domain,ONE
+  - RULE-SET,category-ai-!cn_domain,Joey
   - RULE-SET,category-ai-cn_domain,DIRECT
   - RULE-SET,microsoft@ads_domain,REJECT-DROP
   - RULE-SET,win-update_domain,DIRECT
@@ -181,27 +190,27 @@ rules:
   - RULE-SET,tencent_domain,DIRECT
   - RULE-SET,baidu@ads_domain,REJECT-DROP
   - RULE-SET,baidu_domain,DIRECT
-  - RULE-SET,netflix_domain,Auto
-  - RULE-SET,disney_domain,Auto
-  - RULE-SET,telegram_domain,Auto
-  - RULE-SET,speedtest_domain,Auto
-  - RULE-SET,paypal_domain,Auto
+  - RULE-SET,netflix_domain,Joey
+  - RULE-SET,disney_domain,Joey
+  - RULE-SET,telegram_domain,Joey
+  - RULE-SET,speedtest_domain,Joey
+  - RULE-SET,paypal_domain,Joey
   - RULE-SET,test-ipv6_domain,DIRECT
-  - RULE-SET,reddit_domain,Auto
+  - RULE-SET,reddit_domain,Joey
   - RULE-SET,category-porn@ads_domain,REJECT-DROP
-  - RULE-SET,category-porn_domain,Auto
-  - RULE-SET,gfw_domain,Auto
-  - RULE-SET,geolocation-!cn,Auto
+  - RULE-SET,category-porn_domain,ONE
+  - RULE-SET,gfw_domain,Joey
+  - RULE-SET,geolocation-!cn,Joey
   - RULE-SET,cn_domain,DIRECT
   - RULE-SET,private_domain,DIRECT
-  - RULE-SET,google_ip,Auto,no-resolve
-  - RULE-SET,cloudflare_ip,Auto,no-resolve
-  - RULE-SET,netflix_ip,Auto,no-resolve
-  - RULE-SET,telegram_ip,Auto,no-resolve
+  - RULE-SET,google_ip,Joey,no-resolve
+  - RULE-SET,cloudflare_ip,ONE,no-resolve
+  - RULE-SET,netflix_ip,Joey,no-resolve
+  - RULE-SET,telegram_ip,Joey,no-resolve
   - RULE-SET,apple_ip,DIRECT
   - RULE-SET,cn_ip,DIRECT
   - RULE-SET,private_ip,DIRECT,no-resolve
-  - MATCH,Auto
+  - MATCH,Joey
 # 规则集
 rule-anchor:
   domain: &domain {type: http, interval: 86400, behavior: domain, format: mrs}
