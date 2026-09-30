@@ -129,7 +129,7 @@ proxy-groups:
   - name: "ONE"
     use:
       - ONE
-    filter: '^(?=.*(美国))(?=.*(倍率)).*$'
+    filter: '^(?=.*(美国))(?=.*(倍率))(?!.*((?i)ai)).*$'
     <<: *pg
   - name: "Tube"
     type: load-balance
