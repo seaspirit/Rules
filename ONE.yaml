@@ -106,11 +106,21 @@ proxy-groups:
   - name: "Auto"
     use:
       - ONE
+    filter: '^(?=.*(美国))(?=.*(倍率)).*$'
     <<: *pg
-    filter: '^(?=.*(美国))(?=.*(倍率))(?!.*((?i)ai)).*$'
+  - name: "Tube"
+    type: load-balance
+    use:
+      - ONE
+    filter: '^(?=.*(美国))(?=.*(倍率)).*$'
+    url: "https://www.gstatic.com/generate_204"
+    interval: 120
+    strategy: "round-robin"
 # 规则匹配
 rules:
   - AND,((NETWORK,UDP),(DST-PORT,443),(NOT,((RULE-SET,cn_domain)))),REJECT-DROP
+  - DOMAIN-SUFFIX,googlevideo.com,Tube
+  - DOMAIN,media.redgifs.com,Tube
   - DOMAIN-SUFFIX,ajay.app,DIRECT
   - DOMAIN-SUFFIX,subhd.me,DIRECT
   - DOMAIN-SUFFIX,uupdump.net,DIRECT
