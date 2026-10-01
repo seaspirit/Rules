@@ -106,13 +106,13 @@ proxy-groups:
   - name: "Auto"
     use:
       - ONE
-    filter: '^(?=.*(美国))(?=.*(倍率)).*$'
+    filter: '^(?=.*(美国))(?=.*(0.01倍率|0.1倍率)).*$'
     <<: *pg
   - name: "Tube"
     type: load-balance
     use:
       - ONE
-    filter: '^(?=.*(美国))(?=.*(倍率)).*$'
+    filter: '^(?=.*(美国))(?=.*(0.01倍率|0.1倍率)).*$'
     url: "https://www.gstatic.com/generate_204"
     interval: 120
     strategy: "round-robin"
