@@ -63,6 +63,7 @@ dns:
   fake-ip-filter-mode: blacklist
   fake-ip-filter:
     - "+.maxjav.com"
+    - "+.uupdump.net"
     - "+.torrentgalaxy.one"
     - "+.torrentdownloads.pro"
     - rule-set:google-play_domain
@@ -122,6 +123,7 @@ rules:
   - DOMAIN,media.redgifs.com,Tube
   - DOMAIN-SUFFIX,ajay.app,DIRECT
   - DOMAIN-SUFFIX,subhd.me,DIRECT
+  - DOMAIN-SUFFIX,uupdump.net,DIRECT
   - DOMAIN-SUFFIX,downloadtorrentfile.com,DIRECT
   - DOMAIN-SUFFIX,qnap.com,DIRECT
   - DOMAIN-SUFFIX,seaspirit.dpdns.org,DIRECT
@@ -153,9 +155,9 @@ rules:
   - RULE-SET,category-ai-!cn_domain,Auto
   - RULE-SET,category-ai-cn_domain,DIRECT
   - RULE-SET,microsoft@ads_domain,REJECT-DROP
-  - RULE-SET,win-update_domain,Auto
-  - RULE-SET,microsoft@cn_domain,Auto
-  - RULE-SET,microsoft_domain,Auto
+  - RULE-SET,win-update_domain,DIRECT
+  - RULE-SET,microsoft@cn_domain,DIRECT
+  - RULE-SET,microsoft_domain,DIRECT
   - RULE-SET,apple@ads_domain,REJECT-DROP
   - RULE-SET,apple_domain,DIRECT
   - RULE-SET,huawei_domain,DIRECT
