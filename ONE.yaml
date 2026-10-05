@@ -1,8 +1,9 @@
 # 机场订阅
-pp: &pp {type: http, interval: 7200, proxy: DIRECT, health-check: {enable: true, url: "https://www.gstatic.com/generate_204", interval: 120}, header: {User-Agent: ["Clash meta/v2.11.34", "FlClash/v0.8.98"]}, override: {client-fingerprint: chrome}}
+pp: &pp {type: http, interval: 86,400, proxy: DIRECT, health-check: {enable: true, url: "https://www.gstatic.com/generate_204", interval: 120}, header: {User-Agent: ["Clash meta/v2.11.34", "FlClash/v0.8.98"]}, override: {client-fingerprint: chrome}}
 proxy-providers:
   ONE:
     url: "https://login.yfjc.xyz/api/v1/client/subscribe?token=d8fa5d8ee52b40c4f745042ad64977d7"
+    filter: '^(?=.*(美国))(?=.*(0.01倍率|0.1倍率))(?!.*((?i)ai)).*$'
     <<: *pp
 # 全局配置 
 port: 7890
@@ -106,7 +107,6 @@ proxy-groups:
   - name: "Auto"
     use:
       - ONE
-    filter: '^(?=.*(凤凰城|(?i)美国ai))(?=.*(0.01倍率|0.1倍率)).*$'
     <<: *pg
 # 规则匹配
 rules:
